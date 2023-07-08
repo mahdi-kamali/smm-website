@@ -1,0 +1,31 @@
+@font-face {
+    font-family: dosis-regular;
+    src: url("../../fonts/dosis/Dosis-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    line-height: 1;
+    user-select: none;
+}
+
+button {
+    all: unset;
+}
+
+.App {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    font-family: dosis-regular;
+}
+
+img {
+    display: flex;
+    width: 100%;
+
+}
