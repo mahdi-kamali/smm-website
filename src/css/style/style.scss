@@ -1,5 +1,12 @@
 $color-1: #0d4bf4;
+$color-2: #f5f5f5;
+$color-3: #3165f3;
+$color-4: #4976f3;
 
+html {
+    background-color: $color-2;
+    padding-bottom: 10em;
+}
 header {
     background-color: $color-1;
     display: flex;
@@ -7,8 +14,11 @@ header {
     align-items: center;
     color: white;
     padding: 1.75em 7em;
-    // border-radius: 0 0 100rem 100rem;
+    border-radius: 0 0 100rem 100rem;
     text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     .menu {
         display: flex;
         font-weight: bold;
@@ -32,6 +42,7 @@ header {
         .selected {
             background-color: white;
             color: $color-1;
+            border: none !important;
         }
     }
 }
@@ -92,6 +103,318 @@ header {
             left: 0;
             right: 0;
             z-index: -1;
+        }
+    }
+
+    .intro {
+        margin-top: 20rem;
+        font-weight: bold;
+        .start {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            h1 {
+                font-size: 3rem;
+            }
+            p {
+                margin-top: 1rem;
+                max-width: 80ch;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                opacity: 0.5;
+            }
+        }
+        .roads {
+            margin-top: 7rem;
+            display: flex;
+            flex-direction: column;
+            .item {
+                display: grid;
+                grid-template-columns: 1fr 10rem 1fr;
+                align-items: center;
+                gap: 2rem;
+                position: relative;
+                padding-bottom: 10rem;
+                h2 {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    span {
+                        color: $color-1;
+                    }
+                }
+                p {
+                    line-height: 1.5rem;
+                    margin-top: 1rem;
+                    opacity: 0.5;
+                    max-width: 25rem;
+                }
+                .left {
+                    direction: rtl;
+                    p {
+                        direction: ltr;
+                        text-align: right;
+                    }
+                }
+
+                &::after {
+                    content: "";
+                    width: 3px;
+                    height: 10rem;
+                    background-color: $color-1;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                &:last-child {
+                    &::after {
+                        all: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    .intro-2 {
+        background-color: $color-4;
+        position: relative;
+        border-radius: 5rem 5rem 0 0;
+        padding-bottom: 5em;
+        .map {
+            width: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 5rem;
+            left: 0;
+            right: 0;
+            height: 30rem;
+        }
+
+        .our-activities {
+            display: grid;
+            grid-template-columns: 1fr 35rem;
+            padding-top: 15em;
+            padding-bottom: 5em;
+
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .header {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    color: white;
+                    padding-left: 20%;
+
+                    h1 {
+                        font-size: 5rem;
+                    }
+                    p {
+                        max-width: 35rem;
+                        line-height: 1.5;
+                        font-size: 1.2rem;
+                    }
+                }
+                .char {
+                    margin-top: 3rem;
+                }
+                .footer {
+                    width: 100%;
+                    padding-left: 20%;
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    margin-top: 4em;
+                    h1 {
+                        font-size: 4rem;
+                    }
+                    h2 {
+                        font-size: 2rem;
+                    }
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5rem;
+                .item {
+                    width: 15rem;
+                    background-color: white;
+                    border-radius: 2rem;
+                    position: relative;
+                    aspect-ratio: 1/1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .item-header {
+                        position: absolute;
+                        top: -3rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        img {
+                            width: 6rem;
+                        }
+                    }
+                    .item-body {
+                        color: $color-3;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.5rem;
+                        font-weight: bold;
+                        h1 {
+                            font-size: 3rem !important;
+                        }
+                        span {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+        .our-services {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 2em;
+                h1 {
+                    font-size: 3rem;
+                }
+                p {
+                    font-size: 1.5rem;
+                    margin-top: 1.5rem;
+                    opacity: 0.7;
+                    max-width: 45ch;
+                    text-align: center;
+                }
+            }
+
+            .body {
+                display: flex;
+                .swiper {
+                    padding-bottom: 3em;
+                    width: 100%;
+                    max-width: 1200px;
+                    .swiper-pagination-bullet {
+                        transition: all 1s ease;
+                        background-color: white !important;
+                    }
+                    .swiper-pagination-bullet-active {
+                        background-color: white !important;
+                        scale: 2;
+                    }
+
+                    .swiper-button-prev,
+                    .swiper-button-next {
+                        width: 3rem !important;
+                        
+                        &::after {
+                            all: unset;
+                        }
+                    }
+
+                    .swiper-button-prev {
+                        content: url("https://api.iconify.design/icon-park-solid/left-c.svg?color=white");
+                        width: max-content;
+                        height: max-content;
+                    }
+
+                    .swiper-button-next {
+                        content: url("https://api.iconify.design/icon-park-solid/left-c.svg?color=white&rotate=180deg");
+                        height: max-content;
+                    }
+                }
+                .item {
+                    position: relative;
+                    display: flex;
+                    height: max-content;
+                    flex-direction: column;
+                    gap: 1rem;
+                    background-color: white;
+                    padding: 2em;
+                    border-radius: 1rem;
+                    overflow: hidden;
+                    color: $color-3;
+                    transition: all 1s ease;
+                    border: 4px transparent solid;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $color-1;
+                        color: white;
+                        border: 4px white solid;
+                        .item-header {
+                            transform: translateX(30%);
+                            opacity: 1;
+                        }
+
+                        .item-body {
+                            button {
+                                background-color: white;
+                                color: $color-1;
+                            }
+                        }
+                    }
+                    .item-header {
+                        display: flex;
+                        justify-content: start;
+                        position: absolute;
+                        top: 1rem;
+                        right: 0;
+                        bottom: 1rem;
+                        background-color: rgb(172, 255, 47);
+                        border-radius: 100rem 0 0 100rem;
+                        opacity: 0.75;
+                        transition: all 1s ease;
+                        transform: translateX(50%);
+                        img {
+                            object-fit: contain;
+                            transition: all 1s ease;
+                            margin: -0 -1rem;
+                            position: relative;
+                            right: 2rem;
+                        }
+                    }
+                    .item-body {
+                        display: flex;
+                        align-items: start;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        z-index: 1;
+                        font-weight: bold;
+                        h1 {
+                        }
+                        small {
+                            font-size: 1rem;
+                            max-width: 18ch;
+                        }
+                        button {
+                            transition: all 1s ease;
+                            margin-top: 0.5rem;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: $color-4;
+                            color: white;
+                            padding: 0.6em 1em;
+                            border-radius: 0.25rem;
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }
