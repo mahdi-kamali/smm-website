@@ -5,7 +5,8 @@ import {
     A11y,
     EffectCards,
     EffectCoverflow,
-    Autoplay
+    Autoplay,
+    EffectFade
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -36,12 +37,21 @@ import { Icon } from "@iconify/react"
 // Customers Reviews 
 import cChar from "../../../images/main-page/customers-reviews/first-part/char.svg"
 import cBackground from "../../../images/main-page/customers-reviews/first-part/background.svg"
+import { Progress } from 'react-sweet-progress';
+import { useState } from 'react';
+
+
+
+// About us
+import blob from "../../../images/main-page/about-us/blob.svg"
 
 
 const MainPage = () => {
 
 
 
+
+    const [rightSwiper, setRightSwiper] = useState(null)
 
 
     const getRandomColors = () => {
@@ -488,6 +498,9 @@ const MainPage = () => {
                                 delay: 5000,
                                 disableOnInteraction: false,
                             }}
+                            onSlideChange={(swiper) => {
+                                rightSwiper.slideTo(swiper.activeIndex)
+                            }}
                             modules={[
                                 EffectCards,
                                 Navigation,
@@ -520,6 +533,11 @@ const MainPage = () => {
                                                 It is a long established fact that a reader will be distracted by
                                                 the readable content of a page when looking at its layout.
                                             </p>
+
+                                            <div className="rating">
+                                                <Icon icon="ph:star-fill" />
+                                                <span>5 Star</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </SwiperSlide>
@@ -528,19 +546,204 @@ const MainPage = () => {
                         </Swiper>
                     </div>
                     <div className="right">
-                        <h1>Anita</h1>
-                        <p>
-                            It is a long established fact that a reader will be distracted by
-                            the readable content of a page when looking at its layout.
-                        </p>
+
+                        <Swiper
+                            spaceBetween={30}
+
+                            className="mySwiper"
+                            onSwiper={swiper => setRightSwiper(swiper)}
+                        >
+
+                            <SwiperSlide>
+
+                                <div className="progressers">
+                                    <h1>
+                                        <span> Anita </span>
+                                        Reviewed Our Services
+                                    </h1>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="fluent:thumb-like-24-filled" />
+                                            <span>Likes</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={50}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="carbon:view-filled" />
+                                            <span>Views</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="material-symbols:amp-stories" />
+                                            <span>Stories</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="mdi:comment" />
+                                            <span>Comments</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="icon-park-solid:effects" />
+                                            <span>Effective</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </SwiperSlide>
+
+
+                            <SwiperSlide>
+
+                                <div className="progressers">
+                                    <h1>
+                                        <span> Anita </span>
+                                        Reviewed Our Services
+                                    </h1>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="fluent:thumb-like-24-filled" />
+                                            <span>Likes</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={50}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="carbon:view-filled" />
+                                            <span>Views</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="material-symbols:amp-stories" />
+                                            <span>Stories</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="mdi:comment" />
+                                            <span>Comments</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+                                    <div className="item">
+                                        <h2 className='header'>
+                                            <Icon icon="icon-park-solid:effects" />
+                                            <span>Effective</span>
+
+                                        </h2>
+                                        <div className="body">
+                                            <Progress
+                                                percent={70}
+                                            />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </SwiperSlide>
+
+                        </Swiper>
+
+
+
+
                     </div>
                 </div>
 
 
             </section>
 
-
-
+            <section className='about-us'>
+                <div className="left">
+                    <img src={require("../../../images/main-page/about-us/left.png")} alt="" />
+                </div>
+                <div className="right">
+                    <div className="content">
+                        <h1>About Us</h1>
+                        <p>
+                            At our company, we specialize in creating and executing effective social media marketing strategies that help businesses build their brand and increase their online presence. We understand that social media is a crucial aspect of any successful marketing campaign, and we strive to stay up-to-date with the latest trends and best practices. Our team of experts is dedica
+                        </p>
+                        <div className="social-media">
+                            <div className="social">
+                                <Icon icon="ic:baseline-attach-email" />
+                                <span>example@gmail.com</span>
+                            </div>
+                            <div className="social">
+                                <Icon icon="ri:phone-fill" />
+                                <span>+1 202-918-2132</span>
+                            </div>
+                        </div>
+                        <button>Read More</button>
+                    </div>
+                </div>
+            </section>
 
         </main >
     )
