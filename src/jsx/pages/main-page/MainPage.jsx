@@ -1,4 +1,12 @@
-import { Navigation, Pagination, Scrollbar, A11y, EffectCoverflow } from 'swiper/modules';
+import {
+    Navigation,
+    Pagination,
+    Scrollbar,
+    A11y,
+    EffectCards,
+    EffectCoverflow,
+    Autoplay
+} from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -23,7 +31,34 @@ import itemFour from "../../../images/main-page/intro-2/svg/4.svg"
 import { Icon } from "@iconify/react"
 
 
+
+
+// Customers Reviews 
+import cChar from "../../../images/main-page/customers-reviews/first-part/char.svg"
+import cBackground from "../../../images/main-page/customers-reviews/first-part/background.svg"
+
+
 const MainPage = () => {
+
+
+
+
+
+    const getRandomColors = () => {
+        let all = [];
+        for (let i = 0; i < Math.random() * 20; i++) {
+            const red = Math.random() * 250;
+            const green = Math.random() * 250;
+            const blue = Math.random() * 250;
+            all.push({ red, green, blue })
+        }
+        console.log(all);
+        return all
+
+    }
+
+
+
     return (
         <main className="main-page">
             <section className="poster">
@@ -119,7 +154,7 @@ const MainPage = () => {
             </section>
 
 
-            <div className="intro-2">
+            <section className="intro-2">
                 <img src={require("../../../images/main-page/intro-2/map.png")} className="map" />
 
                 <div className="our-activities">
@@ -211,11 +246,7 @@ const MainPage = () => {
                                 depth: 350,
                                 modifier: 1,
                                 slideShadows: false,
-                            }}
-
-
-
-                        >
+                            }} >
                             <SwiperSlide>
                                 <div className="item">
                                     <div className="item-header">
@@ -323,9 +354,195 @@ const MainPage = () => {
                     </div>
                     <div className="footer"></div>
                 </div>
-            </div>
 
-        </main>
+                <div className="our-popular-services">
+                    <img src={require("../../../images/main-page/intro-2/our-popular-services/rocket.png")} alt="" className="rocket" />
+                    <div className="header">
+                        <h1>
+                            Our Popular
+                            <span>Services</span>
+                        </h1>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                            dummy text
+                        </p>
+                    </div>
+                    <div className="body">
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={require("../../../images/main-page/intro-2/our-popular-services/1.png")} alt="" />
+                            </div>
+                            <div className="item-body">
+                                <h2>Blog Analytics</h2>
+                                <p>
+                                    1. Track blog performance with analytics. <br />
+                                    2. Gain insights on blog traffic.<br />
+                                    3. "Optimize blog growth with data.
+                                </p>
+                                <h2>
+                                    <span>$6 - $53</span>
+                                    <small>M/o</small>
+                                </h2>
+                            </div>
+                            <div className="item-buttons">
+                                <button className='arrow-up'>
+                                    <Icon icon="icon-park-solid:up-one" />
+                                </button>
+                                <button className='see-more'>
+                                    <span>See More</span>
+                                    <Icon icon="mingcute:right-fill" />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={require("../../../images/main-page/intro-2/our-popular-services/1.png")} alt="" />
+                            </div>
+                            <div className="item-body">
+                                <h2>Blog Analytics</h2>
+                                <p>
+                                    1. Track blog performance with analytics. <br />
+                                    2. Gain insights on blog traffic.<br />
+                                    3. "Optimize blog growth with data.
+                                </p>
+                                <h2>
+                                    <span>$6 - $53</span>
+                                    <small>M/o</small>
+                                </h2>
+                            </div>
+                            <div className="item-buttons">
+                                <button className='arrow-up'>
+                                    <Icon icon="icon-park-solid:up-one" />
+                                </button>
+                                <button className='see-more'>
+                                    <span>See More</span>
+                                    <Icon icon="mingcute:right-fill" />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={require("../../../images/main-page/intro-2/our-popular-services/1.png")} alt="" />
+                            </div>
+                            <div className="item-body">
+                                <h2>Blog Analytics</h2>
+                                <p>
+                                    1. Track blog performance with analytics. <br />
+                                    2. Gain insights on blog traffic.<br />
+                                    3. "Optimize blog growth with data.
+                                </p>
+                                <h2>
+                                    <span>$6 - $53</span>
+                                    <small>M/o</small>
+                                </h2>
+                            </div>
+                            <div className="item-buttons">
+                                <button className='arrow-up'>
+                                    <Icon icon="icon-park-solid:up-one" />
+                                </button>
+                                <button className='see-more'>
+                                    <span>See More</span>
+                                    <Icon icon="mingcute:right-fill" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <section className="customers-reviews">
+                <img src={cBackground} className="background" />
+                <div className="first-section">
+                    <div className="left">
+                        <img src={cChar} alt="" />
+
+                    </div>
+                    <div className="right">
+                        <h1>
+                            OUR CUSTOMERS <br />
+                            <span>REVIEWS</span>  <br />
+                            ABOUT  <br />
+                            SERVICES <br />
+
+                        </h1>
+                        <button>
+                            <span>See More</span>
+                            <Icon icon="icon-park-outline:right" />
+                        </button>
+                    </div>
+                </div>
+                <div className="comments">
+
+                    <div className="left">
+                        <Swiper
+                            className="mySwiper"
+                            effect={'cards'}
+                            grabCursor={true}
+                            navigation
+                            pagination={{ clickable: true }}
+                            autoplay={{
+                                delay: 5000,
+                                disableOnInteraction: false,
+                            }}
+                            modules={[
+                                EffectCards,
+                                Navigation,
+                                Pagination,
+                                Scrollbar,
+                                A11y,
+                                Autoplay,
+                                EffectCoverflow]}
+                        >
+                            {getRandomColors().map(color => {
+                                return <SwiperSlide>
+                                    <div className="item"
+                                        style={
+                                            {
+                                                backgroundColor:
+                                                    `rgb(${color.red},${color.green},${color.blue})`
+                                            }}>
+                                        <div className="item-header">
+                                            <img src={require("../../../images/main-page/customers-reviews/comments/1.png")} className="avatar" />
+                                            <div className="info">
+                                                <h1>Anita</h1>
+                                                <small>2 Year Customer</small>
+                                            </div>
+                                        </div>
+                                        <div className="item-body">
+                                            <h1>
+                                                Best Supporting
+                                            </h1>
+                                            <p>
+                                                It is a long established fact that a reader will be distracted by
+                                                the readable content of a page when looking at its layout.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            })}
+
+                        </Swiper>
+                    </div>
+                    <div className="right">
+                        <h1>Anita</h1>
+                        <p>
+                            It is a long established fact that a reader will be distracted by
+                            the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+
+
+            </section>
+
+
+
+
+        </main >
     )
 }
 
