@@ -14,21 +14,39 @@ import 'swiper/css/effect-fade';
 
 
 
+// React SeelctBox
+import 'react-select-search/style.css'
+
+
+
 // ProgressBar
 import "react-sweet-progress/lib/style.css";
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 
 import MainPage from "./jsx/pages/main-page/MainPage";
+import ServicesPage from './jsx/pages/services-page/ServicesPage';
 import Header from "./jsx/primaries/header/Header";
 import Footer from "./jsx/primaries/footer/Footer";
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <MainPage />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/home' element={<MainPage />} />
+          <Route path='services' element={<ServicesPage />} />
+          <Route path="*" element={<MainPage />} />
+        </Routes>
+        <Footer />
+
+      </BrowserRouter>
+
     </div>
   );
 }
