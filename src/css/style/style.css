@@ -1,3 +1,8 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 html {
   background-color: #f5f5f5;
   padding-bottom: 10em;
@@ -101,6 +106,42 @@ main {
 }
 .select-search-options button:hover {
   background-color: #0d4bf4 !important;
+}
+
+.swiper .controlls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.swiper .controlls .swiper-custom-pagination {
+  width: -moz-max-content;
+  width: max-content;
+}
+.swiper .controlls .swiper-custom-pagination .swiper-pagination-bullet {
+  transition: all 0.5s ease;
+}
+.swiper .controlls .swiper-custom-pagination .swiper-pagination-bullet-active {
+  scale: 1.5;
+}
+.swiper .controlls .arrow-disabled {
+  opacity: 0.25;
+  scale: 0.8;
+}
+.swiper .controlls .arrow {
+  font-size: 3rem;
+  transition: all 1s ease;
+}
+.swiper .controlls .arrow svg {
+  background-color: #0d4bf4;
+  border-radius: 50%;
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-page {
@@ -970,6 +1011,151 @@ main {
   opacity: 1;
   scale: 1.25;
 }
+.services-page .suggested-services {
+  display: flex;
+  flex-direction: column;
+}
+.services-page .suggested-services .list {
+  margin-top: 3rem;
+}
+.services-page .suggested-services .slide {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 1em;
+  text-align: start;
+}
+.services-page .suggested-services .first-slide {
+  position: relative;
+  border-radius: 1.5rem;
+  display: flex;
+  padding: 0;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-right: 2rem !important;
+}
+.services-page .suggested-services .first-slide .card {
+  z-index: 2 !important;
+  background: #0d4bf4;
+  padding: 2em 3em;
+  text-align: center;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+.services-page .suggested-services .first-slide::after, .services-page .suggested-services .first-slide::before {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from var(--gradient-angle), red, green, yellow, orange, yellow, green, red);
+  animation: spin 7s ease infinite;
+}
+.services-page .suggested-services .first-slide::after {
+  filter: blur(0.75rem);
+}
+.services-page .suggested-services .first-slide .body {
+  display: flex;
+  flex-direction: column;
+}
+.services-page .suggested-services .first-slide .body small {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+.services-page .suggested-services .first-slide .button button {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0.75em 2em;
+  border-radius: 100rem;
+  font-weight: bold;
+}
+.services-page .suggested-services .normal-slide {
+  text-align: center;
+  border-radius: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 1s ease;
+  background: white;
+  cursor: pointer;
+  overflow: hidden;
+}
+.services-page .suggested-services .normal-slide .header img {
+  width: 7rem;
+}
+.services-page .suggested-services .normal-slide .body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.services-page .suggested-services .normal-slide .body h1 {
+  font-size: 1.25rem;
+}
+.services-page .suggested-services .normal-slide .body ul {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+.services-page .suggested-services .normal-slide .body ul li {
+  list-style: disc;
+  margin-left: 1rem;
+}
+.services-page .suggested-services .normal-slide .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.services-page .suggested-services .normal-slide .button h2 {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  gap: 0.5rem;
+}
+.services-page .suggested-services .normal-slide .button h2 span {
+  font-weight: bold;
+}
+.services-page .suggested-services .normal-slide .button h2 small {
+  font-size: 0.8rem;
+}
+.services-page .suggested-services .normal-slide .button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #008f26;
+  color: #0d4bf4;
+  border-radius: 100rem;
+  font-weight: bold;
+  color: white;
+  height: 1.75rem;
+  padding-left: 1em;
+  font-size: 0.9rem;
+}
+.services-page .suggested-services .normal-slide .button button svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #008f26;
+  font-size: 2.75rem;
+  border-radius: 50%;
+  padding: 0.2em;
+}
+.services-page .suggested-services .normal-slide:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
 @keyframes tilt {
   0% {
@@ -988,5 +1174,13 @@ main {
   }
   100% {
     transform: translateY(0%) translateX(0%);
+  }
+}
+@keyframes spin {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
   }
 }/*# sourceMappingURL=style.css.map */
