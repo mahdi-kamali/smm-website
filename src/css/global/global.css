@@ -19,10 +19,10 @@ button {
 }
 
 .App {
-  max-width: 1400px;
   margin: 0 auto;
   min-height: 100dvh;
   font-family: dosis-regular;
+  max-width: 1400px !important;
 }
 
 img {

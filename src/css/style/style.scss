@@ -4,6 +4,11 @@ $color-3: #3165f3;
 $color-4: #4976f3;
 $color-5: #698df3;
 
+// Panel Colors
+
+$panel-color-1: #d7e1ff;
+$panel-color-2: #92c4ff;
+
 @property --gradient-angle {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -31,6 +36,7 @@ header {
     right: 0;
     max-width: 1400px;
     transform: translateX(-50%);
+    top: 0;
     left: 50%;
     .menu {
         display: flex;
@@ -39,7 +45,7 @@ header {
         font-size: 1.2rem;
         gap: 0.5rem;
         li {
-            padding: 0.5em 0.5em;
+            padding: 0.3rem 1em;
             border-radius: 100rem;
             display: flex;
             align-items: center;
@@ -65,8 +71,10 @@ footer {
 }
 
 main {
-    padding-top: 5em;
+    margin-top: 6.4rem !important;
 }
+
+// Select Box Styles
 
 .select-search-container {
     width: 10rem !important;
@@ -112,6 +120,8 @@ main {
     }
 }
 
+// Swiper Global style
+
 .swiper {
     .controlls {
         display: flex;
@@ -148,6 +158,36 @@ main {
         }
     }
 }
+
+// Animation
+
+.rainbow-border {
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        inset: -0.5rem;
+        z-index: -1;
+        border-radius: inherit;
+        background: linear-gradient(
+            var(--gradient-angle),
+            $color-1,
+            $color-3,
+            $color-4,
+            $color-5,
+            $color-4,
+            $color-3,
+            $color-1
+        );
+        animation: spin 20s linear infinite;
+    }
+}
+
+.circle-ripple--animation {
+    animation: ripple 0.7s linear infinite;
+}
+
+// Pages
 
 .main-page {
     display: flex;
@@ -1067,7 +1107,7 @@ main {
             margin-right: 2rem !important;
             .card {
                 z-index: 2 !important;
-                background: $color-1 ;
+                background: $color-1;
                 padding: 2em 3em;
                 text-align: center;
                 border-radius: inherit;
@@ -1125,7 +1165,7 @@ main {
             transition: all 1s ease;
             background: white;
             cursor: pointer;
-           overflow: hidden;
+            overflow: hidden;
 
             .header {
                 img {
@@ -1195,8 +1235,248 @@ main {
             &:hover {
                 background-color: rgba(0, 0, 0, 0.1);
             }
-
         }
+    }
+}
+
+.auth-page {
+    background-image: url("../../images/auth-page/background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    .left {
+        width: 50%;
+        .rocket {
+            position: absolute;
+            bottom: 0;
+            opacity: 0.24;
+            right: 0;
+            width: 50vw;
+        }
+        .lottie {
+            width: 100%;
+        }
+        h1 {
+            color: white;
+            font-size: 6rem;
+            padding: 1em;
+        }
+        img {
+            width: 40rem;
+        }
+    }
+
+    .right {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 2em;
+        position: relative;
+        border-radius: 1rem;
+        color: white;
+        backdrop-filter: blur(50px);
+
+        .form-header {
+            padding-bottom: 0.5em;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            h1 {
+                text-align: center;
+                width: 10ch;
+                font-size: 1rem;
+                padding: 0.6em 0;
+                padding-top: 0.4em;
+                border-radius: 100rem;
+                transition: all 0.5s ease;
+                cursor: pointer;
+                &:hover {
+                    background-color: white;
+                    color: white;
+                }
+            }
+
+            .selected {
+                font-size: 1.25rem;
+                background-color: white;
+                color: $color-1;
+            }
+        }
+        .form-body {
+            display: flex;
+            flex-direction: column;
+            .part {
+                display: grid;
+                transition:
+                    all 1s ease,
+                    opacity 2s linear;
+            }
+            .container {
+                display: grid;
+                overflow: hidden;
+                fieldset {
+                    border-radius: 0.5rem;
+                    border: 2px currentColor solid;
+                    margin-top: 1rem;
+                    transition: all 0.5s ease;
+                    legend {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-left: 1rem;
+                        gap: 0.25rem;
+                        padding: 0 0.5em;
+                        text-transform: uppercase;
+                        transition: all 0.5s ease;
+                        padding: 0.5em 0.75em;
+                    }
+                    input {
+                        all: unset;
+                        font-weight: bold;
+                        width: 15rem;
+                        padding: 0.5em;
+                        padding-top: 0.25em;
+                    }
+                    &:hover {
+                        scale: 0.95;
+                    }
+                }
+                .focues {
+                    background-color: white;
+                    color: $color-1;
+                    opacity: 1;
+                    border-color: white;
+                    legend {
+                        background-color: $color-1;
+                        border-radius: 100rem;
+                        color: white;
+                    }
+                }
+            }
+            .sign-up-fields {
+                grid-template-rows: 0fr;
+                opacity: 0;
+            }
+            .expanded {
+                grid-template-rows: 1fr;
+                opacity: 1;
+            }
+        }
+        .form-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            small {
+            }
+            .submit {
+                background-color: $color-1;
+                font-weight: bold;
+                text-align: center;
+                padding: 0.75em;
+                width: 15ch;
+                border-radius: 100rem;
+                font-size: 1.1rem;
+                margin-top: 0.5rem;
+                color: white;
+            }
+        }
+
+        .form-auth-options {
+            display: flex;
+            justify-content: center;
+            font-size: 2rem;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    }
+}
+
+// Dashboards
+
+.user-dashboard {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    min-height: 100vh;
+    background-image: url("../../images/auth-page/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    .panel-menu {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 2em;
+        background-image: linear-gradient(0deg , $color-3 0% , transparent);
+        padding-top: 4em;
+        gap: 0.5rem;
+        border-right: 12px solid white;
+        li {
+            gap: 0.5rem;
+            border-radius: 100rem;
+            transition: all 0.5s ease;
+            font-size: 1rem;
+            font-weight: bold;
+            color: $color-1;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            padding: 0.75em 1em;
+            cursor: pointer;
+            position: relative;
+        }
+        .selected {
+            background-color: $color-4;
+            color: white;
+        }
+    }
+    .dashboard {
+        position: relative;
+        .rocket {
+            width: 50rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        .active-social {
+            display: flex;
+            padding: 1em 2em;
+            gap: 0.5rem;
+            width: max-content;
+            margin: 3rem;
+            color: $color-1;
+            text-transform: capitalize;
+            .item {
+                display: flex;
+                width: 7rem;
+                align-items: center;
+                font-weight: bold;
+                gap: 0.5rem;
+            }
+        }
+    }
+}
+
+@keyframes ripple {
+    0% {
+        box-shadow:
+            0 0 0 0 #8ca7f328,
+            0 0 0 0.25em #8ca7f328,
+            0 0 0 0.5em #8ca7f328,
+            0 0 0 1em #8ca7f311;
+    }
+    100% {
+        box-shadow:
+            0 0 0 0.25em #8ca7f328,
+            0 0 0 0.5em #8ca7f328,
+            0 0 0 1em #8ca7f311,
+            0 0 0 1.5em rgba(77, 68, 93, 0);
     }
 }
 
