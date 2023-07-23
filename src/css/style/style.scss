@@ -71,7 +71,8 @@ footer {
 }
 
 main {
-    margin-top: 6.4rem !important;
+    min-height: calc(100vh - 6rem) !important;
+    margin-top: 6rem;
 }
 
 // Select Box Styles
@@ -1407,21 +1408,24 @@ main {
     background-image: url("../../images/auth-page/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+
     .panel-menu {
         display: flex;
         flex-direction: column;
         padding: 1em 2em;
-        background-image: linear-gradient(0deg , $color-3 0% , transparent);
+        background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.247) 0%, $color-1);
+        color: white;
         padding-top: 4em;
-        gap: 0.5rem;
-        border-right: 12px solid white;
+        gap: 1rem;
+        border-right: 2px solid rgba(255, 255, 255, 0.1);
+
         li {
             gap: 0.5rem;
             border-radius: 100rem;
             transition: all 0.5s ease;
             font-size: 1rem;
             font-weight: bold;
-            color: $color-1;
             text-transform: uppercase;
             display: flex;
             align-items: center;
@@ -1430,34 +1434,194 @@ main {
             position: relative;
         }
         .selected {
-            background-color: $color-4;
-            color: white;
+            background-color: white;
+            color: $color-1;
         }
     }
+    .background {
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.1;
+        position: absolute;
+    }
+
     .dashboard {
         position: relative;
+        display: flex;
+        flex-wrap: wrap;
+
         .rocket {
             width: 50rem;
-            position: absolute;
             top: 0;
             right: 0;
-            z-index: 0;
-            opacity: 0.2;
         }
-        .active-social {
+
+        .user-row {
+            background-color: $color-3;
             display: flex;
-            padding: 1em 2em;
-            gap: 0.5rem;
-            width: max-content;
-            margin: 3rem;
-            color: $color-1;
-            text-transform: capitalize;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            width: 100%;
+            padding: 1em;
+
+            .left {
+                .user {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    padding: 2em;
+                    padding-bottom: 1em;
+                    gap: 1rem;
+
+                    .today-news {
+                        direction: rtl;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.25rem;
+                        h1 {
+                            font-size: 1.5rem;
+                        }
+                        p {
+                            max-width: 20rem;
+                            opacity: 0.7;
+                            font-size: 0.9rem;
+                            line-height: 1.7;
+                        }
+                    }
+                    .icons {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        font-size: 2.25rem;
+                        svg {
+                            border: 2px solid white;
+                            border-radius: 50%;
+                            padding: 0.2em;
+                        }
+                    }
+                    .avatar {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        img {
+                            width: 4rem;
+                            border-radius: 50%;
+                        }
+                        .info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.4rem;
+                            h1 {
+                                font-size: 1.5rem;
+                            }
+                            span {
+                                font-size: 0.9rem;
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+                    .progresser {
+                        width: 10rem;
+                        color: white;
+                    }
+                }
+                .active-social {
+                    display: flex;
+                    text-transform: capitalize;
+                    padding-bottom: 0;
+                    border-radius: 0 0 0.5rem 0;
+                    flex-direction: column;
+                    padding-bottom: 1em;
+                    gap: 1rem;
+                    border-radius: 0 0 1rem 1rem;
+
+                    .social-body {
+                        display: flex;
+                        justify-content: center;
+                        gap: 1rem;
+                        color: white;
+                        .item {
+                            display: flex;
+                            align-items: center;
+                            border-bottom: 0.3rem transparent solid;
+                            transition: all 1s ease;
+                            cursor: pointer;
+                            span {
+                            }
+                            img {
+                                width: 3rem;
+                                margin-left: -0.5rem;
+                            }
+                        }
+
+                        .selected {
+                            border-color: goldenrod;
+                        }
+                    }
+                }
+            }
+            .right {
+                .service-expire {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1rem;
+                    background-color: rgba(255, 255, 255, 0.137);
+                    border-radius: 1rem;
+                    padding: 1.5em;
+                    .expire {
+                        font-size: 1.25rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                        border-radius: 100rem;
+                        color: white;
+                        
+                        small {
+                            font-size: 1rem;
+                        }
+                    }
+                    .progresser {
+                        width: 8rem;
+                        * {
+                        }
+                    }
+                }
+            }
+        }
+        .qucik-view-column {
+            padding: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             .item {
+                color: $color-1;
+                background-color: rgb(255, 255, 255);
+                padding: 2em;
+                border-radius: 1rem;
                 display: flex;
-                width: 7rem;
-                align-items: center;
-                font-weight: bold;
                 gap: 0.5rem;
+                align-items: center;
+                backdrop-filter: blur(10px);
+                .data {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    h2 {
+                        font-size: 2rem;
+                    }
+                    span {
+                        font-size: 1.25rem;
+                    }
+                }
+                svg {
+                    font-size: 3.5rem;
+                }
             }
         }
     }

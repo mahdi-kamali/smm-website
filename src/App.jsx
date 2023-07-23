@@ -21,6 +21,7 @@ import 'react-select-search/style.css'
 
 // ProgressBar
 import "react-sweet-progress/lib/style.css";
+import 'react-circular-progressbar/dist/styles.css';
 
 
 

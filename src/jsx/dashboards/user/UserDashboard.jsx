@@ -2,6 +2,7 @@ import { useState } from "react"
 import Dashboard from "./panels/dashbaord/Dashboard"
 import PanelsItem from "./Components/PanelsItem"
 import { Icon } from "@iconify/react"
+import UserInfo from "./panels/panel-header/UserInfo"
 
 const UserDashboard = () => {
 
