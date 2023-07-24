@@ -1721,19 +1721,72 @@ main {
   flex-direction: column;
   justify-content: end;
   gap: 0.5rem;
-  padding: 2em;
+  padding: 2em 3em;
   position: absolute;
   bottom: 0;
-  height: 40%;
+  left: 0;
+  right: 0;
   transition: all 1s ease;
-  background-image: linear-gradient(0deg, black, transparent);
+  background-color: black;
+  height: 7em;
   cursor: pointer;
 }
 .user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-body h1 {
   text-transform: uppercase;
 }
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-body p {
+  border-radius: 100rem;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3em;
+  transform: translateY(-110%);
+  transition: 1s ease all;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button small {
+  font-size: 2.5rem;
+}
 .user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content:hover .content-body {
   height: 100%;
+  color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content:hover .content-buttons {
+  transform: translateY(0);
+  background-color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post:hover .content-body {
+  height: 100%;
+  background-image: initial;
+  background-color: white;
+  color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post:hover .content-buttons {
+  transform: translateY(0);
+  background-color: #0d4bf4;
 }
 .user-dashboard .dashboard .recent-evernts-row .recent-events .body .item:nth-child(even) .date {
   align-items: end;

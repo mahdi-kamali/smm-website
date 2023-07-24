@@ -34,6 +34,36 @@ const InstagramPostEvent = (props) => {
                     </p>
                 </div>
 
+                <div className="content-buttons">
+                    <button>
+                        <span>
+                            <Icon icon="icon-park-solid:like" />
+                            likes
+                        </span>
+                        <small>
+                            {data.post.likes}
+                        </small>
+                    </button>
+                    <button>
+                        <span>
+                            <Icon icon="fa6-solid:comments" />
+                            Comments
+                        </span>
+                        <small>
+                            {data.post.comments}
+                        </small>
+                    </button>
+                    <button>
+                        <span>
+                            <Icon icon="ion:share" />
+                            Shares
+                        </span>
+                        <small>
+                            {data.post.shares}
+                        </small>
+                    </button>
+                </div>
+
             </div>
         </VerticalTimelineElement>
     )
