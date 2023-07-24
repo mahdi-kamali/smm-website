@@ -3,16 +3,11 @@
 
 
 
-// React TimeLine Library
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-
-
 
 
 // SvG 
 import rocket from "../../../../../images/auth-page/rocket.svg"
 import statisticsSvg from "../../../../../images/panel/dashboad/statistics/back.svg"
-import scheduledPostsSvg from "../../../../../images/panel/dashboad/scheduled-posts/background.svg"
 
 
 
@@ -24,8 +19,6 @@ import ActiveSocial from "./components/active-social/ActiveSocial"
 // Utill Classes
 import FakeChartData from "../../../tools/FakeDataGenarator";
 
-// React Iconify
-import { Icon } from "@iconify/react"
 
 
 
@@ -53,6 +46,7 @@ import {
 } from "chart.js";
 import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
 import QuickView from './components/quick-view/QuickkView';
+import RecentEvents from './components/recent-evernts/RecentEvernts';
 
 
 ChartJS.register(
@@ -206,120 +200,8 @@ const Dashboard = () => {
 
 
 
-            <div className="row scheduled-posts-row">
-                <div className="scheduled-posts">
-                    <div className="header">
-                        <div className="left">
-                            <img src={scheduledPostsSvg} />
-                        </div>
-                        <div className="right">
-                            <h1>
-                                Scheduled Posts
-                            </h1>
-                            <span>
-                                Account Information You Have Earned
-                            </span>
-                        </div>
-                    </div>
-                    <div className="body">
-                        <VerticalTimeline  >
-
-                            <VerticalTimelineElement
-                                className='item success left'
-                                date={
-                                    <h1 className='date'>
-                                        <span>
-                                            <Icon icon="clarity:date-solid" />
-                                            2023/5/12
-                                        </span>
-                                        <span>
-                                            <Icon icon="ri:time-fill" />
-                                            16:32
-                                        </span>
-                                    </h1>}
-                                icon={<Icon icon="el:ok" />}>
-                                <div className="content">
-                                    <h1>Service #5423 Activated </h1>
-                                    <p>
-                                        Thank you for choosing our SMM service! We appreciate your support. 🙏
-                                    </p>
-                                </div>
-                            </VerticalTimelineElement>
-
-                            <VerticalTimelineElement
-                                className='item warning right'
-
-                                date={
-                                    <h1 className='date'>
-                                        <span>
-                                            <Icon icon="clarity:date-solid" />
-                                            2023/5/12
-                                        </span>
-                                        <span>
-                                            <Icon icon="ri:time-fill" />
-                                            16:32
-                                        </span>
-                                    </h1>}
-                                icon={<Icon icon="ph:warning-fill" />}>
-                                <div className="content">
-                                    <h1>Service #5423 Ending Soon! </h1>
-                                    <p>
-                                        Service ending. Grateful for your support. Questions? Reach out anytime. Thank you!
-                                    </p>
-                                </div>
-                            </VerticalTimelineElement>
-
-
-                            <VerticalTimelineElement
-                                className='item danger left'
-                                date={
-                                    <h1 className='date'>
-                                        <span>
-                                            <Icon icon="clarity:date-solid" />
-                                            2023/5/12
-                                        </span>
-                                        <span>
-                                            <Icon icon="ri:time-fill" />
-                                            16:32
-                                        </span>
-                                    </h1>}
-                                icon={<Icon icon="ic:baseline-dangerous" />}>
-                                <div className="content">
-                                    <h1>Service #5423 DeActivated! </h1>
-                                    <p>
-                                        Service Ended.
-                                        Thank you for your support. We appreciate your business.
-                                    </p>
-                                </div>
-                            </VerticalTimelineElement>
-
-
-                            <VerticalTimelineElement
-                                className='item process right'
-                                date={
-                                    <h1 className='date'>
-                                        <span>
-                                            <Icon icon="clarity:date-solid" />
-                                            2023/5/12
-                                        </span>
-                                        <span>
-                                            <Icon icon="ri:time-fill" />
-                                            16:32
-                                        </span>
-                                    </h1>}
-                                icon={<Icon icon="ic:baseline-dangerous" />}>
-                                <div className="content">
-                                    <h1>Service #5423 On Proccess! </h1>
-                                    <p>
-                                        Thank you for your patience. Our team is currently working on your service. We appreciate your understanding and look forward to delivering the best results.
-                                    </p>
-                                </div>
-                            </VerticalTimelineElement>
-
-
-                        </VerticalTimeline>
-                    </div>
-                </div>
+            <div className="row recent-evernts-row">
+                <RecentEvents />
             </div>
 
 
