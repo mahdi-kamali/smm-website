@@ -1,30 +1,78 @@
-import ActiveSocialItem from "./components/ActiveSocialItem"
 
 
 
+
+
+// React TimeLine Library
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+
+
+
+
+// SvG 
 import rocket from "../../../../../images/auth-page/rocket.svg"
+import statisticsSvg from "../../../../../images/panel/dashboad/statistics/back.svg"
+import scheduledPostsSvg from "../../../../../images/panel/dashboad/scheduled-posts/background.svg"
 
-import { useState } from "react"
+
+
+// Componensts
 import UserInfo from "../panel-header/UserInfo"
+import ActiveSocial from "./components/active-social/ActiveSocial"
+
+
+// Utill Classes
+import FakeChartData from "../../../tools/FakeDataGenarator";
+
+// React Iconify
 import { Icon } from "@iconify/react"
 
 
 
+// React Propgresser Bar
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 
 
 
-import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, Legend, ScriptableContext, } from "chart.js";
-import { Chart as ReactChart, Line, Pie } from "react-chartjs-2";
-import ActiveSocial from "./components/ActiveSocial"
-ChartJS.register(ArcElement, Tooltip, Filler, Legend, CategoryScale, LinearScale, PointElement, LineElement);
+
+// React Chart.js 2 
+import {
+    Chart as ChartJS,
+    ArcElement,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend,
+    ScriptableContext,
+    BarElement,
+    Title,
+} from "chart.js";
+import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
+import QuickView from './components/quick-view/QuickkView';
 
 
-ChartJS.defaults.font.size = 25
+ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Filler,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    BarElement,
+    Title,
+    LineElement);
+
+
+ChartJS.defaults.font.size = 18
+ChartJS.defaults.font.weight = "bold"
 ChartJS.defaults.font.family = "dosis-regular"
 ChartJS.defaults.borderColor = "transparent"
-
+ChartJS.defaults.plugins.legend.align = "start"
 
 
 
@@ -35,58 +83,30 @@ const Dashboard = () => {
 
 
 
-
-
-
-
-
-
-
-
-    const data = {
-        labels: ["1", "2", "3", "4"],
-        datasets: [
-            {
-                data: [500, 512, 414, 205],
-                pointRadius: 10,
-                pointHoverRadius: 15,
-                backgroundColor: (context) => {
-                    const ctx = context.chart.ctx;
-                    const gradient = ctx.createLinearGradient(0, 0, 0, 255);
-                    gradient.addColorStop(0, "rgba(255,255,255,1)");
-                    gradient.addColorStop(1, "rgba(255,255,255,0)");
-                    return gradient;
-                },
-                borderColor: "rgba(255,255,255,255)",
-                fill: true,
-
-            }
-
-        ],
-
-
-    };
-
-
     const options = {
+        maintainAspectRatio: true,
         responsive: true,
         scales: {
             x: {
                 ticks: {
-                    color: 'white',
-                    fontSize: 20
+                    color: '#0d4bf4',
+                    fontSize: 15,
                 }
             },
             y: {
                 ticks: {
-                    color: 'white'
-
+                    fontSize: 15,
+                    display: false,
+                    color: '#0d4bf4'
                 }
             }
         }
+
+
     }
 
-    const percentage = 66;
+
+
 
 
 
@@ -99,7 +119,6 @@ const Dashboard = () => {
                     <ActiveSocial />
                 </div>
                 <div className="right">
-                    {/* <Pie id="myChart" data={data} options={options} /> */}
                     <div className="service-expire">
                         <CircularProgressbar
                             className="progresser"
@@ -134,52 +153,183 @@ const Dashboard = () => {
                     </div>
 
                 </div>
-
-
-
-
-
-
             </div>
-            <div className="row">
-                <div className="col qucik-view-column">
-                    <div className="item">
-                        <div className="data">
-                            <h2>2679</h2>
-                            <span>Followers</span>
-                        </div>
 
-                        <Icon icon="mingcute:user-follow-2-fill" />
+            <div className="row qucik-view-row">
+                <QuickView />
+            </div>
+
+            <div className="row statistics-row">
+                <div className="statistics">
+                    <div className="header">
+                        <div className="left">
+                            <img src={statisticsSvg} />
+                        </div>
+                        <div className="right">
+                            <h1>
+                                Statistics
+                            </h1>
+                            <span>
+                                Account Information  You Have Earned
+                            </span>
+                        </div>
                     </div>
-                    <div className="item">
-                        <div className="data">
-                            <h2>2679</h2>
-                            <span>Followers</span>
+                    <div className="body">
+                        <div className="item">
+                            <Line
+                                className="chart"
+                                id="myChart"
+                                data={
+                                    FakeChartData(
+                                        ["Jan", "Feb", "Mar", "Apr", "May", "Jan"], 2000, ["Followers", "Following", "Likes"])}
+                                options={options}
+                                height={250}
+                                width={350}
+                            />
                         </div>
+                        <div className="item">
+                            <Bar
+                                className="chart"
+                                id="myChart2"
+                                data={
+                                    FakeChartData(
+                                        ["Jan", "Feb", "Mar", "Apr", "May", "Jan"], 2000, ["Likes", "Share", "Comments"])}
+                                options={options}
+                                height={250}
+                                width={350}
+                            />
 
-                        <Icon icon="mingcute:user-follow-2-fill" />
-                    </div>
-                    <div className="item">
-                        <div className="data">
-                            <h2>2679</h2>
-                            <span>Followers</span>
                         </div>
-
-                        <Icon icon="mingcute:user-follow-2-fill" />
-                    </div>
-                    <div className="item">
-                        <div className="data">
-                            <h2>2679</h2>
-                            <span>Followers</span>
-                        </div>
-
-                        <Icon icon="mingcute:user-follow-2-fill" />
                     </div>
                 </div>
             </div>
+
+
+
+            <div className="row scheduled-posts-row">
+                <div className="scheduled-posts">
+                    <div className="header">
+                        <div className="left">
+                            <img src={scheduledPostsSvg} />
+                        </div>
+                        <div className="right">
+                            <h1>
+                                Scheduled Posts
+                            </h1>
+                            <span>
+                                Account Information You Have Earned
+                            </span>
+                        </div>
+                    </div>
+                    <div className="body">
+                        <VerticalTimeline  >
+
+                            <VerticalTimelineElement
+                                className='item success left'
+                                date={
+                                    <h1 className='date'>
+                                        <span>
+                                            <Icon icon="clarity:date-solid" />
+                                            2023/5/12
+                                        </span>
+                                        <span>
+                                            <Icon icon="ri:time-fill" />
+                                            16:32
+                                        </span>
+                                    </h1>}
+                                icon={<Icon icon="el:ok" />}>
+                                <div className="content">
+                                    <h1>Service #5423 Activated </h1>
+                                    <p>
+                                        Thank you for choosing our SMM service! We appreciate your support. 🙏
+                                    </p>
+                                </div>
+                            </VerticalTimelineElement>
+
+                            <VerticalTimelineElement
+                                className='item warning right'
+
+                                date={
+                                    <h1 className='date'>
+                                        <span>
+                                            <Icon icon="clarity:date-solid" />
+                                            2023/5/12
+                                        </span>
+                                        <span>
+                                            <Icon icon="ri:time-fill" />
+                                            16:32
+                                        </span>
+                                    </h1>}
+                                icon={<Icon icon="ph:warning-fill" />}>
+                                <div className="content">
+                                    <h1>Service #5423 Ending Soon! </h1>
+                                    <p>
+                                        Service ending. Grateful for your support. Questions? Reach out anytime. Thank you!
+                                    </p>
+                                </div>
+                            </VerticalTimelineElement>
+
+
+                            <VerticalTimelineElement
+                                className='item danger left'
+                                date={
+                                    <h1 className='date'>
+                                        <span>
+                                            <Icon icon="clarity:date-solid" />
+                                            2023/5/12
+                                        </span>
+                                        <span>
+                                            <Icon icon="ri:time-fill" />
+                                            16:32
+                                        </span>
+                                    </h1>}
+                                icon={<Icon icon="ic:baseline-dangerous" />}>
+                                <div className="content">
+                                    <h1>Service #5423 DeActivated! </h1>
+                                    <p>
+                                        Service Ended.
+                                        Thank you for your support. We appreciate your business.
+                                    </p>
+                                </div>
+                            </VerticalTimelineElement>
+
+
+                            <VerticalTimelineElement
+                                className='item process right'
+                                date={
+                                    <h1 className='date'>
+                                        <span>
+                                            <Icon icon="clarity:date-solid" />
+                                            2023/5/12
+                                        </span>
+                                        <span>
+                                            <Icon icon="ri:time-fill" />
+                                            16:32
+                                        </span>
+                                    </h1>}
+                                icon={<Icon icon="ic:baseline-dangerous" />}>
+                                <div className="content">
+                                    <h1>Service #5423 On Proccess! </h1>
+                                    <p>
+                                        Thank you for your patience. Our team is currently working on your service. We appreciate your understanding and look forward to delivering the best results.
+                                    </p>
+                                </div>
+                            </VerticalTimelineElement>
+
+
+                        </VerticalTimeline>
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <div className="rocket background">
                 <img src={rocket} />
             </div>
+
+
 
 
 

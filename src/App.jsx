@@ -1,3 +1,6 @@
+
+
+// Application styles
 import "./css/global/global.css"
 import "./css/style/style.css"
 import "./css/animation/aniamtions.css"
@@ -22,6 +25,11 @@ import 'react-select-search/style.css'
 // ProgressBar
 import "react-sweet-progress/lib/style.css";
 import 'react-circular-progressbar/dist/styles.css';
+
+
+// React Time Line
+import 'react-vertical-timeline-component/style.min.css';
+
 
 
 

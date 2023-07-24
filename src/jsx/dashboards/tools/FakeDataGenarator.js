@@ -1,0 +1,94 @@
+
+
+const colors = [
+    {
+        borderColor: "rgba(13, 75, 244, 1)",
+        pointBackgroundColor: "rgba(13, 75, 244, 0.7)",
+        gradient: {
+            start: "rgba(13, 75, 244, 0.7)",
+            end: "rgba(13, 75, 244, 0.0)"
+        }
+
+    },
+
+    {
+        borderColor: "rgba(255, 0, 0, 1)",
+        pointBackgroundColor: "rgba(255, 0, 0, 1)",
+        gradient: {
+            start: "rgba(255, 0, 0, 1)",
+            end: "rgba(255, 0, 0, 0.0)"
+        }
+
+    },
+
+    {
+        borderColor: "rgba(0, 255, 0, 0.7)",
+        pointBackgroundColor: "rgba(0, 255, 0, 0.7)",
+        gradient: {
+            start: "rgba(0, 255, 0, 0.7)",
+            end: "rgba(0, 0, 0, 0.0)"
+        }
+
+    },
+
+]
+
+
+
+function getChartData(labels, max, titles) {
+
+
+    const dataSets = []
+
+
+    Array.from(titles).forEach((title, index) => {
+
+        const temp = []
+        Array.from(labels).forEach(elemente => {
+            const value = (Math.random() * max).toFixed() + 100
+            temp.push(value)
+        })
+
+        dataSets.push(
+            {
+                label: title,
+                borderRadius: 5,
+                data: temp,
+                pointRadius: 3,
+                pointHoverRadius: 10,
+                pointBackgroundColor: colors[index].pointBackgroundColor,
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 255);
+                    gradient.addColorStop(0, colors[index].gradient.start);
+                    gradient.addColorStop(1, colors[index].gradient.end);
+                    return gradient;
+                },
+                borderColor: colors[index].borderColor,
+                fill: true,
+                cubicInterpolationMode: 'monotone',
+            })
+    })
+
+
+
+
+
+
+
+    const data = {
+        labels: labels,
+
+        datasets: dataSets
+    };
+
+
+
+
+
+    return data
+}
+
+
+
+export default getChartData

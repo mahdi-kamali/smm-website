@@ -2,15 +2,15 @@ import React from 'react'
 import ActiveSocialItem from './ActiveSocialItem'
 
 
-import instagram from "../../../../../../images/services-page/services/social-icons/instagram.png"
-import whatsapp from "../../../../../../images/services-page/services/social-icons/whatsapp.png"
-import twitter from "../../../../../../images/services-page/services/social-icons/twitter.png"
-import spotify from "../../../../../../images/services-page/services/social-icons/spotify.png"
+import instagram from "../../../../../../../images/services-page/services/social-icons/instagram.png"
+import whatsapp from "../../../../../../../images/services-page/services/social-icons/whatsapp.png"
+import twitter from "../../../../../../../images/services-page/services/social-icons/twitter.png"
+import spotify from "../../../../../../../images/services-page/services/social-icons/spotify.png"
 import { useState } from 'react'
 
 const ActiveSocial = () => {
 
-    const [currentSocial, setCurrentSocial] = useState("");
+    const [currentSocial, setCurrentSocial] = useState("instagram");
 
     return (
         <div className="active-social ">
