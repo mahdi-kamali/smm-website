@@ -41,12 +41,25 @@ function getChartData(labels, max, titles) {
     const dataSets = []
 
 
+
     Array.from(titles).forEach((title, index) => {
 
+        let intialValue = 0
+
         const temp = []
-        Array.from(labels).forEach(elemente => {
-            const value = (Math.random() * max).toFixed() + 100
-            temp.push(value)
+        Array.from(labels).forEach((element, index) => {
+
+            if (index % 2 !== 0) {
+                intialValue += (Math.random()*max).toFixed() * 10
+            }
+
+            if (index % 2 == 0 && index !== 0) {
+                intialValue -= index * 500
+            }
+
+
+            temp.push(intialValue)
+
         })
 
         dataSets.push(

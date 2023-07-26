@@ -25,14 +25,15 @@ const eventsItems = [
             description: `🏙️ Exploring the vibrant streets of "Starlight City" ✨🌆 There's an undeniable magic in the air as I wander through its enchanting alleys and towering skyscrapers. 🚶‍♂️🌃 From the bustling markets filled with colors and aromas to the serene parks where time seems to slow down, this city has something for everyone. 😍❤️ Can't get enough of the breathtaking skyline that lights up the night sky like a thousand stars! 🌟🌌 Every corner holds a story waiting to be discovered, and I can't wait to uncover more hidden gems in this urban wonderland. 🗺️🔍 If you ever find yourself in "Starlight City," make sure to capture every moment, as memories here are simply unforgettable. 📸💫 #StarlightCity #UrbanAdventures #CityWanderer #ExploringTheUnknown`,
             likes: 200,
             comments: 300,
-            shares: 200
+            shares: 200 , 
+
         },
         title: "Post #254",
         message: "Service #5423 Activated Fo This Post...",
         date: "2023/5/13",
         time: "11:22",
         class: "success",
-        svg: "el:ok"
+        svg: "formkit:instagram"
     },
     {
         type: "instagram-post",
@@ -49,7 +50,7 @@ const eventsItems = [
         date: "2023/5/13",
         time: "11:22",
         class: "success",
-        svg: "el:ok"
+        svg: "formkit:instagram"
     },
     {
         type: "normal",

@@ -3,30 +3,19 @@ import Dashboard from "./panels/dashbaord/Dashboard"
 import PanelsItem from "./Components/PanelsItem"
 import { Icon } from "@iconify/react"
 import UserInfo from "./panels/panel-header/UserInfo"
+import Services from "./panels/services/Services"
 
 const UserDashboard = () => {
-
-
-    const [selectedPanel, selectPanel] = useState("dashboard")
-
-
-    function getPanel() {
-        switch (selectedPanel) {
-            case "dashboard": return (<Dashboard />)
-        }
-    }
-
-
-
 
     const panelMenuOptions = [
         {
             title: "dashboard",
-            icon: <Icon icon="ri:dashboard-fill" />
+            icon: <Icon icon="ri:dashboard-fill" />,
+            component: <Dashboard />
         },
         {
             title: "Add Your Service",
-            icon: <Icon icon="carbon:add-filled" />
+            icon: <Icon icon="carbon:add-filled" />,
         },
         {
             title: "Orders",
@@ -34,7 +23,8 @@ const UserDashboard = () => {
         },
         {
             title: "Sevices",
-            icon: <Icon icon="carbon:ibm-security-services" />
+            icon: <Icon icon="carbon:ibm-security-services" />,
+            component: <Services />
         },
         {
             title: "Add Founds",
@@ -55,6 +45,10 @@ const UserDashboard = () => {
     ]
 
 
+    const [selectedPanel, selectPanel] = useState(panelMenuOptions[0])
+
+
+
     return (
         <main className="user-dashboard">
             <ul className="panel-menu">
@@ -65,8 +59,8 @@ const UserDashboard = () => {
                                 <PanelsItem
                                     title={panel.title}
                                     icon={panel.icon}
-                                    currentActivePanel={selectedPanel}
-                                    clickEvent={() => selectPanel(panel.title)}
+                                    currentActivePanel={selectedPanel.title}
+                                    clickEvent={() => selectPanel(panel)}
                                 />
                             )
                         }
@@ -75,7 +69,7 @@ const UserDashboard = () => {
 
             </ul>
             <div className="panel">
-                {getPanel()}
+                {selectedPanel?.component}
             </div>
         </main>
     )
