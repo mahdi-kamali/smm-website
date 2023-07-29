@@ -33,13 +33,8 @@ import 'react-vertical-timeline-component/style.min.css';
 
 
 
-
-
-
-
+// React Routers
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-
 
 
 // Pages
@@ -53,6 +48,14 @@ import AuthPage from "./jsx/pages/auth/AuthPage";
 
 // Dashboards
 import UserDashboard from "./jsx/dashboards/user/UserDashboard";
+import PopUopContainer from "./jsx/pop-ups/PopUopContainer";
+
+
+
+
+
+
+
 
 
 
@@ -71,8 +74,9 @@ function App() {
         </Routes>
         <Footer />
 
-      </BrowserRouter>
+        <PopUopContainer />
 
+      </BrowserRouter>
     </div>
   );
 }
