@@ -218,9 +218,77 @@ const Services = () => {
                     </div>
 
                 </div>
-                <div className="right">
+                <fieldset className="right">
+                    <legend>
+                        <Icon icon="mingcute:search-fill" />
+                        <span>Service Detail</span>
+                    </legend>
+                    <div className="content">
+                        <div className="property">
+                            <div className="property-left">
+                                <Icon icon="mingcute:clock-fill" />
+                                <span>
+                                    Start Time
+                                </span>
+                            </div>
+                            <div className="property-right">
+                                INSTANT
+                            </div>
+                        </div>
+                        <div className="property">
+                            <div className="property-left">
+                                <Icon icon="ion:rocket-sharp" />
+                                <span>
+                                    Speed
+                                </span>
+                            </div>
+                            <div className="property-right">
+                                <span>
+                                    15 Minutes Stable
+                                </span>
 
-                </div>
+                            </div>
+                        </div>
+                        <div className="property">
+                            <div className="property-left">
+                                <Icon icon="material-symbols:avg-time-sharp" />
+                                <span>
+                                    Avg. Time
+                                </span>
+                            </div>
+                            <div className="property-right">
+                                <span>
+                                    1 minute
+                                </span>
+
+                            </div>
+                        </div>
+                        <div className="property">
+                            <div className="property-left">
+                                <Icon icon="game-icons:hand-ok" />
+                                <span>
+                                    Gurentee
+                                </span>
+                            </div>
+                            <div className="property-right">
+                                <span>
+                                    Refill
+                                </span>
+
+                            </div>
+                        </div>
+                        <div className='description'>
+                            <h1>
+                                <Icon icon="bxs:message-square-detail" />
+                                <span>Decription</span>
+                            </h1>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero ut error eligendi pariatur voluptatum ullam nihil ipsa autem? Esse accusantium modi magnam laudantium iste voluptas ipsam quibusdam accusamus, possimus odit!
+                            </p>
+
+                        </div>
+                    </div>
+                </fieldset>
             </div>
 
 

@@ -1908,24 +1908,26 @@ main {
   scale: 1.1;
 }
 .user-dashboard .panel-services .services {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  padding: 2em;
-  gap: 4rem;
-  width: 90%;
-  align-self: center;
+  display: flex;
+  padding: 2em 1em;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 .user-dashboard .panel-services .services .left {
   border-radius: 1rem;
-  max-width: 30rem;
   padding: 2em;
+  max-width: 30rem;
 }
 .user-dashboard .panel-services .services .left .category-search {
   display: flex;
   gap: 1rem;
   justify-content: start;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 .user-dashboard .panel-services .services .left .category-search fieldset {
   border: none;
@@ -1974,6 +1976,68 @@ main {
   right: 1rem;
   top: 0.2rem;
   color: #17a2b8;
+}
+.user-dashboard .panel-services .services .right {
+  color: white;
+  border: 3px solid white;
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+}
+.user-dashboard .panel-services .services .right legend {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0 2rem;
+  padding: 0 0.5em;
+}
+.user-dashboard .panel-services .services .right .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2em;
+  max-width: 32rem;
+}
+.user-dashboard .panel-services .services .right .content .property {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25rem;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-left svg {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-right {
+  background-color: #0fac6d;
+  line-height: 1;
+  padding: 0.4em 0.75em;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+}
+.user-dashboard .panel-services .services .right .content .description {
+  grid-column: -1/1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.user-dashboard .panel-services .services .right .content .description h1 {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.2rem;
+}
+.user-dashboard .panel-services .services .right .content .description p {
+  font-size: 0.9rem;
+  line-height: 1.25;
 }
 .user-dashboard .panel-services .search-background {
   right: 0;

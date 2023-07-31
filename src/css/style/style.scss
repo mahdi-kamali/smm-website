@@ -2042,29 +2042,31 @@ main {
         }
 
         .services {
-            display: grid;
-            grid-template-columns: max-content 1fr;
-            padding: 2em;
-            gap: 4rem;
-            width: 90%;
-            align-self: center;
+            display: flex;
+            padding: 2em 1em;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
             .left {
                 border-radius: 1rem;
-                max-width: 30rem;
                 padding: 2em;
+                max-width: 30rem;
                 .category-search {
                     display: flex;
                     gap: 1rem;
                     justify-content: start;
-                    align-items: center;
+                    align-items: start;
                     flex-wrap: wrap;
+                    flex-direction: column;
+
                     fieldset {
                         border: none;
                         border-radius: 0.5rem;
                         padding: 0 0.5em;
                         position: relative;
                         background-color: white;
-                        // border: 3px solid black;
                         box-shadow: 0.3rem 0.3rem 0.8rem 0rem rgba(0, 0, 0, 0.2);
                         legend {
                             background-color: white;
@@ -2110,6 +2112,64 @@ main {
                 }
             }
             .right {
+                color: white;
+                border: 3px solid white;
+                border-radius: 1rem;
+                backdrop-filter: blur(20px);
+                legend {
+                    font-size: 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.25rem;
+                    margin: 0 2rem;
+                    padding: 0 0.5em;
+                }
+                .content {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                    padding: 2em;
+                    max-width: 32rem;
+                    .property {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        .property-left {
+                            display: flex;
+                            align-items: center;
+                            justify-content: start;
+                            gap: 0.25rem;
+                            width: max-content;
+                            border-radius: 0.5rem 0 0 0.5rem;
+                            svg {
+                                font-size: 1.25rem;
+                            }
+                        }
+                        .property-right {
+                            background-color: $panel-color-3;
+                            line-height: 1;
+                            padding: 0.4em 0.75em;
+                            border-radius: 1rem;
+                            font-size: 0.95rem;
+                        }
+                    }
+                    .description {
+                        grid-column: -1/1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.25rem;
+                        h1 {
+                            display: flex;
+                            gap: 0.25rem;
+                            font-size: 1.2rem;
+                        }
+                        p {
+                            font-size: 0.9rem;
+                            line-height: 1.25;
+                        }
+                    }
+                }
             }
         }
 
@@ -2513,9 +2573,6 @@ footer {
 
     background-color: $color-4;
 }
-
-
-
 
 @keyframes ripple {
     0% {
