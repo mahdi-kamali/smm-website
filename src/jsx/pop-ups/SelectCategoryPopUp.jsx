@@ -201,7 +201,7 @@ const SelectCategoryPopUp = ({ currentSelected, resultFunction }) => {
 
 
     return (
-        <div className="select-service-pop-up">
+        <div className="select-category-pop-up">
             <button className="close-button"
                 onClick={handleCloseButtonClick}>
                 <Icon icon="mingcute:close-fill" />
