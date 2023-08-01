@@ -199,21 +199,14 @@ const Dashboard = () => {
             </div>
 
 
-
             <div className="row recent-evernts-row">
                 <RecentEvents />
             </div>
 
 
-
-
             <div className="rocket background">
                 <img src={rocket} />
             </div>
-
-
-
-
 
 
         </section>

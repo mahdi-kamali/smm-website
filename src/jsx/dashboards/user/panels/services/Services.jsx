@@ -155,8 +155,6 @@ const Services = () => {
             </div>
 
 
-
-
             <div className="services">
                 <div className="left">
                     <div className="category-search">
@@ -290,9 +288,6 @@ const Services = () => {
                     </div>
                 </fieldset>
             </div>
-
-
-
 
             <img
                 src={searchSVG}

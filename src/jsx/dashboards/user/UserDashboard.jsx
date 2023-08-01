@@ -4,6 +4,8 @@ import PanelsItem from "./Components/PanelsItem"
 import { Icon } from "@iconify/react"
 import UserInfo from "./panels/panel-header/UserInfo"
 import Services from "./panels/services/Services"
+import Orders from "./panels/orders/Orders"
+import { useEffect } from "react"
 
 const UserDashboard = () => {
 
@@ -19,7 +21,8 @@ const UserDashboard = () => {
         },
         {
             title: "Orders",
-            icon: <Icon icon="ph:bag-fill" />
+            icon: <Icon icon="ph:bag-fill" />,
+            component: <Orders />
         },
         {
             title: "Sevices",
@@ -45,18 +48,29 @@ const UserDashboard = () => {
     ]
 
 
-    const [selectedPanel, selectPanel] = useState(panelMenuOptions[3])
 
+
+
+
+    const [selectedPanel, selectPanel] = useState(panelMenuOptions[2])
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, [selectedPanel])
 
 
     return (
         <main className="user-dashboard">
             <ul className="panel-menu">
                 {
-                    panelMenuOptions.map((panel) => {
+                    panelMenuOptions.map((panel, index) => {
                         {
                             return (
                                 <PanelsItem
+                                    key={index}
                                     title={panel.title}
                                     icon={panel.icon}
                                     currentActivePanel={selectedPanel.title}
