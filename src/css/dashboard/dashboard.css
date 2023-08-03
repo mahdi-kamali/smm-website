@@ -1,0 +1,1138 @@
+.user-dashboard {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  min-height: 100vh;
+  background-image: url("../../images/auth-page/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.user-dashboard .panel {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+.user-dashboard .panel-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 2em;
+  color: white;
+  padding-top: 4em;
+  gap: 1rem;
+  border-right: 2px solid rgba(255, 255, 255, 0.1);
+  top: 5rem;
+  position: sticky;
+  height: -moz-max-content;
+  height: max-content;
+  min-height: 100vh;
+}
+.user-dashboard .panel-menu li {
+  gap: 0.5rem;
+  border-radius: 100rem;
+  transition: all 0.5s ease;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding: 0.75em 1em;
+  cursor: pointer;
+  position: relative;
+}
+.user-dashboard .panel-menu .selected {
+  background-color: white;
+  color: #0d4bf4;
+}
+.user-dashboard .background {
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.1;
+  position: absolute;
+}
+.user-dashboard .dashboard {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 5em;
+}
+.user-dashboard .dashboard .rocket {
+  width: 50rem;
+  top: 0;
+  right: 0;
+}
+.user-dashboard .dashboard .user-row {
+  background-color: #3165f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 1em;
+}
+.user-dashboard .dashboard .user-row .left .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2em;
+  padding-bottom: 1em;
+  gap: 1rem;
+}
+.user-dashboard .dashboard .user-row .left .user .today-news {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.user-dashboard .dashboard .user-row .left .user .today-news h1 {
+  font-size: 1.5rem;
+}
+.user-dashboard .dashboard .user-row .left .user .today-news p {
+  max-width: 20rem;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.user-dashboard .dashboard .user-row .left .user .icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 2.25rem;
+}
+.user-dashboard .dashboard .user-row .left .user .icons svg {
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 0.2em;
+}
+.user-dashboard .dashboard .user-row .left .user .avatar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .user-row .left .user .avatar img {
+  width: 4rem;
+  border-radius: 50%;
+}
+.user-dashboard .dashboard .user-row .left .user .avatar .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.user-dashboard .dashboard .user-row .left .user .avatar .info h1 {
+  font-size: 1.5rem;
+}
+.user-dashboard .dashboard .user-row .left .user .avatar .info span {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.user-dashboard .dashboard .user-row .left .user .progresser {
+  width: 10rem;
+  color: white;
+}
+.user-dashboard .dashboard .user-row .left .active-social {
+  display: flex;
+  text-transform: capitalize;
+  padding-bottom: 0;
+  border-radius: 0 0 0.5rem 0;
+  flex-direction: column;
+  padding-bottom: 1em;
+  gap: 1rem;
+  border-radius: 0 0 1rem 1rem;
+}
+.user-dashboard .dashboard .user-row .left .active-social .social-body {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+}
+.user-dashboard .dashboard .user-row .left .active-social .social-body .item {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.3rem transparent solid;
+  transition: all 1s ease;
+  cursor: pointer;
+  padding: 0 1em;
+}
+.user-dashboard .dashboard .user-row .left .active-social .social-body .item img {
+  width: 2.5rem;
+  margin-left: -0.5rem;
+}
+.user-dashboard .dashboard .user-row .left .active-social .social-body .selected {
+  border-color: goldenrod;
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0 1em;
+  border-radius: 100rem;
+  font-weight: bold;
+}
+.user-dashboard .dashboard .user-row .right .service-expire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgba(0, 204, 51, 0.699);
+  border-radius: 1rem;
+  padding: 1.5em;
+  color: white;
+}
+.user-dashboard .dashboard .user-row .right .service-expire .expire {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 100rem;
+}
+.user-dashboard .dashboard .user-row .right .service-expire .expire small {
+  font-size: 1rem;
+}
+.user-dashboard .dashboard .user-row .right .service-expire .progresser {
+  width: 8rem;
+}
+.user-dashboard .dashboard .qucik-view-row {
+  width: 100%;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column .item {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #4976f3 0%, rgba(146, 197, 255, 0) 100%);
+  padding: 2em;
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: white;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column .item .data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column .item .data h2 {
+  font-size: 2rem;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column .item .data span {
+  font-size: 1.25rem;
+}
+.user-dashboard .dashboard .qucik-view-row .qucik-view-column .item svg {
+  font-size: 3.5rem;
+}
+.user-dashboard .dashboard .statistics-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 10%;
+}
+.user-dashboard .dashboard .statistics-row .statistics {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.user-dashboard .dashboard .statistics-row .statistics .header {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  padding: 3em 0;
+  padding-top: 0;
+}
+.user-dashboard .dashboard .statistics-row .statistics .header .left img {
+  width: 100%;
+}
+.user-dashboard .dashboard .statistics-row .statistics .header .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .statistics-row .statistics .header .right h1 {
+  font-size: 2rem;
+}
+.user-dashboard .dashboard .statistics-row .statistics .header .right span {
+  font-size: 1.25rem;
+}
+.user-dashboard .dashboard .statistics-row .statistics .body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.user-dashboard .dashboard .statistics-row .statistics .body .item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-dashboard .dashboard .statistics-row .statistics .body .chart {
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  padding: 2em;
+  box-shadow: 0rem 0rem 2rem 0.1rem #0d4bf4;
+  color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 2rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .header {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1em 0;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .header .left img {
+  width: 100%;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .header .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .header .right h1 {
+  font-size: 2rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .header .right span {
+  font-size: 1.25rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .event .date {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  gap: 0.25rem;
+  font-weight: normal;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .event .date span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .event .content {
+  background-color: yellow;
+  border-radius: 1rem;
+  padding: 2em;
+  color: white;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .event .content p {
+  margin-top: 0;
+  line-height: 1.25;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .date {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  gap: 0.25rem;
+  font-weight: normal;
+  width: 100%;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .date span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1em;
+  padding-bottom: 0;
+  padding-top: 0.5em;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .date .chart {
+  background-color: white;
+  margin: 1rem;
+  border-radius: 1rem;
+  opacity: 0.5;
+  transition: 1s ease all;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content {
+  border-radius: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content p {
+  margin-top: 0;
+  line-height: 1.25;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-header img {
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 0.5rem;
+  padding: 2em 3em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all 1s ease;
+  background-color: black;
+  height: 7em;
+  cursor: pointer;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-body h1 {
+  text-transform: uppercase;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-body p {
+  border-radius: 100rem;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3em;
+  transform: translateY(-110%);
+  transition: 1s ease all;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.1rem;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button small {
+  font-size: 2.5rem;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post:hover .content-body {
+  height: 100%;
+  background-image: initial;
+  background-color: white;
+  color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post:hover .content-buttons {
+  transform: translateY(0);
+  background-color: #0d4bf4;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .instagram-post:hover .date .chart {
+  opacity: 1;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .item:nth-child(even) .date {
+  align-items: end;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .item:nth-child(even) .date span {
+  flex-direction: row-reverse;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .item:nth-child(odd) .date {
+  align-items: start;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .item:nth-child(odd) .date span {
+  flex-direction: row-reverse;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .success .vertical-timeline-element-icon {
+  background-color: #0fac6d;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .success .content {
+  background-color: #0fac6d;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .warning .vertical-timeline-element-icon {
+  background-color: #ffa938;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .warning .content {
+  background-color: #ffa938;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .process .vertical-timeline-element-icon {
+  background-color: #17a2b8;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .process .content {
+  background-color: #17a2b8;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .danger .vertical-timeline-element-icon {
+  background-color: #dc3545;
+}
+.user-dashboard .dashboard .recent-evernts-row .recent-events .body .danger .content {
+  background-color: #dc3545;
+}
+.user-dashboard .panel-services {
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-services .hero {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+  align-items: center;
+  padding: 4em 10%;
+  width: 100%;
+  align-self: center;
+  gap: 3rem;
+}
+.user-dashboard .panel-services .hero .left {
+  margin: -3.5rem;
+}
+.user-dashboard .panel-services .hero .left image:first-child {
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.user-dashboard .panel-services .hero .right {
+  color: white;
+}
+.user-dashboard .panel-services .hero .right .slogon {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  align-items: start;
+  font-size: 1.8rem;
+  gap: 1rem;
+  font-weight: bold;
+}
+.user-dashboard .panel-services .hero .right .slogon .filled {
+  background-color: #0fac6d;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-services .search-media {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  color: white;
+  text-transform: capitalize;
+  gap: 1rem;
+}
+.user-dashboard .panel-services .search-media .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: all 1s ease;
+  gap: 0.75rem;
+  padding: 1.25em 0;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  min-width: 6rem;
+}
+.user-dashboard .panel-services .search-media .item img {
+  margin: -1rem;
+  width: 5rem;
+}
+.user-dashboard .panel-services .search-media .item h1 {
+  font-size: 1.25rem;
+  font-weight: normal;
+}
+.user-dashboard .panel-services .search-media .item:hover {
+  background-color: #0fac6d;
+  color: white;
+  scale: 1.1;
+}
+.user-dashboard .panel-services .search-media .selected {
+  background-color: #0fac6d;
+  color: white;
+  scale: 1.1;
+}
+.user-dashboard .panel-services .services {
+  display: flex;
+  padding: 2em 1em;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.user-dashboard .panel-services .services .left {
+  border-radius: 1rem;
+  padding: 2em;
+  max-width: 30rem;
+}
+.user-dashboard .panel-services .services .left .category-search {
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.user-dashboard .panel-services .services .left .category-search fieldset {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 0.5em;
+  position: relative;
+  background-color: white;
+  box-shadow: 0.3rem 0.3rem 0.8rem 0rem rgba(0, 0, 0, 0.2);
+}
+.user-dashboard .panel-services .services .left .category-search fieldset legend {
+  background-color: white;
+  font-size: 1.25rem;
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.user-dashboard .panel-services .services .left .category-search fieldset .content {
+  display: flex;
+  align-items: center;
+  padding: 0.25em 1em;
+  gap: 0.25rem;
+  min-width: 30ch;
+  padding-bottom: 0.75em;
+}
+.user-dashboard .panel-services .services .left .category-search fieldset .content .id {
+  background-color: #ffa938;
+  color: white;
+  padding: 0.25em 1em;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-services .services .left .category-search fieldset .content button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding-right: 1.5em;
+}
+.user-dashboard .panel-services .services .left .category-search fieldset .content svg {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 0.2rem;
+  color: #17a2b8;
+}
+.user-dashboard .panel-services .services .right {
+  color: white;
+  border: 3px solid white;
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+}
+.user-dashboard .panel-services .services .right legend {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0 2rem;
+  padding: 0 0.5em;
+}
+.user-dashboard .panel-services .services .right .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2em;
+  max-width: 32rem;
+}
+.user-dashboard .panel-services .services .right .content .property {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25rem;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-left svg {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-services .services .right .content .property .property-right {
+  background-color: #0fac6d;
+  line-height: 1;
+  padding: 0.4em 0.75em;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+}
+.user-dashboard .panel-services .services .right .content .description {
+  grid-column: -1/1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.user-dashboard .panel-services .services .right .content .description h1 {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.2rem;
+}
+.user-dashboard .panel-services .services .right .content .description p {
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+.user-dashboard .panel-services .search-background {
+  right: 0;
+  width: 50rem;
+  bottom: 0;
+  opacity: 0.1;
+}
+.user-dashboard .panel-orders {
+  padding: 2em;
+  color: white;
+}
+.user-dashboard .panel-orders .recent-orders {
+  display: grid;
+  grid-template-columns: 1fr 35rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders {
+  max-height: 100dvh;
+  padding: 2em;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders::-webkit-scrollbar {
+  width: 7px; /* width of the entire scrollbar */
+}
+.user-dashboard .panel-orders .recent-orders .left .orders::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+.user-dashboard .panel-orders .recent-orders .left .orders::-webkit-scrollbar-thumb {
+  background-color: white; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid transparent; /* creates padding around scroll thumb */
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item {
+  transition: all 1s ease;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  padding-bottom: 2em;
+  opacity: 0.6;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .line {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background-color: white;
+  z-index: 0;
+  display: none;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .right {
+  position: relative;
+  padding: 1.5em;
+  border-radius: 0.5rem;
+  transition: all 1s ease;
+  box-shadow: 0 0 0rem 0rem transparent;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .right .item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .right .item-header h1 {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .right .item-header p {
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .right .item-icon {
+  position: absolute;
+  font-size: 1.9rem;
+  left: -0.8em;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  color: #0d4bf4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.2em;
+  color: #0fac6d;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .mid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0em 1em;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .mid .item-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .mid .item-date span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .mid .item-date span svg {
+  font-size: 1.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .left {
+  display: flex;
+  align-items: center;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item .left .item-icons {
+  background-color: white;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #0fac6d;
+  padding: 0.25em;
+  gap: 0.25em;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item:hover {
+  opacity: 1;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .item:hover .right {
+  box-shadow: 0 0 1.5rem 0rem rgba(255, 255, 255, 0.486);
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .true {
+  opacity: 1;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .true .right {
+  box-shadow: 0 0 1.5rem 0rem rgba(255, 255, 255, 0.486);
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .danger .left * {
+  color: #dc3545 !important;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .danger .right {
+  background-color: #dc3545;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .warning .left * {
+  color: #ffa938 !important;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .warning .right {
+  background-color: #ffa938;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .proccess .left * {
+  color: #17a2b8 !important;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .proccess .right {
+  background-color: #17a2b8;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .success .left * {
+  color: #0fac6d !important;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .success .right {
+  background-color: #0fac6d;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .info .left * {
+  color: #0d4bf4 !important;
+}
+.user-dashboard .panel-orders .recent-orders .left .orders .info .right {
+  background-color: #d7e1ff;
+  color: #0d4bf4;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2em;
+  max-width: 35rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 1rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .header h1 {
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .header p {
+  line-height: 1.5;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .property {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  gap: 0.25rem;
+  justify-content: space-between;
+  font-size: 1rem;
+  background-color: white;
+  padding: 1em 1.5em;
+  color: #0d4bf4;
+  border-radius: 0.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .property .property-left {
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .property .property-left svg {
+  font-size: 1.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .property .property-left::after {
+  content: " : ";
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .description,
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .link {
+  grid-column: -1/1;
+  flex-wrap: wrap;
+  align-items: start;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .description p,
+.user-dashboard .panel-orders .recent-orders .right .order-detail .body .link p {
+  line-height: 1.5;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .footer .time-date {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .footer .time-date span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border-radius: 100rem;
+  font-size: 2rem;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-orders .recent-orders .right .order-detail .footer .time-date span svg {
+  font-size: 2.5rem;
+}
+.user-dashboard .panel-add-founds {
+  font-size: 2rem;
+  display: grid;
+  grid-template-columns: 35rem max-content;
+  padding-top: 2em;
+  align-items: start;
+  gap: 3rem;
+}
+.user-dashboard .panel-add-founds .road-map {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  counter-reset: section;
+}
+.user-dashboard .panel-add-founds .road-map .item {
+  display: flex;
+  font-size: 1rem;
+  opacity: 0.4;
+  color: white;
+  padding-bottom: 2em;
+  position: relative;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-add-founds .road-map .item .left {
+  margin: 0 1.25rem;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  border-radius: 100rem;
+  position: relative;
+}
+.user-dashboard .panel-add-founds .road-map .item .left span {
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white;
+  color: #0d4bf4;
+  z-index: 1;
+}
+.user-dashboard .panel-add-founds .road-map .item .left .arrow {
+  animation: moveDown 4s ease infinite;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.user-dashboard .panel-add-founds .road-map .item .left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-radius: inherit;
+  transition: 2s ease all;
+  z-index: 0;
+}
+.user-dashboard .panel-add-founds .road-map .item .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  flex-wrap: wrap;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-animation {
+  width: 8rem;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-info h2 {
+  font-size: 1.5rem;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-info p {
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input {
+  width: 100%;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset {
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset legend {
+  font-size: 1.25rem;
+  margin: 0 2rem;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: bold;
+  transition: all 1s ease;
+  border-radius: 3rem;
+  padding: 0.25em 0.75em;
+  background-color: white;
+  color: #0fac6d;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset legend svg {
+  font-size: 2rem;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset .content h1 {
+  font-size: 1rem;
+  padding: 1em;
+  padding-top: 0.75em;
+  font-weight: normal;
+  padding-left: 2.5em;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset:hover {
+  background-color: white;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset:hover .content {
+  color: #0fac6d;
+}
+.user-dashboard .panel-add-founds .road-map .currnet-step {
+  opacity: 1;
+}
+.user-dashboard .panel-add-founds .road-map .currnet-step .left .arrow {
+  animation: moveDown 4s ease infinite;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  display: flex;
+}
+.user-dashboard .panel-add-founds .road-map .completed {
+  opacity: 0.4;
+  border-color: transparent;
+}
+.user-dashboard .panel-add-founds .road-map .completed fieldset {
+  background-color: white;
+  color: #0fac6d;
+}
+.user-dashboard .panel-add-founds .road-map .completed .left::after {
+  height: 100%;
+  background-color: #0fac6d;
+}
+.user-dashboard .panel-add-founds .road-map .completed .arrow {
+  display: none !important;
+}
+.user-dashboard .panel-add-founds .road-map .completed:hover {
+  opacity: 1;
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  max-height: 80dvh;
+  overflow: auto;
+  max-width: 30rem;
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro::-webkit-scrollbar {
+  width: 7px; /* width of the entire scrollbar */
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro::-webkit-scrollbar-thumb {
+  background-color: white; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid transparent; /* creates padding around scroll thumb */
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro .item {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro .item .item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro .item .item-header img {
+  width: 1.5rem;
+}
+.user-dashboard .panel-add-founds .avaialble-methods-intro .item .item-body p {
+  font-size: 1rem;
+  line-height: 1.5;
+}/*# sourceMappingURL=dashboard.css.map */

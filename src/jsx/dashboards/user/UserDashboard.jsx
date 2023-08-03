@@ -6,6 +6,7 @@ import UserInfo from "./panels/panel-header/UserInfo"
 import Services from "./panels/services/Services"
 import Orders from "./panels/orders/Orders"
 import { useEffect } from "react"
+import AddFounds from "./panels/add-found/AddFounds"
 
 const UserDashboard = () => {
 
@@ -14,10 +15,6 @@ const UserDashboard = () => {
             title: "dashboard",
             icon: <Icon icon="ri:dashboard-fill" />,
             component: <Dashboard />
-        },
-        {
-            title: "Add Your Service",
-            icon: <Icon icon="carbon:add-filled" />,
         },
         {
             title: "Orders",
@@ -31,7 +28,8 @@ const UserDashboard = () => {
         },
         {
             title: "Add Founds",
-            icon: <Icon icon="solar:dollar-bold" />
+            icon: <Icon icon="solar:dollar-bold" />,
+            component: <AddFounds />
         },
         {
             title: "Tickets",
@@ -52,7 +50,7 @@ const UserDashboard = () => {
 
 
 
-    const [selectedPanel, selectPanel] = useState(panelMenuOptions[2])
+    const [selectedPanel, selectPanel] = useState(panelMenuOptions[3])
 
     useEffect(() => {
         window.scrollTo({

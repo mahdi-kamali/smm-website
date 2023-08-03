@@ -4,6 +4,8 @@
 import "./css/global/global.css"
 import "./css/style/style.css"
 import "./css/animation/aniamtions.css"
+import "./css/dashboard/dashboard.css"
+import "./css/pop-up/pop-up.css"
 
 
 // Import Swiper styles

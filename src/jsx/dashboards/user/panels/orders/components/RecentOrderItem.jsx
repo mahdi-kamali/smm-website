@@ -51,12 +51,17 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
     }
 
 
+    const isAniamted = currentSelected ? "circle-ripple--animation" : ""
+
+    console.log(isAniamted);
+
+
 
     const randomDate = parseInt((Math.random() * 30).toFixed()) + 2000
     return (
         <div
             onClick={handleOnClikc}
-            className={`item ${stateClass} ${currentSelected}`} >
+            className={`item ${stateClass} ${currentSelected} `} >
             <div className="line">
             </div>
             <div className="left">
@@ -79,7 +84,7 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
                 </div>
 
             </div>
-            <div className="right">
+            <div className={`right ${isAniamted}`}>
 
                 <div className="item-header">
                     <h1>

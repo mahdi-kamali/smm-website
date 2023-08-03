@@ -1,0 +1,406 @@
+
+
+$color-1: #0d4bf4;
+$color-2: #f5f5f5;
+$color-3: #3165f3;
+$color-4: #4976f3;
+$color-5: #698df3;
+
+// Panel Colors
+
+$panel-color-1: #d7e1ff;
+$panel-color-2: #92c4ff;
+$panel-color-3: #0fac6d;
+$panel-color-4: #ffa938;
+$panel-color-5: #17a2b8;
+$panel-color-6: #dc3545;
+
+
+
+
+
+// Pop-Up's
+
+.pop-up {
+    position: fixed;
+    inset: 0;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: all 1s ease;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .close-button {
+        font-size: 2rem;
+        align-self: flex-start;
+        margin-left: auto;
+        color: $panel-color-6;
+    }
+
+    .select-currency-pop-up {
+        background-color: white;
+        width: 30rem;
+        padding: 2em;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 30rem;
+        min-height: 40vh;
+        max-height: 65vh;
+
+        .pop-up-header {
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+            position: relative;
+            fieldset {
+                border: 1px solid rgb(206, 206, 206);
+                border-radius: 0.5rem;
+                transition: all 1s ease;
+                legend {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    margin: 0 1rem;
+                    font-size: 1.25rem;
+                    padding: 0 0.5em;
+                }
+                .search-currency {
+                    display: flex;
+                    align-items: center;
+                    padding: 1em 0.75em;
+                    svg {
+                        font-size: 1.25rem;
+                    }
+                    input {
+                        all: unset;
+                        width: 100%;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .focused {
+                border: 1px solid rgb(0, 0, 0);
+            }
+            .search-icon {
+                position: absolute;
+                right: 1rem;
+                top: 45%;
+            }
+        }
+        .pop-up-body {
+            margin-top: 1rem;
+            overflow: auto;
+            ul {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+                li {
+                    display: flex;
+                    gap: 0.25rem;
+                    cursor: pointer;
+                    padding: 1em;
+                    border: 1px solid rgb(206, 206, 206);
+                    border-radius: 0.5rem;
+                    transition: all 0.5s ease;
+                    &:hover {
+                        background-color: $panel-color-3;
+                        color: white;
+                    }
+                }
+                .selected {
+                    background-color: $panel-color-3;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .select-category-pop-up {
+        background-color: white;
+        padding: 2em;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 80dvh;
+        width: 50rem;
+
+        .pop-up-header {
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+            position: relative;
+            max-width: 25rem;
+            fieldset {
+                border: 1px solid rgb(206, 206, 206);
+                border-radius: 0.5rem;
+                transition: all 1s ease;
+                legend {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    margin: 0 1rem;
+                    font-size: 1.25rem;
+                    padding: 0 0.5em;
+                }
+                .search-currency {
+                    display: flex;
+                    align-items: center;
+                    padding: 1em 0.75em;
+                    svg {
+                        font-size: 1.25rem;
+                    }
+                    input {
+                        all: unset;
+                        width: 100%;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .focused {
+                border: 1px solid rgb(0, 0, 0);
+            }
+            .search-icon {
+                position: absolute;
+                right: 1rem;
+                top: 45%;
+            }
+        }
+        .pop-up-body {
+            margin-top: 1rem;
+            overflow: auto;
+            padding-right: 1em;
+            ul {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1em;
+                .main-category {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    .main-category-header {
+                        text-transform: capitalize;
+                        display: flex;
+                        align-items: center;
+                        line-height: 0;
+                        gap: 0.5rem;
+                        color: $panel-color-5;
+                        span {
+                        }
+                        svg {
+                            background-color: $panel-color-5;
+                            border-radius: 50%;
+                            color: white;
+                        }
+                    }
+                    .sub-categories {
+                        display: flex;
+                        flex-wrap: wrap;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        li {
+                            display: flex;
+                            gap: 0.25rem;
+                            cursor: pointer;
+                            padding: 1em;
+                            border: 1px solid rgb(206, 206, 206);
+                            border-radius: 0.5rem;
+                            transition: all 0.5s ease;
+                            &:hover {
+                                background-color: $panel-color-3;
+                                color: white;
+                            }
+                        }
+                        .selected {
+                            background-color: $panel-color-3;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .select-service-pop-up {
+        background-color: white;
+        padding: 2em;
+        padding-top: 0;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 80dvh;
+        max-height: 80vh;
+        width: 60rem;
+        padding: 2em;
+        .pop-up-header {
+            font-size: 1.5rem;
+            padding: 0 1em;
+            font-weight: bold;
+            h1 {
+                display: none;
+            }
+            fieldset {
+                border: 1px solid rgb(0, 0, 0);
+                border-radius: 0.5rem;
+                transition: all 1s ease;
+                max-width: 30ch;
+                legend {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    margin: 0 1rem;
+                    font-size: 1.25rem;
+                    padding: 0 0.5em;
+                }
+                .content {
+                    display: flex;
+                    align-items: center;
+                    padding: 0.4em 0.75em;
+                    input {
+                        all: unset;
+                        width: 100%;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+        .pop-up-body {
+            overflow: auto;
+            padding-bottom: 2em;
+            .category-component {
+                .header {
+                    padding: 2em;
+                }
+                .body {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+                    gap: 1rem;
+                    overflow: auto;
+                    padding-right: 2em;
+                    .service {
+                        display: flex;
+                        flex-direction: column;
+                        padding: 2em;
+                        background-color: $color-2;
+                        border-radius: 0.5rem;
+                        box-shadow: 0;
+                        cursor: pointer;
+                        transition: all 0.5s ease;
+                        background-color: $color-2;
+                        border: 2px solid transparent;
+                        .service-header {
+                            font-size: 0.9rem;
+                            font-weight: bold;
+                            p {
+                                line-height: 1.5;
+                            }
+                        }
+                        .service-body {
+                            margin-top: 1rem;
+                            gap: 0.75rem;
+                            margin-top: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            .property {
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                align-items: start;
+                                font-size: 0.8rem;
+                                font-weight: bold;
+                                .left {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.25rem;
+                                    svg {
+                                        font-size: 1.1rem;
+                                    }
+                                }
+                                .right {
+                                }
+                            }
+                        }
+                        &:hover {
+                            background-color: $panel-color-1;
+                            border: 2px solid $panel-color-3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .select-payment-method-pop-up {
+        background-color: white;
+        padding: 2em;
+        padding-top: 0;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 80dvh;
+        max-width: 40rem;
+        padding: 2em;
+        .pop-up-header {
+            font-size: 1.5rem;
+            padding: 0 1em;
+            font-weight: bold;
+        }
+        .pop-up-body {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            margin-top: 2rem;
+            gap: 0.5rem;
+            align-items: start;
+            .item {
+                padding: 0.5em 1em;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-size: 1rem;
+                width: max-content;
+                max-width: 90%;
+                transition: all 0.5s ease;
+                border-radius: 0.2rem;
+                cursor: pointer;
+                span {
+                    font-size: 1.5rem;
+                    width: 3ch;
+                }
+                p {
+                    font-size: 1rem;
+                }
+                &:hover {
+                    background-color: $color-5;
+                    color: white;
+                }
+            }
+            .true {
+                background-color: $color-5;
+                color: white;
+            }
+        }
+    }
+}
+
+.show-pop-up {
+    pointer-events: all !important;
+    opacity: 1;
+}
+
+.close-pop-up {
+    pointer-events: none !important;
+    opacity: 0;
+}
