@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 
 
+import payAniamtion from "../../../../../animations/pay.json"
 import amountOfMoneyAnimation from "../../../../../animations/amount-money.json"
 import paymentMethodsAnimation from "../../../../../animations/payment-methods.json"
 import Lottie from 'react-lottie-player'
@@ -15,6 +16,7 @@ import { showPopUp } from '../../../../../features/popUpReducer'
 import { SELECT_PAYMENT_METHOD_POP_UP } from '../../../../pop-ups/Constaints'
 import SelectPaymentPopup from '../../../../pop-ups/SelectPaymentPopup'
 import { useEffect } from 'react'
+import SelectAmountOfMoney from '../../../../pop-ups/SelectAmountOfMoney'
 
 
 
@@ -29,6 +31,11 @@ const AddFounds = () => {
 
 
     const [selectedMethod, setSelectedMethod] = useState("Not Selected!")
+    const [amountOfMoney, setAmountOfMoney] = useState({
+        amount: 0,
+        fee: 0,
+        total: 0
+    })
     const [currentStep, setStep] = useState(1)
 
     const dispatcher = useDispatch()
@@ -52,7 +59,18 @@ const AddFounds = () => {
 
     const openAddAmountMoneyPopUp = () => {
 
-        
+        const resultFunction = (item) => {
+            setAmountOfMoney(item)
+        }
+
+        dispatcher(showPopUp({
+            type: SELECT_PAYMENT_METHOD_POP_UP,
+            duration: 2000,
+            component: <SelectAmountOfMoney
+                resultFunction={resultFunction}
+                feePercentage={0.02}
+            />
+        }))
     }
 
 
@@ -130,14 +148,22 @@ const AddFounds = () => {
 
 
     useEffect(() => {
-
-        const isChanged = selectedMethod !== "Not Selected!"
-        if (isChanged) {
-            setStep(2)
+        let step = 1;
+        if (selectedMethod !== "Not Selected!") {
+            step = 2
         }
 
-    }, [selectedMethod])
+        if (amountOfMoney.total !== 0) {
+            step = 3
+        }
+        else {
+            setStep(step)
+            return;
+        }
+        setStep(step)
 
+
+    }, [selectedMethod, amountOfMoney])
 
 
 
@@ -175,7 +201,7 @@ const AddFounds = () => {
                                 Choose The Payment gatway from method
                             </p>
                         </div>
-                        <div className="method-payment-input">
+                        <div className="item-input">
                             <fieldset
                                 onClick={openSelectPaymentPopup}>
                                 <legend>
@@ -217,7 +243,7 @@ const AddFounds = () => {
                                 Please add ammount
                             </p>
                         </div>
-                        <div className="method-payment-input">
+                        <div className="item-input">
                             <fieldset
                                 onClick={openAddAmountMoneyPopUp}>
                                 <legend>
@@ -225,9 +251,44 @@ const AddFounds = () => {
                                     <span>Add Amount</span>
                                 </legend>
                                 <div className="content">
-                                    <h1>{selectedMethod}</h1>
+                                    <h1>${amountOfMoney.total}</h1>
                                 </div>
                             </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div className={`item ${isCurrentStep(3)}
+                 ${isCompleted(3)}`}>
+                    <div className="left">
+                        <span className={'circle-ripple--animation'}>
+                            {
+                                stepIcon(3)
+                            }
+                        </span>
+                        <div className="arrow">
+                            <Icon icon="cil:arrow-bottom" />
+                        </div>
+                    </div>
+                    <div className="right">
+                        <div className="item-animation">
+                            <Lottie
+                                className='animation'
+                                animationData={payAniamtion}
+                                play={currentStep === 3}
+                                loop
+                            />
+                        </div>
+                        <div className="item-info">
+                            <h2>Pay The Payment</h2>
+                            <p>
+                                Congratulations! You Are In Last Step!
+                            </p>
+                        </div>
+                        <div className="item-input">
+                            <button className='pay-button'>
+                                <span>Click To Pay</span>
+                                <Icon icon="formkit:submit" />
+                            </button>
                         </div>
                     </div>
                 </div>

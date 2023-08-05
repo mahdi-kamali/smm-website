@@ -966,6 +966,7 @@
   padding-bottom: 2em;
   position: relative;
   transition: all 1s ease;
+  pointer-events: none;
 }
 .user-dashboard .panel-add-founds .road-map .item .left {
   margin: 0 1.25rem;
@@ -1031,16 +1032,16 @@
   opacity: 0.75;
   font-size: 0.9rem;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input {
-  width: 100%;
+.user-dashboard .panel-add-founds .road-map .item .right .item-input {
+  min-width: 50%;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset {
   border: 2px solid white;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 1s ease;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset legend {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset legend {
   font-size: 1.25rem;
   margin: 0 2rem;
   padding: 0 0.5em;
@@ -1054,24 +1055,39 @@
   background-color: white;
   color: #0fac6d;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset legend svg {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset legend svg {
   font-size: 2rem;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset .content h1 {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset .content h1 {
   font-size: 1rem;
   padding: 1em;
   padding-top: 0.75em;
   font-weight: normal;
   padding-left: 2.5em;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset:hover {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset:hover {
   background-color: white;
 }
-.user-dashboard .panel-add-founds .road-map .item .right .method-payment-input fieldset:hover .content {
+.user-dashboard .panel-add-founds .road-map .item .right .item-input fieldset:hover .content {
   color: #0fac6d;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-input .pay-button {
+  display: flex;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  padding: 1em 2em;
+  gap: 0.25rem;
+  border-radius: 100rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.user-dashboard .panel-add-founds .road-map .item .right .item-input .pay-button svg {
+  font-size: 1.25rem;
 }
 .user-dashboard .panel-add-founds .road-map .currnet-step {
   opacity: 1;
+  pointer-events: all;
 }
 .user-dashboard .panel-add-founds .road-map .currnet-step .left .arrow {
   animation: moveDown 4s ease infinite;
@@ -1081,8 +1097,9 @@
   display: flex;
 }
 .user-dashboard .panel-add-founds .road-map .completed {
-  opacity: 0.4;
+  opacity: 1;
   border-color: transparent;
+  pointer-events: all;
 }
 .user-dashboard .panel-add-founds .road-map .completed fieldset {
   background-color: white;

@@ -1069,6 +1069,7 @@ $panel-color-6: #dc3545;
                 padding-bottom: 2em;
                 position: relative;
                 transition: all 1s ease;
+                pointer-events: none;
                 .left {
                     margin: 0 1.25rem;
                     display: grid;
@@ -1132,8 +1133,8 @@ $panel-color-6: #dc3545;
                             font-size: 0.9rem;
                         }
                     }
-                    .method-payment-input {
-                        width: 100%;
+                    .item-input {
+                        min-width: 50%;
                         fieldset {
                             border: 2px solid white;
                             border-radius: 0.5rem;
@@ -1173,11 +1174,26 @@ $panel-color-6: #dc3545;
                                 }
                             }
                         }
+                        .pay-button {
+                            display: flex;
+                            align-items: center;
+                            background-color: $panel-color-3;
+                            color: white;
+                            padding:1em 2em;
+                            gap: 0.25rem;
+                            border-radius: 100rem;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            svg {
+                                font-size: 1.25rem;
+                            }
+                        }
                     }
                 }
             }
             .currnet-step {
                 opacity: 1;
+                pointer-events: all;
                 .left {
                     .arrow {
                         animation: moveDown 4s ease infinite;
@@ -1189,11 +1205,13 @@ $panel-color-6: #dc3545;
                 }
             }
             .completed {
-                opacity: 0.4;
+                opacity: 1;
                 border-color: transparent;
+                pointer-events: all;
                 fieldset {
                     background-color: white;
                     color: $panel-color-3;
+                 
                 }
                 .left {
                     &::after {
