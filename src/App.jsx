@@ -6,6 +6,9 @@ import "./css/style/style.css"
 import "./css/animation/aniamtions.css"
 import "./css/dashboard/dashboard.css"
 import "./css/pop-up/pop-up.css"
+import "./css/accordion/accordion.css"
+import "./css/select-box/selectBox.css"
+import "./css/field-box/field-box.css"
 
 
 // Import Swiper styles

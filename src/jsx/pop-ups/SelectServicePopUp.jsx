@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react"
 import { useDispatch } from "react-redux"
 import { closePopUp } from "../../features/popUpReducer"
-import FiledSet from "../cutsome-components/FiledSet"
+import FiledSet from "../cutsome-components/Fieldset/FiledSet"
 import { useState } from "react"
 import { useMemo } from "react"
 

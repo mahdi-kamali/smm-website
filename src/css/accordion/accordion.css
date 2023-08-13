@@ -1,0 +1,52 @@
+.accordion .container {
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+  transition: all 0.5s ease;
+}
+.accordion .container .accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.accordion .container .accordion-header svg {
+  margin-right: 2rem;
+  font-size: 1.25rem;
+  transition: all 0.5s ease;
+}
+.accordion .container .accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 1s ease;
+}
+.accordion .container .accordion-body .content {
+  overflow: hidden;
+}
+.accordion .true {
+  background-color: white;
+  color: #0d4bf4;
+}
+.accordion .true .accordion-header svg {
+  background-color: #0d4bf4;
+  color: white;
+  border-radius: 100rem;
+  rotate: 180deg;
+}
+.accordion .true .accordion-body {
+  grid-template-rows: 1fr;
+}
+.accordion .tickets-freq-item {
+  border: 2px solid white;
+  border-radius: 1rem;
+}
+.accordion .tickets-freq-item .header {
+  padding: 1em;
+  font-size: 1.25rem;
+}
+.accordion .tickets-freq-item .body {
+  padding: 0 2em;
+  margin-top: 0em !important;
+  line-height: 1.5;
+  padding-top: 0;
+  padding-bottom: 2em;
+}/*# sourceMappingURL=accordion.css.map */

@@ -7,6 +7,7 @@ import Services from "./panels/services/Services"
 import Orders from "./panels/orders/Orders"
 import { useEffect } from "react"
 import AddFounds from "./panels/add-found/AddFounds"
+import Tickets from "./panels/tickets/Tickets"
 
 const UserDashboard = () => {
 
@@ -33,7 +34,8 @@ const UserDashboard = () => {
         },
         {
             title: "Tickets",
-            icon: <Icon icon="ion:ticket-sharp" />
+            icon: <Icon icon="ion:ticket-sharp" />,
+            component: <Tickets />
         },
         {
             title: "Updates",
@@ -50,7 +52,7 @@ const UserDashboard = () => {
 
 
 
-    const [selectedPanel, selectPanel] = useState(panelMenuOptions[3])
+    const [selectedPanel, selectPanel] = useState(panelMenuOptions[4])
 
     useEffect(() => {
         window.scrollTo({
