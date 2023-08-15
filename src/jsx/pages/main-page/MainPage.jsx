@@ -6,14 +6,24 @@ import {
     EffectCards,
     EffectCoverflow,
     Autoplay,
-    EffectFade
 } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import FiledSet from '../../cutsome-components/Fieldset/FiledSet';
 
 
 
-import person from "../../../images/main-page/poster/char.svg"
 
+
+
+// Animatons
+import astronaut from "../../../animations/main-page/data.json"
+import rocketLottie from "../../../animations/main-page/rocket.json"
+import cloudes from "../../../animations/main-page/cloudes.json"
+import worldMap from "../../../animations/main-page/world-map.json"
+import blobBackground from "../../../animations/main-page/blobs-background.json"
+import support from "../../../animations/main-page/support.json"
+import totalOrders from "../../../animations/main-page/total-orders.json"
+import totalService from "../../../animations/main-page/total-services.json"
 
 // intro
 import firstIcon from "../../../images/main-page/intro/1.svg"
@@ -24,14 +34,13 @@ import forthIcon from "../../../images/main-page/intro/4.svg"
 
 
 // intro -2 
-import char from "../../../images/main-page/intro-2/char.svg"
+
+import { Icon } from "@iconify/react"
 import itemOne from "../../../images/main-page/intro-2/svg/1.svg"
 import itemTwo from "../../../images/main-page/intro-2/svg/2.svg"
 import itemThree from "../../../images/main-page/intro-2/svg/3.svg"
 import itemFour from "../../../images/main-page/intro-2/svg/4.svg"
-import { Icon } from "@iconify/react"
-
-
+import CompanyStaticItem from "../../../jsx/pages/main-page/components/company-statics/CompanyStaticsItem"
 
 
 // Customers Reviews 
@@ -43,7 +52,10 @@ import { useState } from 'react';
 
 
 // About us
-import blob from "../../../images/main-page/about-us/blob.svg"
+import posterBackground from "../../../images/main-page/poster/background.svg"
+import Lottie from 'react-lottie-player';
+
+
 
 
 const MainPage = () => {
@@ -52,6 +64,7 @@ const MainPage = () => {
 
 
     const [rightSwiper, setRightSwiper] = useState(null)
+
 
 
     const getRandomColors = () => {
@@ -68,33 +81,127 @@ const MainPage = () => {
     }
 
 
+    const authFormSubmites = (e) => {
+        e.preventDefault();
+    }
+
+
+    const companyStaticsItems = [
+        {
+            svg: itemOne,
+            title: "Total Users",
+            value: "129478",
+            description: "With an incredible count of 129,478 users, our platform has become a thriving community where individuals connect, engage, and explore a world of possibilities.",
+            animation: worldMap
+        },
+        {
+            svg: itemTwo,
+            title: "Total Orders",
+            value: "56000",
+            description: "A staggering 56,000 orders have been placed, showcasing the trust our customers have in us. Each order signifies a unique story of satisfaction and reliability.",
+            animation: totalOrders
+
+        },
+        {
+            svg: itemThree,
+            title: "Total Tickets",
+            value: "32400",
+            description: "As we prioritize customer support, our resolved ticket count stands at an impressive 32,400. This signifies not just a number, but the countless meaningful interactions we've had with our valued clients.",
+            animation: support
+
+        },
+        {
+            svg: itemFour,
+            title: "Total Services",
+            value: "240",
+            description: "Our dedication to excellence shines through the provision of 240 top-notch services. Each service represents our unwavering commitment to delivering quality solutions.",
+            animation: totalService
+        }
+    ];
+
+    const [currentSelected, setCurrentSelected] = useState(companyStaticsItems[0])
+
+
+
+
+
+
 
     return (
         <main className="main-page">
             <section className="poster">
                 <div className="left">
-                    <h1>
-                        WE MAKE BEST <br />
-                        IN SOCIAL <br />
-                        MARKETING
-                    </h1>
-                    <small>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a
-                    </small>
-                    <div className="buttons">
-                        <button>Get Started</button>
-                        <button>Read More</button>
+                    <div className="content-container">
+                        <h1>
+                            WE MAKE BEST <br />
+                            IN SOCIAL <br />
+                            MARKETING
+                        </h1>
+
+                        <form
+                            className="fields"
+                            action='#'
+                            onSubmit={authFormSubmites}>
+                            <div className="form-fields">
+                                <FiledSet
+                                    fieldClassName={"main-page-auth-fields"}
+                                    legend={
+                                        {
+                                            svg: <Icon icon="ic:baseline-alternate-email" />,
+                                            title: "Email"
+                                        }}
+                                    inputType={"text"}
+                                    inputName={"email"} />
+                                <FiledSet
+                                    fieldClassName={"main-page-auth-fields"}
+                                    legend={
+                                        {
+                                            svg: <Icon icon="mdi:password" />,
+                                            title: "Password"
+                                        }}
+                                    inputType={"password"}
+                                    inputName={"password"} />
+                            </div>
+                            <div className="form-options">
+                                <label >
+                                    <input type="checkbox" name="remember" />
+                                    <span>Remember Me</span>
+                                </label>
+                                <button>
+                                    Forgot Password ?
+                                </button>
+                            </div>
+                            <div className="form-buttons">
+                                <button>
+                                    <Icon icon="mdi:register" />
+                                    <span>
+                                        Sign Up
+                                    </span>
+                                </button>
+                                <button>
+                                    <Icon icon="clarity:login-solid" />
+                                    <span>
+                                        Login
+                                    </span>
+                                </button>
+                            </div>
+
+
+                        </form>
                     </div>
-                </div>
-                <div className="right">
-                    <img src={person} alt="" />
-                </div>
-                <div className="background">
 
                 </div>
+                <div className="right">
+                    <Lottie
+                        className='animation'
+                        animationData={astronaut}
+                        play
+                        loop
+                    />
+                    {/* <img src={person} alt="" /> */}
+                </div>
+                <img className='background' src={posterBackground} />
+
             </section>
 
             <section className="intro">
@@ -161,68 +268,63 @@ const MainPage = () => {
                         </div>
                     </div>
                 </div>
+                <div className="background">
+                    <Lottie
+                        className='animation'
+                        animationData={rocketLottie}
+                        play
+                        loop
+                    />
+                    <Lottie
+                        className='cloude'
+                        animationData={cloudes}
+                        play
+                        loop
+                    />
+                </div>
             </section>
 
 
             <section className="intro-2">
-                <img src={require("../../../images/main-page/intro-2/map.png")} className="map" />
 
-                <div className="our-activities">
-                    <div className="left">
-                        <div className="header">
-                            <h1>Our Activities</h1>
-                            <p>
-                                Get a clear picture of your social media performance with our custom charts and analytics.
-                                Get a clear picture of your social media
-                                performance
-                                with our custom charts and analytics.
-                            </p>
-                        </div>
-                        <img src={char} className="char" />
-                        <div className="footer">
-                            <h1>4 Year</h1>
-                            <h2>Cooperating With Clients </h2>
-                        </div>
-                    </div>
-                    <div className="right">
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={itemOne} alt="" />
-                            </div>
-                            <div className="item-body">
-                                <h1>129478</h1>
-                                <span>TOTAL USERS</span>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={itemTwo} alt="" />
-                            </div>
-                            <div className="item-body">
-                                <h1>129478</h1>
-                                <span>TOTAL USERS</span>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={itemThree} alt="" />
-                            </div>
-                            <div className="item-body">
-                                <h1>129478</h1>
-                                <span>TOTAL USERS</span>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={itemFour} alt="" />
-                            </div>
-                            <div className="item-body">
-                                <h1>129478</h1>
-                                <span>TOTAL USERS</span>
-                            </div>
-                        </div>
+                <div className="main-background">
+                    <Lottie
+                        className='blob'
+                        animationData={blobBackground}
+                        play
+                        loop />
+                </div>
+
+                <div className="world-map fade-in" key={Math.random()}>
+                    <Lottie
+
+                        className='animation '
+                        animationData={currentSelected.animation}
+                        play
+                        loop />
+
+                    <div className='company-statics-description '>
+                        <h1>{currentSelected.title}</h1>
+                        <p>
+                            {currentSelected.description}
+                        </p>
                     </div>
                 </div>
+
+
+                <div className="company-statics">
+                    {
+                        companyStaticsItems.map((item, index) => {
+                            return <CompanyStaticItem
+                                key={index}
+                                selected={currentSelected.title === item.title}
+                                setSelected={setCurrentSelected}
+                                item={item}
+                            />
+                        })
+                    }
+                </div>
+
 
                 <div className="our-services">
                     <div className="header">

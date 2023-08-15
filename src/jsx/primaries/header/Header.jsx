@@ -49,7 +49,8 @@ const Header = () => {
 
 
     const headerStyle = {
-        borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0"
+        borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0" ,
+        backgroundColor : scrollPosition > 100 ? "#3165f3" : "transparent" 
     }
 
 

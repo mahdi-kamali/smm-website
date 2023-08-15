@@ -1,5 +1,19 @@
+import { useState } from "react"
 
-const FiledSet = ({ legend, inputType, inputName, onChange, contentComponent, fieldClassName }) => {
+const FiledSet = (
+    {
+        legend,
+        inputType,
+        inputName,
+        onChange,
+        contentComponent,
+        fieldClassName
+    }
+) => {
+
+
+    const [focus, setFocus] = useState(false)
+
 
 
     const getInput = () => {
@@ -20,9 +34,17 @@ const FiledSet = ({ legend, inputType, inputName, onChange, contentComponent, fi
 
     }
 
+
+
+    console.log(focus);
+
     return (
         <div className={fieldClassName}>
-            <fieldset>
+            <fieldset
+                className={`${focus ? "focus" : ""} `}
+                onFocus={() => { setFocus(true) }}
+                onBlur={() => { setFocus(false) }}
+            >
                 <legend>
                     {legend.svg}
                     <span>{legend.title}</span>
