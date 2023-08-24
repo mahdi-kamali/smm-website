@@ -24,6 +24,11 @@ import blobBackground from "../../../animations/main-page/blobs-background.json"
 import support from "../../../animations/main-page/support.json"
 import totalOrders from "../../../animations/main-page/total-orders.json"
 import totalService from "../../../animations/main-page/total-services.json"
+import services from "../../../animations/main-page/services.json"
+import ourActivitiesAnimation from "../../../animations/main-page/our_activities.json"
+import introTwoBackgroundSecond from "../../../animations/main-page/intro-2-background-2.json"
+import introTwoAnimationBackground from "../../../animations/main-page/intro-2-background.json"
+import introBackgroundWave from "../../../animations/main-page/intro-background-wave.json"
 
 // intro
 import firstIcon from "../../../images/main-page/intro/1.svg"
@@ -34,7 +39,6 @@ import forthIcon from "../../../images/main-page/intro/4.svg"
 
 
 // intro -2 
-
 import { Icon } from "@iconify/react"
 import itemOne from "../../../images/main-page/intro-2/svg/1.svg"
 import itemTwo from "../../../images/main-page/intro-2/svg/2.svg"
@@ -47,7 +51,7 @@ import CompanyStaticItem from "../../../jsx/pages/main-page/components/company-s
 import cChar from "../../../images/main-page/customers-reviews/first-part/char.svg"
 import cBackground from "../../../images/main-page/customers-reviews/first-part/background.svg"
 import { Progress } from 'react-sweet-progress';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 
 
@@ -89,14 +93,14 @@ const MainPage = () => {
     const companyStaticsItems = [
         {
             svg: itemOne,
-            title: "Total Users",
+            title: "Users",
             value: "129478",
             description: "With an incredible count of 129,478 users, our platform has become a thriving community where individuals connect, engage, and explore a world of possibilities.",
             animation: worldMap
         },
         {
             svg: itemTwo,
-            title: "Total Orders",
+            title: "Orders",
             value: "56000",
             description: "A staggering 56,000 orders have been placed, showcasing the trust our customers have in us. Each order signifies a unique story of satisfaction and reliability.",
             animation: totalOrders
@@ -104,7 +108,7 @@ const MainPage = () => {
         },
         {
             svg: itemThree,
-            title: "Total Tickets",
+            title: "Tickets",
             value: "32400",
             description: "As we prioritize customer support, our resolved ticket count stands at an impressive 32,400. This signifies not just a number, but the countless meaningful interactions we've had with our valued clients.",
             animation: support
@@ -112,7 +116,7 @@ const MainPage = () => {
         },
         {
             svg: itemFour,
-            title: "Total Services",
+            title: "Services",
             value: "240",
             description: "Our dedication to excellence shines through the provision of 240 top-notch services. Each service represents our unwavering commitment to delivering quality solutions.",
             animation: totalService
@@ -127,8 +131,28 @@ const MainPage = () => {
 
 
 
+
     return (
         <main className="main-page">
+
+
+            <div className="main-background">
+                <Lottie
+                    className='blob'
+                    animationData={blobBackground}
+                    play
+                    loop
+                />
+                <Lottie
+                    className='blob'
+                    animationData={introTwoBackgroundSecond}
+                    play
+                    loop
+                />
+
+            </div>
+
+
             <section className="poster">
                 <div className="left">
                     <div className="content-container">
@@ -204,48 +228,44 @@ const MainPage = () => {
 
             </section>
 
-            <section className="intro">
+            <section className="why-choose-us">
                 <div className="start">
-                    <h1>Why Choose Us ?</h1>
+                    <h1>
+                        Why
+                        <span className='accent-color'>Choose Us ?</span>
+                    </h1>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p>
                 </div>
                 <div className="roads">
                     <div className="item">
-                        <div className="left">
-                        </div>
-                        <div className="mid">
+                        <div className="item-header">
                             <img src={firstIcon} />
                         </div>
-                        <div className="right">
+                        <div className="item-body">
                             <h2>Cheapest <span>Prices</span></h2>
                             <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
                         </div>
                     </div>
 
                     <div className="item">
-                        <div className="left">
+                        <div className="item-header">
+                            <img src={secondIcon} />
+                        </div>
+                        <div className="item-body">
                             <h2>
                                 Fastest <span>Delivery</span>
                             </h2>
                             <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
                         </div>
-                        <div className="mid">
-                            <img src={secondIcon} />
-                        </div>
-                        <div className="right">
-
-                        </div>
                     </div>
 
                     <div className="item">
-                        <div className="left">
 
-                        </div>
-                        <div className="mid">
+                        <div className="item-header">
                             <img src={thirdIcon} />
 
                         </div>
-                        <div className="right">
+                        <div className="item-body">
                             <h2>
                                 Multiple <span>Payment
                                 </span>  Methods</h2>
@@ -254,17 +274,14 @@ const MainPage = () => {
                     </div>
 
                     <div className="item">
-                        <div className="left">
-                            <h2>Highest <span>Prices</span> Quality</h2>
-                            <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
-                        </div>
-                        <div className="mid">
+                        <div className="item-header">
                             <img src={forthIcon} />
 
 
                         </div>
-                        <div className="right">
-
+                        <div className="item-body">
+                            <h2>Highest <span>Prices</span> Quality</h2>
+                            <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
                         </div>
                     </div>
                 </div>
@@ -285,26 +302,24 @@ const MainPage = () => {
             </section>
 
 
-            <section className="intro-2">
+            <section className="intro">
 
-                <div className="main-background">
-                    <Lottie
-                        className='blob'
-                        animationData={blobBackground}
-                        play
-                        loop />
-                </div>
 
                 <div className="world-map fade-in" key={Math.random()}>
                     <Lottie
-
                         className='animation '
                         animationData={currentSelected.animation}
                         play
-                        loop />
+                        loop
+                    />
 
                     <div className='company-statics-description '>
-                        <h1>{currentSelected.title}</h1>
+                        <h1>
+                            <span>Total</span>
+                            <div className="accent-color">
+                                {currentSelected.title}
+                            </div>
+                        </h1>
                         <p>
                             {currentSelected.description}
                         </p>
@@ -313,16 +328,68 @@ const MainPage = () => {
 
 
                 <div className="company-statics">
-                    {
-                        companyStaticsItems.map((item, index) => {
-                            return <CompanyStaticItem
-                                key={index}
-                                selected={currentSelected.title === item.title}
-                                setSelected={setCurrentSelected}
-                                item={item}
-                            />
-                        })
-                    }
+                    <div className="statics">
+                        {
+                            companyStaticsItems.map((item, index) => {
+                                return <CompanyStaticItem
+                                    key={index}
+                                    selected={currentSelected.title === item.title}
+                                    setSelected={setCurrentSelected}
+                                    item={item}
+                                />
+                            })
+                        }
+                    </div>
+
+
+                </div>
+
+                <div className="our-activities">
+                    <div className="left">
+                        <h1>
+                            Our
+                            <div className="accent-color">
+                                Activities
+                            </div>
+                        </h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
+                        </p>
+                    </div>
+                    <div className="right">
+
+                        <div className="animation">
+                            <Lottie
+                                className='animation'
+                                animationData={ourActivitiesAnimation}
+                                play
+                                loop />
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div className="intro-background">
+
+                    <Lottie
+                        className='blubs'
+                        animationData={introTwoAnimationBackground}
+                        play
+                        loop />
+
+
+                </div>
+                <div className="intro-background-2">
+
+                    <Lottie
+                        className='wave'
+                        animationData={introBackgroundWave}
+                        play
+                        loop />
+
+
                 </div>
 
 
@@ -335,7 +402,13 @@ const MainPage = () => {
                         </p>
                     </div>
                     <div className="body">
-
+                        <div className="background">
+                            <Lottie
+                                className='animation'
+                                animationData={services}
+                                play
+                                loop />
+                        </div>
                         <Swiper
                             modules={[
                                 Navigation,
@@ -344,14 +417,24 @@ const MainPage = () => {
                                 A11y,
                                 EffectCoverflow]}
                             spaceBetween={20}
-                            slidesPerView={4}
-                            navigation
-                            pagination={{ clickable: true }}
+                            slidesPerView={2.75}
+
+                            pagination={
+                                {
+                                    clickable: true,
+                                    el: ".bullet-container"
+                                }}
                             onSwiper={(swiper) => swiper.slideTo(2)}
                             onSlideChange={() => console.log('slide change')}
                             effect={'coverflow'}
                             grabCursor={true}
                             centeredSlides
+                            navigation={{
+                                prevEl: ".prev-arrow",
+                                nextEl: ".next-arrow",
+                                disabledClass: "false",
+
+                            }}
                             coverflowEffect={{
                                 rotate: -10,
                                 stretch: 0,
@@ -461,10 +544,22 @@ const MainPage = () => {
                                     </div>
                                 </div>
                             </SwiperSlide>
-                        </Swiper>
+                            <div className="swiper-controlls ">
+                                <div className="prev-arrow arrow">
+                                    <Icon icon="raphael:arrowleft" />
+                                </div>
+                                <div className="bullet-container">
 
+                                </div>
+                                <div className="next-arrow arrow">
+                                    <Icon icon="raphael:arrowleft" rotate={2} />
+                                </div>
+                                <div className="next-click"></div>
+                            </div>
+                        </Swiper>
                     </div>
                     <div className="footer"></div>
+
                 </div>
 
                 <div className="our-popular-services">

@@ -15,7 +15,9 @@ const CompanyStaticsItem = ({ item, selected, setSelected }) => {
                 <img src={item.svg} alt="" />
             </div>
             <div className="item-body">
-                <h1>{item.value}</h1>
+                <h1>
+                    {item.value}
+                </h1>
                 <span>{item.title}</span>
             </div>
         </div>
