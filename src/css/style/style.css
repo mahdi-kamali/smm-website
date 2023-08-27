@@ -327,12 +327,11 @@ footer {
   width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
-  align-items: start;
 }
 .main-page .why-choose-us .roads .item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
@@ -366,9 +365,6 @@ footer {
   opacity: 0.5;
   max-width: 25rem;
   border-radius: 0.4rem;
-}
-.main-page .why-choose-us .roads .item:nth-child(even) {
-  margin-top: 3rem;
 }
 .main-page .why-choose-us .background {
   z-index: -2;
@@ -532,7 +528,7 @@ footer {
   z-index: 2;
 }
 .main-page .intro .our-popular-services .body .item .item-header img {
-  width: 16rem;
+  width: 14rem;
   aspect-ratio: 1/1;
   -o-object-fit: contain;
      object-fit: contain;
@@ -542,7 +538,7 @@ footer {
   align-items: start;
   flex-direction: column;
   gap: 1rem;
-  padding: 1em 1.5em;
+  padding: 1em 1em;
   padding-top: 0;
   z-index: 2;
 }
@@ -550,12 +546,14 @@ footer {
   transition: all 1s ease;
 }
 .main-page .intro .our-popular-services .body .item .item-body h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .main-page .intro .our-popular-services .body .item .item-body p {
   line-height: 1.5;
+  font-size: 0.9rem;
 }
 .main-page .intro .our-popular-services .body .item .item-buttons {
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -570,13 +568,14 @@ footer {
 .main-page .intro .our-popular-services .body .item .item-buttons .arrow-up {
   color: #0d4bf4;
   font-weight: bold;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   border-radius: 50%;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 1s ease;
+  margin-top: 0.5rem;
 }
 .main-page .intro .our-popular-services .body .item .item-buttons .see-more {
   font-size: 1rem;
@@ -590,6 +589,7 @@ footer {
   font-weight: bold;
   opacity: 0;
   transition: all 1s ease;
+  pointer-events: none;
 }
 .main-page .intro .our-popular-services .body .item:hover .item-body {
   color: #0d4bf4;
@@ -821,41 +821,38 @@ footer {
   display: none;
 }
 .main-page .customers-reviews {
-  background-color: #f0f0f0;
   position: relative;
 }
 .main-page .customers-reviews .background {
   position: absolute;
+  pointer-events: none;
   top: -20%;
+  rotate: 180deg;
 }
 .main-page .customers-reviews .first-section {
-  display: flex;
-  align-items: start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 25rem 1fr;
   overflow: hidden;
-  gap: 7rem;
-  padding-top: 15em;
+  padding-top: 7em;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
 }
 .main-page .customers-reviews .first-section .left {
   position: relative;
-  background-color: #0d4bf4;
   border-radius: 3rem;
-  margin-bottom: 7em;
-  animation: tilt 3s infinite;
-  rotate: 45deg;
 }
-.main-page .customers-reviews .first-section .left img {
-  position: relative;
-  rotate: -45deg;
-  scale: 1.5;
+.main-page .customers-reviews .first-section .left .animation {
+  mix-blend-mode: multiply;
 }
 .main-page .customers-reviews .first-section .right {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: start;
 }
 .main-page .customers-reviews .first-section .right h1 {
-  font-size: 4rem;
+  font-size: 2.25rem;
   line-height: 1.2;
 }
 .main-page .customers-reviews .first-section .right h1 span {
@@ -871,17 +868,39 @@ footer {
   font-size: 1rem;
   border-radius: 2rem;
   font-weight: bold;
-  font-size: 1.2rem;
   margin-top: 1rem;
 }
 .main-page .customers-reviews .comments {
-  display: grid;
-  grid-template-columns: 22rem 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: start;
   gap: 5rem;
-  padding: 0 10%;
-  padding-top: 10rem;
+  margin-top: 1rem;
+}
+.main-page .customers-reviews .comments .swiper-controlls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.main-page .customers-reviews .comments .swiper-controlls .bullet-container {
+  width: -moz-max-content;
+  width: max-content;
+  display: flex;
+}
+.main-page .customers-reviews .comments .swiper-controlls .bullet-container .swiper-pagination-bullet {
+  transition: all 0.5s ease;
+}
+.main-page .customers-reviews .comments .swiper-controlls .bullet-container .swiper-pagination-bullet:hover {
+  scale: 2;
+}
+.main-page .customers-reviews .comments .swiper-controlls .arrow {
+  display: flex;
+  font-size: 2.5rem;
+  color: #698df3;
 }
 .main-page .customers-reviews .comments .left .swiper {
+  width: 17rem;
   padding-bottom: 3em;
 }
 .main-page .customers-reviews .comments .left .swiper-slide {
@@ -897,14 +916,14 @@ footer {
 .main-page .customers-reviews .comments .left .item .item-header {
   display: flex;
   align-items: center;
-  padding: 1.5em;
+  padding: 1em 1.5em;
   gap: 1rem;
 }
 .main-page .customers-reviews .comments .left .item .item-header h1 {
   font-size: 1.5rem;
 }
 .main-page .customers-reviews .comments .left .item .item-header img {
-  width: 4rem;
+  width: 3rem;
 }
 .main-page .customers-reviews .comments .left .item .item-body {
   background-color: white;
@@ -915,11 +934,13 @@ footer {
 }
 .main-page .customers-reviews .comments .left .item .item-body h1 {
   color: #0d4bf4;
+  font-size: 1.25rem;
 }
 .main-page .customers-reviews .comments .left .item .item-body p {
   margin-top: 1rem;
   opacity: 0.8;
   line-height: 1.5;
+  font-size: 0.8rem;
 }
 .main-page .customers-reviews .comments .left .item .item-body .rating {
   align-self: center;
@@ -927,9 +948,9 @@ footer {
   align-items: center;
   justify-content: center;
   padding: 0.5em 1.25em;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: white;
-  gap: 0.5rem;
+  gap: 0.25rem;
   font-weight: bold;
   text-transform: uppercase;
   background-color: goldenrod;
@@ -937,12 +958,11 @@ footer {
   border-radius: 100rem;
 }
 .main-page .customers-reviews .comments .right {
-  padding: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  padding-top: 3rem;
 }
 .main-page .customers-reviews .comments .right .swiper {
   width: 100%;
@@ -952,8 +972,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   flex-direction: column;
-  gap: 2rem;
-  margin-top: 1rem;
+  gap: 1rem;
 }
 .main-page .customers-reviews .comments .right .progressers .react-sweet-progress-symbol {
   display: none;
@@ -962,14 +981,14 @@ footer {
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
 .main-page .customers-reviews .comments .right .progressers h1 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   grid-column: -1/1;
 }
 .main-page .customers-reviews .comments .right .progressers h1 span {
   color: #0d4bf4;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .main-page .customers-reviews .comments .right .progressers .item {
   display: flex;
@@ -980,78 +999,93 @@ footer {
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   gap: 0.5rem;
 }
 .main-page .customers-reviews .comments .right .progressers .item .header span {
-  font-size: 1.25rem;
+  font-size: 1rem;
+}
+.main-page .customers-reviews .wave-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1rem;
+  pointer-events: none;
+}
+.main-page .customers-reviews .wave-background g g:nth-child(1) {
+  opacity: 0.5;
+}
+.main-page .customers-reviews .wave-background g g:nth-child(2) {
+  opacity: 0.5;
+}
+.main-page .customers-reviews .wave-background g g:nth-child(3) {
+  opacity: 0.5;
+}
+.main-page .customers-reviews .wave-background g g:nth-child(3) path {
+  fill: #0d4bf4;
 }
 .main-page .about-us {
-  background-color: #f0f0f0;
   display: grid;
-  grid-template-columns: 1fr 40rem;
-  padding: 2em;
+  grid-template-columns: 30rem max-content;
   align-items: center;
-  padding-top: 10rem;
+  margin: 0 auto;
+  padding-bottom: 4em;
+  gap: 2rem;
 }
 .main-page .about-us .left {
-  scale: 1.2;
+  scale: 1.3;
 }
 .main-page .about-us .right {
   position: relative;
-  background-image: url("../../images/main-page/about-us/blob.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.main-page .about-us .right .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
 }
 .main-page .about-us .right .content {
   display: flex;
   flex-direction: column;
   font-size: 1rem;
-  color: #0d4bf4;
-  padding-left: 20%;
+  color: #3165f3;
 }
 .main-page .about-us .right .content h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   padding-top: 2em;
 }
 .main-page .about-us .right .content p {
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.5;
   margin-top: 1rem;
   max-width: 40ch;
 }
 .main-page .about-us .right .content .social-media {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-bottom: 3rem;
 }
 .main-page .about-us .right .content .social-media .social {
   display: flex;
   align-items: center;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   gap: 0.5rem;
   font-weight: bold;
 }
 .main-page .about-us .right .content button {
-  background-color: #0d4bf4;
+  background-color: #3165f3;
   width: -moz-max-content;
   width: max-content;
   color: white;
-  padding: 1em 2em;
+  padding: 0.75em 2em;
   border-radius: 100rem;
-  margin-bottom: -1rem;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+.main-page .about-us .wave-background {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: -1;
 }
 
 .services-page .poster {

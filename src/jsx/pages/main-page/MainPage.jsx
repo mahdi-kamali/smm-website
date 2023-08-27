@@ -29,6 +29,11 @@ import ourActivitiesAnimation from "../../../animations/main-page/our_activities
 import introTwoBackgroundSecond from "../../../animations/main-page/intro-2-background-2.json"
 import introTwoAnimationBackground from "../../../animations/main-page/intro-2-background.json"
 import introBackgroundWave from "../../../animations/main-page/intro-background-wave.json"
+import aboutUs from "../../../animations/main-page/about-us.json"
+import aboutUsBlub from "../../../animations/main-page/about-us-blub.json"
+import customersReviews from "../../../animations/main-page/comments.json"
+import customersReviewsWaveBackground from "../../../animations/main-page/comments-background-wave.json"
+
 
 // intro
 import firstIcon from "../../../images/main-page/intro/1.svg"
@@ -381,6 +386,8 @@ const MainPage = () => {
 
 
                 </div>
+
+
                 <div className="intro-background-2">
 
                     <Lottie
@@ -418,7 +425,6 @@ const MainPage = () => {
                                 EffectCoverflow]}
                             spaceBetween={20}
                             slidesPerView={2.75}
-
                             pagination={
                                 {
                                     clickable: true,
@@ -544,7 +550,7 @@ const MainPage = () => {
                                     </div>
                                 </div>
                             </SwiperSlide>
-                            <div className="swiper-controlls ">
+                            <div className="swiper-controlls">
                                 <div className="prev-arrow arrow">
                                     <Icon icon="raphael:arrowleft" />
                                 </div>
@@ -665,8 +671,11 @@ const MainPage = () => {
                 <img src={cBackground} className="background" />
                 <div className="first-section">
                     <div className="left">
-                        <img src={cChar} alt="" />
-
+                        <Lottie
+                            className='animation'
+                            animationData={customersReviews}
+                            play
+                            loop />
                     </div>
                     <div className="right">
                         <h1>
@@ -689,8 +698,6 @@ const MainPage = () => {
                             className="mySwiper"
                             effect={'cards'}
                             grabCursor={true}
-                            navigation
-                            pagination={{ clickable: true }}
                             autoplay={{
                                 delay: 5000,
                                 disableOnInteraction: false,
@@ -706,6 +713,17 @@ const MainPage = () => {
                                 A11y,
                                 Autoplay,
                                 EffectCoverflow]}
+                            navigation={{
+                                prevEl: ".prev-arrow",
+                                nextEl: ".next-arrow",
+                                disabledClass: "false",
+
+                            }}
+                            pagination={
+                                {
+                                    clickable: true,
+                                    el: ".bullet-container"
+                                }}
                         >
                             {getRandomColors().map(color => {
                                 return <SwiperSlide>
@@ -740,13 +758,30 @@ const MainPage = () => {
                                 </SwiperSlide>
                             })}
 
+
+                            <div className="swiper-controlls ">
+                                <div className="prev-arrow arrow">
+                                    <Icon icon="raphael:arrowleft" />
+                                </div>
+                                <div className="bullet-container">
+
+                                </div>
+                                <div className="next-arrow arrow">
+                                    <Icon icon="raphael:arrowleft" rotate={2} />
+                                </div>
+                                <div className="next-click"></div>
+                            </div>
+
+
                         </Swiper>
                     </div>
                     <div className="right">
 
                         <Swiper
                             spaceBetween={30}
-
+                            modules={[
+                                Scrollbar,
+                                A11y]}
                             className="mySwiper"
                             onSwiper={swiper => setRightSwiper(swiper)}
                         >
@@ -906,20 +941,21 @@ const MainPage = () => {
 
                             </SwiperSlide>
 
+
+
                         </Swiper>
-
-
-
 
                     </div>
                 </div>
-
 
             </section>
 
             <section className='about-us'>
                 <div className="left">
-                    <img src={require("../../../images/main-page/about-us/left.png")} alt="" />
+                    <Lottie
+                        animationData={aboutUs}
+                        play
+                        loop />
                 </div>
                 <div className="right">
                     <div className="content">
@@ -939,6 +975,12 @@ const MainPage = () => {
                         </div>
                         <button>Read More</button>
                     </div>
+                </div>
+                <div className="wave-background">
+                    <Lottie
+                        animationData={customersReviewsWaveBackground}
+                        play
+                        loop />
                 </div>
             </section>
 
