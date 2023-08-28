@@ -11,34 +11,42 @@ const Header = () => {
         {
             title: "Home",
             route: "/home",
+            icon: <Icon icon="majesticons:home" />
         },
         {
             title: "Account",
             route: "/auth",
+            icon : <Icon icon="mdi:account" />
         },
         {
             title: "FAQS",
             route: "/faqs",
+            icon : <Icon icon="wpf:faq" />
         },
         {
             title: "Blog",
             route: "/blog",
+            icon : <Icon icon="uil:blogger" />
         },
         {
             title: "About Us",
             route: "/about-us",
+            icon : <Icon icon="mdi:about" />
         },
         {
             title: "API",
             route: "/api",
+            icon : <Icon icon="ic:twotone-api" />
         },
         {
             title: "Contact Us",
             route: "/contact-us",
+            icon : <Icon icon="entypo:network" />
         },
         {
             title: "Services",
             route: "/services",
+            icon : <Icon icon="fluent:data-pie-24-filled" />
         }
 
     ]
@@ -109,7 +117,10 @@ const Header = () => {
                                 key={index}
                                 onClick={() => { changePage(item) }}
                             >
-                                {item.title}
+                                {item.icon}
+                                <span>
+                                    {item.title}
+                                </span>
                             </li>
                         })
                     }

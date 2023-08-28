@@ -12,7 +12,7 @@ header {
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 1em 7em;
+  padding: 0.5em 7em;
   border-radius: 0;
   text-transform: uppercase;
   z-index: 10;
@@ -31,7 +31,7 @@ header .menu {
   display: flex;
   font-weight: bold;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   gap: 0.25rem;
 }
 header .menu li {
@@ -53,7 +53,6 @@ header .menu .selected {
   color: #0d4bf4;
   border-width: 0;
 }
-
 footer {
   margin-top: 5rem;
 }
@@ -1672,6 +1671,98 @@ footer {
 }
 .faqs-page .background .charachter-animation g g:nth-child(3) path {
   fill: #0d4bf4;
+}
+
+.blog-page {
+  background-color: #3165f3;
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 6em;
+  padding-bottom: 6em;
+}
+.blog-page .intro {
+  display: grid;
+  grid-template-columns: 20rem 30rem;
+  padding: 3em 0%;
+  z-index: 5;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.blog-page .intro .right {
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.blog-page .intro .right h1 {
+  font-size: 2.5rem;
+}
+.blog-page .intro .right p {
+  line-height: 1.5;
+}
+.blog-page .blog-items {
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  z-index: 2;
+}
+.blog-page .blog-items .item {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  border-bottom: 5px solid #0d4bf4;
+  box-shadow: 0.3rem 0.3rem 1rem 0.2rem rgba(255, 255, 255, 0.3);
+}
+.blog-page .blog-items .item .item-header img {
+  mix-blend-mode: multiply;
+  background-color: white;
+  aspect-ratio: 16/12;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.blog-page .blog-items .item .item-body {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.blog-page .blog-items .item .item-body .title {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+.blog-page .blog-items .item .item-body .excerpt {
+  margin-top: 0.25rem;
+}
+.blog-page .blog-items .item .item-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.blog-page .blog-items .item .item-buttons button {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  gap: 0.25rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
+}
+.blog-page .blog-items .item .item-buttons .submit {
+  background-color: #0fac6d;
+  color: white;
+}
+.blog-page .background .wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  rotate: 180deg;
+  opacity: 0.25;
 }
 
 footer {
