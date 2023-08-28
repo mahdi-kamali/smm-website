@@ -23,7 +23,7 @@ const Accordion = (
                         {headerComponent}
                     </span>
                     <div className="icon">
-                    {dropDownIcon}
+                        {dropDownIcon}
                     </div>
                 </div>
                 <div className={`accordion-body`}>

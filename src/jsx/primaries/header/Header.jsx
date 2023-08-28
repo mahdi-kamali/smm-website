@@ -5,12 +5,51 @@ import { useFetcher, useNavigate } from 'react-router-dom';
 const Header = () => {
 
 
+
+
+    const menuList = [
+        {
+            title: "Home",
+            route: "/home",
+        },
+        {
+            title: "Account",
+            route: "/auth",
+        },
+        {
+            title: "FAQS",
+            route: "/faqs",
+        },
+        {
+            title: "Blog",
+            route: "/blog",
+        },
+        {
+            title: "About Us",
+            route: "/about-us",
+        },
+        {
+            title: "API",
+            route: "/api",
+        },
+        {
+            title: "Contact Us",
+            route: "/contact-us",
+        },
+        {
+            title: "Services",
+            route: "/services",
+        }
+
+    ]
+
+
+
     const [currentPage, setCurrentPage] = useState("main-page")
     const navigator = useNavigate()
 
 
-    const [scrollPosition, setScrollPosition] = useState(0);
-
+    const [scrollPosition, setScrollPosition] = useState(menuList[0]);
 
 
     const handleScroll = () => {
@@ -27,9 +66,9 @@ const Header = () => {
         [])
 
 
-    function changePage(pageName) {
-        navigator(pageName)
-        setCurrentPage(pageName)
+    function changePage(item) {
+        navigator(item.route)
+        setCurrentPage(item.title)
     }
 
 
@@ -49,8 +88,8 @@ const Header = () => {
 
 
     const headerStyle = {
-        borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0" ,
-        backgroundColor : scrollPosition > 100 ? "#3165f3" : "transparent" 
+        borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0",
+        backgroundColor: scrollPosition > 100 ? "#3165f3" : "transparent"
     }
 
 
@@ -62,12 +101,18 @@ const Header = () => {
             </div>
             <div className="right">
                 <ul className="menu">
-                    {createMenu("services")}
-                    {createMenu("Contact us")}
-                    {createMenu("About us")}
-                    {createMenu("Login")}
-                    {createMenu("Sign-Up")}
-                    {createMenu("home")}
+                    {
+                        menuList.reverse().map((item, index) => {
+                            return <li
+                                className=
+                                {currentPage === item.title ? "selected" : ""}
+                                key={index}
+                                onClick={() => { changePage(item) }}
+                            >
+                                {item.title}
+                            </li>
+                        })
+                    }
                 </ul>
             </div>
         </header>

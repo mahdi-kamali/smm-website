@@ -2,9 +2,17 @@ import { Icon } from "@iconify/react"
 
 
 import avatar from "../../../images/footer/avatar.svg"
+import Lottie from "react-lottie-player"
+
+
+
+import footerAnimation from "../../../animations/main-page/footer-animation.json"
 
 
 const Footer = () => {
+
+  footerAnimation.fr = 10
+
   return (
     <footer>
       <div className="left">
@@ -46,7 +54,12 @@ const Footer = () => {
         </ul>
       </div>
 
-      <img src={avatar}  className="avatar" />
+
+      <Lottie
+        animationData={footerAnimation}
+        play
+        loop
+      />
 
     </footer>
   )

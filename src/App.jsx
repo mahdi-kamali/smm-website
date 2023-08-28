@@ -54,6 +54,8 @@ import AuthPage from "./jsx/pages/auth/AuthPage";
 // Dashboards
 import UserDashboard from "./jsx/dashboards/user/UserDashboard";
 import PopUopContainer from "./jsx/pop-ups/PopUopContainer";
+import FAQsPage from "./jsx/pages/Faq-page/FAQsPage"
+import BlogPage from "./jsx/pages/blog-page/BlogPage"
 
 
 
@@ -72,13 +74,14 @@ function App() {
         <Header />
         <Routes>
           <Route path='/home' element={<MainPage />} />
-          <Route path='/Login' element={<AuthPage />} />
+          <Route path='/auth' element={<AuthPage />} />
           <Route path='/services' element={<ServicesPage />} />
-          <Route path="*" element={<MainPage />} />
+          <Route path="/*" element={<MainPage />} />
+          <Route path="/faqs" element={<FAQsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/user/dashboard" element={<UserDashboard />} />
         </Routes>
         <Footer />
-
 
         <PopUopContainer />
 
