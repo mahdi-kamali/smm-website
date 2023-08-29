@@ -36,8 +36,6 @@ const FiledSet = (
 
 
 
-    console.log(focus);
-
     return (
         <div className={fieldClassName}>
             <fieldset
