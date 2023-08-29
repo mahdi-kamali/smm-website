@@ -10,7 +10,7 @@ const FAQsAccordion = ({ headerTitle, bodyTitle, isExpanded }) => {
 
 
     return (
-        <div className={`accordion accordion-${expanded}`}>
+        <div className={`faqs-accordion accordion-${expanded}`}>
             <div
                 className="accordion-header"
                 onClick={() => { setExpanded(!expanded) }}>

@@ -30,9 +30,14 @@ import introTwoBackgroundSecond from "../../../animations/main-page/intro-2-back
 import introTwoAnimationBackground from "../../../animations/main-page/intro-2-background.json"
 import introBackgroundWave from "../../../animations/main-page/intro-background-wave.json"
 import aboutUs from "../../../animations/main-page/about-us.json"
-import aboutUsBlub from "../../../animations/main-page/about-us-blub.json"
 import customersReviews from "../../../animations/main-page/comments.json"
 import customersReviewsWaveBackground from "../../../animations/main-page/comments-background-wave.json"
+import faqs from "../../../animations/main-page/home-page-faqs.json"
+import faqsBackground from "../../../animations/main-page/main-page-faqs-background.json"
+
+
+import FAQsAccordion from "../../cutsome-components/accordion/FAQsAccordion"
+
 
 
 // intro
@@ -71,6 +76,8 @@ const MainPage = () => {
 
 
 
+    faqs.fr = 10
+    faqsBackground.fr = 5
 
     const [rightSwiper, setRightSwiper] = useState(null)
 
@@ -132,6 +139,29 @@ const MainPage = () => {
 
 
 
+    const faqsList = [
+        {
+            "question": "What is social media marketing (SMM)?",
+            "answer": "Social media marketing, often abbreviated as SMM, is an essential component of digital marketing strategies. It involves leveraging various social media platforms to create and share content, engage with users, and achieve specific marketing goals. By utilizing platforms like Facebook, Instagram, Twitter, LinkedIn, and Pinterest, businesses can establish a strong online presence, connect with their target audience, and drive traffic to their websites.",
+            "isExpanded": true
+        },
+        {
+            "question": "Why is SMM important for my business?",
+            "answer": "Social media marketing is crucial for businesses of all sizes because it provides a direct channel to interact with potential and existing customers. Through SMM, you can build brand awareness, foster customer loyalty, and influence purchasing decisions. As platforms continue to evolve, SMM enables you to adapt to the changing preferences of your audience and stay ahead of competitors.",
+            "isExpanded": true
+        },
+        {
+            "question": "Which social media platforms should I focus on?",
+            "answer": "The choice of social media platforms depends on your specific business goals and target audience. For instance, if you're a B2B company looking to establish industry authority, LinkedIn might be a primary platform. If your business revolves around visual content, Instagram and Pinterest could be valuable. An in-depth analysis of your audience demographics and behavior will guide you in selecting the platforms that best align with your objectives.",
+            "isExpanded": false
+        },
+        {
+            "question": "Do I need a professional to handle my SMM?",
+            "answer": "While it's possible to manage your own social media accounts, a professional SMM strategist brings expertise, industry insights, and the ability to craft a tailored strategy. Professionals can create engaging content, identify trends, analyze metrics, and adjust strategies as needed, maximizing your return on investment.",
+            "isExpanded": false
+        }
+    ]
+
 
 
 
@@ -156,7 +186,6 @@ const MainPage = () => {
                 />
 
             </div>
-
 
             <section className="poster">
                 <div className="left">
@@ -666,6 +695,39 @@ const MainPage = () => {
 
             </section>
 
+            <div className="faqs">
+                <div className="left">
+
+                    {
+                        faqsList.map((item, index) => {
+                            return <FAQsAccordion
+                                key={index}
+                                headerTitle={item.question}
+                                bodyTitle={item.answer}
+                                isExpanded={item.isExpanded}
+                            />
+                        })
+                    }
+
+
+                </div>
+                <div className="right">
+                    <Lottie
+                        animationData={faqs}
+                        play
+                        loop />
+                </div>
+                <div className="faqs-background">
+                    <Lottie
+                        className='animation'
+                        animationData={faqsBackground}
+                        play
+                        loop
+                    />
+                </div>
+
+            </div>
+
 
             <section className="customers-reviews">
                 <img src={cBackground} className="background" />
@@ -949,6 +1011,8 @@ const MainPage = () => {
                 </div>
 
             </section>
+
+
 
             <section className='about-us'>
                 <div className="left">
