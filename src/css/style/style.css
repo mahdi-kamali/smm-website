@@ -1091,8 +1091,8 @@ footer {
   width: 80%;
   align-self: center;
   z-index: 1;
-  margin-top: 7rem;
   position: relative;
+  margin-top: 5rem;
 }
 .main-page .faqs .left {
   display: flex;
