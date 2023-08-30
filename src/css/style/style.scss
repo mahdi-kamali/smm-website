@@ -306,7 +306,6 @@ footer {
         z-index: 1;
     }
 
-
     .poster {
         display: grid;
         grid-template-columns: 1fr 0.6fr;
@@ -746,7 +745,6 @@ footer {
             grid-template-columns: 1fr 30rem;
             margin-top: 2rem;
             padding: 0 10%;
-
             .right {
                 position: relative;
             }
@@ -773,7 +771,6 @@ footer {
             color: white;
             background-color: $color-5;
             padding: 2em;
-            margin-top: 0rem;
             align-self: center;
             position: relative;
             width: 100%;
@@ -925,6 +922,95 @@ footer {
             }
         }
 
+        .service-step-guidance {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+            background-color: #f0f3fe;
+            background-color: white;
+            border-radius: 2rem;
+            width: max-content;
+            align-self: center;
+            padding: 0 3em;
+            padding-bottom: 3em;
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 70%;
+                border-bottom: 4px solid $color-5;
+                padding: 3em;
+                span {
+                    color: $color-1;
+                    font-size: 2.5rem;
+                }
+            }
+            .body {
+                display: flex;
+                justify-content: center;
+                align-items: start;
+                margin-top: -2rem;
+                gap: 1rem;
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    width: 11rem;
+                    animation: stepsAnimation 10s ease infinite;
+                    .item-header {
+                        mix-blend-mode: multiply;
+                        height: 12rem;
+                    }
+                    .item-body {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        gap: 0.5rem;
+                        margin-top: -1.5rem;
+                        h1 {
+                            font-size: 1.25rem;
+                        }
+                    }
+
+                    &:nth-child(1) {
+                        margin-top: 0rem;
+                        animation-delay: 1s;
+                    }
+                    &:nth-child(2) {
+                        margin-top: 2rem;
+                        animation-delay: 2s;
+                        .item-body {
+                        }
+                    }
+                    &:nth-child(3) {
+                        margin-top: 4rem;
+                        animation-delay: 3s;
+                    }
+                    &:nth-child(4) {
+                        margin-top: 2rem;
+                        gap: 1rem;
+                        animation-delay: 4s;
+
+                    }
+                    &:nth-child(5) {
+                        margin-top: 3rem;
+                        animation-delay: 5s;
+                        .item-body {
+                            margin-top: -2rem;
+                        }
+                    }
+                }
+            }
+            .step-guidance-background {
+                position: absolute;
+                transform: rotatY(180deg);
+                inset: 0;
+                opacity: 0.05;
+                z-index: -1;
+            }
+        }
+
         .intro-background {
             position: absolute;
             top: 0;
@@ -965,7 +1051,6 @@ footer {
             }
         }
     }
-
 
     .faqs {
         z-index: 1;
@@ -1026,7 +1111,8 @@ footer {
             padding: 3em;
             padding-bottom: 2em;
             padding-top: 0;
-            grid-template-columns: 30rem 1fr;
+            grid-template-columns: 25rem max-content;
+            align-self: center;
             .left {
                 display: flex;
             }
@@ -1042,8 +1128,7 @@ footer {
                         border-radius: 0.5rem;
                         border-color: transparent;
                         border: 2px solid rgba(0, 0, 0, 0.1);
-                        box-shadow: 0.2rem 0.2rem 1rem 0.0rem 
-                        rgba(0, 0, 0, 0.05);
+                        box-shadow: 0.2rem 0.2rem 1rem 0rem rgba(0, 0, 0, 0.05);
                         background-color: white;
 
                         legend {
@@ -1125,7 +1210,6 @@ footer {
         }
     }
 
-    
     .customers-reviews {
         position: relative;
         display: flex;
@@ -2222,6 +2306,8 @@ footer {
     display: none;
 }
 
+
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -2240,5 +2326,22 @@ footer {
     }
     100% {
         margin-top: 0rem;
+    }
+}
+
+@keyframes stepsAnimation {
+    0% {
+        transform: translateY(1rem);
+    }
+    25% {
+    }
+    50% {
+        transform: translateY(0rem);
+    }
+    75% {
+    }
+    100% {
+        transform: translateY(1rem);
+
     }
 }

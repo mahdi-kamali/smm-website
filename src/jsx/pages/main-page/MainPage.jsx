@@ -36,8 +36,6 @@ import faqs from "../../../animations/main-page/home-page-faqs.json"
 import faqsQuestion from "../../../animations/main-page/question.json"
 import faqsBackground from "../../../animations/main-page/main-page-faqs-background.json"
 import faqsFormQuestion from "../../../animations/main-page/main-page-faqs-wave.json"
-
-
 import FAQsAccordion from "../../cutsome-components/accordion/FAQsAccordion"
 
 
@@ -47,6 +45,16 @@ import firstIcon from "../../../images/main-page/intro/1.svg"
 import secondIcon from "../../../images/main-page/intro/2.svg"
 import thirdIcon from "../../../images/main-page/intro/3.svg"
 import forthIcon from "../../../images/main-page/intro/4.svg"
+
+
+
+// Service Step
+import stepOneAnimation from "../../../animations/main-page/main-page-step-1.json"
+import stepTwoAnimation from "../../../animations/main-page/main-page-step-2.json"
+import stepThreeAnimation from "../../../animations/main-page/main-page-step-3.json"
+import stepFourAnimation from "../../../animations/main-page/main-page-step-4.json"
+import stepFiveAnimation from "../../../animations/main-page/main-page-step-5.json"
+import stepArrowAnimation from "../../../animations/main-page/main-page-steps-arrow.json"
 
 
 
@@ -83,6 +91,13 @@ const MainPage = () => {
     customersReviews.fr = 5
     faqsQuestion.fr = 5
     faqsFormQuestion.fr = 30
+
+    stepOneAnimation.fr = 20
+    stepTwoAnimation.fr = 20
+    stepThreeAnimation.fr = 20
+    stepFourAnimation.fr = 20
+    stepFiveAnimation.fr = 20
+    stepArrowAnimation.fr = 2
 
     const [rightSwiper, setRightSwiper] = useState(null)
 
@@ -446,6 +461,97 @@ const MainPage = () => {
                         play
                         loop />
 
+
+                </div>
+
+                <div className="service-step-guidance">
+                    <div className="header">
+                        <h1>
+                            <span>Its Eazy ! </span>
+                            Just Follow The Steps Blow
+                        </h1>
+                    </div>
+                    <div className="body">
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepOneAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Sign Up</h1>
+                                <small>
+                                    Create an account to get started on our platform.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepTwoAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Go Dashboard</h1>
+                                <small>
+                                    Access your personalized dashboard with all the tools you need.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepThreeAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Choese  Service </h1>
+                                <small>Browse through our wide range of services and select what you need.</small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepFourAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Order</h1>
+                                <small>
+                                    Place an order for the service you've chosen and proceed.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepFiveAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1> Enjoy & Peace !</h1>
+                                <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="step-guidance-background">
+                        <Lottie
+                        animationData={stepArrowAnimation}
+                        play
+                        loop
+                        />
+                    </div>
 
                 </div>
 
@@ -852,7 +958,6 @@ const MainPage = () => {
 
             </div>
 
-
             <section className="customers-reviews">
                 <img src={cBackground} className="background" />
                 <div className="first-section">
@@ -1135,8 +1240,6 @@ const MainPage = () => {
                 </div>
 
             </section>
-
-
 
             <section className='about-us'>
                 <div className="left">

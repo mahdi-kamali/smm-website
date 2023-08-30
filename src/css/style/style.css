@@ -703,7 +703,6 @@ footer {
   color: white;
   background-color: #698df3;
   padding: 2em;
-  margin-top: 0rem;
   align-self: center;
   position: relative;
   width: 100%;
@@ -846,6 +845,91 @@ footer {
   border-radius: 0.25rem;
   font-size: 0.9rem;
 }
+.main-page .intro .service-step-guidance {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  background-color: #f0f3fe;
+  background-color: white;
+  border-radius: 2rem;
+  width: -moz-max-content;
+  width: max-content;
+  align-self: center;
+  padding: 0 3em;
+  padding-bottom: 3em;
+}
+.main-page .intro .service-step-guidance .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 70%;
+  border-bottom: 4px solid #698df3;
+  padding: 3em;
+}
+.main-page .intro .service-step-guidance .header span {
+  color: #0d4bf4;
+  font-size: 2.5rem;
+}
+.main-page .intro .service-step-guidance .body {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: -2rem;
+  gap: 1rem;
+}
+.main-page .intro .service-step-guidance .body .item {
+  display: flex;
+  flex-direction: column;
+  width: 11rem;
+  animation: stepsAnimation 10s ease infinite;
+}
+.main-page .intro .service-step-guidance .body .item .item-header {
+  mix-blend-mode: multiply;
+  height: 12rem;
+}
+.main-page .intro .service-step-guidance .body .item .item-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  margin-top: -1.5rem;
+}
+.main-page .intro .service-step-guidance .body .item .item-body h1 {
+  font-size: 1.25rem;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(1) {
+  margin-top: 0rem;
+  animation-delay: 1s;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(2) {
+  margin-top: 2rem;
+  animation-delay: 2s;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(3) {
+  margin-top: 4rem;
+  animation-delay: 3s;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(4) {
+  margin-top: 2rem;
+  gap: 1rem;
+  animation-delay: 4s;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(5) {
+  margin-top: 3rem;
+  animation-delay: 5s;
+}
+.main-page .intro .service-step-guidance .body .item:nth-child(5) .item-body {
+  margin-top: -2rem;
+}
+.main-page .intro .service-step-guidance .step-guidance-background {
+  position: absolute;
+  transform: rotatY(180deg);
+  inset: 0;
+  opacity: 0.05;
+  z-index: -1;
+}
 .main-page .intro .intro-background {
   position: absolute;
   top: 0;
@@ -941,7 +1025,8 @@ footer {
   padding: 3em;
   padding-bottom: 2em;
   padding-top: 0;
-  grid-template-columns: 30rem 1fr;
+  grid-template-columns: 25rem max-content;
+  align-self: center;
 }
 .main-page .faqs .add-question .left {
   display: flex;
@@ -2081,5 +2166,16 @@ footer .avatar {
   }
   100% {
     margin-top: 0rem;
+  }
+}
+@keyframes stepsAnimation {
+  0% {
+    transform: translateY(1rem);
+  }
+  50% {
+    transform: translateY(0rem);
+  }
+  100% {
+    transform: translateY(1rem);
   }
 }/*# sourceMappingURL=style.css.map */
