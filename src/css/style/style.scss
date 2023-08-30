@@ -1060,6 +1060,8 @@ footer {
         justify-content: center;
         border-radius: 2rem;
         overflow: hidden;
+        padding:0 4em;
+        
         .faqs-list {
             display: grid;
             grid-template-columns: 1fr 25rem;
@@ -1111,7 +1113,7 @@ footer {
             padding: 3em;
             padding-bottom: 2em;
             padding-top: 0;
-            grid-template-columns: 25rem max-content;
+            grid-template-columns: 20rem max-content;
             align-self: center;
             .left {
                 display: flex;
@@ -1214,6 +1216,7 @@ footer {
         position: relative;
         display: flex;
         flex-direction: column;
+        padding-top: 2em;
         .background {
             position: absolute;
             pointer-events: none;
@@ -1222,10 +1225,11 @@ footer {
         }
         .first-section {
             display: grid;
-            grid-template-columns: 21.5rem 1fr;
+            grid-template-columns: 18rem 1fr;
             overflow: hidden;
             width: max-content;
             margin: 0 auto;
+            
             .left {
                 position: relative;
                 border-radius: 3rem;

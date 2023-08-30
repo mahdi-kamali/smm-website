@@ -973,6 +973,7 @@ footer {
   justify-content: center;
   border-radius: 2rem;
   overflow: hidden;
+  padding: 0 4em;
 }
 .main-page .faqs .faqs-list {
   display: grid;
@@ -1025,7 +1026,7 @@ footer {
   padding: 3em;
   padding-bottom: 2em;
   padding-top: 0;
-  grid-template-columns: 25rem max-content;
+  grid-template-columns: 20rem max-content;
   align-self: center;
 }
 .main-page .faqs .add-question .left {
@@ -1126,6 +1127,7 @@ footer {
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-top: 2em;
 }
 .main-page .customers-reviews .background {
   position: absolute;
@@ -1135,7 +1137,7 @@ footer {
 }
 .main-page .customers-reviews .first-section {
   display: grid;
-  grid-template-columns: 21.5rem 1fr;
+  grid-template-columns: 18rem 1fr;
   overflow: hidden;
   width: -moz-max-content;
   width: max-content;

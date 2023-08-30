@@ -822,141 +822,7 @@ const MainPage = () => {
 
             </section>
 
-            <div className="faqs">
-                <div className="faqs-list">
-                    <div className="left">
-                        <div className="col">
-                            {
-                                faqsLeftList.map((item, index) => {
-                                    return <FAQsAccordion
-                                        key={index}
-                                        headerTitle={item.question}
-                                        bodyTitle={item.answer}
-                                        isExpanded={item.isExpanded} />
-                                })
-                            }
-                        </div>
-                        <div className="col">
-                            {
-                                faqsRightList.map((item, index) => {
-                                    return <FAQsAccordion
-                                        key={index}
-                                        headerTitle={item.question}
-                                        bodyTitle={item.answer}
-                                        isExpanded={item.isExpanded} />
-                                })
-                            }
-                        </div>
-
-
-                    </div>
-                    <div className="right">
-                        <Lottie
-                            animationData={faqs}
-                            play
-                            loop />
-                        <button>
-                            <span>
-                                Find More Q&A
-                            </span>
-                            <Icon icon="fluent:next-20-filled" />
-                        </button>
-                    </div>
-                    <div className="faqs-background">
-                        <Lottie
-                            className='animation'
-                            animationData={faqsBackground}
-                            play
-                            loop
-                        />
-                    </div>
-                </div>
-
-
-                <form className="add-question">
-                    <div className="left">
-                        <Lottie
-                            animationData={faqsQuestion}
-                            play
-                            loop />
-
-                    </div>
-                    <div className="right">
-
-                        <div className="info">
-                            <h1>
-                                Do You Have
-                                <span>Question?</span>
-                            </h1>
-                            <p> We've got answers! Please take a moment to browse through our frequently asked questions. If you can't find what you're looking for, feel free to submit your question using the form below.</p>
-                        </div>
-
-                        <form
-                            action='#'
-                            onSubmit={handleFAQMessage}>
-
-                            <FiledSet
-                                legend={{
-                                    title: "Name",
-                                    svg: <Icon icon="fluent:rename-16-filled" />
-                                }}
-                                inputName={"name"}
-                            />
-
-                            <FiledSet
-                                legend={{
-                                    title: "Email",
-                                    svg: <Icon icon="mdi:email" />
-                                }}
-                                inputName={"email"}
-                            />
-
-                            <FiledSet
-                                legend={{
-                                    title: "Phone Number",
-                                    svg: <Icon icon="solar:phone-bold" />
-                                }}
-                                inputName={"number"}
-
-                            />
-
-                            <FiledSet
-                                fieldClassName={"message-box"}
-                                legend={{
-                                    title: "Message",
-                                    svg: <Icon icon="ic:baseline-message" />
-                                }}
-                                contentComponent={
-                                    <textarea
-                                        name={"Message"}
-                                        rows={10}
-                                    >
-
-                                    </textarea>
-                                }
-                                inputName={"Message"}
-
-                            />
-                            <button>
-                                <span>Submit</span>
-                                <Icon icon="formkit:submit" />
-                            </button>
-
-                        </form>
-
-                    </div>
-                    <div className="add-question-background">
-                        <Lottie
-                            animationData={faqsFormQuestion}
-                            play
-                            loop
-                        />
-                    </div>
-                </form>
-
-
-
-            </div>
+           
 
             <section className="customers-reviews">
                 <img src={cBackground} className="background" />
@@ -1240,6 +1106,142 @@ const MainPage = () => {
                 </div>
 
             </section>
+
+            <div className="faqs">
+                <div className="faqs-list">
+                    <div className="left">
+                        <div className="col">
+                            {
+                                faqsLeftList.map((item, index) => {
+                                    return <FAQsAccordion
+                                        key={index}
+                                        headerTitle={item.question}
+                                        bodyTitle={item.answer}
+                                        isExpanded={item.isExpanded} />
+                                })
+                            }
+                        </div>
+                        <div className="col">
+                            {
+                                faqsRightList.map((item, index) => {
+                                    return <FAQsAccordion
+                                        key={index}
+                                        headerTitle={item.question}
+                                        bodyTitle={item.answer}
+                                        isExpanded={item.isExpanded} />
+                                })
+                            }
+                        </div>
+
+
+                    </div>
+                    <div className="right">
+                        <Lottie
+                            animationData={faqs}
+                            play
+                            loop />
+                        <button>
+                            <span>
+                                Find More Q&A
+                            </span>
+                            <Icon icon="fluent:next-20-filled" />
+                        </button>
+                    </div>
+                    <div className="faqs-background">
+                        <Lottie
+                            className='animation'
+                            animationData={faqsBackground}
+                            play
+                            loop
+                        />
+                    </div>
+                </div>
+
+
+                <form className="add-question">
+                    <div className="left">
+                        <Lottie
+                            animationData={faqsQuestion}
+                            play
+                            loop />
+
+                    </div>
+                    <div className="right">
+
+                        <div className="info">
+                            <h1>
+                                Do You Have
+                                <span>Question?</span>
+                            </h1>
+                            <p> We've got answers! Please take a moment to browse through our frequently asked questions. If you can't find what you're looking for, feel free to submit your question using the form below.</p>
+                        </div>
+
+                        <form
+                            action='#'
+                            onSubmit={handleFAQMessage}>
+
+                            <FiledSet
+                                legend={{
+                                    title: "Name",
+                                    svg: <Icon icon="fluent:rename-16-filled" />
+                                }}
+                                inputName={"name"}
+                            />
+
+                            <FiledSet
+                                legend={{
+                                    title: "Email",
+                                    svg: <Icon icon="mdi:email" />
+                                }}
+                                inputName={"email"}
+                            />
+
+                            <FiledSet
+                                legend={{
+                                    title: "Phone Number",
+                                    svg: <Icon icon="solar:phone-bold" />
+                                }}
+                                inputName={"number"}
+
+                            />
+
+                            <FiledSet
+                                fieldClassName={"message-box"}
+                                legend={{
+                                    title: "Message",
+                                    svg: <Icon icon="ic:baseline-message" />
+                                }}
+                                contentComponent={
+                                    <textarea
+                                        name={"Message"}
+                                        rows={10}
+                                    >
+
+                                    </textarea>
+                                }
+                                inputName={"Message"}
+
+                            />
+                            <button>
+                                <span>Submit</span>
+                                <Icon icon="formkit:submit" />
+                            </button>
+
+                        </form>
+
+                    </div>
+                    <div className="add-question-background">
+                        <Lottie
+                            animationData={faqsFormQuestion}
+                            play
+                            loop
+                        />
+                    </div>
+                </form>
+
+
+
+            </div>
 
             <section className='about-us'>
                 <div className="left">
