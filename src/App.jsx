@@ -9,6 +9,7 @@ import "./css/pop-up/pop-up.css"
 import "./css/accordion/accordion.css"
 import "./css/select-box/selectBox.css"
 import "./css/field-box/field-box.css"
+import "./css/table/table.css"
 
 
 // Import Swiper styles

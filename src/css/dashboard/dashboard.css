@@ -948,7 +948,7 @@
 .user-dashboard .panel-add-founds {
   font-size: 2rem;
   display: grid;
-  grid-template-columns: 35rem max-content;
+  grid-template-columns: 30rem 30rem;
   padding-top: 2em;
   align-items: start;
   gap: 3rem;
@@ -1122,7 +1122,6 @@
   border-radius: 0.5rem;
   max-height: 80dvh;
   overflow: auto;
-  max-width: 30rem;
 }
 .user-dashboard .panel-add-founds .avaialble-methods-intro::-webkit-scrollbar {
   width: 7px; /* width of the entire scrollbar */
@@ -1326,4 +1325,36 @@
   background-color: white; /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 3px solid transparent; /* creates padding around scroll thumb */
+}
+.user-dashboard .panel-affliates {
+  padding: 2em;
+}
+.user-dashboard .panel-affliates .intro {
+  display: grid;
+  grid-template-columns: 25rem 1fr;
+  align-items: center;
+}
+.user-dashboard .panel-affliates .intro .right {
+  color: white;
+}
+.user-dashboard .panel-affliates .intro .right h1 {
+  line-height: 1.5;
+  font-size: 2.25rem;
+}
+.user-dashboard .panel-affliates .intro .right h1 span {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0 0.2em;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-affliates .intro .right p {
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+.user-dashboard .panel-affliates .links {
+  padding: 0 2em;
+}
+.user-dashboard .panel-affliates .quick-view {
+  padding: 0 2em;
+  margin-top: 2rem;
 }/*# sourceMappingURL=dashboard.css.map */

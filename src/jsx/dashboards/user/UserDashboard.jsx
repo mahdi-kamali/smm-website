@@ -8,14 +8,21 @@ import Orders from "./panels/orders/Orders"
 import { useEffect } from "react"
 import AddFounds from "./panels/add-found/AddFounds"
 import Tickets from "./panels/tickets/Tickets"
+import Affliates from "./panels/affliates/Affliates"
+import { Provider } from "react-redux"
 
 const UserDashboard = () => {
 
     const panelMenuOptions = [
         {
-            title: "dashboard",
+            title: "Statics",
             icon: <Icon icon="ri:dashboard-fill" />,
             component: <Dashboard />
+        },
+        {
+            title: "Add Founds",
+            icon: <Icon icon="solar:dollar-bold" />,
+            component: <AddFounds />
         },
         {
             title: "Orders",
@@ -27,11 +34,7 @@ const UserDashboard = () => {
             icon: <Icon icon="carbon:ibm-security-services" />,
             component: <Services />
         },
-        {
-            title: "Add Founds",
-            icon: <Icon icon="solar:dollar-bold" />,
-            component: <AddFounds />
-        },
+
         {
             title: "Tickets",
             icon: <Icon icon="ion:ticket-sharp" />,
@@ -40,6 +43,11 @@ const UserDashboard = () => {
         {
             title: "Updates",
             icon: <Icon icon="dashicons:update-alt" />
+        },
+        {
+            title: "Affiliates",
+            icon: <Icon icon="dashicons:update-alt" />,
+            component : <Affliates />
         },
         {
             title: "Setting",
@@ -52,7 +60,7 @@ const UserDashboard = () => {
 
 
 
-    const [selectedPanel, selectPanel] = useState(panelMenuOptions[4])
+    const [selectedPanel, selectPanel] = useState(panelMenuOptions[0])
 
     useEffect(() => {
         window.scrollTo({
@@ -80,6 +88,7 @@ const UserDashboard = () => {
                         }
                     })
                 }
+            
 
             </ul>
             <div className="panel">

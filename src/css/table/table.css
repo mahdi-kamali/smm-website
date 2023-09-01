@@ -1,0 +1,44 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.table .header {
+  display: grid;
+  grid-template-columns: inherit;
+  gap: 1rem;
+  background-color: #3165f3;
+  padding: 2em;
+  color: white;
+}
+.table .header .item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 1.2rem;
+}
+.table .body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2em;
+  background-color: white;
+  grid-template-columns: inherit;
+}
+.table .body .item {
+  display: grid;
+  grid-template-columns: inherit;
+  gap: 1rem;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+  padding-bottom: 1em;
+}
+.table .body .item .property {
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
+}
+.table .body .item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}/*# sourceMappingURL=table.css.map */

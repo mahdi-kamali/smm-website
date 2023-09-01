@@ -99,7 +99,7 @@ const BlogPage = () => {
                                     targetClass={"title"}
                                 />
 
-                                 <MaxLineText
+                                <MaxLineText
                                     content={
                                         <div className="content">
                                             {item.excerpt}
@@ -118,13 +118,13 @@ const BlogPage = () => {
                             <div className="item-buttons">
                                 <div className="left">
                                     <button>
-                                        <Icon icon="logos:twitter" />
+                                    <Icon icon="fa-solid:comments" color="orange" />
                                     </button>
                                     <button>
-                                        <Icon icon="logos:telegram" />
+                                    <Icon icon="ic:sharp-share" color="green" />
                                     </button>
                                     <button>
-                                        <Icon icon="skill-icons:instagram" />
+                                    <Icon icon="fluent:thumb-like-16-filled" color="red" />
                                     </button>
                                 </div>
                                 <div className="right">

@@ -27,6 +27,12 @@ import servicesPosterBackground from "../../../animations/main-page/main-page-fa
 import servicesPosterWave from "../../../animations/main-page/services-page-wave.json"
 import servicesTextuareBackground from "../../../animations/main-page/services-page-background-animation.json"
 import Wave from 'react-wavify';
+import Table from '../../cutsome-components/table/Table';
+import TableHeader from '../../cutsome-components/table/components/TableHeader';
+import ItemHeader from '../../cutsome-components/table/components/ItemHeader';
+import TableBody from '../../cutsome-components/table/components/TableBody';
+import Row from '../../cutsome-components/table/components/Row';
+import Property from '../../cutsome-components/table/components/Property';
 
 
 
@@ -6901,6 +6907,16 @@ const allCategoires = [
 ]
 
 
+const headerList = [
+    "ID",
+    "Service",
+    "Per 1000",
+    "Min order",
+    "Max order",
+    "Avg. Time",
+    "Details"
+]
+
 
 
 
@@ -6989,9 +7005,6 @@ const ServicesPage = () => {
                 </form>
             </section>
 
-
-
-
             <section className="social-icons">
 
                 {
@@ -7021,9 +7034,6 @@ const ServicesPage = () => {
 
 
             </section>
-
-
-
 
             <section className="suggested-services">
 
@@ -7323,54 +7333,47 @@ const ServicesPage = () => {
             </section>
 
             <div className='avilable-services'>
-                <div className='header'>
-                    <div className='item'>ID</div>
-                    <div className='item'>Service</div>
-                    <div className='item'>Per 1000</div>
-                    <div className='item'>Min order</div>
-                    <div className='item'>Max order</div>
-                    <div className='item'>Avg. Time</div>
-                    <div className='item'>Details</div>
-                </div>
-                <div className='body'>
-                    {
-                        allCategoires.map((category) => {
-                            const tmep = category.services.map(item => {
-                                return <div
-                                    className='item'
-                                    key={Math.random()}>
-                                    <div className='property'>
-                                        {item.Service_id}
-                                    </div>
-                                    <div className='property'>
-                                        {item.Service}
-                                    </div>
-                                    <div className='property'>
-                                        {item['Rate per 1000']}
-                                    </div>
-                                    <div className='property min-order'>
-                                        {item['Min order']}
-                                    </div>
-                                    <div className='property max-order'>
-                                        {item['Max order']}
-                                    </div>
-                                    <div className='property'>
-                                        {item['Average time']}
-                                    </div>
-                                    <div className='property'>
-                                        Controlls
-                                    </div>
-                                 
-                                </div>
+                <Table>
+                    <TableHeader>
+                        {headerList.map((item, index) => {
+                            return <ItemHeader key={index}>
+                                {item}
+                            </ItemHeader>
+                        })}
+                    </TableHeader>
+                    <TableBody>
+                        {
+                            allCategoires.map((category) => {
+                                return category.services.map((item, index) => {
+                                    return <Row key={index}>
+                                        <Property >
+                                            {item.Service_id}
+                                        </Property>
+                                        <Property >
+                                            {item.Service}
+                                        </Property>
+                                        <Property >
+                                            {item['Rate per 1000']}
+                                        </Property>
+                                        <Property >
+                                            {item['Min order']}
+                                        </Property>
+                                        <Property >
+                                            {item['Max order']}
+                                        </Property>
+                                        <Property >
+                                            {item['Average time']}
+                                        </Property>
+                                        <Property >
+                                            Controlls
+                                        </Property>
+                                    </Row>
+                                })
                             })
-                            return tmep
-                        })
-                    }
-
-                </div>
+                        }
+                    </TableBody>
+                </Table>
             </div>
-
-
 
         </main>
     )
