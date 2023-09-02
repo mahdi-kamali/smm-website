@@ -30,15 +30,15 @@
   transition: all 0.5s ease;
 }
 .user-dashboard .panel-menu li {
-  gap: 0.5rem;
+  gap: 0.25rem;
   border-radius: 100rem;
   transition: all 0.5s ease;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.6em 1em;
   cursor: pointer;
   position: relative;
 }
@@ -90,9 +90,6 @@
   overflow: hidden;
   padding: 0em 1em;
   transition: all 1s ease;
-}
-.user-dashboard .panel-menu .nested-menu .body li {
-  font-size: 0.9rem;
 }
 .user-dashboard .panel-menu .nested-menu-true .header .drop-down-arrow {
   rotate: 180deg;
@@ -1011,6 +1008,7 @@
 }
 .user-dashboard .panel-mass-orders {
   padding: 2em;
+  position: relative;
 }
 .user-dashboard .panel-mass-orders .user-quick-view {
   display: flex;
@@ -1051,6 +1049,13 @@
   grid-template-columns: 20rem 30rem;
   align-items: center;
 }
+.user-dashboard .panel-mass-orders .intro h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.user-dashboard .panel-mass-orders .intro h1 span {
+  margin-right: 0.5rem;
+}
 .user-dashboard .panel-mass-orders .intro .right {
   line-height: 1.5;
   color: white;
@@ -1072,7 +1077,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 .user-dashboard .panel-mass-orders .how-it-work h1 {
   color: white;
@@ -1099,7 +1104,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.5rem;
   margin-top: 1.5rem;
 }
 .user-dashboard .panel-mass-orders .examples h1 {
@@ -1113,7 +1118,6 @@
 .user-dashboard .panel-mass-orders .examples .items .example-item {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 .user-dashboard .panel-mass-orders .examples .items .example-item h2 {
   display: none;
@@ -1123,6 +1127,7 @@
 .user-dashboard .panel-mass-orders .examples .items .example-item ul {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 .user-dashboard .panel-mass-orders .examples .items .example-item ul li {
   display: flex;
@@ -1142,12 +1147,11 @@
   color: white;
 }
 .user-dashboard .panel-mass-orders .order-box {
-  padding: 2em 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  margin-top: 2rem;
 }
-.user-dashboard .panel-mass-orders .order-box textarea {
+.user-dashboard .panel-mass-orders .order-box .form-groups textarea {
   border: none;
   box-shadow: none;
   resize: none;
@@ -1158,6 +1162,283 @@
   outline: none;
   border-radius: 0.5rem;
   width: 100%;
+}
+.user-dashboard .panel-mass-orders .order-box .form-buttons {
+  display: flex;
+  align-items: start;
+  margin-top: 1rem;
+}
+.user-dashboard .panel-mass-orders .order-box .form-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.5em 1em;
+  font-size: 1.5rem;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-mass-orders .mass-order-background {
+  pointer-events: none;
+}
+.user-dashboard .panel-mass-orders .mass-order-background .group-media {
+  inset: 0;
+  z-index: 0;
+  opacity: 0.05;
+  position: absolute;
+}
+.user-dashboard .panel-new-order {
+  padding: 2em;
+}
+.user-dashboard .panel-new-order h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.user-dashboard .panel-new-order h1 span {
+  margin-right: 0.5rem;
+}
+.user-dashboard .panel-new-order .user-quick-view {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-new-order .user-quick-view .item {
+  background-color: white;
+  color: #0d4bf4;
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+  border-radius: 0.5rem;
+  gap: 1rem;
+}
+.user-dashboard .panel-new-order .user-quick-view .item .left {
+  font-size: 2.5rem;
+}
+.user-dashboard .panel-new-order .user-quick-view .item .left svg {
+  background-color: #0d4bf4;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25em;
+}
+.user-dashboard .panel-new-order .user-quick-view .item .right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.user-dashboard .panel-new-order .user-quick-view .item .right .header {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-new-order .intro {
+  display: grid;
+  grid-template-columns: 20rem 30rem;
+  align-items: center;
+}
+.user-dashboard .panel-new-order .intro .right {
+  line-height: 1.5;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-new-order .intro .right h1 {
+  line-height: 1.5;
+  font-size: 2.25rem;
+}
+.user-dashboard .panel-new-order .intro .right h1 span {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0 0.2em;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-new-order .intro .right p {
+  line-height: 1.5;
+}
+.user-dashboard .panel-new-order .main-categories {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-new-order .main-categories .item {
+  width: 5rem;
+  transition: all 0.5s ease;
+  padding-bottom: 1em;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.user-dashboard .panel-new-order .main-categories .item .item-body {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-dashboard .panel-new-order .main-categories .item .item-body h2 {
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-new-order .main-categories .item:hover {
+  background-color: white;
+  scale: 0.95;
+}
+.user-dashboard .panel-new-order .main-categories .item:hover h2 {
+  color: #0d4bf4;
+}
+.user-dashboard .panel-new-order .main-categories .item-true {
+  background-color: white;
+  scale: 1.1;
+}
+.user-dashboard .panel-new-order .main-categories .item-true h2 {
+  color: #0d4bf4;
+}
+.user-dashboard .panel-new-order .order-box {
+  display: grid;
+  grid-template-columns: 25rem 1fr;
+  padding: 2em 1em;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+  z-index: 2;
+  margin-top: 2rem;
+}
+.user-dashboard .panel-new-order .order-box .left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  padding: 2em;
+  padding-top: 0;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 0.5em;
+  position: relative;
+  background-color: white;
+  box-shadow: 0.3rem 0.3rem 0.8rem 0rem rgba(0, 0, 0, 0.2);
+}
+.user-dashboard .panel-new-order .order-box .left fieldset legend {
+  background-color: white;
+  font-size: 1.25rem;
+  padding: 0.5em 1em;
+  border-radius: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset .content {
+  display: flex;
+  align-items: center;
+  padding: 0.25em 1em;
+  gap: 0.25rem;
+  min-width: 30ch;
+  padding-bottom: 0.75em;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset .content .id {
+  background-color: #ffa938;
+  color: white;
+  padding: 0.25em 1em;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset .content button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding-right: 1.5em;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset .content svg {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 0.2rem;
+  color: #17a2b8;
+}
+.user-dashboard .panel-new-order .order-box .left fieldset .content input {
+  all: unset;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+}
+.user-dashboard .panel-new-order .order-box .left .submit {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.75em 2em;
+  font-size: 1.2rem;
+  gap: 0.25rem;
+  border-radius: 100rem;
+  margin-top: 0.5rem;
+}
+.user-dashboard .panel-new-order .order-box .right {
+  color: white;
+  border: 3px solid white;
+  border-radius: 1rem;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+}
+.user-dashboard .panel-new-order .order-box .right legend {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin: 0 2rem;
+  padding: 0 0.5em;
+}
+.user-dashboard .panel-new-order .order-box .right .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 2em;
+  max-width: 32rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .property {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .property .property-left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25rem;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .property .property-left svg {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .property .property-right {
+  background-color: #0fac6d;
+  line-height: 1;
+  padding: 0.4em 0.75em;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .description {
+  grid-column: -1/1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .description h1 {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 1.2rem;
+}
+.user-dashboard .panel-new-order .order-box .right .content .description p {
+  font-size: 0.9rem;
+  line-height: 1.25;
 }
 .user-dashboard .panel-add-founds {
   font-size: 2rem;

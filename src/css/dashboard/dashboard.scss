@@ -47,15 +47,15 @@ $panel-color-6: #dc3545;
         transition: all 0.5s ease;
 
         li {
-            gap: 0.5rem;
+            gap: 0.25rem;
             border-radius: 100rem;
             transition: all 0.5s ease;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: bold;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            padding: 0.5em 1em;
+            padding: 0.6em 1em;
             cursor: pointer;
             position: relative;
             svg {
@@ -108,7 +108,6 @@ $panel-color-6: #dc3545;
                     transition: all 1s ease;
                 }
                 li {
-                    font-size: 0.9rem;
                 }
             }
         }
@@ -1122,6 +1121,8 @@ $panel-color-6: #dc3545;
 
     .panel-mass-orders {
         padding: 2em;
+        position: relative;
+
         .user-quick-view {
             display: flex;
             color: white;
@@ -1160,6 +1161,13 @@ $panel-color-6: #dc3545;
             display: grid;
             grid-template-columns: 20rem 30rem;
             align-items: center;
+            h1 {
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                span {
+                    margin-right: 0.5rem;
+                }
+            }
             .right {
                 line-height: 1.5;
                 color: white;
@@ -1182,7 +1190,8 @@ $panel-color-6: #dc3545;
             color: white;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
+
             h1 {
                 color: white;
                 font-size: 2rem;
@@ -1209,8 +1218,9 @@ $panel-color-6: #dc3545;
             color: white;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 0.5rem;
             margin-top: 1.5rem;
+
             h1 {
                 color: white;
                 font-size: 2rem;
@@ -1221,7 +1231,6 @@ $panel-color-6: #dc3545;
                 .example-item {
                     display: flex;
                     flex-direction: column;
-                    gap: 1rem;
                     h2 {
                         display: none;
                         color: white;
@@ -1230,6 +1239,7 @@ $panel-color-6: #dc3545;
                     ul {
                         display: flex;
                         flex-direction: column;
+                        gap: 0.5rem;
                         li {
                             display: flex;
                             align-items: center;
@@ -1254,22 +1264,303 @@ $panel-color-6: #dc3545;
             }
         }
         .order-box {
-            padding: 2em 0;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            margin-top: 2rem;
+            .form-header {
+            }
+            .form-groups {
+                textarea {
+                    border: none;
+                    box-shadow: none;
+                    resize: none;
+                    font-family: inherit;
+                    font-size: 1rem;
+                    padding: 1em;
+                    font-weight: bold;
+                    outline: none;
+                    border-radius: 0.5rem;
+                    width: 100%;
+                }
+            }
+            .form-buttons {
+                display: flex;
+                align-items: start;
+                margin-top: 1rem;
+                button {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
+                    background-color: $panel-color-3;
+                    color: white;
+                    padding: 0.5em 1em;
+                    font-size: 1.5rem;
+                    border-radius: 100rem;
+                }
+            }
+        }
+        .mass-order-background {
+            pointer-events: none;
+            .group-media {
+                inset: 0;
+                z-index: 0;
+                opacity: 0.05;
+                position: absolute;
+            }
+        }
+    }
 
-            textarea {
-                border: none;
-                box-shadow: none;
-                resize: none;
-                font-family: inherit;
-                font-size: 1rem;
-                padding: 1em;
-                font-weight: bold;
-                outline: none;
+    .panel-new-order {
+        padding: 2em;
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            span {
+                margin-right: 0.5rem;
+            }
+        }
+        .user-quick-view {
+            display: flex;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            .item {
+                background-color: white;
+                color: $color-1;
+                display: flex;
+                align-items: center;
+                padding: 1.5em;
                 border-radius: 0.5rem;
-                width: 100%;
+                gap: 1rem;
+                .left {
+                    font-size: 2.5rem;
+                    svg {
+                        background-color: $color-1;
+                        color: white;
+                        border-radius: 50%;
+                        padding: 0.25em;
+                    }
+                }
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    font-weight: bold;
+                    .header {
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+        }
+        .intro {
+            display: grid;
+            grid-template-columns: 20rem 30rem;
+            align-items: center;
+
+            .right {
+                line-height: 1.5;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                h1 {
+                    line-height: 1.5;
+                    font-size: 2.25rem;
+                    span {
+                        background-color: white;
+                        color: $color-1;
+                        padding: 0 0.2em;
+                        border-radius: 0.25rem;
+                    }
+                }
+                p {
+                    line-height: 1.5;
+                }
+            }
+        }
+        .main-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            .item {
+                width: 5rem;
+                transition: all 0.5s ease;
+                padding-bottom: 1em;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                .item-header {
+                }
+                .item-body {
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    h2 {
+                        font-size: 1.1rem;
+                        text-transform: capitalize;
+                        transition: all 1s ease;
+                    }
+                }
+                &:hover {
+                    background-color: white;
+                    scale: 0.95;
+                    h2 {
+                        color: $color-1;
+                    }
+                }
+            }
+            .item-true {
+                background-color: white;
+                scale: 1.1;
+                h2 {
+                    color: $color-1;
+                }
+            }
+        }
+        .order-box {
+            display: grid;
+            grid-template-columns: 25rem 1fr;
+            padding: 2em 1em;
+            gap: 1rem;
+            width: 100%;
+            justify-content: center;
+            align-items: start;
+            z-index: 2;
+            margin-top: 2rem;
+            .left {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                border-radius: 1rem;
+                padding: 2em;
+                padding-top: 0;
+                fieldset {
+                    border: none;
+                    border-radius: 0.5rem;
+                    padding: 0 0.5em;
+                    position: relative;
+                    background-color: white;
+                    box-shadow: 0.3rem 0.3rem 0.8rem 0rem rgba(0, 0, 0, 0.2);
+                    legend {
+                        background-color: white;
+                        font-size: 1.25rem;
+                        padding: 0.5em 1em;
+                        border-radius: 0.5rem;
+                        margin-left: 0.5rem;
+                        font-weight: bold;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+                    .content {
+                        display: flex;
+                        align-items: center;
+                        padding: 0.25em 1em;
+                        gap: 0.25rem;
+                        min-width: 30ch;
+                        padding-bottom: 0.75em;
+                        .id {
+                            background-color: $panel-color-4;
+                            color: white;
+                            padding: 0.25em 1em;
+                            border-radius: 100rem;
+                        }
+                        button {
+                            all: unset;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            width: 100%;
+                            padding-right: 1.5em;
+                        }
+                        svg {
+                            font-size: 1.5rem;
+                            position: absolute;
+                            right: 1rem;
+                            top: 0.2rem;
+                            color: $panel-color-5;
+                        }
+                        input {
+                            all: unset;
+                            width: 100%;
+                            height: 100%;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .submit {
+                    display: flex;
+                    align-items: center;
+                    align-self: flex-start;
+                    background-color: $panel-color-3;
+                    color: white;
+                    padding: 0.75em 2em;
+                    font-size: 1.2rem;
+                    gap: 0.25rem;
+                    border-radius: 100rem;
+                    margin-top: 0.5rem;
+                }
+            }
+            .right {
+                color: white;
+                border: 3px solid white;
+                border-radius: 1rem;
+                backdrop-filter: blur(20px);
+                legend {
+                    font-size: 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.25rem;
+                    margin: 0 2rem;
+                    padding: 0 0.5em;
+                }
+                .content {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                    padding: 2em;
+                    max-width: 32rem;
+                    .property {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        .property-left {
+                            display: flex;
+                            align-items: center;
+                            justify-content: start;
+                            gap: 0.25rem;
+                            width: max-content;
+                            border-radius: 0.5rem 0 0 0.5rem;
+                            svg {
+                                font-size: 1.25rem;
+                            }
+                        }
+                        .property-right {
+                            background-color: $panel-color-3;
+                            line-height: 1;
+                            padding: 0.4em 0.75em;
+                            border-radius: 1rem;
+                            font-size: 0.95rem;
+                        }
+                    }
+                    .description {
+                        grid-column: -1/1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.25rem;
+                        h1 {
+                            display: flex;
+                            gap: 0.25rem;
+                            font-size: 1.2rem;
+                        }
+                        p {
+                            font-size: 0.9rem;
+                            line-height: 1.25;
+                        }
+                    }
+                }
             }
         }
     }

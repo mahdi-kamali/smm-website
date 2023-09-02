@@ -17,6 +17,7 @@ import { SELECT_CURRENCY_POP_UP, SELECT_CATEGORY_POP_UP as SELECT_CATEGORY_POP_U
 import SelectCurrencyPopUp from '../../../../pop-ups/SelectCurrencyPopUp'
 import SelectCategoryPopUp from '../../../../pop-ups/SelectCategoryPopUp'
 import SelectServicePopUp from '../../../../pop-ups/SelectServicePopUp'
+import { FAKE_CATEGORY as FAKE_CATEGORIES } from '../../../../fakeData/FAKE_DATA'
 
 
 
@@ -35,40 +36,7 @@ const Services = () => {
 
 
 
-    const searchMediaItems = [
-        {
-            title: "skype",
-            svg: require("../../../../../images/services-page/services/social-icons/skype.png")
-        },
-        {
-            title: "spotify",
-            svg: require("../../../../../images/services-page/services/social-icons/spotify.png")
-        },
-        {
-            title: "telegram",
-            svg: require("../../../../../images/services-page/services/social-icons/telegram.png")
-        },
-        {
-            title: "discord",
-            svg: require("../../../../../images/services-page/services/social-icons/discord.png")
-        },
-        {
-            title: "twitter",
-            svg: require("../../../../../images/services-page/services/social-icons/twitter.png")
-        },
-        {
-            title: "instagram",
-            svg: require("../../../../../images/services-page/services/social-icons/instagram.png")
-        },
-        {
-            title: "whatsapp",
-            svg: require("../../../../../images/services-page/services/social-icons/whatsapp.png")
-        },
-        {
-            title: "snapchat",
-            svg: require("../../../../../images/services-page/services/social-icons/snapchat.png")
-        },
-    ]
+    const searchMediaItems = FAKE_CATEGORIES
 
 
     const [selectedMedia, setSelectedMedia] = useState(searchMediaItems[5])
@@ -168,7 +136,7 @@ const Services = () => {
                                 <span className='id'>
                                     {selectedCategory.value}
                                 </span>
-                                <button   >
+                                <button type='button'>
                                     <span >
                                         {selectedCategory.symbol}
                                     </span>
@@ -188,7 +156,7 @@ const Services = () => {
                                 <span className='id'>
                                     {selectedCurrency.symbol}
                                 </span>
-                                <button    >
+                                <button type='button'>
                                     <span>
                                         {selectedCurrency.unit}
                                     </span>
@@ -205,7 +173,7 @@ const Services = () => {
                                 <span className='id'>
                                     {selectedService?.Service_id}
                                 </span>
-                                <button>
+                                <button type='button'>
                                     <span>
                                         {selectedService?.Service}
                                     </span>

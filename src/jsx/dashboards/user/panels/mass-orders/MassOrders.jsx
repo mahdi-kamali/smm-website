@@ -6,12 +6,30 @@ import Lottie from 'react-lottie-player'
 
 // Animation 
 import massOrderAnimation from "../../../../../animations/user-dashboard/mass-order-animation.json"
+import massOrderBackground from "../../../../../animations/user-dashboard/mass-order-background.json"
+import { Icon } from '@iconify/react'
 
 
 const MassOrders = () => {
     massOrderAnimation.fr = 10
+    massOrderBackground.fr = 5
+
+
+    const handleSubmitClick = (e) => {
+        e.preventDefault();
+    }
+
+
+
     return (
         <section className='panel-mass-orders'>
+            <div className="mass-order-background">
+                <Lottie
+                    className='group-media'
+                    animationData={massOrderBackground}
+                    play
+                    loop />
+            </div>
             <UserQuickView />
 
             <div className="intro">
@@ -160,14 +178,23 @@ const MassOrders = () => {
 
             </div>
 
+            <form className="order-box" action='#' onSubmit={handleSubmitClick}>
+                <div className="form-header"></div>
+                <div className="form-groups">
+                    <textarea name="order" cols="30" rows="10" placeholder='service_id | link | quantity'>
+                    </textarea>
+                </div>
+                <div className="form-buttons">
+                    <button>
+                        <span>Submit</span>
+                        <Icon icon="formkit:submit" />
+                    </button>
+                </div>
 
 
-            <div className="order-box">
+            </form>
 
-                <textarea name="order" cols="30" rows="10" placeholder='service_id | link | quantity'>
-                </textarea>
 
-            </div>
 
 
         </section>

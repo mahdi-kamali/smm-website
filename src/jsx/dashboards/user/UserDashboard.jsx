@@ -13,6 +13,7 @@ import { Provider } from "react-redux"
 import PanelNestedItem from "./Components/PanelNestedItem"
 import Accordion from "../../cutsome-components/accordion/Accordion"
 import MassOrders from "./panels/mass-orders/MassOrders"
+import NewOrders from "./panels/new-order/NewOrders"
 
 const UserDashboard = () => {
 
@@ -35,7 +36,7 @@ const UserDashboard = () => {
                 {
                     title: "New Order",
                     icon: <Icon icon="fluent:tab-new-24-filled" />,
-                    component: <Orders />,
+                    component: <NewOrders/>,
                 },
                 {
                     title: "Mass Order",
@@ -49,11 +50,11 @@ const UserDashboard = () => {
                 },
             ],
         },
-        {
-            title: "Sevices",
-            icon: <Icon icon="carbon:ibm-security-services" />,
-            component: <Services />
-        },
+        // {
+        //     title: "Sevices",
+        //     icon: <Icon icon="carbon:ibm-security-services" />,
+        //     component: <Services />
+        // },
 
         {
             title: "Tickets",
