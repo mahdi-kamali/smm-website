@@ -1,4 +1,7 @@
 
+import MaxLineText from "../../../../jsx/cutsome-components/Text/MaxLineText"
+
+
 const PanelsItem = ({ title, icon, currentActivePanel, clickEvent }) => {
 
     return (
@@ -7,8 +10,10 @@ const PanelsItem = ({ title, icon, currentActivePanel, clickEvent }) => {
             className={
                 ` ${currentActivePanel === title ? "selected circle-ripple--animation " : ""}`}>
             {icon}
-            <span>{title}</span>
-
+            <MaxLineText
+            content={title}
+            maxLine={1}
+            />
         </li>
     )
 }

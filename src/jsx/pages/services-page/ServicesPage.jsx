@@ -7333,7 +7333,7 @@ const ServicesPage = () => {
             </section>
 
             <div className='avilable-services'>
-                <Table>
+                <Table columnsStyle={"5rem 3fr 1fr 1fr 1fr 1fr 1fr"}>
                     <TableHeader>
                         {headerList.map((item, index) => {
                             return <ItemHeader key={index}>

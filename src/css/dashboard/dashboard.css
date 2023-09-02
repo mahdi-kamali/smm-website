@@ -26,8 +26,31 @@
   height: -moz-max-content;
   height: max-content;
   min-height: 100vh;
+  overflow: hidden;
+  transition: all 0.5s ease;
 }
 .user-dashboard .panel-menu li {
+  gap: 0.5rem;
+  border-radius: 100rem;
+  transition: all 0.5s ease;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  position: relative;
+}
+.user-dashboard .panel-menu li svg {
+  font-size: 1.5rem;
+  min-width: 2rem;
+}
+.user-dashboard .panel-menu .nested-menu {
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-menu .nested-menu .header {
   gap: 0.5rem;
   border-radius: 100rem;
   transition: all 0.5s ease;
@@ -39,6 +62,47 @@
   padding: 0.75em 1em;
   cursor: pointer;
   position: relative;
+  font-size: 0.9rem;
+}
+.user-dashboard .panel-menu .nested-menu .header svg {
+  font-size: 1.5rem;
+  min-width: 2rem;
+}
+.user-dashboard .panel-menu .nested-menu .header .drop-down-arrow {
+  background-color: white;
+  color: #dc3545;
+  margin-left: auto;
+  border-radius: 50%;
+  transition: all 1s ease;
+  font-size: 1.2rem;
+  min-width: initial;
+}
+.user-dashboard .panel-menu .nested-menu .body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 1s ease;
+  border-bottom: 0.1rem transparent dashed;
+}
+.user-dashboard .panel-menu .nested-menu .body .content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+  padding: 0em 1em;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-menu .nested-menu .body li {
+  font-size: 0.9rem;
+}
+.user-dashboard .panel-menu .nested-menu-true .header .drop-down-arrow {
+  rotate: 180deg;
+}
+.user-dashboard .panel-menu .nested-menu-true .body {
+  grid-template-rows: 1fr;
+  border-bottom: 0.1rem white dashed;
+}
+.user-dashboard .panel-menu .nested-menu-true .body .content {
+  padding: 1em;
 }
 .user-dashboard .panel-menu .selected {
   background-color: white;
@@ -705,7 +769,7 @@
 }
 .user-dashboard .panel-orders .recent-orders {
   display: grid;
-  grid-template-columns: 1fr 35rem;
+  grid-template-columns: 1fr 1fr;
 }
 .user-dashboard .panel-orders .recent-orders .left .orders {
   max-height: 100dvh;
@@ -944,6 +1008,155 @@
 }
 .user-dashboard .panel-orders .recent-orders .right .order-detail .footer .time-date span svg {
   font-size: 2.5rem;
+}
+.user-dashboard .panel-mass-orders {
+  padding: 2em;
+}
+.user-dashboard .panel-mass-orders .user-quick-view {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .user-quick-view .item {
+  background-color: white;
+  color: #0d4bf4;
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+  border-radius: 0.5rem;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .user-quick-view .item .left {
+  font-size: 2.5rem;
+}
+.user-dashboard .panel-mass-orders .user-quick-view .item .left svg {
+  background-color: #0d4bf4;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25em;
+}
+.user-dashboard .panel-mass-orders .user-quick-view .item .right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.user-dashboard .panel-mass-orders .user-quick-view .item .right .header {
+  font-size: 1.25rem;
+}
+.user-dashboard .panel-mass-orders .intro {
+  display: grid;
+  grid-template-columns: 20rem 30rem;
+  align-items: center;
+}
+.user-dashboard .panel-mass-orders .intro .right {
+  line-height: 1.5;
+  color: white;
+}
+.user-dashboard .panel-mass-orders .intro .right h1 {
+  line-height: 1.5;
+  font-size: 2.25rem;
+}
+.user-dashboard .panel-mass-orders .intro .right h1 span {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0 0.2em;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-mass-orders .intro .right p {
+  line-height: 1.5;
+}
+.user-dashboard .panel-mass-orders .how-it-work {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.user-dashboard .panel-mass-orders .how-it-work h1 {
+  color: white;
+  font-size: 2rem;
+}
+.user-dashboard .panel-mass-orders .how-it-work ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .how-it-work ul li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .how-it-work ul li span {
+  font-size: 1rem;
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-mass-orders .examples {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.user-dashboard .panel-mass-orders .examples h1 {
+  color: white;
+  font-size: 2rem;
+}
+.user-dashboard .panel-mass-orders .examples .items {
+  display: flex;
+  gap: 3rem;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item h2 {
+  color: white;
+  font-size: 1.2rem;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item ul {
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item ul li {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item ul li span {
+  font-size: 1rem;
+  background-color: #ffa938;
+  color: black;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-mass-orders .examples .items .example-item ul li:last-child span {
+  background-color: #0fac6d;
+  color: white;
+}
+.user-dashboard .panel-mass-orders .order-box {
+  padding: 2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.user-dashboard .panel-mass-orders .order-box textarea {
+  border: none;
+  box-shadow: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 1em;
+  font-weight: bold;
+  outline: none;
+  border-radius: 0.5rem;
+  width: 100%;
 }
 .user-dashboard .panel-add-founds {
   font-size: 2rem;
@@ -1328,10 +1541,11 @@
 }
 .user-dashboard .panel-affliates {
   padding: 2em;
+  padding-top: 0;
 }
 .user-dashboard .panel-affliates .intro {
   display: grid;
-  grid-template-columns: 25rem 1fr;
+  grid-template-columns: 25rem 30rem;
   align-items: center;
 }
 .user-dashboard .panel-affliates .intro .right {

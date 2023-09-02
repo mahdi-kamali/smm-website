@@ -10,6 +10,9 @@ import AddFounds from "./panels/add-found/AddFounds"
 import Tickets from "./panels/tickets/Tickets"
 import Affliates from "./panels/affliates/Affliates"
 import { Provider } from "react-redux"
+import PanelNestedItem from "./Components/PanelNestedItem"
+import Accordion from "../../cutsome-components/accordion/Accordion"
+import MassOrders from "./panels/mass-orders/MassOrders"
 
 const UserDashboard = () => {
 
@@ -27,7 +30,24 @@ const UserDashboard = () => {
         {
             title: "Orders",
             icon: <Icon icon="ph:bag-fill" />,
-            component: <Orders />
+            type: "nested",
+            items: [
+                {
+                    title: "New Order",
+                    icon: <Icon icon="fluent:tab-new-24-filled" />,
+                    component: <Orders />,
+                },
+                {
+                    title: "Mass Order",
+                    icon: <Icon icon="material-symbols:order-play" />,
+                    component: <MassOrders />,
+                },
+                {
+                    title: "Orders History",
+                    icon: <Icon icon="ph:bag-fill" />,
+                    component: <Orders />,
+                },
+            ],
         },
         {
             title: "Sevices",
@@ -45,9 +65,21 @@ const UserDashboard = () => {
             icon: <Icon icon="dashicons:update-alt" />
         },
         {
+            title: "API",
+            icon: <Icon icon="ant-design:api-filled" />
+        },
+        {
+            title: "Free Credit",
+            icon: <Icon icon="mdi:credit-card" />
+        },
+        {
+            title: "Tutorials",
+            icon: <Icon icon="fluent:learning-app-24-filled" />
+        },
+        {
             title: "Affiliates",
             icon: <Icon icon="dashicons:update-alt" />,
-            component : <Affliates />
+            component: <Affliates />
         },
         {
             title: "Setting",
@@ -76,19 +108,27 @@ const UserDashboard = () => {
                 {
                     panelMenuOptions.map((panel, index) => {
                         {
-                            return (
-                                <PanelsItem
+                            if (panel.type === "nested") {
+                                return <PanelNestedItem
                                     key={index}
-                                    title={panel.title}
-                                    icon={panel.icon}
-                                    currentActivePanel={selectedPanel.title}
-                                    clickEvent={() => selectPanel(panel)}
-                                />
-                            )
+                                    data={panel} 
+                                    selectPanel={selectPanel}
+                                    selectedPanel={selectedPanel}
+                                    />
+                            } else
+                                return (
+                                    <PanelsItem
+                                        key={index}
+                                        title={panel.title}
+                                        icon={panel.icon}
+                                        currentActivePanel={selectedPanel.title}
+                                        clickEvent={() => selectPanel(panel)}
+                                    />
+                                )
                         }
                     })
                 }
-            
+
 
             </ul>
             <div className="panel">
