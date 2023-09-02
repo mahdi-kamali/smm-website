@@ -1116,6 +1116,7 @@
   gap: 1rem;
 }
 .user-dashboard .panel-mass-orders .examples .items .example-item h2 {
+  display: none;
   color: white;
   font-size: 1.2rem;
 }
