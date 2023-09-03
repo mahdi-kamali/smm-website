@@ -14,6 +14,7 @@ import PanelNestedItem from "./Components/PanelNestedItem"
 import Accordion from "../../cutsome-components/accordion/Accordion"
 import MassOrders from "./panels/mass-orders/MassOrders"
 import NewOrders from "./panels/new-order/NewOrders"
+import ChildPanel from "./panels/child-panel/ChildPanel"
 
 const UserDashboard = () => {
 
@@ -36,7 +37,7 @@ const UserDashboard = () => {
                 {
                     title: "New Order",
                     icon: <Icon icon="fluent:tab-new-24-filled" />,
-                    component: <NewOrders/>,
+                    component: <NewOrders />,
                 },
                 {
                     title: "Mass Order",
@@ -52,7 +53,7 @@ const UserDashboard = () => {
         },
         // {
         //     title: "Sevices",
-        //     icon: <Icon icon="carbon:ibm-security-services" />,
+        //     icon: <Icon icon="file-icons:service-fabric" />,
         //     component: <Services />
         // },
 
@@ -60,6 +61,11 @@ const UserDashboard = () => {
             title: "Tickets",
             icon: <Icon icon="ion:ticket-sharp" />,
             component: <Tickets />
+        },
+        {
+            title: "Child Panel",
+            icon: <Icon icon="material-symbols:left-panel-open-sharp" />,
+            component: <ChildPanel />
         },
         {
             title: "Updates",
@@ -112,10 +118,10 @@ const UserDashboard = () => {
                             if (panel.type === "nested") {
                                 return <PanelNestedItem
                                     key={index}
-                                    data={panel} 
+                                    data={panel}
                                     selectPanel={selectPanel}
                                     selectedPanel={selectedPanel}
-                                    />
+                                />
                             } else
                                 return (
                                     <PanelsItem

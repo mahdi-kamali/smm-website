@@ -13,6 +13,7 @@ import { Icon } from "@iconify/react"
 import SelectCurrencyPopUp from "../../../../pop-ups/SelectCurrencyPopUp"
 import SelectCategoryPopUp from "../../../../pop-ups/SelectCategoryPopUp"
 import SelectServicePopUp from "../../../../pop-ups/SelectServicePopUp"
+import UserDashboardFieldBox from "../../Components/UserDashboardFieldBox"
 
 
 const NewOrders = () => {
@@ -143,90 +144,112 @@ const NewOrders = () => {
             </div>
             <form className="order-box" action="#" onSubmit={handleOrderFormSubmit} >
                 <div className="left">
-                    <fieldset
-                        onClick={openCategoriesFilterPopUp} >
-                        <legend>
-                            <Icon icon="mdi:category-plus" />
-                            <span>Category</span>
-                        </legend>
-                        <div className="content">
-                            <span className='id'>
-                                {selectedCategory.value}
-                            </span>
-                            <button type="button">
-                                <span >
-                                    {selectedCategory.symbol}
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="mdi:category-plus" />,
+                            title: "Category"
+                        }}
+                        body={
+                            <>
+                                <span className='id'>
+                                    {selectedCategory.value}
                                 </span>
-                                <span>
-                                    {selectedCategory.title}
+                                <button type="button">
+                                    <span >
+                                        {selectedCategory.symbol}
+                                    </span>
+                                    <span>
+                                        {selectedCategory.title}
+                                    </span>
+                                </button>
+                                <Icon icon="ic:round-arrow-drop-down-circle" />
+                            </>
+                        }
+                        oncClickFunction={openCategoriesFilterPopUp}
+                    />
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="ri:currency-fill" />,
+                            title: "Currency"
+                        }}
+                        body={
+                            <>
+                                <span className='id'>
+                                    {selectedCurrency.symbol}
                                 </span>
-                            </button>
-                            <Icon icon="ic:round-arrow-drop-down-circle" />
-                        </div>
-                    </fieldset>
-                    <fieldset onClick={openCurrencyPopup}>
-                        <legend>
-                            <Icon icon="ri:currency-fill" />
-                            <span>Currency</span>
-                        </legend>
-                        <div className="content">
-                            <span className='id'>
-                                {selectedCurrency.symbol}
-                            </span>
-                            <button type="button">
-                                <span>
-                                    {selectedCurrency.unit}
+                                <button type="button">
+                                    <span>
+                                        {selectedCurrency.unit}
+                                    </span>
+                                </button>
+                                <input type="hidden" name="currency" value={selectedCurrency.unit} />
+                                <Icon icon="ic:round-arrow-drop-down-circle" />
+                            </>
+                        }
+                        oncClickFunction={openCurrencyPopup}
+                    />
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="ion:rocket" />,
+                            title: "Services"
+                        }}
+                        body={
+                            <>
+                                <span className='id'>
+                                    {selectedService?.Service_id}
                                 </span>
-                            </button>
-                            <input type="hidden" name="currency" value={selectedCurrency.unit} />
-                            <Icon icon="ic:round-arrow-drop-down-circle" />
-                        </div>
-                    </fieldset>
-                    <fieldset onClick={openSelectServicePopUp}>
-                        <legend>
-                            <Icon icon="ion:rocket" />
-                            <span>Services</span>
-                        </legend>
-                        <div className="content">
-                            <span className='id'>
-                                {selectedService?.Service_id}
-                            </span>
-                            <button type="button">
-                                <span>
-                                    {selectedService?.Service}
-                                </span>
-                            </button>
-                            <Icon icon="ic:round-arrow-drop-down-circle" />
-                            <input type="hidden" name="service" value={selectedService.Service} />
-                        </div>
-                    </fieldset>
-                    <fieldset >
-                        <legend>
-                            <Icon icon="tabler:link" />
-                            <span>Link</span>
-                        </legend>
-                        <div className="content">
-                            <input type="text" name="link" />
-                        </div>
-                    </fieldset>
-                    <fieldset >
-                        <legend>
-                            <Icon icon="mingcute:counter-2-fill" />
-                            <span>Quantity</span>
-                        </legend>
-                        <div className="content">
-                            <input type="text" name="quantity" />
-                        </div>
-                    </fieldset>
-                    <fieldset >
-                        <legend>
-                            <Icon icon="solar:wireless-charge-bold" />
-                            <span>Charge</span>
-                        </legend>
-                        <div className="content">
-                            <input type="text" name="quantity" />
-                        </div>
-                    </fieldset>
+                                <button type="button">
+                                    <span>
+                                        {selectedService?.Service}
+                                    </span>
+                                </button>
+                                <Icon icon="ic:round-arrow-drop-down-circle" />
+                                <input type="hidden" name="service" value={selectedService.Service} />
+                            </>
+                        }
+                        oncClickFunction={openSelectServicePopUp}
+                    />
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="tabler:link" />,
+                            title: "Link"
+                        }}
+                        body={
+                            <>
+                                <input type="text" name="link" />
+                            </>
+                        }
+                    />
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="mingcute:counter-2-fill" />,
+                            title: "Quantity"
+                        }}
+                        body={
+                            <>
+                                <input type="text" name="quantity" />
+                            </>
+                        }
+                    />
+
+                    <UserDashboardFieldBox
+                        header={{
+                            svg: <Icon icon="solar:wireless-charge-bold" />,
+                            title: "Charge"
+                        }}
+                        body={
+                            <>
+                                <input type="text" name="quantity" />
+                            </>
+                        }
+                    />
+
+
                     <button className="submit circle-ripple--animation ">
                         <span>Submit</span>
                         <Icon icon="formkit:submit" />

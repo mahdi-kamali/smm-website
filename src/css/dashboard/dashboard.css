@@ -1187,6 +1187,143 @@
   opacity: 0.05;
   position: absolute;
 }
+.user-dashboard .panel-child {
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  height: 100%;
+}
+.user-dashboard .panel-child .panel-left .intro {
+  letter-spacing: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  padding-bottom: 0;
+  gap: 0.75rem;
+  padding-bottom: 2em;
+  box-shadow: 0.3rem 0.5rem 2rem 0rem rgba(0, 0, 0, 0.1);
+  background: linear-gradient(200deg, #17a2b8 0%, transparent 100%);
+}
+.user-dashboard .panel-child .panel-left .intro h1 {
+  color: white;
+  font-size: 1.75rem;
+}
+.user-dashboard .panel-child .panel-left .intro .links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 1rem;
+  color: #0d4bf4;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+.user-dashboard .panel-child .panel-left .intro .links .item {
+  padding: 0.75em;
+  background-color: white;
+  border-radius: 0.5rem;
+  color: #0d4bf4;
+}
+.user-dashboard .panel-child .panel-left .intro button {
+  background-color: #ffa938;
+  padding: 0.75em;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.user-dashboard .panel-child .panel-left .order-box {
+  padding: 2em;
+}
+.user-dashboard .panel-child .panel-left .order-box .body {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+.user-dashboard .panel-child .panel-left .order-box .body .item:nth-child(1) {
+  grid-column: -1/1;
+}
+.user-dashboard .panel-child .panel-left .order-box .buttons {
+  display: flex;
+  align-items: start;
+  margin-top: 1rem;
+}
+.user-dashboard .panel-child .panel-left .order-box .buttons button {
+  background-color: #0fac6d;
+  padding: 0.5em 1em;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-child .panel-right {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  overflow: hidden;
+  padding: 1em 0;
+  box-shadow: -0.6rem 0.3rem 1rem 0rem rgba(0, 0, 0, 0.05);
+}
+.user-dashboard .panel-child .panel-right .intro {
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: rgb(255, 255, 255);
+  color: #0d4bf4;
+  padding-right: 2em;
+}
+.user-dashboard .panel-child .panel-right .intro .right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-child .panel-right .intro .right h1 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+.user-dashboard .panel-child .panel-right .intro .right p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.user-dashboard .panel-child .panel-right .intro .left {
+  width: 20rem;
+}
+.user-dashboard .panel-child .panel-right .information {
+  margin-top: 1rem;
+  overflow: hidden;
+}
+.user-dashboard .panel-child .panel-right .information .header {
+  display: flex;
+  align-items: center;
+  color: #0d4bf4;
+  gap: 0.5rem;
+  background-color: #0fac6d;
+  color: white;
+  padding: 1em;
+}
+.user-dashboard .panel-child .panel-right .information .header svg {
+  font-size: 2rem;
+}
+.user-dashboard .panel-child .panel-right .information .body {
+  padding: 0.5em 2em;
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-child .panel-right .information .body .group h2 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.3);
+  padding-bottom: 0.75em;
+}
+.user-dashboard .panel-child .panel-right .information .body .group ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 0.75rem;
+  font-size: 1rem;
+}
+.user-dashboard .panel-child .panel-right .information .body p {
+  padding: 1em;
+}
 .user-dashboard .panel-new-order {
   padding: 2em;
 }
@@ -1311,60 +1448,6 @@
   border-radius: 1rem;
   padding: 2em;
   padding-top: 0;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset {
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0 0.5em;
-  position: relative;
-  background-color: white;
-  box-shadow: 0.3rem 0.3rem 0.8rem 0rem rgba(0, 0, 0, 0.2);
-}
-.user-dashboard .panel-new-order .order-box .left fieldset legend {
-  background-color: white;
-  font-size: 1.25rem;
-  padding: 0.5em 1em;
-  border-radius: 0.5rem;
-  margin-left: 0.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset .content {
-  display: flex;
-  align-items: center;
-  padding: 0.25em 1em;
-  gap: 0.25rem;
-  min-width: 30ch;
-  padding-bottom: 0.75em;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset .content .id {
-  background-color: #ffa938;
-  color: white;
-  padding: 0.25em 1em;
-  border-radius: 100rem;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset .content button {
-  all: unset;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding-right: 1.5em;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset .content svg {
-  font-size: 1.5rem;
-  position: absolute;
-  right: 1rem;
-  top: 0.2rem;
-  color: #17a2b8;
-}
-.user-dashboard .panel-new-order .order-box .left fieldset .content input {
-  all: unset;
-  width: 100%;
-  height: 100%;
-  font-weight: bold;
 }
 .user-dashboard .panel-new-order .order-box .left .submit {
   display: flex;
