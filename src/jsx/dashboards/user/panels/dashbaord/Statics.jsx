@@ -73,7 +73,7 @@ ChartJS.defaults.plugins.legend.align = "start"
 
 
 
-const Dashboard = () => {
+const Statics = () => {
 
 
 
@@ -105,7 +105,7 @@ const Dashboard = () => {
 
 
     return (
-        <section className="dashboard">
+        <section className="statics">
 
             <div className="user-row">
                 <div className="left">
@@ -213,4 +213,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Statics

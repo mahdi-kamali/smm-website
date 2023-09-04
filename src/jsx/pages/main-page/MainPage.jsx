@@ -71,7 +71,7 @@ import CompanyStaticItem from "../../../jsx/pages/main-page/components/company-s
 import cChar from "../../../images/main-page/customers-reviews/first-part/char.svg"
 import cBackground from "../../../images/main-page/customers-reviews/first-part/background.svg"
 import { Progress } from 'react-sweet-progress';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 
 
@@ -203,6 +203,7 @@ const MainPage = () => {
 
 
 
+
     return (
         <main className="main-page">
 
@@ -211,12 +212,6 @@ const MainPage = () => {
                 <Lottie
                     className='blob'
                     animationData={blobBackground}
-                    play
-                    loop
-                />
-                <Lottie
-                    className='blob'
-                    animationData={introTwoBackgroundSecond}
                     play
                     loop
                 />
@@ -306,55 +301,113 @@ const MainPage = () => {
                     </h1>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p>
                 </div>
-                <div className="roads">
-                    <div className="item">
-                        <div className="item-header">
-                            <img src={firstIcon} />
+
+                <marquee behavior="" direction="left">
+                    <div className="roads">
+
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={firstIcon} />
+                            </div>
+                            <div className="item-body">
+                                <h2>Cheapest <span>Prices</span></h2>
+                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+                            </div>
                         </div>
-                        <div className="item-body">
-                            <h2>Cheapest <span>Prices</span></h2>
-                            <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={secondIcon} />
+                            </div>
+                            <div className="item-body">
+                                <h2>
+                                    Fastest <span>Delivery</span>
+                                </h2>
+                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+
+                            <div className="item-header">
+                                <img src={thirdIcon} />
+
+                            </div>
+                            <div className="item-body">
+                                <h2>
+                                    Multiple <span>Payment
+                                    </span>  Methods</h2>
+                                <p>Multiple payment options are accepted, so you can choose the one that is most convenient for you.</p>
+                            </div>
+                        </div>
+
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={forthIcon} />
+
+
+                            </div>
+                            <div className="item-body">
+                                <h2>Highest <span>Prices</span> Quality</h2>
+                                <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
+                            </div>
                         </div>
                     </div>
+                </marquee>
 
-                    <div className="item">
-                        <div className="item-header">
-                            <img src={secondIcon} />
+                <div className='desktop' >
+                    <div className="roads">
+
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={firstIcon} />
+                            </div>
+                            <div className="item-body">
+                                <h2>Cheapest <span>Prices</span></h2>
+                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+                            </div>
                         </div>
-                        <div className="item-body">
-                            <h2>
-                                Fastest <span>Delivery</span>
-                            </h2>
-                            <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={secondIcon} />
+                            </div>
+                            <div className="item-body">
+                                <h2>
+                                    Fastest <span>Delivery</span>
+                                </h2>
+                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="item">
+                        <div className="item">
 
-                        <div className="item-header">
-                            <img src={thirdIcon} />
+                            <div className="item-header">
+                                <img src={thirdIcon} />
 
+                            </div>
+                            <div className="item-body">
+                                <h2>
+                                    Multiple <span>Payment
+                                    </span>  Methods</h2>
+                                <p>Multiple payment options are accepted, so you can choose the one that is most convenient for you.</p>
+                            </div>
                         </div>
-                        <div className="item-body">
-                            <h2>
-                                Multiple <span>Payment
-                                </span>  Methods</h2>
-                            <p>Multiple payment options are accepted, so you can choose the one that is most convenient for you.</p>
-                        </div>
-                    </div>
 
-                    <div className="item">
-                        <div className="item-header">
-                            <img src={forthIcon} />
+                        <div className="item">
+                            <div className="item-header">
+                                <img src={forthIcon} />
 
 
-                        </div>
-                        <div className="item-body">
-                            <h2>Highest <span>Prices</span> Quality</h2>
-                            <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
+                            </div>
+                            <div className="item-body">
+                                <h2>Highest <span>Prices</span> Quality</h2>
+                                <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="background">
                     <Lottie
                         className='animation'
@@ -371,9 +424,7 @@ const MainPage = () => {
                 </div>
             </section>
 
-
-            <section className="intro">
-
+            <section className="introduction">
 
                 <div className="world-map fade-in" key={Math.random()}>
                     <Lottie
@@ -396,9 +447,9 @@ const MainPage = () => {
                     </div>
                 </div>
 
-
                 <div className="company-statics">
-                    <div className="statics">
+
+                    <div className="statics" >
                         {
                             companyStaticsItems.map((item, index) => {
                                 return <CompanyStaticItem
@@ -440,7 +491,6 @@ const MainPage = () => {
                     </div>
                 </div>
 
-
                 <div className="intro-background">
 
                     <Lottie
@@ -451,7 +501,6 @@ const MainPage = () => {
 
 
                 </div>
-
 
                 <div className="intro-background-2">
 
@@ -471,7 +520,7 @@ const MainPage = () => {
                             Just Follow The Steps Blow
                         </h1>
                     </div>
-                    <div className="body">
+                    <div className="body desktop">
                         <div className="item">
                             <div className="item-header">
                                 <Lottie
@@ -544,17 +593,91 @@ const MainPage = () => {
                             </div>
                         </div>
                     </div>
+                    <marquee behavior="" direction="">
+                        <div className="body">
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepOneAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Sign Up</h1>
+                                    <small>
+                                        Create an account to get started on our platform.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepTwoAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Go Dashboard</h1>
+                                    <small>
+                                        Access your personalized dashboard with all the tools you need.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepThreeAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Choese  Service </h1>
+                                    <small>Browse through our wide range of services and select what you need.</small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepFourAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Order</h1>
+                                    <small>
+                                        Place an order for the service you've chosen and proceed.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepFiveAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1> Enjoy & Peace !</h1>
+                                    <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
+                                </div>
+                            </div>
+                        </div>
+                    </marquee>
 
                     <div className="step-guidance-background">
                         <Lottie
-                        animationData={stepArrowAnimation}
-                        play
-                        loop
+                            animationData={stepArrowAnimation}
+                            play
+                            loop
                         />
                     </div>
 
                 </div>
-
 
                 <div className="our-services">
                     <div className="header">
@@ -572,6 +695,7 @@ const MainPage = () => {
                                 play
                                 loop />
                         </div>
+
                         <Swiper
                             modules={[
                                 Navigation,
@@ -580,7 +704,7 @@ const MainPage = () => {
                                 A11y,
                                 EffectCoverflow]}
                             spaceBetween={20}
-                            slidesPerView={2.75}
+                        
                             pagination={
                                 {
                                     clickable: true,
@@ -603,7 +727,31 @@ const MainPage = () => {
                                 depth: 350,
                                 modifier: 1,
                                 slideShadows: false,
-                            }} >
+                            }}
+
+
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1,
+                                },
+                                400: {
+                                    slidesPerView: 2,
+                                },
+                                639: {
+                                    slidesPerView: 3,
+                                },
+                                865: {
+                                    slidesPerView: 4
+                                },
+                                1000: {
+                                    slidesPerView: 5
+                                },
+                                1500: {
+                                    slidesPerView: 4.5
+                                }
+                            }}
+
+                        >
                             <SwiperSlide>
                                 <div className="item">
                                     <div className="item-header">
@@ -719,9 +867,8 @@ const MainPage = () => {
                                 <div className="next-click"></div>
                             </div>
                         </Swiper>
-                    </div>
-                    <div className="footer"></div>
 
+                    </div>
                 </div>
 
                 <div className="our-popular-services">
@@ -821,8 +968,6 @@ const MainPage = () => {
                 </div>
 
             </section>
-
-           
 
             <section className="customers-reviews">
                 <img src={cBackground} className="background" />
@@ -935,7 +1080,7 @@ const MainPage = () => {
                     <div className="right">
 
                         <Swiper
-                            spaceBetween={30}
+                            spaceBetween={0}
                             modules={[
                                 Scrollbar,
                                 A11y]}
@@ -1107,7 +1252,7 @@ const MainPage = () => {
 
             </section>
 
-            <div className="faqs">
+            <section className="faqs">
                 <div className="faqs-list">
                     <div className="left">
                         <div className="col">
@@ -1156,8 +1301,6 @@ const MainPage = () => {
                         />
                     </div>
                 </div>
-
-
                 <form className="add-question">
                     <div className="left">
                         <Lottie
@@ -1238,10 +1381,7 @@ const MainPage = () => {
                         />
                     </div>
                 </form>
-
-
-
-            </div>
+            </section>
 
             <section className='about-us'>
                 <div className="left">

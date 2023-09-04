@@ -24,6 +24,9 @@ $panel-color-6: #dc3545;
     background-size: cover;
     position: relative;
     padding-top: 6em;
+    max-width: 1400px;
+    margin: 0 auto;
+    
 
     .panel {
         display: flex;
@@ -139,7 +142,7 @@ $panel-color-6: #dc3545;
         position: absolute;
     }
 
-    .dashboard {
+    .statics {
         position: relative;
         display: flex;
         flex-wrap: wrap;
@@ -158,6 +161,7 @@ $panel-color-6: #dc3545;
             flex-direction: row;
             width: 100%;
             padding: 1em;
+            
             .left {
                 .user {
                     display: flex;
@@ -1386,7 +1390,7 @@ $panel-color-6: #dc3545;
         .panel-right {
             display: flex;
             flex-direction: column;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 1);
             overflow: hidden;
             padding: 1em 0;
             box-shadow: -0.6rem 0.3rem 1rem 0rem rgba(0, 0, 0, 0.05);

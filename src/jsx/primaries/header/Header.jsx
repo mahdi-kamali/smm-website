@@ -7,6 +7,8 @@ const Header = () => {
 
 
 
+    const [menuState, setMenuState] = useState(false)
+
     const menuList = [
         {
             title: "Home",
@@ -16,37 +18,37 @@ const Header = () => {
         {
             title: "Account",
             route: "/auth",
-            icon : <Icon icon="mdi:account" />
+            icon: <Icon icon="mdi:account" />
         },
         {
             title: "FAQS",
             route: "/faqs",
-            icon : <Icon icon="wpf:faq" />
+            icon: <Icon icon="wpf:faq" />
         },
         {
             title: "Blog",
             route: "/blog",
-            icon : <Icon icon="uil:blogger" />
+            icon: <Icon icon="uil:blogger" />
         },
         {
             title: "About Us",
             route: "/about-us",
-            icon : <Icon icon="mdi:about" />
+            icon: <Icon icon="mdi:about" />
         },
         {
             title: "API",
             route: "/api",
-            icon : <Icon icon="ic:twotone-api" />
+            icon: <Icon icon="ic:twotone-api" />
         },
         {
             title: "Contact Us",
             route: "/contact-us",
-            icon : <Icon icon="entypo:network" />
+            icon: <Icon icon="entypo:network" />
         },
         {
             title: "Services",
             route: "/services",
-            icon : <Icon icon="fluent:data-pie-24-filled" />
+            icon: <Icon icon="fluent:data-pie-24-filled" />
         }
 
     ]
@@ -67,11 +69,19 @@ const Header = () => {
 
 
 
+
     useEffect(
         () => {
             window.addEventListener("scroll", handleScroll, { passive: true })
         },
         [])
+
+
+    useEffect(() => {
+        setMenuState(false)
+    }, [
+        currentPage
+    ])
 
 
     function changePage(item) {
@@ -81,24 +91,15 @@ const Header = () => {
 
 
 
-    function createMenu(pageName) {
-
-        return (
-            <li
-                className=
-                {currentPage === pageName ? "selected" : ""}
-                onClick={() => { changePage(pageName) }}
-            >
-                {pageName}
-            </li>
-        )
-    }
-
-
     const headerStyle = {
         borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0",
         backgroundColor: scrollPosition > 100 ? "#3165f3" : "transparent"
     }
+
+
+
+
+
 
 
 
@@ -107,8 +108,12 @@ const Header = () => {
             <div className="left">
                 <img src={require("../../../images/header/logo.png")} alt="" className="logo" />
             </div>
-            <div className="right">
-                <ul className="menu">
+            <div className={`right right-${menuState}`}>
+                <ul className={`menu`}>
+                    <Icon
+                        onClick={() => setMenuState(false)}
+                        className='menu-close'
+                        icon="zondicons:close-solid" />
                     {
                         menuList.reverse().map((item, index) => {
                             return <li
@@ -126,6 +131,14 @@ const Header = () => {
                     }
                 </ul>
             </div>
+
+            <Icon
+                onClick={() => setMenuState(!menuState)}
+                className='menu-icon'
+                icon="ep:menu" />
+
+
+
         </header>
     )
 }

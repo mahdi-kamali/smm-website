@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Dashboard from "./panels/dashbaord/Dashboard"
+import Statics from "./panels/dashbaord/Statics"
 import PanelsItem from "./Components/PanelsItem"
 import { Icon } from "@iconify/react"
 import UserInfo from "./panels/panel-header/UserInfo"
@@ -22,7 +22,7 @@ const UserDashboard = () => {
         {
             title: "Statics",
             icon: <Icon icon="ri:dashboard-fill" />,
-            component: <Dashboard />
+            component: <Statics />
         },
         {
             title: "Add Founds",
