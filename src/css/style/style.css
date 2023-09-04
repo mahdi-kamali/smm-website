@@ -2612,14 +2612,18 @@ footer .avatar {
   .main-page .about-us {
     display: flex !important;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
     gap: 0;
   }
   .main-page .about-us .left {
-    background-color: #d7e1ff;
+    all: unset;
+    margin: 0;
+    padding: 0;
   }
   .main-page .about-us .right {
-    margin-top: -1rem;
+    margin-top: -3rem;
   }
   footer {
     display: flex;
