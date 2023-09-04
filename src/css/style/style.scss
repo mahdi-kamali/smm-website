@@ -2779,6 +2779,8 @@ footer {
         .faqs {
             display: flex !important;
             width: 100%;
+            padding: 0 10%;
+            margin-top: 0;
             .faqs-list {
                 display: flex;
                 flex-direction: column-reverse;
