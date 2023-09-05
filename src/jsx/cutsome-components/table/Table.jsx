@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Table = (props) => {
-    console.log(props);
 
     const style = {
-      gridTemplateColumns : props.columnsStyle , 
+        gridTemplateColumns: props.columnsStyle,
     }
 
+
+
+ 
+
+
+
     return (
-        <div className='table' style={style}  >
+        <div className='table' style={style}   >
             {props.children}
         </div>
     )

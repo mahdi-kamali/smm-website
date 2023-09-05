@@ -1947,7 +1947,7 @@ marquee {
             .selected {
                 font-size: 1.25rem;
                 background-color: white;
-                color: $color-1;
+                color: $color-1 !important;
             }
         }
         .form-body {
@@ -2190,7 +2190,6 @@ marquee {
             background-color: white;
             display: flex;
             flex-direction: column;
-
             transition: all 1s ease;
             .item-header {
                 position: relative;
@@ -2498,7 +2497,7 @@ footer {
 
 @media only screen and (max-width: 1250px) {
     header {
-        padding: 0.0em 4em;
+        padding: 0em 4em;
         padding-right: 4em;
         padding-left: 4em;
         .left {
@@ -2561,6 +2560,7 @@ footer {
 }
 
 @media only screen and (max-width: 1100px) {
+
     .desktop {
         display: none !important;
     }
@@ -2847,7 +2847,6 @@ footer {
             border-bottom: 2px dashed white;
             padding-bottom: 2em;
             z-index: 1;
-
         }
         .right {
             width: 100%;
@@ -2876,7 +2875,104 @@ footer {
             z-index: 0;
             opacity: 0.2;
         }
+    }
+    .auth-page {
+        .left {
+            position: absolute;
+            opacity: 0.2;
+        }
+        .right {
+            z-index: 2;
+            backdrop-filter: initial;
+        }
+    }
 
+    .faqs-page {
+        .faqs-poster {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10%;
+        }
+        .faqs-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+
+            .col {
+            }
+        }
+    }
+
+    .blog-page {
+        .intro {
+            display: flex;
+            flex-direction: column;
+            padding: 0 7.5%;
+        }
+        .blog-items {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            padding: 0 10%;
+        }
+    }
+
+    .services-page {
+        section {
+            display: none !important;
+        }
+
+        .poster {
+            display: flex !important;
+            flex-direction: column;
+            padding: 0 10%;
+            padding-bottom: 2em;
+            padding-top: 3em;
+
+            .left {
+                width: 16rem;
+            }
+            .right {
+                color: $color-1;
+                span {
+                    background-color: $color-1 !important;
+                    color: white !important;
+                }
+            }
+            .poster-background {
+                top: -10%;
+            }
+        }
+
+        .search {
+            display: flex !important;
+            margin-top: 0;
+            padding-bottom: 2em;
+            .left {
+                display: none;
+            }
+            .right {
+                .form-search {
+                    width: max-content;
+                }
+            }
+        }
+
+        .social-icons {
+            display: flex !important;
+            flex-wrap: wrap;
+            padding-bottom: 2em;
+            gap: 0.5rem;
+          
+        }
+
+        .avilable-services {
+            display: flex !important;
+            padding: 0;     
+         
+        }
 
     }
 }

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  overflow: hidden;
 }
 .table .header {
   display: grid;
@@ -11,6 +10,7 @@
   background-color: #3165f3;
   padding: 2em;
   color: white;
+  border-radius: 1rem 1rem 0 0;
 }
 .table .header .item {
   display: flex;
@@ -26,19 +26,75 @@
   background-color: white;
   grid-template-columns: inherit;
 }
-.table .body .item {
+.table .body .row {
   display: grid;
   grid-template-columns: inherit;
-  gap: 1rem;
+  gap: 2rem;
   border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
   padding-bottom: 1em;
 }
-.table .body .item .property {
+.table .body .row .property {
   display: flex;
   align-items: center;
   line-height: 1.5;
 }
-.table .body .item:last-child {
+.table .body .row .property .property-body {
+  align-self: center;
+  justify-self: start;
+}
+.table .body .row .property .property-header {
+  display: none;
+}
+.table .body .row .property:first-child .property-body {
+  background-color: #0fac6d;
+  padding: 0.5em 2em;
+  border-radius: 100rem;
+  color: white;
+}
+.table .body .row:last-child {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+@media only screen and (max-width: 1100px) {
+  .table {
+    flex-direction: row;
+  }
+  .table .header {
+    display: none;
+  }
+  .table .body {
+    overflow: auto;
+    grid-template-columns: 1fr;
+  }
+  .table .body .row {
+    gap: 0;
+  }
+  .table .body .row .property {
+    display: grid;
+    grid-template-columns: 7ch 1fr;
+    align-items: initial;
+    gap: 2rem;
+  }
+  .table .body .row .property .property-header {
+    display: flex;
+    padding: 0.5em;
+    background-color: #3165f3;
+    color: white;
+    align-items: center;
+    text-transform: capitalize;
+  }
+  .table .body .row .property .property-body {
+    display: flex;
+    align-items: center;
+  }
+  .table .body .row .property:first-child .property-header {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .table .body .row .property:first-child .property-body {
+    margin-bottom: 1rem;
+  }
+  .table .body .row .property:last-child .property-header {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
 }/*# sourceMappingURL=table.css.map */

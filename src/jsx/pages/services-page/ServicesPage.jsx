@@ -6949,11 +6949,6 @@ const ServicesPage = () => {
                     <p>
                         Ignite your social media potential with our expert services. Choose from a wide range of options to amplify your brand, connect with your audience, and unlock limitless opportunities. Take charge of your online presence and harness the unparalleled power of social media today.
                     </p>
-                    <button>
-                        GO DEEPLY
-                    </button>
-
-
                 </div>
 
                 <div className="poster-background">
@@ -7037,8 +7032,6 @@ const ServicesPage = () => {
 
             <section className="suggested-services">
 
-
-
                 <div className="new-services list">
                     <Swiper
                         modules={[Navigation, Pagination, A11y]}
@@ -7055,6 +7048,7 @@ const ServicesPage = () => {
                                 el: ".swiper-custom-pagination"
                             }
                         }
+
                     >
                         <SwiperSlide className='first-slide slide'>
                             <div className="card">
@@ -7332,8 +7326,10 @@ const ServicesPage = () => {
 
             </section>
 
-            <div className='avilable-services'>
-                <Table columnsStyle={"5rem 3fr 1fr 1fr 1fr 1fr 1fr"}>
+            <section className='avilable-services'>
+                <Table
+                    columnsStyle={"5rem 3fr 1fr 1fr 1fr 1fr 1fr"}
+                >
                     <TableHeader>
                         {headerList.map((item, index) => {
                             return <ItemHeader key={index}>
@@ -7341,31 +7337,75 @@ const ServicesPage = () => {
                             </ItemHeader>
                         })}
                     </TableHeader>
-                    <TableBody>
+                    <TableBody
+
+                    >
                         {
                             allCategoires.map((category) => {
                                 return category.services.map((item, index) => {
-                                    return <Row key={index}>
+                                    return <Row
+                                        headerList={headerList}
+                                        key={index} >
                                         <Property >
-                                            {item.Service_id}
+                                            <div className="property-header">
+                                                {headerList[0]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item.Service_id}
+                                            </div>
                                         </Property>
                                         <Property >
-                                            {item.Service}
+                                            <div className="property-header">
+                                                {headerList[1]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item.Service}
+
+                                            </div>
                                         </Property>
                                         <Property >
-                                            {item['Rate per 1000']}
+                                            <div className="property-header">
+                                                {headerList[2]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item['Rate per 1000']}
+
+                                            </div>
                                         </Property>
                                         <Property >
-                                            {item['Min order']}
+                                            <div className="property-header">
+                                                {headerList[3]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item['Min order']}
+
+                                            </div>
                                         </Property>
                                         <Property >
-                                            {item['Max order']}
+                                            <div className="property-header">
+                                                {headerList[4]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item['Max order']}
+
+                                            </div>
                                         </Property>
                                         <Property >
-                                            {item['Average time']}
+                                            <div className="property-header">
+                                                {headerList[5]}
+                                            </div>
+                                            <div className="property-body">
+                                                {item['Average time']}
+
+                                            </div>
                                         </Property>
                                         <Property >
-                                            Controlls
+                                            <div className="property-header">
+                                                {headerList[6]}
+                                            </div>
+                                            <div className="property-body">
+                                                Controlls
+                                            </div>
                                         </Property>
                                     </Row>
                                 })
@@ -7373,7 +7413,7 @@ const ServicesPage = () => {
                         }
                     </TableBody>
                 </Table>
-            </div>
+            </section>
 
         </main>
     )

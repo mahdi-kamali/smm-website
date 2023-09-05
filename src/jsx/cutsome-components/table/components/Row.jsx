@@ -1,8 +1,11 @@
 import React from 'react'
 
 const Row = (props) => {
+
+
+
     return (
-        <div className='item'>
+        <div className='row'>
             {props.children}
         </div>
     )

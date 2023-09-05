@@ -13,15 +13,13 @@ $panel-color-4: #ffa938;
 $panel-color-5: #17a2b8;
 $panel-color-6: #dc3545;
 
-
-
 // Table Component Style
 
 .table {
     display: flex;
     flex-direction: column;
-    border-radius: 1rem ;
-    overflow: hidden;
+    border-radius: 1rem;
+
     .header {
         display: grid;
         grid-template-columns: inherit;
@@ -29,6 +27,7 @@ $panel-color-6: #dc3545;
         background-color: $color-3;
         padding: 2em;
         color: white;
+        border-radius: 1rem 1rem 0 0;
         .item {
             display: flex;
             align-items: center;
@@ -43,23 +42,85 @@ $panel-color-6: #dc3545;
         padding: 2em;
         background-color: white;
         grid-template-columns: inherit;
-        .item {
+        .row {
             display: grid;
             grid-template-columns: inherit;
-            gap: 1rem;
+            gap: 2rem;
             border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
             padding-bottom: 1em;
             .property {
                 display: flex;
                 align-items: center;
                 line-height: 1.5;
+                .property-body {
+                    align-self: center;
+                    justify-self: start;
+                }
+                .property-header {
+                    display: none;
+                }
+
+                &:first-child {
+                    .property-body {
+                        background-color: $panel-color-3;
+                        padding: 0.5em 2em;
+                        border-radius: 100rem;
+                        color: white;
+                    }
+                }
             }
 
             &:last-child {
                 border-bottom: none;
                 padding-bottom: 0;
             }
-        
+        }
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .table {
+        flex-direction: row;
+        .header {
+            display: none;
+        }
+        .body {
+            overflow: auto;
+            grid-template-columns: 1fr;
+            .row {
+                gap: 0;
+                .property {
+                    display: grid;
+                    grid-template-columns: 7ch 1fr;
+                    align-items: initial;
+                    gap: 2rem;
+                    .property-header {
+                        display: flex;
+                        padding: 0.5em;
+                        background-color: $color-3;
+                        color: white;
+                        align-items: center;
+                        text-transform: capitalize;
+                    }
+                    .property-body {
+                        display: flex;
+                        align-items: center;
+                    }
+                    &:first-child {
+                        .property-header {
+                            border-radius: 0.5rem 0.5rem 0 0;
+                        }
+                        .property-body {
+                            margin-bottom: 1rem;
+                        }
+                    }
+                    &:last-child {
+                        .property-header {
+                            border-radius: 0 0 0.5rem 0.5rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }

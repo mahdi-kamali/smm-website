@@ -3,7 +3,7 @@ import React from 'react'
 const Property = (props) => {
   return (
     <div className='property'>
-        {props.children}
+      {props.children}
     </div>
   )
 }
