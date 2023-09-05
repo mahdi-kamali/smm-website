@@ -1507,7 +1507,8 @@ marquee * {
   position: absolute;
   left: 0;
   right: 0;
-  height: 50vh;
+  height: 30rem;
+  max-height: 30rem;
 }
 .services-page .poster .poster-background .primary-aniamtion {
   opacity: 0.2;
@@ -1616,21 +1617,16 @@ marquee * {
   opacity: 1;
   scale: 1.25;
 }
-.services-page .avilable-services {
-  padding: 0 10%;
-}
 .services-page .suggested-services {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: block !important;
+  margin: 0 auto;
+  min-width: 0;
+}
+.services-page .suggested-services .swiper {
+  padding-left: 2em;
+  padding-right: 2em;
   padding: 0 10%;
-  align-self: center;
-}
-.services-page .suggested-services .list {
-  margin-top: 3rem;
-  padding-bottom: 3em;
-}
-.services-page .suggested-services .list .swiper {
-  padding: 0 1.5em;
 }
 .services-page .suggested-services .slide {
   margin-top: auto;
@@ -1639,6 +1635,8 @@ marquee * {
   justify-content: center !important;
   padding: 1em;
   text-align: start;
+  max-height: -moz-max-content !important;
+  max-height: max-content !important;
 }
 .services-page .suggested-services .first-slide {
   position: relative;
@@ -1767,6 +1765,10 @@ marquee * {
 }
 .services-page .suggested-services .normal-slide:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+.services-page .avilable-services {
+  padding: 0 10%;
+  margin-top: 2rem;
 }
 
 .auth-page {
@@ -2746,5 +2748,80 @@ footer .avatar {
   .services-page .avilable-services {
     display: flex !important;
     padding: 0;
+  }
+  .services-page .suggested-services .normal-slide {
+    text-align: center;
+    border-radius: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 1s ease;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .services-page .suggested-services .normal-slide .header img {
+    width: 7rem;
+  }
+  .services-page .suggested-services .normal-slide .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .services-page .suggested-services .normal-slide .body h1 {
+    font-size: 1.25rem;
+  }
+  .services-page .suggested-services .normal-slide .body ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .services-page .suggested-services .normal-slide .body ul li {
+    list-style: disc;
+    margin-left: 1rem;
+  }
+  .services-page .suggested-services .normal-slide .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .services-page .suggested-services .normal-slide .button h2 {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 0.5rem;
+  }
+  .services-page .suggested-services .normal-slide .button h2 span {
+    font-weight: bold;
+  }
+  .services-page .suggested-services .normal-slide .button h2 small {
+    font-size: 0.8rem;
+  }
+  .services-page .suggested-services .normal-slide .button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #008f26;
+    color: #0d4bf4;
+    border-radius: 100rem;
+    color: white;
+    height: 1.75rem;
+    padding-left: 1em;
+    font-size: 0.9rem;
+  }
+  .services-page .suggested-services .normal-slide .button button svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #008f26;
+    font-size: 2.25rem;
+    border-radius: 50%;
+    padding: 0.2em;
   }
 }/*# sourceMappingURL=style.css.map */
