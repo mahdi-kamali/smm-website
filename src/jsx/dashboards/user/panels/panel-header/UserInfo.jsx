@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react"
 
 const UserInfo = () => {
     return (
-        <div className="user">
+        <div className="user-info">
             <div className="today-news">
                 <h1>Todays News</h1>
                 <p>
@@ -21,11 +21,6 @@ const UserInfo = () => {
                     <span>Premium User</span>
                 </div>
             </div>
-            <div className="recent-service">
-                <div className="right"></div>
-                <div className="left"></div>
-            </div>
-        
         </div>
     )
 }

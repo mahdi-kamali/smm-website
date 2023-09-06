@@ -47,6 +47,7 @@ import {
 import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
 import QuickView from './components/quick-view/QuickkView';
 import RecentEvents from './components/recent-evernts/RecentEvernts';
+import UserQuickView from "../../Components/UserQuickView";
 
 
 ChartJS.register(
@@ -107,7 +108,9 @@ const Statics = () => {
     return (
         <section className="statics">
 
-            <div className="user-row">
+            <UserQuickView/>
+
+            <section className="user">
                 <div className="left">
                     <UserInfo />
                     <ActiveSocial />
@@ -147,13 +150,13 @@ const Statics = () => {
                     </div>
 
                 </div>
-            </div>
+            </section>
 
-            <div className="row qucik-view-row">
+            <section className="qucik-view">
                 <QuickView />
-            </div>
+            </section>
 
-            <div className="row statistics-row">
+            <section className=" statistics">
                 <div className="statistics">
                     <div className="header">
                         <div className="left">
@@ -196,17 +199,17 @@ const Statics = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
 
-            <div className="row recent-evernts-row">
+            <section className=" recent-evernts">
                 <RecentEvents />
-            </div>
+            </section>
 
 
-            <div className="rocket background">
+            <section className="rocket background">
                 <img src={rocket} />
-            </div>
+            </section>
 
 
         </section>

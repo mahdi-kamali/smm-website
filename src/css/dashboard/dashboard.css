@@ -10,6 +10,41 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+.user-dashboard .user-quick-view {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+}
+.user-dashboard .user-quick-view .item {
+  background-color: white;
+  color: #0d4bf4;
+  display: flex;
+  align-items: center;
+  padding: 1.5em;
+  border-radius: 0.5rem;
+  gap: 1rem;
+}
+.user-dashboard .user-quick-view .item .left {
+  font-size: 2.5rem;
+}
+.user-dashboard .user-quick-view .item .left svg {
+  background-color: #0d4bf4;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25em;
+}
+.user-dashboard .user-quick-view .item .right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: bold;
+}
+.user-dashboard .user-quick-view .item .right .header {
+  font-size: 1.25rem;
+}
 .user-dashboard .panel {
   display: flex;
   align-items: start;
@@ -119,13 +154,14 @@
   flex-wrap: wrap;
   gap: 2rem;
   padding-bottom: 5em;
+  padding-top: 2em;
 }
 .user-dashboard .statics .rocket {
   width: 50rem;
   top: 0;
   right: 0;
 }
-.user-dashboard .statics .user-row {
+.user-dashboard .statics .user {
   background-color: #3165f3;
   display: flex;
   align-items: center;
@@ -134,7 +170,7 @@
   width: 100%;
   padding: 1em;
 }
-.user-dashboard .statics .user-row .left .user {
+.user-dashboard .statics .user .left .user-info {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,58 +179,58 @@
   padding-bottom: 1em;
   gap: 1rem;
 }
-.user-dashboard .statics .user-row .left .user .today-news {
+.user-dashboard .statics .user .left .user-info .today-news {
   direction: rtl;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-.user-dashboard .statics .user-row .left .user .today-news h1 {
+.user-dashboard .statics .user .left .user-info .today-news h1 {
   font-size: 1.5rem;
 }
-.user-dashboard .statics .user-row .left .user .today-news p {
+.user-dashboard .statics .user .left .user-info .today-news p {
   max-width: 20rem;
   opacity: 0.7;
   font-size: 0.9rem;
   line-height: 1.7;
 }
-.user-dashboard .statics .user-row .left .user .icons {
+.user-dashboard .statics .user .left .user-info .icons {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   font-size: 2.25rem;
 }
-.user-dashboard .statics .user-row .left .user .icons svg {
+.user-dashboard .statics .user .left .user-info .icons svg {
   border: 2px solid white;
   border-radius: 50%;
   padding: 0.2em;
 }
-.user-dashboard .statics .user-row .left .user .avatar {
+.user-dashboard .statics .user .left .user-info .avatar {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.user-dashboard .statics .user-row .left .user .avatar img {
+.user-dashboard .statics .user .left .user-info .avatar img {
   width: 4rem;
   border-radius: 50%;
 }
-.user-dashboard .statics .user-row .left .user .avatar .info {
+.user-dashboard .statics .user .left .user-info .avatar .info {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
-.user-dashboard .statics .user-row .left .user .avatar .info h1 {
+.user-dashboard .statics .user .left .user-info .avatar .info h1 {
   font-size: 1.5rem;
 }
-.user-dashboard .statics .user-row .left .user .avatar .info span {
+.user-dashboard .statics .user .left .user-info .avatar .info span {
   font-size: 0.9rem;
   opacity: 0.7;
 }
-.user-dashboard .statics .user-row .left .user .progresser {
+.user-dashboard .statics .user .left .user-info .progresser {
   width: 10rem;
   color: white;
 }
-.user-dashboard .statics .user-row .left .active-social {
+.user-dashboard .statics .user .left .active-social {
   display: flex;
   text-transform: capitalize;
   padding-bottom: 0;
@@ -204,13 +240,13 @@
   gap: 1rem;
   border-radius: 0 0 1rem 1rem;
 }
-.user-dashboard .statics .user-row .left .active-social .social-body {
+.user-dashboard .statics .user .left .active-social .social-body {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   color: white;
 }
-.user-dashboard .statics .user-row .left .active-social .social-body .item {
+.user-dashboard .statics .user .left .active-social .social-body .item {
   display: flex;
   align-items: center;
   border-bottom: 0.3rem transparent solid;
@@ -218,11 +254,11 @@
   cursor: pointer;
   padding: 0 1em;
 }
-.user-dashboard .statics .user-row .left .active-social .social-body .item img {
+.user-dashboard .statics .user .left .active-social .social-body .item img {
   width: 2.5rem;
   margin-left: -0.5rem;
 }
-.user-dashboard .statics .user-row .left .active-social .social-body .selected {
+.user-dashboard .statics .user .left .active-social .social-body .selected {
   border-color: goldenrod;
   background-color: white;
   color: #0d4bf4;
@@ -230,7 +266,7 @@
   border-radius: 100rem;
   font-weight: bold;
 }
-.user-dashboard .statics .user-row .right .service-expire {
+.user-dashboard .statics .user .right .service-expire {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -241,7 +277,7 @@
   padding: 1.5em;
   color: white;
 }
-.user-dashboard .statics .user-row .right .service-expire .expire {
+.user-dashboard .statics .user .right .service-expire .expire {
   font-size: 1.25rem;
   display: flex;
   align-items: center;
@@ -249,22 +285,22 @@
   gap: 0.5rem;
   border-radius: 100rem;
 }
-.user-dashboard .statics .user-row .right .service-expire .expire small {
+.user-dashboard .statics .user .right .service-expire .expire small {
   font-size: 1rem;
 }
-.user-dashboard .statics .user-row .right .service-expire .progresser {
+.user-dashboard .statics .user .right .service-expire .progresser {
   width: 8rem;
 }
-.user-dashboard .statics .qucik-view-row {
+.user-dashboard .statics .qucik-view {
   width: 100%;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column {
+.user-dashboard .statics .qucik-view .qucik-view-column {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.25rem;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column .item {
+.user-dashboard .statics .qucik-view .qucik-view-column .item {
   border-radius: 10px;
   background: linear-gradient(180deg, #4976f3 0%, rgba(146, 197, 255, 0) 100%);
   padding: 2em;
@@ -274,73 +310,73 @@
   align-items: center;
   color: white;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column .item .data {
+.user-dashboard .statics .qucik-view .qucik-view-column .item .data {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column .item .data h2 {
+.user-dashboard .statics .qucik-view .qucik-view-column .item .data h2 {
   font-size: 2rem;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column .item .data span {
+.user-dashboard .statics .qucik-view .qucik-view-column .item .data span {
   font-size: 1.25rem;
 }
-.user-dashboard .statics .qucik-view-row .qucik-view-column .item svg {
+.user-dashboard .statics .qucik-view .qucik-view-column .item svg {
   font-size: 3.5rem;
 }
-.user-dashboard .statics .statistics-row {
+.user-dashboard .statics .statistics {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 0 10%;
 }
-.user-dashboard .statics .statistics-row .statistics {
+.user-dashboard .statics .statistics .statistics {
   display: flex;
   flex-direction: column;
   color: white;
 }
-.user-dashboard .statics .statistics-row .statistics .header {
+.user-dashboard .statics .statistics .statistics .header {
   display: flex;
   margin: 0 auto;
   width: 100%;
   padding: 3em 0;
   padding-top: 0;
 }
-.user-dashboard .statics .statistics-row .statistics .header .left img {
+.user-dashboard .statics .statistics .statistics .header .left img {
   width: 100%;
 }
-.user-dashboard .statics .statistics-row .statistics .header .right {
+.user-dashboard .statics .statistics .statistics .header .right {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .statistics-row .statistics .header .right h1 {
+.user-dashboard .statics .statistics .statistics .header .right h1 {
   font-size: 2rem;
 }
-.user-dashboard .statics .statistics-row .statistics .header .right span {
+.user-dashboard .statics .statistics .statistics .header .right span {
   font-size: 1.25rem;
 }
-.user-dashboard .statics .statistics-row .statistics .body {
+.user-dashboard .statics .statistics .statistics .body {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
 }
-.user-dashboard .statics .statistics-row .statistics .body .item {
+.user-dashboard .statics .statistics .statistics .body .item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.user-dashboard .statics .statistics-row .statistics .body .chart {
+.user-dashboard .statics .statistics .statistics .body .chart {
   background-color: #f5f5f5;
   border-radius: 1rem;
   padding: 2em;
   box-shadow: 0rem 0rem 2rem 0.1rem #0d4bf4;
   color: #0d4bf4;
 }
-.user-dashboard .statics .recent-evernts-row {
+.user-dashboard .statics .recent-evernts {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -348,46 +384,46 @@
   margin: 0 auto;
   padding: 0 2em;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events {
+.user-dashboard .statics .recent-evernts .recent-events {
   display: flex;
   flex-direction: column;
   color: white;
   gap: 2rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .header {
+.user-dashboard .statics .recent-evernts .recent-events .header {
   display: flex;
   margin: 0 auto;
   width: 100%;
   padding: 1em 0;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .header .left img {
+.user-dashboard .statics .recent-evernts .recent-events .header .left img {
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .header .right {
+.user-dashboard .statics .recent-evernts .recent-events .header .right {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .header .right h1 {
+.user-dashboard .statics .recent-evernts .recent-events .header .right h1 {
   font-size: 2rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .header .right span {
+.user-dashboard .statics .recent-evernts .recent-events .header .right span {
   font-size: 1.25rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .event .date {
+.user-dashboard .statics .recent-evernts .recent-events .body .event .date {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
   gap: 0.25rem;
   font-weight: normal;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .event .date span {
+.user-dashboard .statics .recent-evernts .recent-events .body .event .date span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .event .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .event .content {
   background-color: yellow;
   border-radius: 1rem;
   padding: 2em;
@@ -397,11 +433,11 @@
   flex-direction: column;
   box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .event .content p {
+.user-dashboard .statics .recent-evernts .recent-events .body .event .content p {
   margin-top: 0;
   line-height: 1.25;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .date {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
@@ -409,7 +445,7 @@
   font-weight: normal;
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .date span {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -417,14 +453,14 @@
   padding-bottom: 0;
   padding-top: 0.5em;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .date .chart {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date .chart {
   background-color: white;
   margin: 1rem;
   border-radius: 1rem;
   opacity: 0.5;
   transition: 1s ease all;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content {
   border-radius: 1rem;
   color: white;
   display: flex;
@@ -434,16 +470,16 @@
   overflow: hidden;
   box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content p {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content p {
   margin-top: 0;
   line-height: 1.25;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-header img {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-header img {
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-body {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body {
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -458,17 +494,17 @@
   height: 7em;
   cursor: pointer;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-body h1 {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body h1 {
   text-transform: uppercase;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-body p {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body p {
   border-radius: 100rem;
   width: -moz-max-content;
   width: max-content;
   font-size: 0.9rem;
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -480,7 +516,7 @@
   transform: translateY(-110%);
   transition: 1s ease all;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -488,62 +524,62 @@
   font-size: 1.1rem;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button span {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button span {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post .content .content-buttons button small {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button small {
   font-size: 2.5rem;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post:hover .content-body {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .content-body {
   height: 100%;
   background-image: initial;
   background-color: white;
   color: #0d4bf4;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post:hover .content-buttons {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .content-buttons {
   transform: translateY(0);
   background-color: #0d4bf4;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .instagram-post:hover .date .chart {
+.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .date .chart {
   opacity: 1;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .item:nth-child(even) .date {
+.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(even) .date {
   align-items: end;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .item:nth-child(even) .date span {
+.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(even) .date span {
   flex-direction: row-reverse;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .item:nth-child(odd) .date {
+.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(odd) .date {
   align-items: start;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .item:nth-child(odd) .date span {
+.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(odd) .date span {
   flex-direction: row-reverse;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .success .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-evernts .recent-events .body .success .vertical-timeline-element-icon {
   background-color: #0fac6d;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .success .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .success .content {
   background-color: #0fac6d;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .warning .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-evernts .recent-events .body .warning .vertical-timeline-element-icon {
   background-color: #ffa938;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .warning .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .warning .content {
   background-color: #ffa938;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .process .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-evernts .recent-events .body .process .vertical-timeline-element-icon {
   background-color: #17a2b8;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .process .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .process .content {
   background-color: #17a2b8;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .danger .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-evernts .recent-events .body .danger .vertical-timeline-element-icon {
   background-color: #dc3545;
 }
-.user-dashboard .statics .recent-evernts-row .recent-events .body .danger .content {
+.user-dashboard .statics .recent-evernts .recent-events .body .danger .content {
   background-color: #dc3545;
 }
 .user-dashboard .panel-services {
@@ -1012,40 +1048,6 @@
   padding: 2em;
   position: relative;
 }
-.user-dashboard .panel-mass-orders .user-quick-view {
-  display: flex;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.user-dashboard .panel-mass-orders .user-quick-view .item {
-  background-color: white;
-  color: #0d4bf4;
-  display: flex;
-  align-items: center;
-  padding: 1.5em;
-  border-radius: 0.5rem;
-  gap: 1rem;
-}
-.user-dashboard .panel-mass-orders .user-quick-view .item .left {
-  font-size: 2.5rem;
-}
-.user-dashboard .panel-mass-orders .user-quick-view .item .left svg {
-  background-color: #0d4bf4;
-  color: white;
-  border-radius: 50%;
-  padding: 0.25em;
-}
-.user-dashboard .panel-mass-orders .user-quick-view .item .right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-weight: bold;
-}
-.user-dashboard .panel-mass-orders .user-quick-view .item .right .header {
-  font-size: 1.25rem;
-}
 .user-dashboard .panel-mass-orders .intro {
   display: grid;
   grid-template-columns: 20rem 30rem;
@@ -1241,6 +1243,9 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr;
+}
+.user-dashboard .panel-child .panel-left .order-box .body .item {
+  max-width: 30rem;
 }
 .user-dashboard .panel-child .panel-left .order-box .body .item:nth-child(1) {
   grid-column: -1/1;
@@ -1938,4 +1943,48 @@
 .user-dashboard .panel-affliates .quick-view {
   padding: 0 2em;
   margin-top: 2rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .user-dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+  .user-dashboard section {
+    display: none !important;
+  }
+  .user-dashboard .user-quick-view {
+    overflow: auto;
+    max-width: 100vw;
+    padding-right: 1em;
+    padding-bottom: 2em;
+  }
+  .user-dashboard .panel-menu {
+    display: none;
+  }
+  .user-dashboard .panel {
+    max-width: 100vw;
+  }
+  .user-dashboard .statics {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .user-dashboard .statics .user {
+    display: flex !important;
+    padding: 0;
+  }
+  .user-dashboard .statics .user .left .user {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .user-dashboard .statics .user .left .user .icons {
+    flex-direction: row;
+  }
+  .user-dashboard .statics .user .right {
+    display: none;
+  }
+  .user-dashboard .statics .user .social-body {
+    align-items: start;
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=dashboard.css.map */
