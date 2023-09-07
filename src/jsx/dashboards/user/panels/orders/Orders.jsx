@@ -260,7 +260,7 @@ const Orders = () => {
 
     return (
         <section className="panel-orders">
-            <div className="recent-orders">
+            <div className="recent-orders row">
                 <div className="left">
                     <div className="orders">
                         <RecentOrderItem

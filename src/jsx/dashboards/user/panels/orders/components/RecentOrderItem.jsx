@@ -64,14 +64,14 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
             className={`item ${stateClass} ${currentSelected} `} >
             <div className="line">
             </div>
-            <div className="left">
+            <div className="item-left">
                 <div className="item-icons">
                     {icon}
                     <Icon icon="basil:instagram-solid" />
                 </div>
 
             </div>
-            <div className="mid">
+            <div className="item-mid">
                 <div className="item-date">
                     <span>
                         <Icon icon="clarity:date-solid" />
@@ -84,7 +84,7 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
                 </div>
 
             </div>
-            <div className={`right ${isAniamted}`}>
+            <div className={`item-right ${isAniamted}`}>
 
                 <div className="item-header">
                     <h1>

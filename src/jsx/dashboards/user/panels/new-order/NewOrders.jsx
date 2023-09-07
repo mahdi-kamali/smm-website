@@ -103,7 +103,7 @@ const NewOrders = () => {
     return (
         <section className="panel-new-order">
             <UserQuickView />
-            <div className="intro">
+            <div className="intro row">
                 <div className="left">
                     <Lottie
                         animationData={newOrderIntroAnimatin}
@@ -122,7 +122,7 @@ const NewOrders = () => {
                     </p>
                 </div>
             </div>
-            <div className="main-categories">
+            <div className="main-categories row">
 
                 {
                     mainCategories.map((item, index) => {
@@ -142,7 +142,7 @@ const NewOrders = () => {
 
 
             </div>
-            <form className="order-box" action="#" onSubmit={handleOrderFormSubmit} >
+            <form className="order-box row" action="#" onSubmit={handleOrderFormSubmit} >
                 <div className="left">
 
                     <UserDashboardFieldBox

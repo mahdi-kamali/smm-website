@@ -23,7 +23,7 @@ const MassOrders = () => {
 
     return (
         <section className='panel-mass-orders'>
-            <div className="mass-order-background">
+            <div className="mass-order-background ">
                 <Lottie
                     className='group-media'
                     animationData={massOrderBackground}
@@ -32,7 +32,7 @@ const MassOrders = () => {
             </div>
             <UserQuickView />
 
-            <div className="intro">
+            <div className="intro row">
                 <div className="left">
                     <Lottie
                         animationData={massOrderAnimation}
@@ -47,7 +47,7 @@ const MassOrders = () => {
                 </div>
             </div>
 
-            <div className="how-it-work">
+            <div className="how-it-work row">
 
                 <h1>How it Work ?</h1>
 
@@ -90,7 +90,7 @@ const MassOrders = () => {
 
             </div>
 
-            <div className="examples">
+            <div className="examples row">
                 <h1>Examples : </h1>
                 <div className="items">
                     <div className="example-item">
@@ -178,7 +178,9 @@ const MassOrders = () => {
 
             </div>
 
-            <form className="order-box" action='#' onSubmit={handleSubmitClick}>
+            <form className="order-box row"
+                action='#'
+                onSubmit={handleSubmitClick}>
                 <div className="form-header"></div>
                 <div className="form-groups">
                     <textarea name="order" cols="30" rows="10" placeholder='service_id | link | quantity'>
@@ -193,9 +195,6 @@ const MassOrders = () => {
 
 
             </form>
-
-
-
 
         </section>
     )

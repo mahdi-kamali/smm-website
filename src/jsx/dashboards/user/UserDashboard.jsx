@@ -96,16 +96,17 @@ const UserDashboard = () => {
 
 
     const [selectedPanel, selectPanel] = useState(panelMenuOptions[0])
+    const [dashboardVisible, setDashboardVisible] = useState(false)
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
+        setDashboardVisible(false)
     }, [selectedPanel])
 
 
-    const [dashboardVisible, setDashboardVisible] = useState(false)
 
 
 

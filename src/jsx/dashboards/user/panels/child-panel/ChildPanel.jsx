@@ -44,7 +44,7 @@ const ChildPanel = () => {
     return (
         <section className="panel-child">
             <div className="panel-left">
-                <div className="intro">
+                <div className="intro row">
                     <h1>
                         Please change nameservers to:
                     </h1>
@@ -60,8 +60,7 @@ const ChildPanel = () => {
                         What is my NS records domain?
                     </button>
                 </div>
-
-                <div className="order-box">
+                <div className="order-box row">
                    
                     <div className="body">
 
@@ -146,7 +145,6 @@ const ChildPanel = () => {
                         <button>Enviar ($25.90)</button>
                     </div>
                 </div>
-
             </div>
             <div className="panel-right">
                 <div className="intro">
