@@ -105,33 +105,44 @@ const UserDashboard = () => {
     }, [selectedPanel])
 
 
+    const [dashboardVisible, setDashboardVisible] = useState(false)
+
+
+
+
     return (
         <main className="user-dashboard">
-            <ul className="panel-menu">
-                {
-                    panelMenuOptions.map((panel, index) => {
-                        {
-                            if (panel.type === "nested") {
-                                return <PanelNestedItem
-                                    key={index}
-                                    data={panel}
-                                    selectPanel={selectPanel}
-                                    selectedPanel={selectedPanel}
-                                />
-                            } else
-                                return (
-                                    <PanelsItem
+            <ul className={`panel-menu panel-menu-${dashboardVisible}`}>
+                <div
+                    onClick={() => setDashboardVisible(!dashboardVisible)}
+                    className="drop-down">
+                    <Icon icon="gridicons:dropdown" />
+                </div>
+                <div className="menu-items">
+                    {
+                        panelMenuOptions.map((panel, index) => {
+                            {
+                                if (panel.type === "nested") {
+                                    return <PanelNestedItem
                                         key={index}
-                                        title={panel.title}
-                                        icon={panel.icon}
-                                        currentActivePanel={selectedPanel.title}
-                                        clickEvent={() => selectPanel(panel)}
+                                        data={panel}
+                                        selectPanel={selectPanel}
+                                        selectedPanel={selectedPanel}
                                     />
-                                )
-                        }
-                    })
-                }
-
+                                } else
+                                    return (
+                                        <PanelsItem
+                                            key={index}
+                                            title={panel.title}
+                                            icon={panel.icon}
+                                            currentActivePanel={selectedPanel.title}
+                                            clickEvent={() => selectPanel(panel)}
+                                        />
+                                    )
+                            }
+                        })
+                    }
+                </div>
 
             </ul>
             <div className="panel">

@@ -1,15 +1,14 @@
 
+
+
+
+
+import notificationAnimation from "../../../../../../../animations/user-dashboard/dashboard-notification.json"
+
+
+
 // React TimeLine Library
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
-
-import scheduledPostsSvg from "../../../../../../../images/panel/dashboad/scheduled-posts/background.svg"
-
-
-
-
-// React Iconify
-import { Icon } from "@iconify/react"
-import InstagramPostEvent from './components/InstagramPostEvent';
+import { VerticalTimeline } from 'react-vertical-timeline-component';
 import NormalEvent from './components/NormalEvernt';
 
 
@@ -95,26 +94,14 @@ const eventsItems = [
 const RecentEvents = () => {
     return (
         <div className="recent-events">
-            <div className="header">
-                <div className="left">
-                    <img src={scheduledPostsSvg} />
-                </div>
-                <div className="right">
-                    <h1>
-                        Scheduled Posts
-                    </h1>
-                    <span>
-                        Account Information You Have Earned
-                    </span>
-                </div>
-            </div>
+           
             <div className="body">
                 <VerticalTimeline>
                     {
                         eventsItems.map(item => {
                             switch (item.type) {
                                 case "normal": return <NormalEvent data={item} />
-                                case "instagram-post": return <InstagramPostEvent data={item} />
+                                // case "instagram-post": return <InstagramPostEvent data={item} />
                             }
                         })
                     }

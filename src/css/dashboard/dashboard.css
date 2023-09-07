@@ -14,7 +14,6 @@
   display: flex;
   color: white;
   justify-content: center;
-  align-items: center;
   gap: 1rem;
   margin: 0 auto;
 }
@@ -23,12 +22,12 @@
   color: #0d4bf4;
   display: flex;
   align-items: center;
-  padding: 1.5em;
+  padding: 1em;
   border-radius: 0.5rem;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 .user-dashboard .user-quick-view .item .left {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 .user-dashboard .user-quick-view .item .left svg {
   background-color: #0d4bf4;
@@ -43,6 +42,10 @@
   font-weight: bold;
 }
 .user-dashboard .user-quick-view .item .right .header {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+.user-dashboard .user-quick-view .item .right .body {
   font-size: 1.25rem;
 }
 .user-dashboard .panel {
@@ -53,7 +56,6 @@
 .user-dashboard .panel-menu {
   display: flex;
   flex-direction: column;
-  padding: 1em 2em;
   color: white;
   padding-top: 4em;
   gap: 1rem;
@@ -65,6 +67,17 @@
   min-height: 100vh;
   overflow: hidden;
   transition: all 0.5s ease;
+}
+.user-dashboard .panel-menu .drop-down {
+  display: none;
+}
+.user-dashboard .panel-menu .menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+  padding-bottom: 2em;
+  padding: 1em 2em;
 }
 .user-dashboard .panel-menu li {
   gap: 0.25rem;
@@ -166,7 +179,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   padding: 1em;
 }
@@ -262,9 +275,13 @@
   border-color: goldenrod;
   background-color: white;
   color: #0d4bf4;
-  padding: 0 1em;
   border-radius: 100rem;
   font-weight: bold;
+}
+.user-dashboard .statics .user .right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .user-dashboard .statics .user .right .service-expire {
   display: flex;
@@ -272,21 +289,23 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: rgba(0, 204, 51, 0.699);
+  background: linear-gradient(0deg, #0d4bf4 0%, rgba(0, 0, 0, 0.1) 100%);
+  box-shadow: 0.2rem 0.5rem 0.75rem 0rem rgba(92, 92, 92, 0.2) inset;
   border-radius: 1rem;
   padding: 1.5em;
   color: white;
+  background-color: rgba(90, 93, 255, 0.575);
+  z-index: 2;
 }
-.user-dashboard .statics .user .right .service-expire .expire {
-  font-size: 1.25rem;
+.user-dashboard .statics .user .right .service-expire .info {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   gap: 0.5rem;
-  border-radius: 100rem;
+  max-width: 10rem;
 }
-.user-dashboard .statics .user .right .service-expire .expire small {
+.user-dashboard .statics .user .right .service-expire .info h1 {
   font-size: 1rem;
+  line-height: 1.5;
 }
 .user-dashboard .statics .user .right .service-expire .progresser {
   width: 8rem;
@@ -324,58 +343,6 @@
 .user-dashboard .statics .qucik-view .qucik-view-column .item svg {
   font-size: 3.5rem;
 }
-.user-dashboard .statics .statistics {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 10%;
-}
-.user-dashboard .statics .statistics .statistics {
-  display: flex;
-  flex-direction: column;
-  color: white;
-}
-.user-dashboard .statics .statistics .statistics .header {
-  display: flex;
-  margin: 0 auto;
-  width: 100%;
-  padding: 3em 0;
-  padding-top: 0;
-}
-.user-dashboard .statics .statistics .statistics .header .left img {
-  width: 100%;
-}
-.user-dashboard .statics .statistics .statistics .header .right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.user-dashboard .statics .statistics .statistics .header .right h1 {
-  font-size: 2rem;
-}
-.user-dashboard .statics .statistics .statistics .header .right span {
-  font-size: 1.25rem;
-}
-.user-dashboard .statics .statistics .statistics .body {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-.user-dashboard .statics .statistics .statistics .body .item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.user-dashboard .statics .statistics .statistics .body .chart {
-  background-color: #f5f5f5;
-  border-radius: 1rem;
-  padding: 2em;
-  box-shadow: 0rem 0rem 2rem 0.1rem #0d4bf4;
-  color: #0d4bf4;
-}
 .user-dashboard .statics .recent-evernts {
   display: flex;
   flex-direction: column;
@@ -391,7 +358,8 @@
   gap: 2rem;
 }
 .user-dashboard .statics .recent-evernts .recent-events .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
   margin: 0 auto;
   width: 100%;
   padding: 1em 0;
@@ -581,6 +549,72 @@
 }
 .user-dashboard .statics .recent-evernts .recent-events .body .danger .content {
   background-color: #dc3545;
+}
+.user-dashboard .statics .services-offer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+  padding: 0 2em;
+}
+.user-dashboard .statics .services-offer .header {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+.user-dashboard .statics .services-offer .body {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.user-dashboard .statics .services-offer .body .item {
+  padding: 2em;
+  padding-bottom: 1em;
+  background-color: white;
+  border-radius: 0.75rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-header h1 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.user-dashboard .statics .services-offer .body .item .item-body {
+  margin-top: 0.5rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li .label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li .value {
+  font-weight: bold;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons {
+  margin-top: 1rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons button {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons .buy {
+  background-color: #0fac6d;
+  color: white;
 }
 .user-dashboard .panel-services {
   display: flex;
@@ -1341,40 +1375,6 @@
 .user-dashboard .panel-new-order h1 span {
   margin-right: 0.5rem;
 }
-.user-dashboard .panel-new-order .user-quick-view {
-  display: flex;
-  color: white;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.user-dashboard .panel-new-order .user-quick-view .item {
-  background-color: white;
-  color: #0d4bf4;
-  display: flex;
-  align-items: center;
-  padding: 1.5em;
-  border-radius: 0.5rem;
-  gap: 1rem;
-}
-.user-dashboard .panel-new-order .user-quick-view .item .left {
-  font-size: 2.5rem;
-}
-.user-dashboard .panel-new-order .user-quick-view .item .left svg {
-  background-color: #0d4bf4;
-  color: white;
-  border-radius: 50%;
-  padding: 0.25em;
-}
-.user-dashboard .panel-new-order .user-quick-view .item .right {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-weight: bold;
-}
-.user-dashboard .panel-new-order .user-quick-view .item .right .header {
-  font-size: 1.25rem;
-}
 .user-dashboard .panel-new-order .intro {
   display: grid;
   grid-template-columns: 20rem 30rem;
@@ -1954,13 +1954,49 @@
     display: none !important;
   }
   .user-dashboard .user-quick-view {
-    overflow: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+    padding-left: 1em;
     max-width: 100vw;
     padding-right: 1em;
     padding-bottom: 2em;
   }
   .user-dashboard .panel-menu {
-    display: none;
+    position: fixed;
+    z-index: 3;
+    background-color: #3165f3;
+    left: 0;
+    right: 0;
+    top: 7rem;
+    max-height: 100vh;
+    overflow: visible;
+    padding-bottom: 8em;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 3rem 3rem 0 0;
+    transition: all 1.5s ease;
+    transform: translateY(80%);
+  }
+  .user-dashboard .panel-menu .drop-down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    align-self: center;
+    background-color: white;
+    color: #0d4bf4;
+    border-radius: 50%;
+    position: absolute;
+    top: -2rem;
+    rotate: 180deg;
+    transition: all 1s ease;
+  }
+  .user-dashboard .panel-menu-true {
+    transform: translateY(0%);
+  }
+  .user-dashboard .panel-menu-true .drop-down {
+    rotate: 0deg;
   }
   .user-dashboard .panel {
     max-width: 100vw;
@@ -1968,6 +2004,7 @@
   .user-dashboard .statics {
     display: flex !important;
     flex-direction: column !important;
+    gap: 0 !important;
   }
   .user-dashboard .statics .user {
     display: flex !important;
@@ -1980,11 +2017,26 @@
   .user-dashboard .statics .user .left .user .icons {
     flex-direction: row;
   }
+  .user-dashboard .statics .user .left .social-body {
+    padding: 0 1em;
+    flex-wrap: wrap;
+  }
+  .user-dashboard .statics .user .left .social-body .item {
+    font-size: 0.9rem;
+  }
+  .user-dashboard .statics .user .left .social-body .item img {
+    width: 2.25rem !important;
+  }
+  .user-dashboard .statics .user .left .social-body .item:last-child {
+    margin-right: auto;
+    margin-left: 1rem;
+  }
   .user-dashboard .statics .user .right {
-    display: none;
+    display: flex;
+    overflow: auto;
+    max-width: 100vw;
+    padding: 0 1em;
+    padding-bottom: 2em;
   }
-  .user-dashboard .statics .user .social-body {
-    align-items: start;
-    flex-direction: column;
-  }
-}/*# sourceMappingURL=dashboard.css.map */
+}
+@keyframes animationRotate {}/*# sourceMappingURL=dashboard.css.map */
