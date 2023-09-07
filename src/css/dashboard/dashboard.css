@@ -343,6 +343,85 @@
 .user-dashboard .statics .qucik-view .qucik-view-column .item svg {
   font-size: 3.5rem;
 }
+.user-dashboard .statics .services-offer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2rem;
+  padding: 0 2em;
+}
+.user-dashboard .statics .services-offer .header {
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+.user-dashboard .statics .services-offer .body {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.user-dashboard .statics .services-offer .body .item {
+  padding: 2em;
+  padding-bottom: 1em;
+  background-color: white;
+  border-radius: 0.75rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-header h1 {
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.user-dashboard .statics .services-offer .body .item .item-body {
+  margin-top: 0.5rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.75rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li .label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li .label::after {
+  content: " : ";
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li .value {
+  font-weight: bold;
+}
+.user-dashboard .statics .services-offer .body .item .item-body .properties li:first-child .value {
+  min-width: 10ch;
+  padding: 0.4em;
+  color: white;
+  background-color: #0d4bf4;
+  border-radius: 100rem;
+  text-align: center;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons {
+  margin-top: 1rem;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons button {
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+.user-dashboard .statics .services-offer .body .item .item-buttons .buy {
+  background-color: #0fac6d;
+  color: white;
+}
 .user-dashboard .statics .recent-evernts {
   display: flex;
   flex-direction: column;
@@ -549,72 +628,6 @@
 }
 .user-dashboard .statics .recent-evernts .recent-events .body .danger .content {
   background-color: #dc3545;
-}
-.user-dashboard .statics .services-offer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 2rem;
-  padding: 0 2em;
-}
-.user-dashboard .statics .services-offer .header {
-  color: white;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 4px;
-}
-.user-dashboard .statics .services-offer .body {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-}
-.user-dashboard .statics .services-offer .body .item {
-  padding: 2em;
-  padding-bottom: 1em;
-  background-color: white;
-  border-radius: 0.75rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-header h1 {
-  font-size: 1.2rem;
-  line-height: 1.4;
-}
-.user-dashboard .statics .services-offer .body .item .item-body {
-  margin-top: 0.5rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-body .properties {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-body .properties li {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.85rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-body .properties li .label {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-body .properties li .value {
-  font-weight: bold;
-}
-.user-dashboard .statics .services-offer .body .item .item-buttons {
-  margin-top: 1rem;
-}
-.user-dashboard .statics .services-offer .body .item .item-buttons button {
-  display: flex;
-  align-items: center;
-  padding: 0.5em 1em;
-  border-radius: 100rem;
-  gap: 0.25rem;
-  cursor: pointer;
-}
-.user-dashboard .statics .services-offer .body .item .item-buttons .buy {
-  background-color: #0fac6d;
-  color: white;
 }
 .user-dashboard .panel-services {
   display: flex;
@@ -2037,6 +2050,29 @@
     max-width: 100vw;
     padding: 0 1em;
     padding-bottom: 2em;
+  }
+  .user-dashboard .services-offer {
+    padding: 0 !important;
+  }
+  .user-dashboard .services-offer .body {
+    display: flex !important;
+    max-width: 100vw;
+    overflow: auto;
+    padding: 0 1em;
+    padding-bottom: 2em;
+  }
+  .user-dashboard .services-offer .body .item {
+    min-width: 15rem !important;
+  }
+  .user-dashboard .recent-evernts {
+    display: flex !important;
+    overflow: hidden;
+    padding: 2em !important;
+  }
+  .user-dashboard .recent-evernts .date {
+    margin-top: 1rem;
+    direction: rtl;
+    align-items: end !important;
   }
 }
 @keyframes animationRotate {}/*# sourceMappingURL=dashboard.css.map */

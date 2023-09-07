@@ -434,9 +434,9 @@ const Statics = () => {
             </section>
 
 
-            <section className="rocket background">
+            <div className="rocket background">
                 <img src={rocket} />
-            </section>
+            </div>
 
 
         </section>
