@@ -22,13 +22,6 @@ const ChildPanel = () => {
         unit: "INR",
         symbol: "₹"
     })
-    const [selectedCategory, setSelectedCategory] = useState(
-        { symbol: "", title: "All Categories", value: "ID1" },
-    );
-    const [selectedService, setSelectedService] = useState({
-        "Service": "None!",
-    },)
-
 
     const openCurrencyPopup = () => {
         dispatcher(showPopUp({

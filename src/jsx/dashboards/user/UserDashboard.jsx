@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Statics from "./panels/dashbaord/Statics"
+import Statics from "./panels/statics/Statics"
 import PanelsItem from "./Components/PanelsItem"
 import { Icon } from "@iconify/react"
 import UserInfo from "./panels/panel-header/UserInfo"
