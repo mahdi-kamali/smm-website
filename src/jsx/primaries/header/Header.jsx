@@ -1,13 +1,21 @@
 import { Icon } from '@iconify/react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useFetcher, useNavigate } from 'react-router-dom';
-const Header = () => {
+import { useFetcher, useLocation, useNavigate } from 'react-router-dom';
+const Header = (
+    {
+        userPanelMenuState,
+        setUserPanelMenuState,
+        mainMenuState,
+        setMainMenuState
+    }
+
+) => {
 
 
 
 
-    const [menuState, setMenuState] = useState(false)
+
 
     const menuList = [
         {
@@ -69,16 +77,14 @@ const Header = () => {
 
 
 
-
     useEffect(
         () => {
             window.addEventListener("scroll", handleScroll, { passive: true })
         },
         [])
 
-
     useEffect(() => {
-        setMenuState(false)
+        setMainMenuState(false)
     }, [
         currentPage
     ])
@@ -98,20 +104,33 @@ const Header = () => {
 
 
 
+    const location = useLocation().pathname;
 
 
+    const toggleMenu = () => {
+
+        if (location === "/user/dashboard") {
+            setUserPanelMenuState(!userPanelMenuState)
+        }
+        else {
+            setMainMenuState(!mainMenuState)
+        }
+
+    }
 
 
 
     return (
         <header style={headerStyle}>
             <div className="left">
-                <img src={require("../../../images/header/logo.png")} alt="" className="logo" />
+                <img
+                    src={require("../../../images/header/logo.png")}
+                    className="logo" />
             </div>
-            <div className={`right right-${menuState}`}>
+            <div className={`right right-${mainMenuState}`}>
                 <ul className={`menu`}>
                     <Icon
-                        onClick={() => setMenuState(false)}
+                        onClick={() => setMainMenuState(false)}
                         className='menu-close'
                         icon="zondicons:close-solid" />
                     {
@@ -131,9 +150,8 @@ const Header = () => {
                     }
                 </ul>
             </div>
-
             <Icon
-                onClick={() => setMenuState(!menuState)}
+                onClick={toggleMenu}
                 className='menu-icon'
                 icon="ep:menu" />
 

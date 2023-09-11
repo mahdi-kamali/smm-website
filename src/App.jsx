@@ -57,6 +57,7 @@ import UserDashboard from "./jsx/dashboards/user/UserDashboard";
 import PopUopContainer from "./jsx/pop-ups/PopUopContainer";
 import FAQsPage from "./jsx/pages/Faq-page/FAQsPage"
 import BlogPage from "./jsx/pages/blog-page/BlogPage"
+import { useState } from "react"
 
 
 
@@ -69,10 +70,20 @@ import BlogPage from "./jsx/pages/blog-page/BlogPage"
 
 
 function App() {
+
+
+  const [mainMenuState, setMainMenuState] = useState(false)
+  const [userPanelMenuState, setUserPanelMenuState] = useState(false)
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header
+          userPanelMenuState={userPanelMenuState}
+          setUserPanelMenuState={setUserPanelMenuState}
+          mainMenuState={mainMenuState}
+          setMainMenuState={setMainMenuState}
+        />
         <Routes>
           <Route path='/home' element={<MainPage />} />
           <Route path='/auth' element={<AuthPage />} />
@@ -80,7 +91,12 @@ function App() {
           <Route path="/*" element={<MainPage />} />
           <Route path="/faqs" element={<FAQsPage />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/user/dashboard" element={<UserDashboard />} />
+          <Route
+            path="/user/dashboard"
+            element={
+              <UserDashboard
+                userDashboardMenuState={userPanelMenuState}
+                setUserDashboardMenuState={setUserPanelMenuState} />} />
         </Routes>
         <Footer />
 

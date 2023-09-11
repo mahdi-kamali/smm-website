@@ -15,16 +15,28 @@ import Accordion from "../../cutsome-components/accordion/Accordion"
 import MassOrders from "./panels/mass-orders/MassOrders"
 import NewOrders from "./panels/new-order/NewOrders"
 import ChildPanel from "./panels/child-panel/ChildPanel"
+import { useNavigate } from "react-router-dom"
 
-const UserDashboard = () => {
+const UserDashboard = (
+    {
+        userDashboardMenuState,
+        setUserDashboardMenuState
+    }
+) => {
+
+
+    const navigator = useNavigate()
 
     const panelMenuOptions = [
         {
+            type: "normal",
             title: "Statics",
             icon: <Icon icon="ri:dashboard-fill" />,
             component: <Statics />
         },
         {
+            type: "normal",
+
             title: "Add Founds",
             icon: <Icon icon="solar:dollar-bold" />,
             component: <AddFounds />
@@ -35,6 +47,8 @@ const UserDashboard = () => {
             type: "nested",
             items: [
                 {
+                    type: "normal",
+
                     title: "New Order",
                     icon: <Icon icon="fluent:tab-new-24-filled" />,
                     component: <NewOrders />,
@@ -58,52 +72,76 @@ const UserDashboard = () => {
         // },
 
         {
+            type: "normal",
+
             title: "Tickets",
             icon: <Icon icon="ion:ticket-sharp" />,
             component: <Tickets />
         },
         {
+            type: "normal",
+
             title: "Child Panel",
             icon: <Icon icon="material-symbols:left-panel-open-sharp" />,
             component: <ChildPanel />
         },
         {
+            type: "normal",
+
             title: "Updates",
             icon: <Icon icon="dashicons:update-alt" />
         },
         {
+            type: "normal",
+
             title: "API",
             icon: <Icon icon="ant-design:api-filled" />
         },
         {
+            type: "normal",
+
             title: "Free Credit",
             icon: <Icon icon="mdi:credit-card" />
         },
         {
+            type: "normal",
+
             title: "Tutorials",
             icon: <Icon icon="fluent:learning-app-24-filled" />
         },
         {
+            type: "normal",
+
             title: "Affiliates",
             icon: <Icon icon="dashicons:update-alt" />,
             component: <Affliates />
         },
         {
+            type: "normal",
+
             title: "Setting",
             icon: <Icon icon="ant-design:setting-filled" />
+        },
+        {
+            type: "click",
+            title: "Home",
+            icon: <Icon icon="material-symbols:home" />
         },
     ]
 
 
+
+
+
     const [selectedPanel, selectPanel] = useState(panelMenuOptions[0])
-    const [dashboardVisible, setDashboardVisible] = useState(false)
+
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
-        setDashboardVisible(false)
+        setUserDashboardMenuState(false)
     }, [selectedPanel])
 
 
@@ -113,12 +151,7 @@ const UserDashboard = () => {
 
     return (
         <main className="user-dashboard">
-            <ul className={`panel-menu panel-menu-${dashboardVisible}`}>
-                <div
-                    onClick={() => setDashboardVisible(!dashboardVisible)}
-                    className="drop-down">
-                    <Icon icon="gridicons:dropdown" />
-                </div>
+            <ul className={`panel-menu panel-menu-${userDashboardMenuState}`}>
                 <div className="menu-items">
                     {
                         panelMenuOptions.map((panel, index) => {
@@ -130,21 +163,36 @@ const UserDashboard = () => {
                                         selectPanel={selectPanel}
                                         selectedPanel={selectedPanel}
                                     />
-                                } else
-                                    return (
-                                        <PanelsItem
-                                            key={index}
-                                            title={panel.title}
-                                            icon={panel.icon}
-                                            currentActivePanel={selectedPanel.title}
-                                            clickEvent={() => selectPanel(panel)}
-                                        />
-                                    )
+                                }
                             }
+
+                            {
+                                if (panel.type === "click") {
+                                    return <PanelsItem
+                                        key={index}
+                                        title={panel.title}
+                                        icon={panel.icon}
+                                        currentActivePanel={selectedPanel.title}
+                                        clickEvent={() => navigator("/")}
+                                    />
+                                }
+                            }
+
+                            {
+                                if (panel.type === "normal") {
+                                    return <PanelsItem
+                                        key={index}
+                                        title={panel.title}
+                                        icon={panel.icon}
+                                        currentActivePanel={selectedPanel.title}
+                                        clickEvent={() => selectPanel(panel)}
+                                    />
+                                }
+                            }
+
                         })
                     }
                 </div>
-
             </ul>
             <div className="panel">
                 {selectedPanel?.component}

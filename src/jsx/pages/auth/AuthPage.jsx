@@ -51,7 +51,7 @@ const AuthPage = () => {
                         Login
                     </h1>
                     <h1 className={pageMode === "sign-up" ? "selected" : ""} onClick={() => setMode("sign-up")}>
-                        SingUp
+                        Sign Up
                     </h1>
                 </div>
                 <div className="form-body">
