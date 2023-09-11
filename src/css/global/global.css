@@ -32,4 +32,7 @@ img {
 
 .swiper {
   width: 100%;
+  height: -moz-max-content !important;
+  height: max-content !important;
+  min-width: 0;
 }/*# sourceMappingURL=global.css.map */

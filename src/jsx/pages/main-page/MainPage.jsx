@@ -80,6 +80,11 @@ import posterBackground from "../../../images/main-page/poster/background.svg"
 import Lottie from 'react-lottie-player';
 
 
+// Blog 
+import blogsAnimation from "../../../animations/main-page/blog-animation.json"
+import MaxLineText from '../../cutsome-components/Text/MaxLineText';
+
+
 
 
 const MainPage = () => {
@@ -195,10 +200,42 @@ const MainPage = () => {
     ]
 
 
+    const blogsItems = [
+        {
+            "title": "The Power of Social Media Engagement",
+            "date": "2023-08-15",
+            "image": "https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHNvY2lhbCUyMG1lZGlhJTIwbWFya2V0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+            "excerpt": "In today's digital age, harnessing the power of social media engagement has become a cornerstone of successful brand strategies. The ability to connect with your audience on platforms like Facebook, Instagram, Twitter, and more can greatly influence brand loyalty and even conversion rates. By engaging with your followers through comments, likes, shares, and interactive content, you're not only building a community around your brand but also establishing a two-way communication channel that humanizes your business. This blog post delves deep into the strategies and tactics that can help you effectively leverage social media engagement to its fullest potential. Whether it's responding promptly to customer inquiries or creating content that resonates emotionally, understanding the nuances of engagement can truly set your brand apart in the competitive digital landscape. [Read more](https://example.com/blog/power-of-social-media-engagement)"
+        },
+        {
+            "title": "Crafting Compelling Content for Instagram",
+            "date": "2023-07-25",
+            "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c29jaWFsJTIwbWVkaWElMjBtYXJrZXRpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+            "excerpt": "Instagram's visual-centric nature demands content that doesn't just catch the eye but also tells a story. Crafting compelling content for this platform goes beyond the superficial, focusing on creating posts that convey a narrative and evoke emotions. From stunning imagery to attention-grabbing captions, each element plays a role in capturing and"
+        },
+        {
+            "title": "Unlocking the Potential of LinkedIn for B2B",
+            "date": "2023-06-10",
+            "image": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c29jaWFsJTIwbWVkaWElMjBtYXJrZXRpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+            "excerpt": "LinkedIn isn't just a platform for professional networking; it's also a goldmine for B2B opportunities. This blog post explores how businesses can strategically utilize LinkedIn to build industry authority, forge meaningful connections with fellow professionals, and generate valuable leads. The B2B landscape thrives on trust and credibility, and LinkedIn provides the perfect setting to establish these qualities. From optimizing your company page to creating and sharing insightful content, this guide uncovers the methods that can help your brand unlock the true potential of LinkedIn in the B2B realm. [Read more](https://example.com/blog/unlocking-potential-of-linkedin-for-b2b)"
+        },
+        {
+            "title": "Mastering Twitter: Strategies for Effective Marketing",
+            "date": "2023-05-02",
+            "image": "https://images.unsplash.com/photo-1491951931722-5a446214b4e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNvY2lhbCUyMG1lZGlhJTIwbWFya2V0aW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+            "excerpt": "With its concise yet impactful format, Twitter offers a unique platform for effective marketing. Mastering this platform involves more than just succinct messages; it requires an understanding of the platform's dynamics, audience engagement tactics, and trend utilization. This blog post delves into strategies that empower brands to make the most out of Twitter's 280-character limit. From hashtag campaigns to fostering real-time interactions, every tweet can become an opportunity to amplify your brand's message and presence. Explore how to navigate the fast-paced world of Twitter marketing and create a meaningful impact in a compact space. [Read more](https://example.com/blog/mastering-twitter-strategies-for-marketing)"
+        },
+
+    ]
+
+
     const handleFAQMessage = (e) => {
         e.preventDefault()
         const formData = new FormData(e.target)
     }
+
+
+
 
 
 
@@ -704,7 +741,7 @@ const MainPage = () => {
                                 A11y,
                                 EffectCoverflow]}
                             spaceBetween={20}
-                        
+
                             pagination={
                                 {
                                     clickable: true,
@@ -1252,6 +1289,151 @@ const MainPage = () => {
 
             </section>
 
+            <div className="blogs">
+                <h1>
+                    Latest <span>Blogs</span> & Articles <br />
+                    Read & <span>Know Everything !</span>
+                </h1>
+                <div className="items">
+                    <Swiper
+                        modules={[
+                            Navigation,
+                            Pagination,
+                            Scrollbar,
+                            A11y,
+                            EffectCoverflow]}
+                        spaceBetween={20}
+                        pagination={
+                            {
+                                clickable: true,
+                                el: ".bullet-container"
+                            }}
+                        onSwiper={(swiper) => swiper.slideTo(2)}
+                        onSlideChange={() => console.log('slide change')}
+                        effect={'coverflow'}
+                        grabCursor={true}
+                        centeredSlides
+                        navigation={{
+                            prevEl: ".prev-arrow",
+                            nextEl: ".next-arrow",
+                            disabledClass: "false",
+                        }}
+                        coverflowEffect={{
+                            rotate: -5,
+                            stretch: 0,
+                            depth: 350,
+                            modifier: 1,
+                            slideShadows: false,
+                        }}
+
+
+                        breakpoints={{
+                            380: {
+                                slidesPerView: 1,
+                            },
+                            500: {
+                                slidesPerView: 1.25,
+                            },
+                            639: {
+                                slidesPerView: 1.75,
+                            },
+                            865: {
+                                slidesPerView: 2
+                            },
+                            1000: {
+                                slidesPerView: 3
+                            },
+                            1500: {
+                                slidesPerView: 4
+                            }
+                        }}
+
+                    >
+                        {
+                            blogsItems.map((item, index) => {
+                                return <SwiperSlide>
+                                    <div className="item" key={index}>
+
+                                        <div className="item-header">
+                                            <img
+                                                className='image'
+                                                src={item.image} />
+                                            <div className="item-info">
+                                                <div className="sender">
+                                                    <div className="sender-image">
+                                                        <img src={require("../../../images/panel/panel-header/avatar.jpg")} alt="" />
+                                                    </div>
+                                                    <div className="sender-info">
+                                                        <div className="name">
+                                                            Alex Jorden
+                                                        </div>
+                                                        <div className="role">
+                                                            Project Manager
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="item-body">
+                                            <MaxLineText
+                                                content={item.title}
+                                                maxLine={1}
+                                                isMarquee={false}
+                                                targetClass={"title"}
+                                            />
+
+                                            <MaxLineText
+                                                content={
+                                                    item.excerpt
+                                                }
+                                                maxLine={4}
+                                                targetClass={"excerpt"}
+                                            />
+
+
+
+                                        </div>
+                                        <div className="item-buttons">
+                                            <div className="left">
+                                                <button>
+                                                    <Icon icon="fa-solid:comments" color="orange" />
+                                                </button>
+                                                <button>
+                                                    <Icon icon="ic:sharp-share" color="green" />
+                                                </button>
+                                                <button>
+                                                    <Icon icon="fluent:thumb-like-16-filled" color="red" />
+                                                </button>
+                                            </div>
+                                            <div className="right">
+                                                <button className="submit">
+                                                    <span>
+                                                        Read More
+                                                    </span>
+                                                    <Icon icon="iconamoon:send-fill" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            })
+                        }
+                        <div className="swiper-controlls">
+                            <div className="prev-arrow arrow">
+                                <Icon icon="raphael:arrowleft" />
+                            </div>
+                            <div className="bullet-container">
+
+                            </div>
+                            <div className="next-arrow arrow">
+                                <Icon icon="raphael:arrowleft" rotate={2} />
+                            </div>
+                            <div className="next-click"></div>
+                        </div>
+                    </Swiper>
+                </div>
+            </div>
+
             <section className="faqs">
                 <div className="faqs-list">
                     <div className="left">
@@ -1382,6 +1564,8 @@ const MainPage = () => {
                     </div>
                 </form>
             </section>
+
+
 
             <section className='about-us'>
                 <div className="left">

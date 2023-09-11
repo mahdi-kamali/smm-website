@@ -24,6 +24,7 @@ import {
 } from "chart.js";
 import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
 import MaxLineText from "../../../../cutsome-components/Text/MaxLineText";
+import { Icon } from "@iconify/react";
 
 
 ChartJS.register(
@@ -88,8 +89,8 @@ const Affliates = () => {
 
 
   return (
-    <div className="panel-affliates">
-      <div className="intro">
+    <section className="panel-affliates">
+      <div className="intro row">
         <div className="left">
           <Lottie
             animationData={introAnimation}
@@ -110,7 +111,14 @@ const Affliates = () => {
 
         </div>
       </div>
-      <div className="charts">
+      <div className="link row">
+        <p>www.example.com/link</p>
+        <button>
+          <Icon icon="bxs:copy" />
+          <span>Copy Link</span>
+        </button>
+      </div>
+      <div className="charts row">
         <div className="left">
           <div className="revenue">
             <div className="info">
@@ -167,7 +175,7 @@ const Affliates = () => {
             <div className="body">
               <div className="item">
                 <div className="item-left">
-                  #{(Math.random()*2000).toFixed()}
+                  #{(Math.random() * 2000).toFixed()}
                 </div>
                 <div className="item-mid">
                   <MaxLineText
@@ -180,7 +188,7 @@ const Affliates = () => {
               </div>
               <div className="item">
                 <div className="item-left">
-                  #{(Math.random()*2000).toFixed()}
+                  #{(Math.random() * 2000).toFixed()}
                 </div>
                 <div className="item-mid">
                   <MaxLineText
@@ -193,7 +201,7 @@ const Affliates = () => {
               </div>
               <div className="item">
                 <div className="item-left">
-                  #{(Math.random()*2000).toFixed()}
+                  #{(Math.random() * 2000).toFixed()}
                 </div>
                 <div className="item-mid">
                   <MaxLineText
@@ -206,7 +214,7 @@ const Affliates = () => {
               </div>
               <div className="item">
                 <div className="item-left">
-                  #{(Math.random()*2000).toFixed()}
+                  #{(Math.random() * 2000).toFixed()}
                 </div>
                 <div className="item-mid">
                   <MaxLineText
@@ -268,7 +276,7 @@ const Affliates = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

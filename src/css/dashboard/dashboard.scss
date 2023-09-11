@@ -2106,11 +2106,38 @@ $gradient-degree: 0deg;
                 }
             }
         }
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            letter-spacing: 1px;
+            font-size: 1.5rem;
+
+            p {
+                background-color: $panel-color-4;
+                border-radius: 0.5rem;
+                padding: 0.5em;
+
+            }
+            button {
+                font-size: 1.2rem;
+                display: flex;
+                align-self: center;
+                gap: 0.25rem;
+                background-color: $panel-color-3;
+                color: white;
+                padding: 0.5em 1em;
+                border-radius: 100rem;
+            }
+            
+        }
         .charts {
             display: grid;
             grid-template-columns: 23rem 1fr;
             width: 100% !important;
             gap: 1rem;
+            margin-top: 2rem;
             .left {
                 display: flex;
                 flex-direction: column;
@@ -2630,6 +2657,30 @@ $gradient-degree: 0deg;
                 }
             }
         }
+        .panel-affliates {
+            display: flex !important;
+            flex-direction: column !important;
+            .intro {
+                display: flex !important;
+                flex-direction: column;
+            }
+            .link {
+                display: flex !important;
+                flex-direction: column;
+                margin-top: 2rem;
+            }
+            .charts {
+                display: flex !important;
+                flex-direction: column;
+                .footer {
+                    overflow: auto;
+                    .item {
+                        width: max-content;
+                    }
+                }
+            }
+        }
+        
     }
 }
 
