@@ -40,7 +40,7 @@ import 'react-vertical-timeline-component/style.min.css';
 
 
 // React Routers
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
 
 // Pages
@@ -58,6 +58,8 @@ import PopUopContainer from "./jsx/pop-ups/PopUopContainer";
 import FAQsPage from "./jsx/pages/Faq-page/FAQsPage"
 import BlogPage from "./jsx/pages/blog-page/BlogPage"
 import { useState } from "react"
+import AboutUsPage from "./jsx/pages/about-us-page/AboutUsPage"
+import ContactUsPage from "./jsx/pages/contact-us-page/ContactUsPage"
 
 
 
@@ -75,6 +77,9 @@ function App() {
   const [mainMenuState, setMainMenuState] = useState(false)
   const [userPanelMenuState, setUserPanelMenuState] = useState(false)
 
+
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -91,6 +96,8 @@ function App() {
           <Route path="/*" element={<MainPage />} />
           <Route path="/faqs" element={<FAQsPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
           <Route
             path="/user/dashboard"
             element={

@@ -110,7 +110,7 @@ const MainPage = () => {
 
     const getRandomColors = () => {
         let all = [];
-        for (let i = 0; i < Math.random() * 20; i++) {
+        for (let i = 0; i < 2; i++) {
             const red = Math.random() * 250;
             const green = Math.random() * 250;
             const blue = Math.random() * 250;
@@ -463,70 +463,7 @@ const MainPage = () => {
 
             <section className="introduction">
 
-                <div className="world-map fade-in" key={Math.random()}>
-                    <Lottie
-                        className='animation '
-                        animationData={currentSelected.animation}
-                        play
-                        loop
-                    />
-
-                    <div className='company-statics-description '>
-                        <h1>
-                            <span>Total</span>
-                            <div className="accent-color">
-                                {currentSelected.title}
-                            </div>
-                        </h1>
-                        <p>
-                            {currentSelected.description}
-                        </p>
-                    </div>
-                </div>
-
-                <div className="company-statics">
-
-                    <div className="statics" >
-                        {
-                            companyStaticsItems.map((item, index) => {
-                                return <CompanyStaticItem
-                                    key={index}
-                                    selected={currentSelected.title === item.title}
-                                    setSelected={setCurrentSelected}
-                                    item={item}
-                                />
-                            })
-                        }
-                    </div>
-
-
-                </div>
-
-                <div className="our-activities">
-                    <div className="left">
-                        <h1>
-                            Our
-                            <div className="accent-color">
-                                Activities
-                            </div>
-                        </h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
-                        </p>
-                    </div>
-                    <div className="right">
-
-                        <div className="animation">
-                            <Lottie
-                                className='animation'
-                                animationData={ourActivitiesAnimation}
-                                play
-                                loop />
-                        </div>
-
-                    </div>
-                </div>
+               
 
                 <div className="intro-background">
 
@@ -549,173 +486,6 @@ const MainPage = () => {
 
 
                 </div>
-
-                <div className="service-step-guidance">
-                    <div className="header">
-                        <h1>
-                            <span>Its Eazy ! </span>
-                            Just Follow The Steps Blow
-                        </h1>
-                    </div>
-                    <div className="body desktop">
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepOneAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Sign Up</h1>
-                                <small>
-                                    Create an account to get started on our platform.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepTwoAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Go Dashboard</h1>
-                                <small>
-                                    Access your personalized dashboard with all the tools you need.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepThreeAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Choese  Service </h1>
-                                <small>Browse through our wide range of services and select what you need.</small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepFourAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Order</h1>
-                                <small>
-                                    Place an order for the service you've chosen and proceed.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepFiveAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1> Enjoy & Peace !</h1>
-                                <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
-                            </div>
-                        </div>
-                    </div>
-                    <marquee behavior="" direction="">
-                        <div className="body">
-                            <div className="item">
-                                <div className="item-header">
-                                    <Lottie
-                                        animationData={stepOneAnimation}
-                                        play
-                                        loop
-                                    />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Sign Up</h1>
-                                    <small>
-                                        Create an account to get started on our platform.
-                                    </small>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <div className="item-header">
-                                    <Lottie
-                                        animationData={stepTwoAnimation}
-                                        play
-                                        loop
-                                    />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Go Dashboard</h1>
-                                    <small>
-                                        Access your personalized dashboard with all the tools you need.
-                                    </small>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <div className="item-header">
-                                    <Lottie
-                                        animationData={stepThreeAnimation}
-                                        play
-                                        loop
-                                    />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Choese  Service </h1>
-                                    <small>Browse through our wide range of services and select what you need.</small>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <div className="item-header">
-                                    <Lottie
-                                        animationData={stepFourAnimation}
-                                        play
-                                        loop
-                                    />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Order</h1>
-                                    <small>
-                                        Place an order for the service you've chosen and proceed.
-                                    </small>
-                                </div>
-                            </div>
-                            <div className="item">
-                                <div className="item-header">
-                                    <Lottie
-                                        animationData={stepFiveAnimation}
-                                        play
-                                        loop
-                                    />
-                                </div>
-                                <div className="item-body">
-                                    <h1> Enjoy & Peace !</h1>
-                                    <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
-                                </div>
-                            </div>
-                        </div>
-                    </marquee>
-
-                    <div className="step-guidance-background">
-                        <Lottie
-                            animationData={stepArrowAnimation}
-                            play
-                            loop
-                        />
-                    </div>
-
-                </div>
-
                 <div className="our-services">
                     <div className="header">
                         <h1>Our Services</h1>
@@ -1003,6 +773,241 @@ const MainPage = () => {
 
 
                 </div>
+
+                <div className="service-step-guidance">
+                    <div className="header">
+                        <h1>
+                            <span>Its Eazy ! </span>
+                            Just Follow The Steps Blow
+                        </h1>
+                    </div>
+                    <div className="body desktop">
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepOneAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Sign Up</h1>
+                                <small>
+                                    Create an account to get started on our platform.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepTwoAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Go Dashboard</h1>
+                                <small>
+                                    Access your personalized dashboard with all the tools you need.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepThreeAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Choese  Service </h1>
+                                <small>Browse through our wide range of services and select what you need.</small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepFourAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1>Order</h1>
+                                <small>
+                                    Place an order for the service you've chosen and proceed.
+                                </small>
+                            </div>
+                        </div>
+                        <div className="item">
+                            <div className="item-header">
+                                <Lottie
+                                    animationData={stepFiveAnimation}
+                                    play
+                                    loop
+                                />
+                            </div>
+                            <div className="item-body">
+                                <h1> Enjoy & Peace !</h1>
+                                <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
+                            </div>
+                        </div>
+                    </div>
+                    <marquee behavior="" direction="">
+                        <div className="body">
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepOneAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Sign Up</h1>
+                                    <small>
+                                        Create an account to get started on our platform.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepTwoAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Go Dashboard</h1>
+                                    <small>
+                                        Access your personalized dashboard with all the tools you need.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepThreeAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Choese  Service </h1>
+                                    <small>Browse through our wide range of services and select what you need.</small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepFourAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1>Order</h1>
+                                    <small>
+                                        Place an order for the service you've chosen and proceed.
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="item">
+                                <div className="item-header">
+                                    <Lottie
+                                        animationData={stepFiveAnimation}
+                                        play
+                                        loop
+                                    />
+                                </div>
+                                <div className="item-body">
+                                    <h1> Enjoy & Peace !</h1>
+                                    <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
+                                </div>
+                            </div>
+                        </div>
+                    </marquee>
+
+                    <div className="step-guidance-background">
+                        <Lottie
+                            animationData={stepArrowAnimation}
+                            play
+                            loop
+                        />
+                    </div>
+
+                </div>
+
+
+                <div className="world-map fade-in" key={Math.random()}>
+                    <Lottie
+                        className='animation '
+                        animationData={currentSelected.animation}
+                        play
+                        loop
+                    />
+
+                    <div className='company-statics-description '>
+                        <h1>
+                            <span>Total</span>
+                            <div className="accent-color">
+                                {currentSelected.title}
+                            </div>
+                        </h1>
+                        <p>
+                            {currentSelected.description}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="company-statics">
+
+                    <div className="statics" >
+                        {
+                            companyStaticsItems.map((item, index) => {
+                                return <CompanyStaticItem
+                                    key={index}
+                                    selected={currentSelected.title === item.title}
+                                    setSelected={setCurrentSelected}
+                                    item={item}
+                                />
+                            })
+                        }
+                    </div>
+
+
+                </div>
+
+                <div className="our-activities">
+                    <div className="left">
+                        <h1>
+                            Our
+                            <div className="accent-color">
+                                Activities
+                            </div>
+                        </h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
+                        </p>
+                    </div>
+                    <div className="right">
+
+                        <div className="animation">
+                            <Lottie
+                                className='animation'
+                                animationData={ourActivitiesAnimation}
+                                play
+                                loop />
+                        </div>
+
+                    </div>
+                </div>
+             
+
+            
 
             </section>
 
@@ -1567,7 +1572,7 @@ const MainPage = () => {
 
 
 
-            <section className='about-us'>
+            {/* <section className='about-us'>
                 <div className="left">
                     <Lottie
                         animationData={aboutUs}
@@ -1599,7 +1604,7 @@ const MainPage = () => {
                         play
                         loop />
                 </div>
-            </section>
+            </section> */}
 
         </main >
     )

@@ -16,7 +16,6 @@ const Header = (
 
 
 
-
     const menuList = [
         {
             title: "Home",
@@ -99,16 +98,21 @@ const Header = (
 
     const headerStyle = {
         borderRadius: scrollPosition > 100 ? "0 0 10rem 10rem" : "0",
-        backgroundColor: scrollPosition > 100 ? "#3165f3" : "transparent"
+        backgroundColor: scrollPosition > 100 ? "#3165f3 " : "#3165f3"
     }
 
 
 
     const location = useLocation().pathname;
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [
+        location
+    ])
+
 
     const toggleMenu = () => {
-
         if (location === "/user/dashboard") {
             setUserPanelMenuState(!userPanelMenuState)
         }
@@ -117,6 +121,7 @@ const Header = (
         }
 
     }
+
 
 
 
