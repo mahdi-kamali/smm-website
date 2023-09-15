@@ -71,3 +71,70 @@ $panel-color-6: #dc3545;
         }
     }
 }
+
+
+
+
+// Accordions
+.faqs-accordion {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    background-color: white;
+    color: $color-1;
+
+    .accordion-header {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75em;
+        width: 100%;
+        transition: all 0.5s ease;
+        border-bottom: 2px solid transparent;
+        h1 {
+            font-size: 1rem;
+        }
+        svg {
+            font-size: 2rem;
+        }
+    }
+    .accordion-body {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: all 1s ease;
+        font-size: 0.9rem;
+        .content {
+            overflow: hidden;
+            p {
+                line-height: 1.5;
+                padding: 1em 1.5em;
+                padding-top: 0.75em;
+            }
+        }
+    }
+    .accordion-arrow {
+        transition: all 0.5s ease;
+    }
+    &:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+.accordion-true {
+    opacity: 1;
+    background-color: white;
+    .accordion-header {
+        color: $color-1;
+        border-bottom: 2px solid #698ef323;
+    }
+    .accordion-body {
+        grid-template-rows: 1fr;
+    }
+    .accordion-arrow {
+        rotate: 180deg;
+    }
+}

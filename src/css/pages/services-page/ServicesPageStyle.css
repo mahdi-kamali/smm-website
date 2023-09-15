@@ -1,0 +1,445 @@
+.services-page {
+  display: grid;
+  flex-direction: column;
+}
+.services-page .poster {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 6em;
+}
+.services-page .poster .right {
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: white;
+}
+.services-page .poster .right h1 {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+.services-page .poster .right h1 span {
+  background-color: white;
+  padding: 0 0.25em;
+  color: #3165f3;
+  border-radius: 0.25rem;
+}
+.services-page .poster .right p {
+  line-height: 1.75;
+  margin-top: 0.5rem;
+  max-width: 40rem;
+}
+.services-page .poster .right button {
+  background-color: #0fac6d;
+  color: white;
+  padding: 1em 2em;
+  border-radius: 100rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.services-page .poster .left {
+  z-index: 1;
+  scale: 1.3;
+  width: 25rem;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  padding-top: 3em;
+}
+.services-page .poster .left img {
+  max-width: 30rem;
+}
+.services-page .poster .poster-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30rem;
+  max-height: 30rem;
+}
+.services-page .poster .poster-background .primary-aniamtion {
+  opacity: 0.2;
+  z-index: -1;
+  pointer-events: none;
+}
+.services-page .poster .poster-background .wave {
+  position: absolute;
+  top: 0;
+  rotate: 180deg;
+  height: 150%;
+  z-index: -1;
+  margin-top: -7em;
+  pointer-events: none;
+}
+.services-page .poster .poster-background .wave path {
+  fill: #4976f3;
+}
+.services-page .search {
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+}
+.services-page .search .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.services-page .search .right * {
+  font-family: dosis-regular !important;
+}
+.services-page .search .right .form-search {
+  display: flex;
+  align-items: center;
+  width: 30rem;
+  padding: 0.5em 1em;
+  max-width: 100%;
+  border-radius: 100rem;
+  color: #0d4bf4;
+  font-size: 1.5rem;
+  gap: 1rem;
+  border: 2px solid #4976f3;
+}
+.services-page .search .right .form-search input {
+  all: unset;
+  width: 100%;
+}
+.services-page .search .right .form-search input::-moz-placeholder {
+  color: #0d4bf4;
+}
+.services-page .search .right .form-search input::placeholder {
+  color: #0d4bf4;
+}
+.services-page .search .right .select-box {
+  gap: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+}
+.services-page .search .right .select-box input {
+  font-weight: bold;
+}
+.services-page .search .right .select-box input::-moz-placeholder {
+  color: white !important;
+}
+.services-page .search .right .select-box input::placeholder {
+  color: white !important;
+}
+.services-page .search .left img {
+  width: 10rem;
+}
+.services-page .social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.services-page .social-icons .item {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.5s ease-in-out;
+}
+.services-page .social-icons .item .item-header {
+  display: flex;
+}
+.services-page .social-icons .item .item-header img {
+  width: 5rem;
+  transition: all 1s ease;
+}
+.services-page .social-icons .item .item-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.services-page .social-icons .item:hover {
+  font-weight: bold;
+  scale: 1.25;
+  opacity: 1;
+  filter: drop-shadow(15px 36px 81px #000);
+}
+.services-page .social-icons .selected {
+  font-weight: bold;
+  opacity: 1;
+  scale: 1.25;
+}
+.services-page .suggested-services {
+  width: 100%;
+  display: block !important;
+  margin: 0 auto;
+  min-width: 0;
+}
+.services-page .suggested-services .swiper {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding: 0 10%;
+}
+.services-page .suggested-services .slide {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 1em;
+  text-align: start;
+  max-height: -moz-max-content !important;
+  max-height: max-content !important;
+}
+.services-page .suggested-services .first-slide {
+  position: relative;
+  border-radius: 1.5rem;
+  display: flex;
+  padding: 0;
+  margin-top: 2rem;
+}
+.services-page .suggested-services .first-slide .card {
+  z-index: 2 !important;
+  background: #0d4bf4;
+  padding: 1.5em;
+  text-align: center;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+.services-page .suggested-services .first-slide::after, .services-page .suggested-services .first-slide::before {
+  content: "";
+  position: absolute;
+  inset: -0.3rem;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from var(--gradient-angle), red, green, yellow, orange, yellow, green, red);
+  animation: spin 10s linear infinite;
+}
+.services-page .suggested-services .first-slide::after {
+  filter: blur(0.5rem);
+}
+.services-page .suggested-services .first-slide .body {
+  display: flex;
+  flex-direction: column;
+}
+.services-page .suggested-services .first-slide .body small {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+.services-page .suggested-services .first-slide .button button {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0.75em 2em;
+  border-radius: 100rem;
+  font-weight: bold;
+}
+.services-page .suggested-services .normal-slide {
+  text-align: center;
+  border-radius: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 1s ease;
+  background: white;
+  cursor: pointer;
+  overflow: hidden;
+}
+.services-page .suggested-services .normal-slide .header img {
+  width: 7rem;
+}
+.services-page .suggested-services .normal-slide .body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.services-page .suggested-services .normal-slide .body h1 {
+  font-size: 1.25rem;
+}
+.services-page .suggested-services .normal-slide .body ul {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+}
+.services-page .suggested-services .normal-slide .body ul li {
+  list-style: disc;
+  margin-left: 1rem;
+}
+.services-page .suggested-services .normal-slide .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.services-page .suggested-services .normal-slide .button h2 {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  gap: 0.5rem;
+}
+.services-page .suggested-services .normal-slide .button h2 span {
+  font-weight: bold;
+}
+.services-page .suggested-services .normal-slide .button h2 small {
+  font-size: 0.8rem;
+}
+.services-page .suggested-services .normal-slide .button button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #008f26;
+  color: #0d4bf4;
+  border-radius: 100rem;
+  font-weight: bold;
+  color: white;
+  height: 1.75rem;
+  padding-left: 1em;
+  font-size: 0.9rem;
+}
+.services-page .suggested-services .normal-slide .button button svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #008f26;
+  font-size: 2.75rem;
+  border-radius: 50%;
+  padding: 0.2em;
+}
+.services-page .suggested-services .normal-slide:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.services-page .avilable-services {
+  padding: 0 10%;
+  margin-top: 2rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .services-page section {
+    display: none !important;
+  }
+  .services-page .poster {
+    display: flex !important;
+    flex-direction: column;
+    padding: 0 10%;
+    padding-bottom: 2em;
+    padding-top: 3em;
+  }
+  .services-page .poster .left {
+    width: 16rem;
+  }
+  .services-page .poster .right {
+    color: #0d4bf4;
+  }
+  .services-page .poster .right span {
+    background-color: #0d4bf4 !important;
+    color: white !important;
+  }
+  .services-page .poster .poster-background {
+    top: -10%;
+  }
+  .services-page .search {
+    display: flex !important;
+    margin-top: 0;
+    padding-bottom: 2em;
+  }
+  .services-page .search .left {
+    display: none;
+  }
+  .services-page .search .right .form-search {
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .services-page .social-icons {
+    display: flex !important;
+    flex-wrap: wrap;
+    padding-bottom: 2em;
+    gap: 0.5rem;
+  }
+  .services-page .avilable-services {
+    display: flex !important;
+    padding: 0;
+  }
+  .services-page .suggested-services .normal-slide {
+    text-align: center;
+    border-radius: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 1s ease;
+    background: white;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .services-page .suggested-services .normal-slide .header img {
+    width: 7rem;
+  }
+  .services-page .suggested-services .normal-slide .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .services-page .suggested-services .normal-slide .body h1 {
+    font-size: 1.25rem;
+  }
+  .services-page .suggested-services .normal-slide .body ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .services-page .suggested-services .normal-slide .body ul li {
+    list-style: disc;
+    margin-left: 1rem;
+  }
+  .services-page .suggested-services .normal-slide .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .services-page .suggested-services .normal-slide .button h2 {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    gap: 0.5rem;
+  }
+  .services-page .suggested-services .normal-slide .button h2 span {
+    font-weight: bold;
+  }
+  .services-page .suggested-services .normal-slide .button h2 small {
+    font-size: 0.8rem;
+  }
+  .services-page .suggested-services .normal-slide .button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #008f26;
+    color: #0d4bf4;
+    border-radius: 100rem;
+    color: white;
+    height: 1.75rem;
+    padding-left: 1em;
+    font-size: 0.9rem;
+  }
+  .services-page .suggested-services .normal-slide .button button svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #008f26;
+    font-size: 2.25rem;
+    border-radius: 50%;
+    padding: 0.2em;
+  }
+}/*# sourceMappingURL=ServicesPageStyle.css.map */

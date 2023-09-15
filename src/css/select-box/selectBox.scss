@@ -94,3 +94,51 @@ $panel-color-6: #dc3545;
         }
     }
 }
+
+
+// Select Box Styles
+
+.select-search-container {
+    width: 10rem !important;
+    transition: all 1s ease;
+    input {
+        background-color: $color-4;
+        border-radius: 100rem;
+        border: none !important;
+        text-align: center;
+        padding: 0 !important;
+    }
+}
+.select-search-has-focus {
+    width: 20rem !important;
+    .select-search-select {
+        opacity: 1;
+        pointer-events: initial;
+    }
+}
+.select-search-select {
+    background-color: transparent !important;
+    border: none !important;
+    display: block !important;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 1s ease;
+}
+.select-search-options {
+    background-color: $color-4;
+    overflow: hidden;
+    border-radius: 1rem;
+
+    .select-search-group-header {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+    }
+    button {
+        background-color: $color-4;
+        &:hover {
+            background-color: $color-1 !important;
+        }
+    }
+}
+

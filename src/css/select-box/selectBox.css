@@ -66,4 +66,50 @@
 .select-box .true .content .available-options {
   grid-template-rows: 1fr;
   margin-top: 0.5rem;
+}
+
+.select-search-container {
+  width: 10rem !important;
+  transition: all 1s ease;
+}
+.select-search-container input {
+  background-color: #4976f3;
+  border-radius: 100rem;
+  border: none !important;
+  text-align: center;
+  padding: 0 !important;
+}
+
+.select-search-has-focus {
+  width: 20rem !important;
+}
+.select-search-has-focus .select-search-select {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.select-search-select {
+  background-color: transparent !important;
+  border: none !important;
+  display: block !important;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.select-search-options {
+  background-color: #4976f3;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.select-search-options .select-search-group-header {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+.select-search-options button {
+  background-color: #4976f3;
+}
+.select-search-options button:hover {
+  background-color: #0d4bf4 !important;
 }/*# sourceMappingURL=selectBox.css.map */

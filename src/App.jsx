@@ -1,5 +1,7 @@
 
 
+
+
 // Application styles
 import "./css/global/global.css"
 import "./css/style/style.css"
@@ -10,6 +12,16 @@ import "./css/accordion/accordion.css"
 import "./css/select-box/selectBox.css"
 import "./css/field-box/field-box.css"
 import "./css/table/table.css"
+
+
+// Pages Styles 
+import "./css/pages/main-page/MainPageStyle.css"
+import "./css/pages/auth-page/AuthPageStyle.css"
+import "./css/pages/faqs-page/FaqsPageStyle.css"
+import "./css/pages/blogs-page/BlogsPageStyle.css"
+import "./css/pages/about-us-page/AboutUsPageStyle.css"
+import "./css/pages/contact-us-page/ContactUsPageStyle.css"
+import "./css/pages/services-page/ServicesPageStyle.css"
 
 
 // Import Swiper styles
