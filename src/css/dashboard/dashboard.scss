@@ -2979,6 +2979,29 @@ $gradient-degree: 0deg;
                 flex-direction: column !important;
                 gap: 0;
                 margin-top: 0 !important;
+                .input-box {
+                    .input {
+                        label {
+                            font-size: 0.9rem !important;
+                            input {
+                                display: none;
+                            }
+                            h2 {
+                                font-size: 0.9rem !important;
+                            padding: 0.5em ;
+
+                            }
+                        }
+                        button {
+                            font-size: 0.9rem !important;
+                        }
+                    }
+                }
+                .gift-status {
+                    li {
+                        font-size: 1rem !important;
+                    }
+                }
             }
         }
     }

@@ -2773,6 +2773,27 @@
     gap: 0;
     margin-top: 0 !important;
   }
+  .user-dashboard .panel-free-creidits .trust-pilot .input-box .input label,
+  .user-dashboard .panel-free-creidits .share-tweet .input-box .input label {
+    font-size: 0.9rem !important;
+  }
+  .user-dashboard .panel-free-creidits .trust-pilot .input-box .input label input,
+  .user-dashboard .panel-free-creidits .share-tweet .input-box .input label input {
+    display: none;
+  }
+  .user-dashboard .panel-free-creidits .trust-pilot .input-box .input label h2,
+  .user-dashboard .panel-free-creidits .share-tweet .input-box .input label h2 {
+    font-size: 0.9rem !important;
+    padding: 0.5em;
+  }
+  .user-dashboard .panel-free-creidits .trust-pilot .input-box .input button,
+  .user-dashboard .panel-free-creidits .share-tweet .input-box .input button {
+    font-size: 0.9rem !important;
+  }
+  .user-dashboard .panel-free-creidits .trust-pilot .gift-status li,
+  .user-dashboard .panel-free-creidits .share-tweet .gift-status li {
+    font-size: 1rem !important;
+  }
 }
 @keyframes animationRotate {}
 @keyframes dashboardFadeInAnimation {
