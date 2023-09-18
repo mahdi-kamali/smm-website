@@ -2089,6 +2089,294 @@
   font-weight: bold;
   opacity: 0.75;
 }
+.user-dashboard .panel-free-creidits {
+  padding: 2em;
+  padding-top: 0;
+  padding-bottom: 3em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.user-dashboard .panel-free-creidits .show-false {
+  display: none !important;
+}
+.user-dashboard .panel-free-creidits .email-verify {
+  display: grid;
+  grid-template-columns: 20rem 30rem;
+  align-items: center;
+  gap: 1rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .left {
+  z-index: 2;
+}
+.user-dashboard .panel-free-creidits .email-verify .right {
+  position: relative;
+  line-height: 1.5;
+  color: #0d4bf4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 4em 0;
+  z-index: 1;
+}
+.user-dashboard .panel-free-creidits .email-verify .right h1 {
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-size: 2rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right h1 span {
+  background-color: #0d4bf4;
+  color: white;
+  padding: 0 0.2em;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  align-items: start;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .email {
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .email h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffa938;
+  padding: 0.5em 0.5em;
+  color: black;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .email button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0 1em;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .code-box,
+.user-dashboard .panel-free-creidits .email-verify .right .status .link-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: white;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .code-box input,
+.user-dashboard .panel-free-creidits .email-verify .right .status .link-box input {
+  all: unset;
+  background-color: #0fac6d;
+  padding: 0.4em 1em;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-radius: 0.3rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .code-box input::-moz-placeholder, .user-dashboard .panel-free-creidits .email-verify .right .status .link-box input::-moz-placeholder {
+  color: white;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .code-box input::placeholder,
+.user-dashboard .panel-free-creidits .email-verify .right .status .link-box input::placeholder {
+  color: white;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .code-box svg,
+.user-dashboard .panel-free-creidits .email-verify .right .status .link-box svg {
+  background-color: #0fac6d;
+  padding: 0.4rem;
+  font-size: 2rem;
+  border-radius: 100rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding-right: 1em;
+  transition: all 1s ease;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item .item-left img {
+  width: 4rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item .item-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item .item-right h2 {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item .item-right small {
+  text-transform: uppercase;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-box .item-true {
+  background-color: #0d4bf4;
+  color: white;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-status {
+  margin-top: 1rem;
+}
+.user-dashboard .panel-free-creidits .email-verify .right .status .gift-status li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+  font-weight: bold;
+}
+.user-dashboard .panel-free-creidits .email-verify .right::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  box-shadow: 0rem 0rem 5rem 0.5rem rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  z-index: -1;
+  top: -8rem;
+  left: 0%;
+  right: 0;
+  width: 95%;
+  transform: translateX(-20%);
+}
+.user-dashboard .panel-free-creidits .trust-pilot,
+.user-dashboard .panel-free-creidits .share-tweet {
+  display: grid;
+  grid-template-columns: 20rem 30rem;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right,
+.user-dashboard .panel-free-creidits .share-tweet .right {
+  line-height: 1.5;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .intro h1,
+.user-dashboard .panel-free-creidits .share-tweet .right .intro h1 {
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-size: 2rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .intro h1 span,
+.user-dashboard .panel-free-creidits .share-tweet .right .intro h1 span {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0 0.2em;
+  border-radius: 0.25rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .intro h1 span:last-child,
+.user-dashboard .panel-free-creidits .share-tweet .right .intro h1 span:last-child {
+  margin-left: 0.5rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .intro h1 .gold,
+.user-dashboard .panel-free-creidits .share-tweet .right .intro h1 .gold {
+  background-color: #dc3545;
+  color: white;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .intro p,
+.user-dashboard .panel-free-creidits .share-tweet .right .intro p {
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .input,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .input {
+  display: flex;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  align-self: flex-start;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .input label,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .input label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffa938;
+  padding: 0.5em 0.5em;
+  color: black;
+  letter-spacing: 2px;
+  font-size: 1.3rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .input label input,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .input label input {
+  display: none;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .input label h2,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .input label h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffa938;
+  color: black;
+  letter-spacing: 2px;
+  font-size: 1.3rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .input button,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .input button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0 1em;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .gift-status,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .gift-status {
+  margin-top: 1rem;
+}
+.user-dashboard .panel-free-creidits .trust-pilot .right .input-box .gift-status li,
+.user-dashboard .panel-free-creidits .share-tweet .right .input-box .gift-status li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+  font-weight: bold;
+}
+.user-dashboard .panel-free-creidits .share-tweet {
+  margin-top: 2rem;
+}
+.user-dashboard .panel-free-creidits .step {
+  animation: dashboardFadeInAnimation 0.5s ease forwards;
+}
+.user-dashboard .panel-free-creidits .under-line {
+  display: inline;
+  border-bottom: 1px solid gold;
+  margin: 0 10px;
+  padding-bottom: 0.1em;
+  text-transform: uppercase;
+  color: gold;
+}
 
 @media only screen and (max-width: 1100px) {
   .user-dashboard {
@@ -2450,5 +2738,43 @@
     width: -moz-max-content;
     width: max-content;
   }
+  .user-dashboard .panel-free-creidits .email-verify {
+    display: flex !important;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .left {
+    position: absolute;
+    opacity: 0.2;
+    z-index: 0;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .right h1 {
+    color: white;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .right h1 span {
+    background-color: white;
+    color: #0d4bf4;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .right button {
+    font-size: 0.9rem;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .right::after {
+    display: none;
+  }
+  .user-dashboard .panel-free-creidits .trust-pilot,
+  .user-dashboard .panel-free-creidits .share-tweet {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0;
+    margin-top: 0 !important;
+  }
 }
-@keyframes animationRotate {}/*# sourceMappingURL=dashboard.css.map */
+@keyframes animationRotate {}
+@keyframes dashboardFadeInAnimation {
+  from {
+    opacity: 0;
+    scale: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}/*# sourceMappingURL=dashboard.css.map */

@@ -16,6 +16,7 @@ import MassOrders from "./panels/mass-orders/MassOrders"
 import NewOrders from "./panels/new-order/NewOrders"
 import ChildPanel from "./panels/child-panel/ChildPanel"
 import { useNavigate } from "react-router-dom"
+import FreeCredits from "./panels/free-credits/FreeCredits"
 
 const UserDashboard = (
     {
@@ -27,6 +28,9 @@ const UserDashboard = (
 
     const navigator = useNavigate()
 
+
+
+    
     const panelMenuOptions = [
         {
             type: "normal",
@@ -99,26 +103,23 @@ const UserDashboard = (
         },
         {
             type: "normal",
-
             title: "Free Credit",
-            icon: <Icon icon="mdi:credit-card" />
+            icon: <Icon icon="mdi:credit-card" /> , 
+            component : <FreeCredits/>
         },
         {
             type: "normal",
-
             title: "Tutorials",
             icon: <Icon icon="fluent:learning-app-24-filled" />
         },
         {
             type: "normal",
-
             title: "Affiliates",
             icon: <Icon icon="dashicons:update-alt" />,
             component: <Affliates />
         },
         {
             type: "normal",
-
             title: "Setting",
             icon: <Icon icon="ant-design:setting-filled" />
         },
