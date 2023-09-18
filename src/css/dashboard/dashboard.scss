@@ -2961,6 +2961,16 @@ $gradient-degree: 0deg;
                     &::after {
                         display: none;
                     }
+                    .gift-box {
+                        .item {
+                            color: white;
+                        }
+                        .item-true {
+                            background-color: white !important;
+                            color: $color-1 !important;
+                        }
+
+                    }
                 }
             }
             .trust-pilot,

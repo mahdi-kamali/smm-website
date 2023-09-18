@@ -2759,6 +2759,13 @@
   .user-dashboard .panel-free-creidits .email-verify .right::after {
     display: none;
   }
+  .user-dashboard .panel-free-creidits .email-verify .right .gift-box .item {
+    color: white;
+  }
+  .user-dashboard .panel-free-creidits .email-verify .right .gift-box .item-true {
+    background-color: white !important;
+    color: #0d4bf4 !important;
+  }
   .user-dashboard .panel-free-creidits .trust-pilot,
   .user-dashboard .panel-free-creidits .share-tweet {
     display: flex !important;
