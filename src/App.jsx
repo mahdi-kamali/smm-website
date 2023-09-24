@@ -7,6 +7,7 @@ import "./css/global/global.css"
 import "./css/style/style.css"
 import "./css/animation/aniamtions.css"
 import "./css/dashboard/dashboard.css"
+import "./css/dashboard/admin/adminDashboard.css"
 import "./css/pop-up/pop-up.css"
 import "./css/accordion/accordion.css"
 import "./css/select-box/selectBox.css"
@@ -72,6 +73,7 @@ import BlogPage from "./jsx/pages/blog-page/BlogPage"
 import { useState } from "react"
 import AboutUsPage from "./jsx/pages/about-us-page/AboutUsPage"
 import ContactUsPage from "./jsx/pages/contact-us-page/ContactUsPage"
+import AdminDashboard from "./jsx/dashboards/admin/AdminDashboard"
 
 
 
@@ -110,6 +112,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route
             path="/user/dashboard"
             element={
