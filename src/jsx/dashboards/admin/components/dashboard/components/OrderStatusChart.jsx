@@ -1,6 +1,7 @@
 import Select from 'react-select'
-import { Bar } from 'react-chartjs-2';
 import { Icon } from "@iconify/react";
+
+import { Bar } from 'react-chartjs-2';
 
 import {
     Chart as ChartJS,
@@ -11,8 +12,6 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { useRef, useState } from 'react';
-import { useEffect } from 'react';
 
 
 ChartJS.register(
@@ -38,28 +37,25 @@ const chartModeOptions = [
 ]
 
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-
-
-export const temp = {
-    labels,
+export const tempData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     datasets: [
         {
             label: 'Dataset 1',
-            data: [10, 15, 10, 25, 22, 20, 15],
+            data: [10, 15, 10, 25, 22, 20, 15, 12, 18, 14, 22, 28], // Add data for all 12 months
             backgroundColor: 'green',
             stack: 'Stack 1',
         },
         {
             label: 'Dataset 2',
-            data: [10, 5, 15, 6, 20, 10, 10],
+            data: [10, 5, 15, 6, 20, 10, 10, 8, 12, 7, 15, 18], // Add data for all 12 months
             backgroundColor: '#ffc36c',
             stack: 'Stack 1',
         },
         {
             label: 'Dataset 3',
-            data: [3, 7, 30, 10, 12, 5, 22],
+            data: [3, 7, 30, 10, 12, 5, 22, 18, 25, 20, 15, 10], // Add data for all 12 months
             backgroundColor: '#ff6982',
             stack: 'Stack 1',
         }
@@ -94,26 +90,6 @@ const options = {
 
 export default function OrderStatusChart() {
 
-    const [chartData, setChartData] = useState(temp)
-
-
-
-    const updateChart = (value) => {
-        const data = chartData
-        data.datasets.forEach((item, index) => {
-            if (value === false) {
-                item.stack = 1
-            }
-            else {
-                item.stack = `Stack ${index}`
-            }
-        })
-        setChartData({ ...data })
-    }
-
-
-
-
 
 
 
@@ -135,9 +111,6 @@ export default function OrderStatusChart() {
                     <Select
                         placeholder={"Chart Mode"}
                         options={chartModeOptions}
-                        onChange={(e) => {
-                            updateChart(e.value)
-                        }}
                         isSearchable={false}
                     />
 
@@ -177,7 +150,7 @@ export default function OrderStatusChart() {
             <div className="chart">
                 <Bar
                     options={options}
-                    data={chartData}
+                    data={tempData}
                 />
             </div>
 

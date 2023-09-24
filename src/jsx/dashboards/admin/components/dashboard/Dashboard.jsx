@@ -1,10 +1,18 @@
 import { Icon } from "@iconify/react";
 import OrderStatusChart from "./components/OrderStatusChart";
-
+import ReviewByCountry from "./components/ReviewByCountry";
+import RecentCustomers from "./components/RecentCustomers";
+import PopularCharts from "./components/PopularCharts";
+import TodoList from "./components/TodoList";
 
 
 
 export default function Dashboard() {
+
+
+
+
+
     return (
         <div className="dashboard">
             <div className="intro">
@@ -97,10 +105,13 @@ export default function Dashboard() {
                 </div>
             </div>
             <div className="row-one">
-                 <OrderStatusChart/>
-                <div className="review-by-country box">
-                   
-                </div>
+                <OrderStatusChart />
+                <ReviewByCountry />
+            </div>
+            <div className="row-two">
+                <RecentCustomers />
+                <PopularCharts/>
+                <TodoList/>
             </div>
         </div>
     )
