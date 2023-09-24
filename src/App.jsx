@@ -112,7 +112,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route
             path="/user/dashboard"
             element={
