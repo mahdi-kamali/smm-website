@@ -17,13 +17,13 @@ $gradient-degree: 0deg;
 
 .admin-dashboard {
     width: 100%;
-    min-height: 100vw;
     padding-top: 6em;
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 1300px;
     margin: 0 auto;
+    padding-bottom: 2em;
     nav {
         background-color: white;
         display: flex;
@@ -34,6 +34,7 @@ $gradient-degree: 0deg;
         gap: 2rem;
         top: 6em;
         width: 90%;
+        z-index: 3;
         .item {
             display: flex;
             align-items: center;
@@ -56,7 +57,7 @@ $gradient-degree: 0deg;
         width: 100%;
         // padding: 2em;
         border-radius: 1rem;
-        .dashboard {
+        .admin-dashboard-panel {
             .intro {
                 display: flex;
                 justify-content: space-between;
@@ -479,9 +480,11 @@ $gradient-degree: 0deg;
                             align-items: center;
                             background-color: $panel-color-3;
                             color: white;
-                            padding: 0.5em 2em;
+                            padding: 0.5em 1em;
                             gap: 0.5rem;
                             border-radius: 0.5rem;
+                            margin-left: auto;
+                            margin-right: 2rem;
                         }
                         .input-box {
                             display: flex;
@@ -534,6 +537,158 @@ $gradient-degree: 0deg;
                     }
                 }
             }
+            .row-three {
+                display: grid;
+                grid-template-columns: 30rem 1fr;
+                margin-top: 1rem;
+                gap: 1rem;
+                align-items: start;
+
+                .economy-review {
+                    .chart {
+                        margin-top: 1rem;
+                    }
+                }
+                .message-all {
+                    .list {
+                        margin-top: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        max-height: 25rem;
+                        overflow: auto;
+                        padding-right: 1em;
+                        .item {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.25rem;
+                            position: relative;
+                            background-color: white;
+                            padding: 1.25em 2em;
+                            border-radius: 0.5rem;
+                            .item-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                font-weight: bold;
+                                .title {
+                                    font-size: 1rem;
+                                }
+                                .date {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.25rem;
+                                    font-size: 0.8rem;
+                                }
+                            }
+                            .item-body {
+                                .message {
+                                    font-size: 0.9rem;
+                                    opacity: 0.8;
+                                    line-height: 1.5;
+                                    margin-top: 0.3rem;
+                                }
+                            }
+                            .item-buttons {
+                                display: flex;
+                                align-items: center;
+                                justify-content: start;
+                                gap: 0.5rem;
+                                margin-top: 0.5rem;
+                                button {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.25rem;
+                                    color: white;
+                                    padding: 0.4em 1em;
+                                    border-radius: 100rem;
+                                    letter-spacing: 2px;
+                                    font-size: 0.8rem;
+                                    text-transform: capitalize;
+                                }
+                                .delete {
+                                    background-color: $panel-color-6;
+                                }
+                                .published {
+                                    background-color: $panel-color-3;
+                                }
+                                .not-published {
+                                    background-color: $panel-color-4;
+                                }
+                            }
+                        }
+                    }
+                    .create-new {
+                        display: flex;
+                        align-items: center;
+                        background-color: $panel-color-3;
+                        color: white;
+                        padding: 0.5em 1em;
+                        gap: 0.5rem;
+                        border-radius: 0.5rem;
+                        margin-left: auto;
+                        margin-right: 2rem;
+                        margin-top: 2rem;
+                    }
+                    .input-box {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        font-family: inherit;
+                        letter-spacing: 2px;
+                        margin-top: 2rem;
+                        input[type="text"] {
+                            all: unset;
+                            background-color: white;
+                            padding: 1em;
+                            border-radius: 0.5rem;
+                        }
+                        label {
+                            display: flex;
+                            align-items: center;
+                            padding: 1em;
+                            gap: 0.5rem;
+                        }
+                        textarea {
+                            resize: none;
+                            border: none !important;
+                            outline: none !important;
+                            letter-spacing: 2px;
+                            font-weight: bold;
+                            width: 100%;
+                            margin-top: 1rem;
+                            border-radius: 0.5rem;
+                            font-family: inherit;
+                            padding: 1em;
+                        }
+                        .buttons {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 0.5rem;
+                            button {
+                                display: flex;
+                                align-content: center;
+                                justify-content: center;
+                                color: white;
+                                letter-spacing: 2px;
+                                text-transform: uppercase;
+                                padding: 0.5em 2em;
+                                border-radius: 100rem;
+                                margin-top: 1rem;
+                            }
+                            .submit {
+                                background-color: $panel-color-3;
+                            }
+                            .cancel {
+                                background-color: $panel-color-6;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .admin-services {
         }
     }
 }

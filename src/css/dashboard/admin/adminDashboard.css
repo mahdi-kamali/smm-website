@@ -1,12 +1,12 @@
 .admin-dashboard {
   width: 100%;
-  min-height: 100vw;
   padding-top: 6em;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 1300px;
   margin: 0 auto;
+  padding-bottom: 2em;
 }
 .admin-dashboard nav {
   background-color: white;
@@ -18,6 +18,7 @@
   gap: 2rem;
   top: 6em;
   width: 90%;
+  z-index: 3;
 }
 .admin-dashboard nav .item {
   display: flex;
@@ -40,7 +41,7 @@
   width: 100%;
   border-radius: 1rem;
 }
-.admin-dashboard .content .dashboard .intro {
+.admin-dashboard .content .admin-dashboard-panel .intro {
   display: flex;
   justify-content: space-between;
   color: white;
@@ -48,28 +49,28 @@
   border-radius: 1rem 1rem 0 0;
   padding: 1.5em 4em;
 }
-.admin-dashboard .content .dashboard .intro .left {
+.admin-dashboard .content .admin-dashboard-panel .intro .left {
   display: flex;
   flex-direction: column;
   letter-spacing: 1px;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .intro .left h1 {
+.admin-dashboard .content .admin-dashboard-panel .intro .left h1 {
   text-transform: uppercase;
 }
-.admin-dashboard .content .dashboard .intro .right {
+.admin-dashboard .content .admin-dashboard-panel .intro .right {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.admin-dashboard .content .dashboard .intro .right .date {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .date {
   gap: 0.5rem;
   display: flex;
   align-items: center;
   font-weight: bold;
   font-size: 1.5rem;
 }
-.admin-dashboard .content .dashboard .intro .right .notif {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .notif {
   display: flex;
   align-items: center;
   padding-right: 0.75em;
@@ -80,7 +81,7 @@
   font-weight: bold;
   text-transform: capitalize;
 }
-.admin-dashboard .content .dashboard .intro .right .notif span {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .notif span {
   width: 4ch;
   height: 4ch;
   display: flex;
@@ -89,19 +90,19 @@
   border-radius: 50%;
   color: black;
 }
-.admin-dashboard .content .dashboard .intro .right .new-orders {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .new-orders {
   background-color: #ffa938;
 }
-.admin-dashboard .content .dashboard .intro .right .new-orders span {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .new-orders span {
   background-color: white;
 }
-.admin-dashboard .content .dashboard .intro .right .new-messages {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .new-messages {
   background-color: #0fac6d;
 }
-.admin-dashboard .content .dashboard .intro .right .new-messages span {
+.admin-dashboard .content .admin-dashboard-panel .intro .right .new-messages span {
   background-color: white;
 }
-.admin-dashboard .content .dashboard .quick-view {
+.admin-dashboard .content .admin-dashboard-panel .quick-view {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -110,7 +111,7 @@
   padding-top: 0;
   border-radius: 0 0 1rem 1rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item {
   padding: 1.5em;
   color: white;
   border-radius: 0.5rem;
@@ -119,136 +120,136 @@
   flex-direction: column;
   background-image: black;
 }
-.admin-dashboard .content .dashboard .quick-view .item:nth-child(1) {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item:nth-child(1) {
   background-color: #64acfe;
 }
-.admin-dashboard .content .dashboard .quick-view .item:nth-child(2) {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item:nth-child(2) {
   background-color: #3edbbc;
 }
-.admin-dashboard .content .dashboard .quick-view .item:nth-child(3) {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item:nth-child(3) {
   background-color: #ffc36c;
 }
-.admin-dashboard .content .dashboard .quick-view .item:nth-child(4) {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item:nth-child(4) {
   background-color: #ff6982;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-header {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-header {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.25rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-body {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-body {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 0.5rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-body span {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-body span {
   font-size: 2.5rem;
   font-weight: bold;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-body svg {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-body svg {
   font-size: 2.5rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-footer {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-footer span {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-footer span {
   display: flex;
   align-items: center;
   border-radius: 100rem;
   gap: 0.25rem;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-footer span:last-child {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-footer span:last-child {
   background-color: white;
   color: black;
   padding: 0.4em 0.75em;
 }
-.admin-dashboard .content .dashboard .quick-view .item .item-footer span svg {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .item .item-footer span svg {
   font-size: 0.9rem;
   color: #0fac6d;
 }
-.admin-dashboard .content .dashboard .quick-view .progressing .item-footer svg {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .progressing .item-footer svg {
   color: #0fac6d;
 }
-.admin-dashboard .content .dashboard .quick-view .regressing .item-footer svg {
+.admin-dashboard .content .admin-dashboard-panel .quick-view .regressing .item-footer svg {
   rotate: 180deg;
   color: #dc3545 !important;
 }
-.admin-dashboard .content .dashboard .box {
+.admin-dashboard .content .admin-dashboard-panel .box {
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
   padding: 2em;
   background-color: #d7e1ff;
 }
-.admin-dashboard .content .dashboard .box .info {
+.admin-dashboard .content .admin-dashboard-panel .box .info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   letter-spacing: 1px;
 }
-.admin-dashboard .content .dashboard .box .info .left {
+.admin-dashboard .content .admin-dashboard-panel .box .info .left {
   display: flex;
   flex-direction: column;
 }
-.admin-dashboard .content .dashboard .box .info .left h2 {
+.admin-dashboard .content .admin-dashboard-panel .box .info .left h2 {
   text-transform: uppercase;
   font-size: 1.3rem;
 }
-.admin-dashboard .content .dashboard .box .info .left small {
+.admin-dashboard .content .admin-dashboard-panel .box .info .left small {
   margin-top: 0.5rem;
 }
-.admin-dashboard .content .dashboard .box .info .right {
+.admin-dashboard .content .admin-dashboard-panel .box .info .right {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-one {
+.admin-dashboard .content .admin-dashboard-panel .row-one {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 1rem;
   gap: 1rem;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .summary {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .summary {
   display: flex;
   align-items: center;
   gap: 2rem;
   margin-top: 1.5rem;
   padding-left: 1em;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .summary .item {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .summary .item {
   display: flex;
   flex-direction: column;
   align-items: start;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .summary .item .item-header {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .summary .item .item-header {
   font-weight: bold;
   font-size: 1.5rem;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .summary .item .item-body {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .summary .item .item-body {
   margin-top: 0.5rem;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   gap: 0.25rem;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .summary .item .item-body svg {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .summary .item .item-body svg {
   font-size: 0.6rem;
 }
-.admin-dashboard .content .dashboard .row-one .order-status .chart {
+.admin-dashboard .content .admin-dashboard-panel .row-one .order-status .chart {
   margin-top: 1rem;
 }
-.admin-dashboard .content .dashboard .row-two {
+.admin-dashboard .content .admin-dashboard-panel .row-two {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 1rem;
   gap: 1rem;
   align-items: start;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
@@ -256,25 +257,25 @@
   overflow: auto;
   max-height: 30rem;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item {
   display: flex;
   align-items: center;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-left {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-left {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-left .user-image img {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-left .user-image img {
   width: 2.5rem;
   border-radius: 50%;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-left .user-info {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-left .user-info {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-left .user-info .name {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-left .user-info .name {
   font-weight: bold;
   font-size: 0.9rem;
   overflow: hidden;
@@ -286,65 +287,65 @@
   line-clamp: 1;
   -webkit-box-orient: vertical;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-left .user-info .id {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-left .user-info .id {
   font-size: 0.8rem;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-mid {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-mid {
   margin-left: 1rem;
   display: flex;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-mid .status {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-mid .status {
   border-radius: 100rem;
   padding: 0.3em 0.75em;
   color: white;
   font-size: 0.8rem;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-mid .paid {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-mid .paid {
   background-color: green;
 }
-.admin-dashboard .content .dashboard .row-two .recent-customers .customers .item .item-right {
+.admin-dashboard .content .admin-dashboard-panel .row-two .recent-customers .customers .item .item-right {
   margin-left: auto;
   font-size: 1.2rem;
   font-weight: bold;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories {
   display: flex;
   padding-bottom: 0;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories .item {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories .item {
   display: flex;
   align-items: center;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories .item .item-left img {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories .item .item-left img {
   width: 2.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories .item .item-right {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories .item .item-right {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.8rem;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories .item .item-right .title {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories .item .item-right .title {
   text-transform: capitalize;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .categories .item .item-right .orders {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .categories .item .item-right .orders {
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 0.9rem;
 }
-.admin-dashboard .content .dashboard .row-two .popular-categories .chart {
+.admin-dashboard .content .admin-dashboard-panel .row-two .popular-categories .chart {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 1.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -352,7 +353,7 @@
   overflow: auto;
   max-height: 23.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -364,17 +365,17 @@
   position: relative;
   padding-bottom: 1.5em;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-info .item-header h2 {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-info .item-header h2 {
   font-size: 1rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-info .item-body {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-info .item-body {
   margin-top: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-info .item-body p {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-info .item-body p {
   font-size: 0.8rem;
   opacity: 0.9;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-date {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-date {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -382,7 +383,7 @@
   bottom: -0.5rem;
   color: black;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-date .property {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-date .property {
   display: flex;
   align-items: center;
   font-size: 0.7rem;
@@ -392,16 +393,16 @@
   padding: 0.5em 1em;
   border-radius: 100rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-date .property svg {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-date .property svg {
   font-size: 0.8rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-buttons {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-buttons {
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-buttons button {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-buttons button {
   font-size: 0.8rem;
   padding: 0.5em 1em;
   border-radius: 100rem;
@@ -411,47 +412,49 @@
   color: white;
   gap: 0.25rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-buttons button span {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-buttons button span {
   line-height: 0;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-buttons .status {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-buttons .status {
   background-color: #0fac6d;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item .item-buttons .delete {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item .item-buttons .delete {
   background-color: #dc3545;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .list .item-true {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .list .item-true {
   background-color: #0fac6d;
   color: white;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new {
   display: flex;
   margin-top: 1rem;
   width: 100%;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .create-new {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .create-new {
   display: flex;
   align-items: center;
   background-color: #0fac6d;
   color: white;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   gap: 0.5rem;
   border-radius: 0.5rem;
+  margin-left: auto;
+  margin-right: 2rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box {
   display: flex;
   flex-direction: column;
   width: 100%;
   font-family: inherit;
   letter-spacing: 2px;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box input {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box input {
   all: unset;
   background-color: white;
   padding: 1em;
   border-radius: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box textarea {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box textarea {
   resize: none;
   border: none !important;
   outline: none !important;
@@ -463,13 +466,13 @@
   font-family: inherit;
   padding: 1em;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box .buttons {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box .buttons button {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box .buttons button {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -480,9 +483,152 @@
   border-radius: 100rem;
   margin-top: 1rem;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box .buttons .submit {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box .buttons .submit {
   background-color: #0fac6d;
 }
-.admin-dashboard .content .dashboard .row-two .todo-list .add-new .input-box .buttons .cancel {
+.admin-dashboard .content .admin-dashboard-panel .row-two .todo-list .add-new .input-box .buttons .cancel {
+  background-color: #dc3545;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three {
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+  margin-top: 1rem;
+  gap: 1rem;
+  align-items: start;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .economy-review .chart {
+  margin-top: 1rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 25rem;
+  overflow: auto;
+  padding-right: 1em;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  background-color: white;
+  padding: 1.25em 2em;
+  border-radius: 0.5rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-header .title {
+  font-size: 1rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-header .date {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-body .message {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
+  margin-top: 0.3rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: white;
+  padding: 0.4em 1em;
+  border-radius: 100rem;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-buttons .delete {
+  background-color: #dc3545;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-buttons .published {
+  background-color: #0fac6d;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .list .item .item-buttons .not-published {
+  background-color: #ffa938;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .create-new {
+  display: flex;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.5em 1em;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  margin-left: auto;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: inherit;
+  letter-spacing: 2px;
+  margin-top: 2rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box input[type=text] {
+  all: unset;
+  background-color: white;
+  padding: 1em;
+  border-radius: 0.5rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box label {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  gap: 0.5rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box textarea {
+  resize: none;
+  border: none !important;
+  outline: none !important;
+  letter-spacing: 2px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  padding: 1em;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box .buttons button {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  color: white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.5em 2em;
+  border-radius: 100rem;
+  margin-top: 1rem;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box .buttons .submit {
+  background-color: #0fac6d;
+}
+.admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box .buttons .cancel {
   background-color: #dc3545;
 }/*# sourceMappingURL=adminDashboard.css.map */

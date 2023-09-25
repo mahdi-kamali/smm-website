@@ -153,8 +153,6 @@ export default function OrderStatusChart() {
                     data={tempData}
                 />
             </div>
-
-
         </div>
     )
 }

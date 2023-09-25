@@ -1,8 +1,12 @@
 import { useState } from "react"
 import Dashboard from "./components/dashboard/Dashboard"
 import { Icon } from "@iconify/react"
+import Services from "./components/services/Services"
+import Dropdown from 'react-dropdown';
 
 const AdminDashboard = () => {
+
+  
 
 
     const menu = [
@@ -14,7 +18,7 @@ const AdminDashboard = () => {
         {
             title: "Services",
             svg: <Icon icon="mdi:internet" />,
-            component: <Dashboard />
+            component: <Services />
         },
         ,
         {
@@ -76,6 +80,7 @@ const AdminDashboard = () => {
                 {
                     menu.map((item, index) => {
                         return <div
+                            onClick={() => { setSelectedMenu(item) }}
                             key={index}
                             className={`item selected-${item.title === selectedMenu.title}`}
                         >
@@ -87,6 +92,7 @@ const AdminDashboard = () => {
                     })
                 }
             </nav>
+
             <section className="content">
                 {selectedMenu.component}
             </section>

@@ -4,6 +4,12 @@ import ReviewByCountry from "./components/ReviewByCountry";
 import RecentCustomers from "./components/RecentCustomers";
 import PopularCharts from "./components/PopularCharts";
 import TodoList from "./components/TodoList";
+import Table from "../../../../cutsome-components/table/Table";
+import TableHeader from "../../../../cutsome-components/table/components/TableHeader";
+import TableBody from "../../../../cutsome-components/table/components/TableBody";
+import ItemHeader from "../../../../cutsome-components/table/components/ItemHeader";
+import EconomySummary from "./components/EconomySummary";
+import MessageAll from "./components/MessageAll";
 
 
 
@@ -14,7 +20,7 @@ export default function Dashboard() {
 
 
     return (
-        <div className="dashboard">
+        <div className="admin-dashboard-panel">
             <div className="intro">
                 <div className="left">
                     <h1>Hi, welcome back!</h1>
@@ -104,14 +110,21 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+
+
             <div className="row-one">
                 <OrderStatusChart />
                 <ReviewByCountry />
             </div>
+
             <div className="row-two">
                 <RecentCustomers />
-                <PopularCharts/>
-                <TodoList/>
+                <PopularCharts />
+                <TodoList />
+            </div>
+            <div className="row-three">
+                <MessageAll />
+                <EconomySummary />
             </div>
         </div>
     )
