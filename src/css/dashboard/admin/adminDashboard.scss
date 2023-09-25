@@ -688,7 +688,52 @@ $gradient-degree: 0deg;
                 }
             }
         }
-        .admin-services {
+        .admin-services-panel {
+            background-color: rebeccapurple;
+            padding: 2em;
+        }
+        .admin-users-panel {
+            .table {
+                img {
+                    border-radius: 50%;
+                }
+                .buttons {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: end;
+                    gap: 0.5rem;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0.4em 1em;
+                        border-radius: 100rem;
+                        color: white;
+                        gap: 0.25rem;
+                    }
+                    .block {
+                        background-color: $panel-color-6;
+                    }
+
+                    .edit {
+                        background-color: $panel-color-4;
+                    }
+                    .orders {
+                        background-color: $panel-color-3;
+                    }
+                }
+                .date-time {
+                    display: flex;
+                    flex-direction: column;
+                    span {
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        gap: 0.25rem;
+                    }
+                }
+            }
         }
     }
 }

@@ -33,6 +33,8 @@ import ItemHeader from '../../cutsome-components/table/components/ItemHeader';
 import TableBody from '../../cutsome-components/table/components/TableBody';
 import Row from '../../cutsome-components/table/components/Row';
 import Property from '../../cutsome-components/table/components/Property';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
@@ -6920,12 +6922,18 @@ const headerList = [
 
 
 
+
+
+
 const ServicesPage = () => {
 
     servicesPoster.fr = 10
     servicesPosterWave.fr = 10
     servicesTextuareBackground.fr = 5
     const [carsdCount, setCardsCount] = useState(5)
+
+
+
 
 
     return (
@@ -7976,7 +7984,7 @@ const ServicesPage = () => {
                 </Swiper>
             </section>
 
-            
+
             <section className="search">
                 <div className="left">
                     <img src={puzzleMan} alt="" />

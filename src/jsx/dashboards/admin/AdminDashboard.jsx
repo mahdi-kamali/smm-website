@@ -3,6 +3,7 @@ import Dashboard from "./components/dashboard/Dashboard"
 import { Icon } from "@iconify/react"
 import Services from "./components/services/Services"
 import Dropdown from 'react-dropdown';
+import Users from "./components/users/Users";
 
 const AdminDashboard = () => {
 
@@ -36,7 +37,7 @@ const AdminDashboard = () => {
         {
             title: "Users",
             svg: <Icon icon="mdi:users" />,
-            component: <Dashboard />
+            component: <Users />
         },
         {
             title: "Comments",

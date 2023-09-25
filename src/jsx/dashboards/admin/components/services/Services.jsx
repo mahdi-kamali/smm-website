@@ -1,8 +1,8 @@
 
 export default function Services() {
   return (
-    <div className="admin-services">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores temporibus non quam illum doloremque natus iure, consequuntur maxime nobis animi architecto praesentium rerum labore ipsum veritatis earum. Temporibus, quia rerum!
+    <div className="admin-services-panel">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque voluptates voluptatum quo. Aperiam consequuntur rem ex itaque, quos perspiciatis eaque, sint pariatur odit officiis aliquid, incidunt beatae libero rerum asperiores!
     </div>
   )
 }

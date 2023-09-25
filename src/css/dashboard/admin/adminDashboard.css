@@ -631,4 +631,46 @@
 }
 .admin-dashboard .content .admin-dashboard-panel .row-three .message-all .input-box .buttons .cancel {
   background-color: #dc3545;
+}
+.admin-dashboard .content .admin-services-panel {
+  background-color: rebeccapurple;
+  padding: 2em;
+}
+.admin-dashboard .content .admin-users-panel .table img {
+  border-radius: 50%;
+}
+.admin-dashboard .content .admin-users-panel .table .buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 0.5rem;
+}
+.admin-dashboard .content .admin-users-panel .table .buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em 1em;
+  border-radius: 100rem;
+  color: white;
+  gap: 0.25rem;
+}
+.admin-dashboard .content .admin-users-panel .table .buttons .block {
+  background-color: #dc3545;
+}
+.admin-dashboard .content .admin-users-panel .table .buttons .edit {
+  background-color: #ffa938;
+}
+.admin-dashboard .content .admin-users-panel .table .buttons .orders {
+  background-color: #0fac6d;
+}
+.admin-dashboard .content .admin-users-panel .table .date-time {
+  display: flex;
+  flex-direction: column;
+}
+.admin-dashboard .content .admin-users-panel .table .date-time span {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.25rem;
 }/*# sourceMappingURL=adminDashboard.css.map */
