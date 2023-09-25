@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 
-const Table = (props) => {
+const Table = ({ children, columnsStyle }) => {
 
     const style = {
-        gridTemplateColumns: props.columnsStyle,
+        gridTemplateColumns: columnsStyle,
     }
 
 
 
- 
+
 
 
 
     return (
         <div className='table' style={style}   >
-            {props.children}
+            {children}
         </div>
     )
 }

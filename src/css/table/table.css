@@ -8,9 +8,9 @@
   grid-template-columns: inherit;
   gap: 1rem;
   background-color: #3165f3;
-  padding: 2em;
+  padding: 1.5em 2em;
   color: white;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 1rem;
 }
 .table .header .item {
   display: flex;

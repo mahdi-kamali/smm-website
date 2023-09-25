@@ -25,9 +25,9 @@ $panel-color-6: #dc3545;
         grid-template-columns: inherit;
         gap: 1rem;
         background-color: $color-3;
-        padding: 2em;
+        padding: 1.5em 2em;
         color: white;
-        border-radius: 1rem 1rem 0 0;
+        border-radius: 1rem ;
         .item {
             display: flex;
             align-items: center;

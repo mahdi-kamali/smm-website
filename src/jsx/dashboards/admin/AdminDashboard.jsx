@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react"
 import Services from "./components/services/Services"
 import Dropdown from 'react-dropdown';
 import Users from "./components/users/Users";
+import ContactsUs from "./components/contact-us/ContactsUs";
 
 const AdminDashboard = () => {
 
@@ -52,7 +53,7 @@ const AdminDashboard = () => {
         {
             title: "Contact Us",
             svg: <Icon icon="mdi:support" />,
-            component: <Dashboard />
+            component: <ContactsUs />
         },
         {
             title: "Economy",

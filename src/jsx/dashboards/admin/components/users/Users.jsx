@@ -139,7 +139,7 @@ export default function Users() {
                                     <div className={`property-body date-time`}>
                                         <span>
                                             <Icon icon="clarity:date-line" />
-                                             {date}
+                                            {date}
                                         </span>
                                         <br />
                                         <span>

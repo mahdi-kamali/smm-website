@@ -735,5 +735,31 @@ $gradient-degree: 0deg;
                 }
             }
         }
+        .admin-contact-us-panel {
+            .table {
+                .buttons {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    flex-wrap: wrap;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.25rem;
+                        padding: 0.5em 1em;
+                        border-radius: 100rem;
+                    }
+                    .reply-phone {
+                        background-color: $panel-color-3;
+                        color: white;
+                    }
+                    .reply-email {
+                        background-color: $panel-color-4;
+                    }
+                }
+            }
+        }
     }
 }

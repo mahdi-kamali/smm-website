@@ -673,4 +673,26 @@
   align-items: center;
   justify-content: start;
   gap: 0.25rem;
+}
+.admin-dashboard .content .admin-contact-us-panel .table .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.admin-dashboard .content .admin-contact-us-panel .table .buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.admin-dashboard .content .admin-contact-us-panel .table .buttons .reply-phone {
+  background-color: #0fac6d;
+  color: white;
+}
+.admin-dashboard .content .admin-contact-us-panel .table .buttons .reply-email {
+  background-color: #ffa938;
 }/*# sourceMappingURL=adminDashboard.css.map */
