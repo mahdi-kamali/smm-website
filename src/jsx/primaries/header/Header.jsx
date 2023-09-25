@@ -42,11 +42,11 @@ const Header = (
             route: "/about-us",
             icon: <Icon icon="mdi:about" />
         },
-        {
-            title: "API",
-            route: "/api",
-            icon: <Icon icon="ic:twotone-api" />
-        },
+        // {
+        //     title: "API",
+        //     route: "/api",
+        //     icon: <Icon icon="ic:twotone-api" />
+        // },
         {
             title: "Contact Us",
             route: "/contact-us",
@@ -55,6 +55,11 @@ const Header = (
         {
             title: "Services",
             route: "/services",
+            icon: <Icon icon="fluent:data-pie-24-filled" />
+        },
+        {
+            title: "Admin-panel",
+            route: "/admin/dashboard",
             icon: <Icon icon="fluent:data-pie-24-filled" />
         }
 
