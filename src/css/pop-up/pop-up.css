@@ -442,6 +442,71 @@
   gap: 0.5rem;
   font-size: 1.2rem;
 }
+.pop-up .admin-panel-edit-user-pop-up {
+  background-color: white;
+  padding-top: 0;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 25rem;
+  max-width: 40rem;
+  padding: 2em;
+}
+.pop-up .admin-panel-edit-user-pop-up .pop-up-body img {
+  margin: 2rem auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 13rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.pop-up .admin-panel-edit-user-pop-up .pop-up-body .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.7em 0em;
+  letter-spacing: 2px;
+  gap: 0.25rem;
+  border-radius: 100rem;
+}
+.pop-up .admin-panel-create-faq-pop-up {
+  background-color: white;
+  padding-top: 0;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 25rem;
+  max-width: 40rem;
+  padding: 2em;
+}
+.pop-up .admin-panel-create-faq-pop-up .pop-up-body textarea {
+  resize: vertical;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  font-family: inherit !important;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 20rem;
+}
+.pop-up .admin-panel-create-faq-pop-up .pop-up-body .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.7em 0em;
+  letter-spacing: 2px;
+  gap: 0.25rem;
+  border-radius: 100rem;
+}
 
 .show-pop-up {
   pointer-events: all !important;

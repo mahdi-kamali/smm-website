@@ -9,6 +9,10 @@ import { useEffect } from "react"
 import { useState } from "react"
 import Switch from "react-switch"
 import { Icon } from "@iconify/react"
+import { ADMIN_PANEL_EDIT_USER } from "../../../../pop-ups/Constaints"
+import EditUserInfoPopUp from "../../../../pop-ups/EditUserInfoPopUp"
+import { useDispatch } from "react-redux"
+import { showPopUp } from "../../../../../features/popUpReducer"
 
 
 
@@ -40,7 +44,17 @@ export default function Users() {
 
     }, [])
 
+    const dispatcher = useDispatch()
 
+
+
+    const openEditUserPopUp = (user) => {
+        dispatcher(showPopUp({
+            type: ADMIN_PANEL_EDIT_USER,
+            duration: 2000,
+            component: <EditUserInfoPopUp user={user} />
+        }))
+    }
 
 
 
@@ -64,10 +78,6 @@ export default function Users() {
                             const dateTime = new Date(item.createdAt)
                             const date = `${dateTime.getFullYear()}/${dateTime.getMonth()}/${dateTime.getDay()}`
                             const time = `${dateTime.getHours()}:${dateTime.getMinutes()}:${dateTime.getSeconds()}`
-                            console.log(item.createdAt);
-                            console.log(date)
-                            console.log(time)
-
                             return <Row
                                 headerList={headerList}
                                 key={index} >
@@ -159,7 +169,9 @@ export default function Users() {
                                                 Block
                                             </span>
                                         </button>
-                                        <button className="edit">
+                                        <button
+                                            className="edit"
+                                            onClick={() => openEditUserPopUp(item)}>
                                             <Icon icon="fluent:delete-32-filled" />
                                             <span>
                                                 Edit

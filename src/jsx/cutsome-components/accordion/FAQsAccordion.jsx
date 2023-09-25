@@ -25,7 +25,7 @@ const FAQsAccordion = ({ headerTitle, bodyTitle, isExpanded }) => {
                         {bodyTitle}
                     </p>
                 </div>
-            
+
             </div>
 
         </div>

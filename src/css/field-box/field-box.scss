@@ -167,3 +167,23 @@ $panel-color-6: #dc3545;
         }
     }
 }
+
+.admin-dashboard-field-box {
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    legend {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        margin: 0 1rem;
+        padding: 0 0.5em;
+    }
+
+    .field-body {
+        padding: 0.5em 1em;
+        input  {
+            all: unset;
+            width: 100%;
+        }
+    }
+}

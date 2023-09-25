@@ -761,5 +761,74 @@ $gradient-degree: 0deg;
                 }
             }
         }
+
+        .admin-panel-faqs {
+            .selected-faqs {
+                display: flex;
+                flex-direction: column;
+                padding: 3em;
+                .header {
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    padding: 1em;
+                    gap: 1rem;
+                    .left {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.75rem;
+                    }
+                    .right {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        button {
+                            display: flex;
+                            align-items: center;
+                            background-color: $panel-color-3;
+                            color: white;
+                            padding: 0.5em 1em;
+                            gap: 0.25rem;
+                            letter-spacing: 1px;
+                            border-radius: 100rem;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+                .body {
+                    column-count: 3;
+                    grid-template-columns: repeat(3,1fr);
+                    column-rule: 2px dashed rgb(180, 180, 180);
+                   
+                    .item {
+                        display:inline-block;
+                    }
+                    .item-buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        padding: 0 0em;
+                        button {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 0.25rem;
+                            padding: 0.5em 1.25em;
+                            border-radius: 100rem;
+                            color: white;
+                            letter-spacing: 1px;
+                            font-size: 0.9rem;
+                            &:first-child {
+                                background-color: $panel-color-6;
+                            }
+                            &:last-child {
+                                background-color: $panel-color-4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

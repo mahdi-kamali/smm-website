@@ -5,6 +5,7 @@ import Services from "./components/services/Services"
 import Dropdown from 'react-dropdown';
 import Users from "./components/users/Users";
 import ContactsUs from "./components/contact-us/ContactsUs";
+import Faqs from "./components/faqs/Faqs";
 
 const AdminDashboard = () => {
 
@@ -48,7 +49,7 @@ const AdminDashboard = () => {
         {
             title: "FAQS",
             svg: <Icon icon="wpf:faq" />,
-            component: <Dashboard />
+            component: <Faqs />
         },
         {
             title: "Contact Us",

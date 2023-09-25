@@ -695,4 +695,71 @@
 }
 .admin-dashboard .content .admin-contact-us-panel .table .buttons .reply-email {
   background-color: #ffa938;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs {
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .header {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1em;
+  gap: 1rem;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .header .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .header .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .header .right button {
+  display: flex;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.5em 1em;
+  gap: 0.25rem;
+  letter-spacing: 1px;
+  border-radius: 100rem;
+  font-size: 1rem;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body {
+  -moz-column-count: 3;
+       column-count: 3;
+  grid-template-columns: repeat(3, 1fr);
+  -moz-column-rule: 2px dashed rgb(180, 180, 180);
+       column-rule: 2px dashed rgb(180, 180, 180);
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item {
+  display: inline-block;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0em;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5em 1.25em;
+  border-radius: 100rem;
+  color: white;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons button:first-child {
+  background-color: #dc3545;
+}
+.admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons button:last-child {
+  background-color: #ffa938;
 }/*# sourceMappingURL=adminDashboard.css.map */
