@@ -51,7 +51,6 @@ export default function Blogs() {
         }))
     }
 
-
     const handleOnEditBlogClick = (blog) => {
         dispatcher(showPopUp({
             type: ADMIN_PANEL_CREATE_BLOG,

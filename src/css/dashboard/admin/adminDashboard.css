@@ -863,6 +863,29 @@
   background-color: #dc3545;
   color: white;
 }
+.admin-dashboard .content .admin-panel-tickets .controlls-property {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.admin-dashboard .content .admin-panel-tickets .controlls-property button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.admin-dashboard .content .admin-panel-tickets .controlls-property button:first-child {
+  background-color: #ffa938;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-tickets .controlls-property button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
 
 @keyframes adminPanelFadeAnimation {
   from {

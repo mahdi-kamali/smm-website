@@ -2,11 +2,11 @@ import { useState } from "react"
 import Dashboard from "./components/dashboard/Dashboard"
 import { Icon } from "@iconify/react"
 import Services from "./components/services/Services"
-import Dropdown from 'react-dropdown';
 import Users from "./components/users/Users";
 import ContactsUs from "./components/contact-us/ContactsUs";
 import Faqs from "./components/faqs/Faqs";
 import Blogs from "./components/blogs/Blogs";
+import Tickets from "./components/tickets/Tickets";
 
 const AdminDashboard = () => {
 
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
         {
             title: "Tickets",
             svg: <Icon icon="majesticons:tickets" />,
-            component: <Dashboard />
+            component: <Tickets />
         },
         ,
         {
@@ -60,11 +60,6 @@ const AdminDashboard = () => {
         {
             title: "Economy",
             svg: <Icon icon="tdesign:money" />,
-            component: <Dashboard />
-        },
-        {
-            title: "Chat",
-            svg: <Icon icon="cryptocurrency:chat" />,
             component: <Dashboard />
         },
         {
