@@ -60,23 +60,23 @@
   .table {
     flex-direction: row;
   }
-  .table .header {
+  .table .table-header {
     display: none;
   }
-  .table .body {
+  .table .table-body {
     overflow: auto;
     grid-template-columns: 1fr;
   }
-  .table .body .row {
+  .table .table-body .row {
     gap: 0;
   }
-  .table .body .row .property {
+  .table .table-body .row .property {
     display: grid;
     grid-template-columns: 7ch 1fr;
     align-items: initial;
     gap: 1rem;
   }
-  .table .body .row .property .property-header {
+  .table .table-body .row .property .property-header {
     display: flex;
     padding: 0.5em;
     background-color: #3165f3;
@@ -84,17 +84,17 @@
     align-items: center;
     text-transform: capitalize;
   }
-  .table .body .row .property .property-body {
+  .table .table-body .row .property .property-body {
     display: flex;
     align-items: center;
   }
-  .table .body .row .property:first-child .property-header {
+  .table .table-body .row .property:first-child .property-header {
     border-radius: 0.5rem 0.5rem 0 0;
   }
-  .table .body .row .property:first-child .property-body {
+  .table .table-body .row .property:first-child .property-body {
     margin-bottom: 1rem;
   }
-  .table .body .row .property:last-child .property-header {
+  .table .table-body .row .property:last-child .property-header {
     border-radius: 0 0 0.5rem 0.5rem;
   }
 }/*# sourceMappingURL=table.css.map */

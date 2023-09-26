@@ -81,10 +81,10 @@ $panel-color-6: #dc3545;
 @media only screen and (max-width: 1100px) {
     .table {
         flex-direction: row;
-        .header {
+        .table-header {
             display: none;
         }
-        .body {
+        .table-body {
             overflow: auto;
             grid-template-columns: 1fr;
             .row {
