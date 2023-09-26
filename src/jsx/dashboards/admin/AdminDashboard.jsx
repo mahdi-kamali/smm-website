@@ -6,6 +6,7 @@ import Dropdown from 'react-dropdown';
 import Users from "./components/users/Users";
 import ContactsUs from "./components/contact-us/ContactsUs";
 import Faqs from "./components/faqs/Faqs";
+import Blogs from "./components/blogs/Blogs";
 
 const AdminDashboard = () => {
 
@@ -42,9 +43,9 @@ const AdminDashboard = () => {
             component: <Users />
         },
         {
-            title: "Comments",
-            svg: <Icon icon="fa6-solid:comments" />,
-            component: <Dashboard />
+            title: "Blogs",
+            svg: <Icon icon="fa-solid:blog" />,
+            component: <Blogs />
         },
         {
             title: "FAQS",

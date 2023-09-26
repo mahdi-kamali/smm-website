@@ -4,7 +4,7 @@ const TableHeader = (props) => {
 
 
     return (
-        <div className='header'>
+        <div className='table-header'>
             {props.children}
         
         </div>

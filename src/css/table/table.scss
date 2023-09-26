@@ -20,7 +20,7 @@ $panel-color-6: #dc3545;
     flex-direction: column;
     border-radius: 1rem;
 
-    .header {
+    .table-header {
         display: grid;
         grid-template-columns: inherit;
         gap: 1rem;
@@ -35,7 +35,7 @@ $panel-color-6: #dc3545;
             font-size: 1.2rem;
         }
     }
-    .body {
+    .table-body {
         display: flex;
         flex-direction: column;
         gap: 1rem;

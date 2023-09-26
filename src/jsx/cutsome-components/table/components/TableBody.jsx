@@ -5,7 +5,7 @@ const TableBody = (props) => {
 
 
   return (
-    <div className='body'  >
+    <div className='table-body'  >
       {props.children}
     </div>
   )
