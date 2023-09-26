@@ -2,10 +2,17 @@ import { Icon } from '@iconify/react'
 import React from 'react'
 import { useState } from 'react'
 
+
+
+
+
 const FAQsAccordion = ({ headerTitle, bodyTitle, isExpanded }) => {
 
 
     const [expanded, setExpanded] = useState(isExpanded)
+
+
+    
 
 
 
@@ -28,6 +35,7 @@ const FAQsAccordion = ({ headerTitle, bodyTitle, isExpanded }) => {
 
             </div>
 
+            
         </div>
     )
 }

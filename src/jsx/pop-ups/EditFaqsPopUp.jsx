@@ -9,9 +9,7 @@ import FieldBody from "../dashboards/admin/components/tools/fieldset/FieldBody"
 
 
 
-export default function CreateFaqsPopUp() {
-
-
+export default function EditFaqsPopUp({faqs}) {
 
 
 
@@ -35,7 +33,7 @@ export default function CreateFaqsPopUp() {
 
             <div className="pop-up-header">
                 <h1>
-                    Create Faqs
+                    Edit Faqs
                 </h1>
             </div>
             <div className="pop-up-body">
@@ -48,7 +46,7 @@ export default function CreateFaqsPopUp() {
                         <input
                             type="text"
                             name="question"
-                            defaultValue={""} />
+                            defaultValue={faqs.question} />
                     </FieldBody>
                 </AdminPanelFiledset>
 
@@ -60,10 +58,10 @@ export default function CreateFaqsPopUp() {
                     <FieldBody>
                         <textarea
                             cols={10}
-                            rows={10}
+                            rows={15}
                             type="number"
                             name="answer"
-                            defaultValue={""} />
+                            defaultValue={faqs.answer} />
                     </FieldBody>
                 </AdminPanelFiledset>
                 <button className="submit">

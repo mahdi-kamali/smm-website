@@ -762,4 +762,26 @@
 }
 .admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons button:last-child {
   background-color: #ffa938;
+}
+.admin-dashboard .content .admin-panel-faqs .table .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.admin-dashboard .content .admin-panel-faqs .table .buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+}
+.admin-dashboard .content .admin-panel-faqs .table .buttons .reply-phone {
+  background-color: #0fac6d;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-faqs .table .buttons .reply-email {
+  background-color: #ffa938;
 }/*# sourceMappingURL=adminDashboard.css.map */
