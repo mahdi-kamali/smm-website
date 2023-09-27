@@ -7,10 +7,12 @@ import ContactsUs from "./components/contact-us/ContactsUs";
 import Faqs from "./components/faqs/Faqs";
 import Blogs from "./components/blogs/Blogs";
 import Tickets from "./components/tickets/Tickets";
+import Economy from "./components/economy/Economy";
+import Orders from "./components/orders/Orders";
 
 const AdminDashboard = () => {
 
-  
+
 
 
     const menu = [
@@ -24,11 +26,10 @@ const AdminDashboard = () => {
             svg: <Icon icon="mdi:internet" />,
             component: <Services />
         },
-        ,
         {
             title: "Orders",
             svg: <Icon icon="ri:dashboard-fill" />,
-            component: <Dashboard />
+            component: <Orders />
         },
         ,
         {
@@ -60,7 +61,7 @@ const AdminDashboard = () => {
         {
             title: "Economy",
             svg: <Icon icon="tdesign:money" />,
-            component: <Dashboard />
+            component: <Economy />
         },
         {
             title: "Setting",

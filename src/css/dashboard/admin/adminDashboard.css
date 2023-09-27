@@ -886,6 +886,70 @@
   background-color: #dc3545;
   color: white;
 }
+.admin-dashboard .content .admin-panel-orders {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5em;
+  gap: 2rem;
+}
+.admin-dashboard .content .admin-panel-orders .intro {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+.admin-dashboard .content .admin-panel-orders .intro h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button {
+  padding: 0.5em 1em;
+  border-radius: 100rem;
+  opacity: 0.3;
+  transition: all 1s ease;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:nth-child(1) {
+  background-color: #0d4bf4;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:nth-child(2) {
+  background-color: #0fac6d;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:nth-child(3) {
+  background-color: #ffa938;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:nth-child(4) {
+  background-color: #dc3545;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:nth-child(5) {
+  background-color: #17a2b8;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list button:hover {
+  opacity: 1;
+}
+.admin-dashboard .content .admin-panel-orders .intro .order-list .status-true {
+  opacity: 1 !important;
+}
+.admin-dashboard .content .admin-panel-orders .status-property span {
+  padding: 0.3em 1em;
+  border-radius: 100rem;
+}
+.admin-dashboard .content .admin-panel-orders .status-property .completed {
+  background-color: #0fac6d;
+  color: white;
+}
 
 @keyframes adminPanelFadeAnimation {
   from {
