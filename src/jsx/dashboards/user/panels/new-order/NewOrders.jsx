@@ -118,8 +118,7 @@ const NewOrders = () => {
                         Service !
                     </h1>
                     <p>
-                        Explore our "New Order" feature, your gateway to kickstarting tailored social media marketing campaigns with ease. Whether you're aiming to boost engagement, expand your online presence, or embark on a fresh project, this section is designed to make ordering social media services a breeze. Start achieving your goals with "New Order" today!
-                    </p>
+                    At UTSMM, we are excited to offer a range of services to meet your needs. Choose your desired package, provide your account details, and let our SMM panel deliver the best possible service! Whether you're aiming to boost engagement, expand your online presence or embark on a fresh project, this section is designed to make ordering social media services a breeze.                    </p>
                 </div>
             </div>
             <div className="main-categories row">

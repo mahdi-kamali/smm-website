@@ -2055,6 +2055,9 @@ $gradient-degree: 0deg;
                 max-height: 80dvh;
                 overflow: scroll;
                 padding-right: 1em;
+                h1 {
+                    line-height: 1.5;
+                }
 
                 &::-webkit-scrollbar {
                     width: 7px; /* width of the entire scrollbar */
@@ -2873,6 +2876,7 @@ $gradient-degree: 0deg;
                     margin: 0;
                     overflow: initial;
                     max-height: max-content;
+                    
                 }
             }
         }

@@ -81,7 +81,7 @@ const eventsItems = [
     {
         type: "normal",
         title: "Service #5423 De Activated !",
-        message: "Service Ended. Thank you for your support. We appreciate your business.",
+        message: "We regret to inform you that your order has been cancelled. Please contact our support for more information. We apologize for any inconvenience caused.",
         date: "2023/5/9",
         time: "15:30",
         class: "danger",

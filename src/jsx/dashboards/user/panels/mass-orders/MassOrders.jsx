@@ -42,7 +42,7 @@ const MassOrders = () => {
                 <div className="right">
                     <h1>Mass Order</h1>
                     <p>
-                        Streamline your social media marketing with our Mass Order feature, designed to save you time and effort. Here's how it works:
+                        We offer a dedicated mass order section to streamline and efficiently manage your bulk SMM panel orders. Our mass order section allows you to submit and track large quantities of orders, ensuring a smooth and  delightful experience.
                     </p>
                 </div>
             </div>

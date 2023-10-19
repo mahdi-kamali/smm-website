@@ -27,9 +27,7 @@ const Footer = () => {
     <footer>
       <div className="left">
         <h1>
-          We focus on the needs of small to middle
-          market businesses to improve and grow
-          their return.
+          Take your social media game to the next level with UTSMM!
         </h1>
         <div className="social-media">
           <div className="item">

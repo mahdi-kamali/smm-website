@@ -13,6 +13,8 @@ $panel-color-4: #ffa938;
 $panel-color-5: #17a2b8;
 $panel-color-6: #dc3545;
 
+
+
 .main-page {
     display: flex;
     flex-direction: column;
@@ -69,6 +71,7 @@ $panel-color-6: #dc3545;
             h1 {
                 font-size: 3.75em;
                 line-height: 1.2;
+                text-transform: uppercase;
             }
 
             .fields {
@@ -166,11 +169,10 @@ $panel-color-6: #dc3545;
                 opacity: 0.5;
             }
         }
-        .roads {
-            display: grid;
-            grid-template-columns: 15rem 15rem 15rem 15rem;
-            gap: 2rem;
-            width: max-content;
+
+        .roads-marquee {
+            width: 1200px;
+            max-width: max-content;
             margin: 0 auto;
             .item {
                 display: flex;
@@ -213,7 +215,17 @@ $panel-color-6: #dc3545;
                     }
                 }
             }
+            .roads {
+                display: flex;
+                margin: 0;
+                gap: 2rem;
+                padding: 2em 0;
+                .item {
+                    max-width: 15rem;
+                }
+            }
         }
+
         .background {
             z-index: -2;
             mix-blend-mode: multiply;
@@ -678,9 +690,9 @@ $panel-color-6: #dc3545;
             width: max-content;
             align-self: center;
             padding: 0 3em;
-            padding-bottom: 3rem;
             margin-bottom: 3rem;
             position: relative;
+            width: 100%;
             .header {
                 display: flex;
                 align-items: center;
@@ -697,7 +709,8 @@ $panel-color-6: #dc3545;
                 display: flex;
                 justify-content: center;
                 align-items: start;
-                gap: 1rem;
+                gap: 3rem;
+                padding-bottom: 3em;
                 .item {
                     display: flex;
                     flex-direction: column;
@@ -752,6 +765,12 @@ $panel-color-6: #dc3545;
                     }
                 }
             }
+            .guidance-marquee {
+                max-width: max-content;
+                margin: 0 auto;
+                width: 1200px;
+            }
+
             .step-guidance-background {
                 position: absolute;
                 transform: rotatY(180deg);
@@ -1392,8 +1411,6 @@ $panel-color-6: #dc3545;
         }
     }
 }
-
-
 
 @media only screen and (max-width: 1100px) {
     .main-page {

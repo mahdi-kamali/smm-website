@@ -1912,6 +1912,9 @@
   overflow: scroll;
   padding-right: 1em;
 }
+.user-dashboard .panel-tickets .right .accordions h1 {
+  line-height: 1.5;
+}
 .user-dashboard .panel-tickets .right .accordions::-webkit-scrollbar {
   width: 7px; /* width of the entire scrollbar */
 }

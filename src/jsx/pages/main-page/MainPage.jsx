@@ -86,6 +86,8 @@ import MaxLineText from '../../cutsome-components/Text/MaxLineText';
 
 
 
+import Marquee from "react-fast-marquee";
+
 
 const MainPage = () => {
 
@@ -259,9 +261,9 @@ const MainPage = () => {
                 <div className="left">
                     <div className="content-container">
                         <h1>
-                            WE MAKE BEST <br />
-                            IN SOCIAL <br />
-                            MARKETING
+                            INGNITE your <br />
+                            social presence <br />
+                            with UTSMM
                         </h1>
 
                         <form
@@ -336,10 +338,19 @@ const MainPage = () => {
                         Why
                         <span className='accent-color'>Choose Us ?</span>
                     </h1>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer</p>
+                    <p>At UTSMM, we're not just another SMM panel, we're your strategic partner in maximizing your social media presence. Here's why choosing us sets you on the path to success.
+                    </p>
                 </div>
 
-                <marquee behavior="" direction="left">
+                <Marquee
+                    className='roads-marquee'
+                    pauseOnHover={true}
+                    speed={50}
+                    gradientColor='#f5f5f5'
+                    gradientWidth={200}
+                    gradient={true}
+
+                >
                     <div className="roads">
 
                         <div className="item">
@@ -348,7 +359,7 @@ const MainPage = () => {
                             </div>
                             <div className="item-body">
                                 <h2>Cheapest <span>Prices</span></h2>
-                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
+                                <p>UTSMM offer the most reasonable and cheapest possible price, starting at 0.0001$</p>
                             </div>
                         </div>
 
@@ -390,60 +401,7 @@ const MainPage = () => {
                             </div>
                         </div>
                     </div>
-                </marquee>
-
-                <div className='desktop' >
-                    <div className="roads">
-
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={firstIcon} />
-                            </div>
-                            <div className="item-body">
-                                <h2>Cheapest <span>Prices</span></h2>
-                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={secondIcon} />
-                            </div>
-                            <div className="item-body">
-                                <h2>
-                                    Fastest <span>Delivery</span>
-                                </h2>
-                                <p>We are proud to offer the fastest SMM services! Our team works hard to ensure that your order is processed and delivered as quickly as possible!</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-
-                            <div className="item-header">
-                                <img src={thirdIcon} />
-
-                            </div>
-                            <div className="item-body">
-                                <h2>
-                                    Multiple <span>Payment
-                                    </span>  Methods</h2>
-                                <p>Multiple payment options are accepted, so you can choose the one that is most convenient for you.</p>
-                            </div>
-                        </div>
-
-                        <div className="item">
-                            <div className="item-header">
-                                <img src={forthIcon} />
-
-
-                            </div>
-                            <div className="item-body">
-                                <h2>Highest <span>Prices</span> Quality</h2>
-                                <p>Our services are highest quality and 100% guaranteed because our priority is Customer Satisfaction just work with us once and you will enjoy!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </Marquee>
 
                 <div className="background">
                     <Lottie
@@ -463,7 +421,7 @@ const MainPage = () => {
 
             <section className="introduction">
 
-               
+
 
                 <div className="intro-background">
 
@@ -486,12 +444,13 @@ const MainPage = () => {
 
 
                 </div>
+
+
                 <div className="our-services">
                     <div className="header">
                         <h1>Our Services</h1>
                         <p>
-                            Connect with your audience and reach new heights with
-                            our expert social media marketing solutions.
+                            We have solution for everything you can imagine to help you reach new heights with our expert services.
                         </p>
                     </div>
                     <div className="body">
@@ -686,8 +645,7 @@ const MainPage = () => {
                             <span>Services</span>
                         </h1>
                         <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                            dummy text
+                            Unleash the power of social media with us
                         </p>
                     </div>
                     <div className="body">
@@ -781,80 +739,9 @@ const MainPage = () => {
                             Just Follow The Steps Blow
                         </h1>
                     </div>
-                    <div className="body desktop">
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepOneAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Sign Up</h1>
-                                <small>
-                                    Create an account to get started on our platform.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepTwoAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Go Dashboard</h1>
-                                <small>
-                                    Access your personalized dashboard with all the tools you need.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepThreeAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Choese  Service </h1>
-                                <small>Browse through our wide range of services and select what you need.</small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepFourAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1>Order</h1>
-                                <small>
-                                    Place an order for the service you've chosen and proceed.
-                                </small>
-                            </div>
-                        </div>
-                        <div className="item">
-                            <div className="item-header">
-                                <Lottie
-                                    animationData={stepFiveAnimation}
-                                    play
-                                    loop
-                                />
-                            </div>
-                            <div className="item-body">
-                                <h1> Enjoy & Peace !</h1>
-                                <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
-                            </div>
-                        </div>
-                    </div>
-                    <marquee behavior="" direction="">
+                    <Marquee
+                        className='guidance-marquee'
+                    >
                         <div className="body">
                             <div className="item">
                                 <div className="item-header">
@@ -927,8 +814,12 @@ const MainPage = () => {
                                     <small>Sit back, relax, and enjoy the benefits of our services. Peace of mind included!</small>
                                 </div>
                             </div>
+
+
                         </div>
-                    </marquee>
+                    </Marquee>
+
+
 
                     <div className="step-guidance-background">
                         <Lottie
@@ -989,8 +880,7 @@ const MainPage = () => {
                             </div>
                         </h1>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo voluptatibus similique temporibus dolores, possimus consequuntur! Dicta error amet, omnis accusamus nobis, dolor, dignissimos ad quam autem modi voluptatum porro magni?
+                            At UTSMM, we're committed to providing a wide range of dynamic social media marketing services provided to elevate your social media presence. We provide +5000 different services for different platforms. We specialize in platforms like Instagram, Telegram, Facebook, Twitter, and other platforms... ensuring your brand gets the spotlight it deserves. With UTSMM, your social media success is our priority!
                         </p>
                     </div>
                     <div className="right">
@@ -1005,9 +895,9 @@ const MainPage = () => {
 
                     </div>
                 </div>
-             
 
-            
+
+
 
             </section>
 
@@ -1570,41 +1460,6 @@ const MainPage = () => {
                 </form>
             </section>
 
-
-
-            {/* <section className='about-us'>
-                <div className="left">
-                    <Lottie
-                        animationData={aboutUs}
-                        play
-                        loop />
-                </div>
-                <div className="right">
-                    <div className="content">
-                        <h1>About Us</h1>
-                        <p>
-                            At our company, we specialize in creating and executing effective social media marketing strategies that help businesses build their brand and increase their online presence. We understand that social media is a crucial aspect of any successful marketing campaign, and we strive to stay up-to-date with the latest trends and best practices. Our team of experts is dedica
-                        </p>
-                        <div className="social-media">
-                            <div className="social">
-                                <Icon icon="ic:baseline-attach-email" />
-                                <span>example@gmail.com</span>
-                            </div>
-                            <div className="social">
-                                <Icon icon="ri:phone-fill" />
-                                <span>+1 202-918-2132</span>
-                            </div>
-                        </div>
-                        <button>Read More</button>
-                    </div>
-                </div>
-                <div className="wave-background">
-                    <Lottie
-                        animationData={customersReviewsWaveBackground}
-                        play
-                        loop />
-                </div>
-            </section> */}
 
         </main >
     )
