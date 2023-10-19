@@ -741,6 +741,9 @@ const MainPage = () => {
                     </div>
                     <Marquee
                         className='guidance-marquee'
+                        gradient={true}
+                        gradientColor='rgb(255,255,255)'
+                        speed={30}
                     >
                         <div className="body">
                             <div className="item">
