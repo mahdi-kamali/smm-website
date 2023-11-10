@@ -7,6 +7,8 @@ const { accessToken, STRIPE_SECRET_KEY } = require("../../../lib/envAccess")
 const User = require("../../../models/User")
 const OrderModel = require("../../../models/OrderModel")
 const crypto = require("crypto")
+const TrustpilotModel = require("../../../models/TrustpilotModel")
+const ShareModel = require("../../../models/ShareModel")
 
 
 
@@ -97,44 +99,6 @@ const clientRequest = [
 
 
 
-// Payment 
-
-router.get("/payment", async (req, res) => {
-
-    try {
-        const stripe = require('stripe')(STRIPE_SECRET_KEY);
-
-
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            mode: "payment",
-
-            line_items: clientRequest.map(item => {
-                const storeItem = storeItems.get(item.id)
-
-                return {
-                    price_data: {
-                        currency: "usd",
-                        product_data: {
-                            name: storeItem.name,
-                        },
-                        unit_amount: storeItem.priceInCents
-                    },
-                    quantity: item.quantity
-                }
-
-            }),
-
-            success_url: "http://localhost:3001/api/user/dashboard/payment/success",
-            cancel_url: "http://localhost:3001/api/user/dashboard/payment/canceled"
-        })
-
-        return res.redirect(session.url)
-    }
-    catch (e) {
-        return res.json(e)
-    }
-})
 
 
 
@@ -224,27 +188,114 @@ router.post("/order", async (req, res) => {
     }
 })
 
+router.get("/order", async (req, res) => {
+    try {
+        const token = req.headers.token
 
+        const email = jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
 
+        const user = await User.findOne({
+            email: email
+        })
 
-// CallBack Functions After Payment Actions
-router.get("/payment/success", async (req, res) => {
-
-    return res.json("pay success !")
+        const orders = await OrderModel.find({
+            userID: user["_id"]
+        })
+        return res.json(orders)
+    }
+    catch (e) {
+        return res.status(500).json("Error!")
+    }
 })
 
-router.get("/payment/cancel", async (req, res) => {
 
-    return res.json("pay canceled !")
+// Statistics 
+router.get("/statistics/overview", async (req, res) => {
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+
+        const user = await User.findOne({
+            email: email
+        })
+
+        const totalOrders = await OrderModel.find({
+            userID: user._id
+        })
+
+        let totalSpend = 0
+        let accountBalance = user.found
+        let activeOrders = 0
+
+        Array.from(totalOrders).forEach(order => {
+            totalSpend += order.charge
+            if (order.status == "active") {
+                activeOrders += 1;
+            }
+        })
+
+
+
+
+
+        return res.json({
+            totalSpend: totalSpend,
+            totalOrders: totalOrders.length,
+            accountBalance: accountBalance,
+            activeOrders: activeOrders
+        })
+    }
+    catch (e) {
+        return res.json(500).json("error")
+
+    }
+})
+
+router.get("/statistics/user", async (req, res) => {
+    const token = req.headers.token
+    const email = await jwt.verify(token, accessToken, (err, user) => {
+        return user.email
+    })
+    const user = await User.findOne({
+        email: email
+    })
+    return res.json(user)
+})
+
+
+router.get("/statistics/user-orders", async (req, res) => {
+
+    const token = req.headers.token
+    const email = await jwt.verify(token, accessToken, (err, user) => {
+        return user.email
+    })
+
+
+    const user = await User.findOne({
+        email: email
+    })
+
+
+
+    const activeOrders = await OrderModel.find({
+        userID: user._id,
+        status: {$nin : ["error" , "success"]}
+    })
+
+
+
+
+    return res.json(activeOrders)
 })
 
 
 
 
-
-
-
-// FreeCredits 
+// Free Credits 
 router.get("/gift/email-verify", async (req, res) => {
     try {
         const token = req.headers.token
@@ -255,7 +306,7 @@ router.get("/gift/email-verify", async (req, res) => {
             email: email
         })
 
-        if (user.emailVerified === true) {
+        if (user.emailVerified.isActive === true) {
             return res.json("You Already Verified Your Email !")
         }
 
@@ -286,7 +337,7 @@ router.post("/gift/email-verify", async (req, res) => {
             email: email
         })
 
-        if (user.emailVerified === true) {
+        if (user.emailVerified.isActive === true) {
             return res.json("You Already Verified Your Email !")
         }
 
@@ -308,6 +359,137 @@ router.post("/gift/email-verify", async (req, res) => {
         return res.status(500).json("Error !")
     }
 })
+
+
+router.post("/gift/trust-pilot", async (req, res) => {
+
+    try {
+        const { userID } = req.body
+        const file = req.files[0]
+
+        if (!file) {
+            return res.status(400).json("Please Insert your Prove First")
+        }
+
+
+        const trustPilot = await TrustpilotModel({
+            userID: userID,
+            image: file.filename
+        })
+
+
+        return res.json(await trustPilot.save())
+    }
+    catch (e) {
+
+        if (e.code === 11000) {
+            return res.status(400).json("You Already Submitted Your Prof , please wait for accepting. ")
+        }
+        return res.status(500).json("Error")
+    }
+})
+
+router.post("/gift/share", async (req, res) => {
+
+    try {
+
+        const file = req.files[0]
+        const { userID } = req.body
+
+
+        if (!file) {
+            return res.status(400).json("Please Insert Your Prof First!")
+        }
+
+        const share = new ShareModel({
+            userID: userID,
+            image: file.filename
+        })
+
+        await share.save()
+
+
+        return res.json("Your Prof Submited , please Wait")
+
+    }
+    catch (e) {
+        if (e.code === 11000) {
+            return res.status(400).json("You Already Submitted Your Prof , please wait for accepting. ")
+        }
+        return res.status(500).json("Error")
+    }
+})
+
+
+
+
+
+
+
+// Payment 
+
+router.get("/payment", async (req, res) => {
+
+    try {
+        const stripe = require('stripe')(STRIPE_SECRET_KEY);
+
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: "payment",
+
+            line_items: clientRequest.map(item => {
+                const storeItem = storeItems.get(item.id)
+
+                return {
+                    price_data: {
+                        currency: "usd",
+                        product_data: {
+                            name: storeItem.name,
+                        },
+                        unit_amount: storeItem.priceInCents
+                    },
+                    quantity: item.quantity
+                }
+
+            }),
+
+            success_url: "http://localhost:3001/api/user/dashboard/payment/success",
+            cancel_url: "http://localhost:3001/api/user/dashboard/payment/canceled"
+        })
+
+        return res.redirect(session.url)
+    }
+    catch (e) {
+        return res.json(e)
+    }
+})
+
+
+
+
+// CallBack Functions After Payment Actions
+router.get("/payment/success", async (req, res) => {
+
+    return res.json("pay success !")
+})
+
+router.get("/payment/cancel", async (req, res) => {
+
+    return res.json("pay canceled !")
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

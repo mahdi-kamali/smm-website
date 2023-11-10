@@ -16,7 +16,7 @@ const emailVerifiedModel = new mongoose.Schema({
         },
         sendedAt: {
             type: Date,
-        }
+        },
     }
 })
 
@@ -69,6 +69,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0.00
     },
+    image: {
+        type: String,
+        default: "/statics/user.png"
+    }
 })
 
 
