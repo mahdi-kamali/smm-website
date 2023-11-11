@@ -72,6 +72,10 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
         default: "/statics/user.png"
+    },
+    savedServices: {
+        type: [],
+        default: []
     }
 })
 

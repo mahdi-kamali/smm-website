@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const { isURL, isCurrency } = require("../lib/validator");
 
 
+
+
+
+
+
+
 const OrderModel = mongoose.Schema({
     serviceID: {
         type: String,
@@ -35,6 +41,16 @@ const OrderModel = mongoose.Schema({
     status: {
         type: String,
         default: "On Progress"
+    },
+    notification: {
+        type: {
+            header: String,
+            body: String
+        },
+        default: {
+            header: "Service #5423 Ending Soon ! ",
+            body: "Service ending. Grateful for your support. Questions? Reach out anytime. Thank you !"
+        }
     }
 })
 

@@ -211,7 +211,10 @@ router.get("/order", async (req, res) => {
 })
 
 
-// Statistics 
+// Statistics
+
+
+// Overview
 router.get("/statistics/overview", async (req, res) => {
     try {
         const token = req.headers.token
@@ -255,6 +258,8 @@ router.get("/statistics/overview", async (req, res) => {
     }
 })
 
+
+// User Information
 router.get("/statistics/user", async (req, res) => {
     const token = req.headers.token
     const email = await jwt.verify(token, accessToken, (err, user) => {
@@ -267,30 +272,119 @@ router.get("/statistics/user", async (req, res) => {
 })
 
 
+// User Orders
 router.get("/statistics/user-orders", async (req, res) => {
 
-    const token = req.headers.token
-    const email = await jwt.verify(token, accessToken, (err, user) => {
-        return user.email
-    })
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
 
 
-    const user = await User.findOne({
-        email: email
-    })
-
-
-
-    const activeOrders = await OrderModel.find({
-        userID: user._id,
-        status: {$nin : ["error" , "success"]}
-    })
+        const user = await User.findOne({
+            email: email
+        })
 
 
 
+        const activeOrders = await OrderModel.find({
+            userID: user._id,
+            status: { $nin: ["error", "success"] }
+        })
 
-    return res.json(activeOrders)
+
+
+
+        return res.json(activeOrders)
+    }
+    catch (e) {
+        return res.status(500).json("Error")
+    }
 })
+
+// User Saved Services
+router.get("/statistics/saved-services", async (req, res) => {
+    const token = req.headers.token
+    const user = await jwt.verify(token, accessToken, async (err, user) => {
+
+        const temp = await User.findOne({
+            email: user.email
+        })
+        return temp
+    })
+
+    const services = require("../../../services.json")
+
+    const userSavedServices = Array.from(user.savedServices)
+
+    const temp = userSavedServices.map((item, index) => {
+
+        const service = services.find((s) => {
+            return s.service === item
+        })
+
+        console.log(service)
+
+        if (!service) {
+            console.log(`isNot Valid ${service}  index = ${index} service = ${item}`)
+        } else
+            return service
+    }).filter(item => {
+        return item
+    })
+
+    user.savedServices = temp.map(item => { return item.service })
+
+
+    return res.json(temp)
+})
+
+router.post("/statistics/saved-services", async (req, res) => {
+    const { serviceID } = await req.body
+
+    const service = require("../../../services.json").find(
+        service => {
+            return service.service === serviceID
+        }
+    )
+
+    if (!service) {
+        return res.status(400).json("service not founded")
+    }
+
+    const token = req.headers.token
+
+    const user = await jwt.verify(token, accessToken, async (err, user) => {
+        const email = user.email
+        const temp = await User.findOne({
+            email: email
+        })
+        return temp
+    })
+
+    const savedServices = Array.from(user.savedServices)
+
+    const hasService = savedServices.includes(serviceID)
+
+    if (hasService) {
+        return res.status(403).json("You Already Have This Service.")
+    }
+
+    user.savedServices.push(serviceID)
+
+    return res.json(await user.save())
+})
+
+//
+router.get("/statistics/events", async (req, res) => {
+    const events = await OrderModel.find()
+
+    return res.json(events)
+})
+
+
+
 
 
 
@@ -427,6 +521,24 @@ router.post("/gift/share", async (req, res) => {
 
 
 // Payment 
+
+
+
+
+// Cryptomus Payment
+
+router.post("/payment/cryptomus", (req,res)=>{
+    return res.json("ok")
+})
+
+
+
+
+
+
+
+
+// Stripe
 
 router.get("/payment", async (req, res) => {
 

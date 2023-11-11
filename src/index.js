@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './features/userReducer';
 import popUpReducer from './features/popUpReducer';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -36,6 +37,11 @@ root.render(
 
   <React.StrictMode>
     <Provider store={store}>
+
+      <Helmet>
+        <title>My Page Title</title>
+        <meta name="cryptomus" content="5d8e6a03" />
+      </Helmet>
       <App />
     </Provider>
   </React.StrictMode>
