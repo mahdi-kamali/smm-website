@@ -1,16 +1,16 @@
 const express = require("express")
 const router = express.Router()
 const fs = require("fs")
-const axios = require("axios")
-const { SMM_SOTRE_BASE_URL, SMM_STORE_API_KEY } = require("../../lib/envAccess")
+const axios = require("axios");
+const { SMM_STORE } = require("../../lib/envAccess");
 
 
 
 
 
 setInterval(() => {
-    axios.get(SMM_SOTRE_BASE_URL
-        + `?key=${SMM_STORE_API_KEY}&action=services`
+    axios.get(SMM_STORE.BASE_URL
+        + `?key=${SMM_STORE.API_KEY}&action=services`
     )
         .then(data => {
             console.log("Catching Started ....")

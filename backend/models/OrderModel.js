@@ -6,9 +6,11 @@ const { isURL, isCurrency } = require("../lib/validator");
 
 
 
-
-
-const OrderModel = mongoose.Schema({
+const OrderModel = new mongoose.Schema({
+    service: {
+        type: {},
+        required: [true, "Service Info Missing!"]
+    },
     serviceID: {
         type: String,
         required: [true, "Please Enter serviceID"],
@@ -30,28 +32,16 @@ const OrderModel = mongoose.Schema({
         type: Number,
         required: [true, "Please Enter Charge"],
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
-    updateAt: {
-        type: Date,
-        default: Date.now()
-    },
     status: {
         type: String,
-        default: "On Progress"
+        default: "on progress"
     },
-    notification: {
-        type: {
-            header: String,
-            body: String
-        },
-        default: {
-            header: "Service #5423 Ending Soon ! ",
-            body: "Service ending. Grateful for your support. Questions? Reach out anytime. Thank you !"
-        }
+    events: []
+},
+    {
+        timestamps: true
     }
-})
+)
 
 module.exports = mongoose.model("Order", OrderModel)
+

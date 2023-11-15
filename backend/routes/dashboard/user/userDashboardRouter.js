@@ -3,16 +3,35 @@ const express = require("express")
 const TicketModule = require("../../../models/TicketModule")
 const router = express.Router()
 const jwt = require("jsonwebtoken")
-const { accessToken, STRIPE_SECRET_KEY } = require("../../../lib/envAccess")
+const { accessToken, STRIPE_SECRET_KEY, CRYPTOMUS } = require("../../../lib/envAccess")
 const User = require("../../../models/User")
 const OrderModel = require("../../../models/OrderModel")
 const crypto = require("crypto")
 const TrustpilotModel = require("../../../models/TrustpilotModel")
 const ShareModel = require("../../../models/ShareModel")
+const EventModel = require("../../../models/EventModel")
+const { default: axios } = require("axios")
 
 
 
 
+
+// setInterval(async () => {
+//     const orders = await OrderModel.find({
+//         status: "On Progress"
+//     })
+
+//     orders.forEach(async (order,index) => {
+//          order.updateAt = Date.now()
+//          await order.save()
+
+//          console.log(order)
+//     })
+
+
+
+
+// }, 5000)
 
 
 
@@ -102,13 +121,6 @@ const clientRequest = [
 
 
 
-
-
-
-
-
-
-
 // Order
 router.post("/order", async (req, res) => {
     try {
@@ -167,24 +179,34 @@ router.post("/order", async (req, res) => {
         }
 
 
-
-
-
         const order = new OrderModel({
+            service: targetService,
             serviceID: serviceID,
             userID: user["_id"],
             charge: priceForAll,
             quantity: quantity,
             link: link,
+            events: [await new EventModel({
+                type: "order",
+                date: Date.now(),
+                header: `Service ${serviceID} addedd`,
+                body: "ok thanks",
+                status: "On Progress",
+                userID: user._id
+            }).save()]
         })
+
         await order.save()
 
         user.found = user.found - priceForAll
+
         await user.save()
+
+
         return res.json(order)
     }
     catch (e) {
-        return res.status(500).json("Error! Somthing Wrong. Contact Supports")
+        return res.status(500).json(e)
     }
 })
 
@@ -376,10 +398,24 @@ router.post("/statistics/saved-services", async (req, res) => {
     return res.json(await user.save())
 })
 
-//
-router.get("/statistics/events", async (req, res) => {
-    const events = await OrderModel.find()
 
+
+// Events
+router.get("/statistics/events", async (req, res) => {
+    const token = req.headers.token
+
+    const email = jwt.verify(token, accessToken, (err, user) => {
+        return user.email
+    })
+
+    const user = await User.findOne({
+        email: email
+    })
+    const events = await EventModel.find({
+        userID: user._id
+    }).sort({
+        date: -1
+    })
     return res.json(events)
 })
 
@@ -520,6 +556,15 @@ router.post("/gift/share", async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
 // Payment 
 
 
@@ -527,11 +572,62 @@ router.post("/gift/share", async (req, res) => {
 
 // Cryptomus Payment
 
-router.post("/payment/cryptomus", (req,res)=>{
-    return res.json("ok")
+router.post("/payment/cryptomus", async (req, res) => {
+    try {
+        const { amount, currency } = req.body
+
+
+
+        const order_id = crypto.randomBytes(12).toString("hex")
+
+
+
+        const data = {
+            amount,
+            currency,
+            order_id: order_id
+        }
+
+
+        const sign = crypto
+            .createHash("md5")
+            .update(
+                Buffer
+                    .from(JSON.stringify(data))
+                    .toString("base64") + CRYPTOMUS.API_KEY
+            )
+            .digest("hex")
+
+        const result = await axios.post(
+            CRYPTOMUS.BASE_URl,
+            data,
+            {
+                headers: {
+                    merchant: CRYPTOMUS.MERCHANT_ID,
+                    sign: sign
+                }
+            }
+        )
+
+        return res.json(result.data.result.url)
+    }
+    catch (e) {
+        return res.json(e)
+    }
+
 })
 
 
+router.post("/payment/cryptomus/checkout", async (req, res) => {
+    try {
+        const data = req.body
+        return res.json(data)
+    }
+    catch (e) {
+        return res.json(e)
+    }
+
+})
 
 
 

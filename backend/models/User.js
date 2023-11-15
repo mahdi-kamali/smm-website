@@ -61,10 +61,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please Enter Role"],
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
-    },
     found: {
         type: Number,
         default: 0.00
@@ -77,7 +73,15 @@ const userSchema = new mongoose.Schema({
         type: [],
         default: []
     }
-})
+},
+    {
+        timestamps: {
+            createdAt: "createAt",
+            updatedAt: "updateAt"
+        }
+    }
+)
+
 
 
 module.exports = mongoose.model("User", userSchema)

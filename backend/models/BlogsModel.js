@@ -18,6 +18,12 @@ const blogModel = mongoose.Schema({
         type: Number,
     },
     published: Boolean
-})
+},
+    {
+        timestamps: {
+            createdAt: "createAt",
+            updatedAt: "updateAt"
+        }
+    })
 
 module.exports = mongoose.model("blog", blogModel)
