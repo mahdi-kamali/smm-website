@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const blogModel = mongoose.Schema({
+const blogModel = new mongoose.Schema({
     image: {
         type: String,
         required: [true, "Image Require"]

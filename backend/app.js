@@ -1,7 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
-
+const cors = require("cors")
 
 const {
     userChecker,
@@ -9,6 +9,7 @@ const {
 const uploader = require("./lib/imageUpload")
 
 
+const { sendEmail } = require("./lib/sendEmail")
 
 
 const port = 3001
@@ -17,6 +18,10 @@ const app = express()
 
 
 const dataBaseUrl = "mongodb://127.0.0.1:27017/smm-db"
+
+
+
+
 mongoose.connect(dataBaseUrl,
     {
         useNewUrlParser: true,
@@ -35,10 +40,15 @@ mongoose.connect(dataBaseUrl,
 
 
 
+app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(uploader.any())
 app.use("/statics/images", express.static("images"))
+
+
+
+
+
 
 
 // Express route for file upload
@@ -104,8 +114,9 @@ app.use("/api/services",
 
 
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log("Server Started " + port)
+
 })
 
 

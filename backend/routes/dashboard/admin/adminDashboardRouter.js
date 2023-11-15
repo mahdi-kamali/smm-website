@@ -11,94 +11,21 @@ const { eventNames } = require("../../../models/ShareModel")
 const PlatformModel = require("../../../models/PlatformModel")
 const TodoModel = require("../../../models/TodoModel")
 const MessageAllModel = require("../../../models/MessageAllModel")
+const TicketModule = require("../../../models/TicketModule")
+const FaqsSelectedModel = require("../../../models/FaqsSelectedModel")
+const uploader = require("../../../lib/imageUpload")
 const router = express.Router()
 
 
 
-//Contact Us
-router.get("/contact-us", async (req, res) => {
-
-    try {
-        const items = await ContactUsModel.find()
-        return res.json(items)
-    }
-    catch (e) {
-        return res.json(e)
-    }
-})
-
-
-
-// Faqs
-router.get("/faqs", async (req, res) => {
-    try {
-
-        const faqs = await FaqsModel.find()
-
-        return res.json(faqs)
-    }
-    catch (e) {
-        return res.json("error", 500)
-    }
-
-})
 
 
 
 
 
 
-//Blogs
-router.get("/blogs", async (req, res) => {
-    try {
-        const blogs = await BlogsModel.find()
-        return res.json(blogs)
-    }
-    catch (e) {
 
-    }
-    return res.json("ok add blog")
-})
-
-
-router.post("/blogs", async (req, res) => {
-    try {
-        const image = await req.files[0]
-        const data = await req.body
-
-
-
-
-        const blog = new BlogsModel({
-            image: "/statics/images/" + image.filename,
-            title: data.title,
-            description: data.description,
-            likes: data.likes,
-            published: false
-        })
-
-        return res.json(await blog.save())
-    } catch (e) {
-        return res.status(400).json("Error")
-
-    }
-})
-
-
-// Users
-router.get("/users", async (req, res) => {
-    const users = await User.find()
-    return res.json(users)
-})
-
-
-// Tickets 
-router.get("/tickets", (req, res) => {
-    return res.json("ok")
-})
-
-
-// Platforms
+// ------------ Platforms
 router.get("/platforms", async (req, res) => {
     try {
         const platforms = await PlatformModel.find()
@@ -130,8 +57,7 @@ router.post("/platforms", async (req, res) => {
 
 
 
-
-// Statistics
+// ------------ Statistics  
 router.get("/statistics/overview", async (req, res) => {
     try {
         const totalOrders = await OrderModel.find()
@@ -225,7 +151,7 @@ router.get("/statistics/popular-platforms", async (req, res) => {
     }
 })
 
-// todo list
+// Todo-List
 router.get("/statistics/todo-list", async (req, res) => {
     try {
         const todoList = await TodoModel.find()
@@ -319,6 +245,242 @@ router.post("/statistics/message-all", async (req, res) => {
     }
 
 })
+
+
+
+// ------------- Services
+router.get("/services", async (req, res) => {
+    const services = await require("../../../catch/services.json")
+    return res.json(services)
+})
+
+
+// --------------- Orders
+router.get("/orders", async (req, res) => {
+    const { pageNumber } = req.body
+    if (!pageNumber) {
+        return res.status(400).json("Page Number Required !")
+    }
+    const orders = await OrderModel
+        .find()
+        .limit(10)
+        .skip(pageNumber * 10)
+    return res.json(orders)
+})
+
+
+// --------------- Tickets 
+router.get("/tickets", async (req, res) => {
+    const { pageNumber } = req.body
+
+    if (!pageNumber) {
+        return res.status(400).json("Page Number Required !")
+    }
+
+    const tickets = await TicketModule
+        .find()
+        .limit(10)
+        .skip(pageNumber * 10)
+    return res.json(tickets)
+})
+
+
+// ---------------- Users
+router.get("/users", async (req, res) => {
+    const users = await User.find()
+    return res.json(users)
+})
+
+
+// ---------------- Blogs
+router.get("/blogs", async (req, res) => {
+    try {
+        const blogs = await BlogsModel.find()
+        return res.json(blogs)
+    }
+    catch (e) {
+
+    }
+    return res.json("ok add blog")
+})
+
+router.post("/blogs", uploader.blogUploader.any(), async (req, res) => {
+    try {
+        const image = await req.files[0]
+        const data = await req.body
+
+
+        const blog = new BlogsModel({
+            image: "/statics/images/blogs/" + image.filename,
+            title: data.title,
+            description: data.description,
+            likes: data.likes,
+            published: false
+        })
+
+        return res.json(await blog.save())
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json(e)
+
+    }
+})
+
+
+
+
+
+// ------------- Faqs
+
+
+// selected Faqs
+router.get("/selected-faqs", async (req, res) => {
+    try {
+        const selectedFaqs = await FaqsSelectedModel.find()
+        return res.json(selectedFaqs)
+    }
+    catch (e) {
+        return res.json("error", 500)
+    }
+})
+router.post("/selected-faqs", async (req, res) => {
+    try {
+        const data = req.body
+
+        const selectedFaq = new FaqsSelectedModel({
+            ...data
+        })
+        return res.json(await selectedFaq.save())
+    }
+    catch (e) {
+        return res.json(e, 500)
+    }
+})
+
+router.delete("/selected-faqs", async (req, res) => {
+    try {
+        const { id } = req.body
+        if (!id)
+            return res.status(400).json("id required")
+
+        await FaqsSelectedModel
+            .findByIdAndDelete(id).then(res => {
+                return res.json("selected Faq Deleted !")
+            })
+            .catch(err => {
+                console.log(err)
+                return res.status(500).json("record not found !")
+            })
+    }
+    catch (e) {
+        return res.json(e, 500)
+    }
+})
+
+router.put("/selected-faqs", async (req, res) => {
+    try {
+        const data = req.body
+
+        if (!data.id)
+            return res.status(500).json("id required")
+
+        await FaqsSelectedModel.findByIdAndUpdate(data.id, {
+            ...data
+        })
+            .then(result => {
+                if (!result)
+                    return res.status(400).json("record not founded")
+                return res.json("record updated.")
+            })
+            .catch(err => {
+                return res.status(400).json("record not founded")
+            })
+
+    }
+    catch (e) {
+        return res.json(e, 500)
+    }
+})
+
+
+
+// Normal Faqs 
+router.get("/faqs", async (req, res) => {
+    try {
+        const normalFaqs = await FaqsModel.find()
+        return res.json(normalFaqs)
+    }
+    catch (e) {
+        return res.status(500).json(e)
+    }
+})
+
+router.put("/faqs", async (req, res) => {
+    try {
+        const { id, answerd } = req.body
+        if (!id)
+            return res.status(400).json("id required")
+
+
+
+        const faqs = await FaqsModel.findByIdAndUpdate(id, {
+            answerd
+        }).then(result => {
+            return res.json("faqs changing success!")
+        })
+            .catch(err => {
+                return res.status(500).json(err)
+            })
+
+
+    }
+    catch (e) {
+        return res.status(500).json(e)
+    }
+})
+
+
+
+// -------------- Contact Us
+router.get("/contact-us", async (req, res) => {
+
+    try {
+        const items = await ContactUsModel.find()
+        return res.json(items)
+    }
+    catch (e) {
+        return res.json(e)
+    }
+})
+
+router.put("/contact-us", async (req, res) => {
+    try {
+        const { id, answerd } = req.body
+        if (!id)
+            return res.status(400).json("id required")
+
+
+
+        const faqs = await ContactUsModel.findByIdAndUpdate(id, {
+            answerd
+        }).then(result => {
+            return res.json("contact-us changing success!")
+        })
+            .catch(err => {
+                return res.status(500).json(err)
+            })
+
+
+    }
+    catch (e) {
+        return res.status(500).json(e)
+    }
+})
+
+
+
+
+
 
 
 

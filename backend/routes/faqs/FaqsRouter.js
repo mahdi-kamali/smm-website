@@ -1,11 +1,13 @@
 const express = require("express")
 const router = express.Router()
 const FaqModel = require("../../models/FaqsModel")
+const FaqsSelectedModel = require("../../models/FaqsSelectedModel")
 
 
 
-router.get("/", (req, res) => {
-    return res.json("ok")
+router.get("/", async (req, res) => {
+    const selectedFaqs = await FaqsSelectedModel.find()
+    return res.json(selectedFaqs)
 })
 
 

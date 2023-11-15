@@ -66,12 +66,24 @@ router.get("/tickets", async (req, res) => {
 
 router.post("/tickets", async (req, res) => {
     try {
+
+
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken,
+            (err, user) => {
+                return user.email
+            })
+
+        const user = await User.findOne({
+            email: email
+        })
+
+
         const {
             subject,
             orderID,
             request,
             message,
-            userID
         } = await req.body
 
         const ticket = new TicketModule({
@@ -79,7 +91,7 @@ router.post("/tickets", async (req, res) => {
             orderID: orderID,
             request: request,
             message: message,
-            userID: userID
+            userID: user._id
         })
 
         return res.json(await ticket.save())
@@ -549,12 +561,6 @@ router.post("/gift/share", async (req, res) => {
         return res.status(500).json("Error")
     }
 })
-
-
-
-
-
-
 
 
 

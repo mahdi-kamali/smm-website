@@ -1005,6 +1005,8 @@ $panel-color-6: #dc3545;
         .items {
             gap: 1rem;
             display: grid !important;
+           
+            width: 100%;
             .item {
                 background-color: white;
                 border-radius: 1rem;

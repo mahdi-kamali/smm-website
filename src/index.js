@@ -37,11 +37,6 @@ root.render(
 
   <React.StrictMode>
     <Provider store={store}>
-
-      <Helmet>
-        <title>My Page Title</title>
-        <meta name="cryptomus" content="5d8e6a03" />
-      </Helmet>
       <App />
     </Provider>
   </React.StrictMode>

@@ -2,7 +2,7 @@
 const mongoose = require("mongoose")
 
 
-const ticketModule = mongoose.Schema({
+const TicketModule = new mongoose.Schema({
     subject: {
         type: String,
         required: [true, "Please Enter Subject"]
@@ -28,6 +28,9 @@ const ticketModule = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         required: [true, "Please Enter User Id"]
     }
-})
+},
+    {
+        timestamps: true
+    })
 
-module.exports = mongoose.model("Ticket", ticketModule)
+module.exports = mongoose.model("Ticket", TicketModule)

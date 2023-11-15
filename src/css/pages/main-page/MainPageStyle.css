@@ -937,6 +937,7 @@
 .main-page .blogs .items {
   gap: 1rem;
   display: grid !important;
+  width: 100%;
 }
 .main-page .blogs .items .item {
   background-color: white;
