@@ -9,7 +9,6 @@ const {
 const uploader = require("./lib/imageUpload")
 
 
-const { sendEmail } = require("./lib/sendEmail")
 
 
 const port = 3001
@@ -24,8 +23,8 @@ const dataBaseUrl = "mongodb://127.0.0.1:27017/smm-db"
 
 mongoose.connect(dataBaseUrl,
     {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
         autoIndex: true, //make this also true
     })
     .then(res => {
@@ -96,6 +95,7 @@ app.use(
 // Faqs 
 app.use(
     "/api/faqs",
+    uploader.uploader.none(),
     require("./routes/faqs/FaqsRouter")
 )
 
@@ -105,7 +105,6 @@ app.use(
     "/api/blogs",
     require("./routes/blogs/blogsRouter")
 )
-
 
 
 // Services 

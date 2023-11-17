@@ -7,7 +7,8 @@ const FiledSet = (
         inputName,
         onChange,
         contentComponent,
-        fieldClassName
+        fieldClassName,
+        isRequired = false
     }
 ) => {
 
@@ -24,10 +25,11 @@ const FiledSet = (
             return (<textarea
                 name={inputName}
                 cols="40"
-                rows="10">
+                rows="10"
+                required={isRequired}>
             </textarea>)
         } else {
-            return <input type={inputType} name={inputName} />
+            return <input type={inputType} name={inputName} required={isRequired} />
         }
 
 

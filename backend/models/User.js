@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         validate: [isEmail, 'Please Enter a Valid Email']
     },
+    gender: {
+        type: String,
+        required: [true, "Please Select Gender."],
+    },
     emailVerified: {
         type: emailVerifiedModel,
         default: {
@@ -67,7 +71,6 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "/statics/user.png"
     },
     savedServices: {
         type: [],

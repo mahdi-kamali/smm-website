@@ -896,13 +896,13 @@ $panel-color-6: #dc3545;
                     grid-template-columns: 1fr 1fr;
                     gap: 1rem;
                     margin-top: 1rem;
+                    align-items: start;
                     fieldset {
                         border-radius: 0.5rem;
                         border-color: transparent;
                         border: 2px solid rgba(0, 0, 0, 0.1);
                         box-shadow: 0.2rem 0.2rem 1rem 0rem rgba(0, 0, 0, 0.05);
-                        background-color: white;
-
+                        width: 100%;
                         legend {
                             display: flex;
                             align-items: center;
@@ -914,6 +914,7 @@ $panel-color-6: #dc3545;
                         }
                         .content {
                             padding: 0.5em 0.25em;
+                            width: 100%;
                             input {
                                 all: unset;
                                 width: 100%;
@@ -951,6 +952,25 @@ $panel-color-6: #dc3545;
                         gap: 0.25rem;
                         font-weight: bold;
                         text-transform: uppercase;
+                    }
+                    .error-box {
+                        max-width: 35rem;
+                        grid-column: -1/1;
+                        background-color: red;
+                        display: grid;
+                        grid-template-columns: max-content 1fr;
+                        padding: 1em;
+                        color: white;
+                        align-items: center;
+                        gap: 1rem;
+                        border-radius: 1rem;
+                        .icon {
+                            font-size: 3rem;
+                        }
+                        p {
+                            line-height: 1.5;
+                        }
+                      
                     }
                 }
                 .info {

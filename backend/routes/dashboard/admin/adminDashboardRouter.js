@@ -37,7 +37,7 @@ router.get("/platforms", async (req, res) => {
 
 })
 
-router.post("/platforms", async (req, res) => {
+router.post("/platforms", uploader.platformUploader.any(), async (req, res) => {
     try {
         const file = await req.files[0]
         const { name } = req.body

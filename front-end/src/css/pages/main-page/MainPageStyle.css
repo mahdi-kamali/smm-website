@@ -832,13 +832,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-top: 1rem;
+  align-items: start;
 }
 .main-page .faqs .add-question .right form fieldset {
   border-radius: 0.5rem;
   border-color: transparent;
   border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0.2rem 0.2rem 1rem 0rem rgba(0, 0, 0, 0.05);
-  background-color: white;
+  width: 100%;
 }
 .main-page .faqs .add-question .right form fieldset legend {
   display: flex;
@@ -851,6 +852,7 @@
 }
 .main-page .faqs .add-question .right form fieldset .content {
   padding: 0.5em 0.25em;
+  width: 100%;
 }
 .main-page .faqs .add-question .right form fieldset .content input {
   all: unset;
@@ -888,6 +890,24 @@
   gap: 0.25rem;
   font-weight: bold;
   text-transform: uppercase;
+}
+.main-page .faqs .add-question .right form .error-box {
+  max-width: 35rem;
+  grid-column: -1/1;
+  background-color: red;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  padding: 1em;
+  color: white;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+}
+.main-page .faqs .add-question .right form .error-box .icon {
+  font-size: 3rem;
+}
+.main-page .faqs .add-question .right form .error-box p {
+  line-height: 1.5;
 }
 .main-page .faqs .add-question .right .info {
   display: flex;

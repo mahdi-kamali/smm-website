@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
         return res.json(await faqs.save())
     }
     catch (e) {
-        return res.json(e)
+        return res.status(500).json(e)
 
     }
 })

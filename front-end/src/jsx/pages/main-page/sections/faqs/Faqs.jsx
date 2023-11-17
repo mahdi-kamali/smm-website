@@ -9,6 +9,10 @@ import faqsBackground from "../../../../../animations/main-page/main-page-faqs-b
 import faqsFormQuestion from "../../../../../animations/main-page/main-page-faqs-wave.json"
 import faqsQuestion from "../../../../../animations/main-page/question.json"
 import FiledSet from "../../../../cutsome-components/Fieldset/FiledSet"
+import axios from "axios"
+import { API } from "../../../../../lib/envAccess"
+import { useState } from "react"
+import { useFetch, usePost } from "../../../../../lib/useFetch"
 
 
 
@@ -21,13 +25,23 @@ export default function Faqs() {
     faqsBackground.fr = 5
     faqsFormQuestion.fr = 30
 
+    const { data, error, loading, post } = usePost(API.FAQS.POST)
+
     const handleFAQMessage = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const formData = new FormData(e.target)
+        formData.forEach((key, value) => {
+            console.log(key, " -> ", value)
+        })
+        post(formData)
+
     }
 
 
-    
+
+
+
+
     const faqsLeftList = [
         {
             "question": "What is social media marketing (SMM)?",
@@ -117,13 +131,12 @@ export default function Faqs() {
                     />
                 </div>
             </div>
-            <form className="add-question">
+            <div className="add-question">
                 <div className="left">
                     <Lottie
                         animationData={faqsQuestion}
                         play
                         loop />
-
                 </div>
                 <div className="right">
 
@@ -137,14 +150,16 @@ export default function Faqs() {
 
                     <form
                         action='#'
-                        onSubmit={handleFAQMessage}>
+                        onSubmit={handleFAQMessage}
+                    >
 
                         <FiledSet
                             legend={{
-                                title: "Name",
+                                title: "FullName",
                                 svg: <Icon icon="fluent:rename-16-filled" />
                             }}
-                            inputName={"name"}
+                            inputName={"fullName"}
+                            isRequired={true}
                         />
 
                         <FiledSet
@@ -153,6 +168,7 @@ export default function Faqs() {
                                 svg: <Icon icon="mdi:email" />
                             }}
                             inputName={"email"}
+                            isRequired={true}
                         />
 
                         <FiledSet
@@ -160,8 +176,8 @@ export default function Faqs() {
                                 title: "Phone Number",
                                 svg: <Icon icon="solar:phone-bold" />
                             }}
-                            inputName={"number"}
-
+                            inputName={"phoneNumber"}
+                            isRequired={true}
                         />
 
                         <FiledSet
@@ -172,15 +188,26 @@ export default function Faqs() {
                             }}
                             contentComponent={
                                 <textarea
-                                    name={"Message"}
+                                    name={"message"}
                                     rows={10}
                                 >
 
                                 </textarea>
                             }
                             inputName={"Message"}
-
+                            isRequired={true}
                         />
+
+                        {
+                            error ? <div className="error-box">
+                                <Icon className="icon" icon="bxs:error" />
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sit ex fugit nostrum provident possimus soluta similique repudiandae? Iste aut nesciunt reiciendis voluptatum dignissimos explicabo vel? Iure unde laborum laboriosam!
+                                </p>
+
+                            </div> : ""
+                        }
+
                         <button>
                             <span>Submit</span>
                             <Icon icon="formkit:submit" />
@@ -196,7 +223,7 @@ export default function Faqs() {
                         loop
                     />
                 </div>
-            </form>
+            </div>
         </section>
     )
 }

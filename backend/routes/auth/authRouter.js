@@ -10,12 +10,14 @@ const User = require("../../models/User")
 const jwt = require("jsonwebtoken")
 const { accessToken } = require("../../lib/envAccess")
 const { userChecker } = require("../middleware/authChecker")
+const { usersUploader } = require("../../lib/imageUpload")
 
 
 
 const expireTime = "1d"
 
 
+router.use(usersUploader.any())
 
 router.get("/", async (request, response) => {
 
@@ -40,6 +42,7 @@ router.post("/register", async (request, response) => {
             password,
             passwordConfirm,
             country,
+            gender
         } = await request.body
 
 
@@ -53,7 +56,8 @@ router.post("/register", async (request, response) => {
             email,
             password,
             country,
-            role: "normal"
+            role: "normal",
+            gender
         })
         await user.save()
 
@@ -146,7 +150,7 @@ router.get("/user", userChecker, async (req, res) => {
     try {
 
         const token = req.headers.token
-        
+
 
         const email = jwt.verify(token, accessToken, (err, user) => {
             return user.email

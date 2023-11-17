@@ -11,6 +11,9 @@ export const SERVER = {
 export const API = {
     BLOGS: {
         GET: SERVER.API_URL + "blogs/"
+    }  ,
+    FAQS : {
+        POST : SERVER.API_URL + "faqs/"
     }
 }
 
