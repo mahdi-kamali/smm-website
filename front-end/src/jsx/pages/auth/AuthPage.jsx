@@ -1,7 +1,7 @@
 
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import rocket from "../../../images/auth-page/rocket.svg"
 import { Icon } from '@iconify/react';
 import Lottie from 'react-lottie-player'
@@ -12,10 +12,26 @@ import animationTwo from "../../../images/auth-page/animation-2.json"
 import FormFields from "./components/FormFields";
 import { useNavigate } from "react-router-dom";
 
+
+import Select from 'react-select'
+import { useFetch } from "../../../lib/useFetch";
+import { API } from "../../../lib/envAccess";
+
+
+
+
+
 const AuthPage = () => {
+
+    const [countries, error, loading] = useFetch(API.COUNTRIES.GET)
 
     const navigator = useNavigate()
     const [pageMode, setMode] = useState("login")
+
+
+    const token = JSON.parse(sessionStorage.getItem("token"))
+
+
 
 
 
@@ -23,12 +39,26 @@ const AuthPage = () => {
         e.preventDefault();
         const formData = new FormData(e.target)
         const entries = formData.entries()
-        formData.forEach((key, value) => {
-            
+        formData.forEach((value, key) => {
+            console.log(key, " => ", value)
         })
 
-        navigator("/user/dashboard")
     }
+
+
+
+    useEffect(() => {
+        if (token) {
+            navigator("/user/dashhboard")
+        }
+    }, [])
+
+
+    const chartModeOptions = [
+        { value: 'Yearly', label: 'Yearly' },
+        { value: 'Monthly', label: 'Monthly' },
+        { value: 'Daily', label: 'Daily' }
+    ]
 
 
 
@@ -45,7 +75,10 @@ const AuthPage = () => {
 
 
             </div>
-            <form className="right" action="#" onSubmit={handleSubmitclick}>
+            <form
+                className="right"
+                action="#"
+                onSubmit={handleSubmitclick}>
                 <div className="form-header">
                     <h1 className={pageMode === "login" ? "selected" : ""} onClick={() => setMode("login")}>
                         Login
@@ -57,24 +90,49 @@ const AuthPage = () => {
                 <div className="form-body">
                     <div className="login-fields part">
                         <div className="container">
-                            <FormFields
-                                name={"userName"}
-                                placeHolder={"UserName"}
-                                icon={<Icon icon="clarity:user-solid" />} />
+
 
                             <FormFields
-                                name={"Password"}
+                                name={"email"}
+                                type={"email"}
+                                placeHolder={"email"}
+                                icon={<Icon icon="entypo:email" />} />
+                            <FormFields
+                                name={"password"}
+                                type="password"
                                 placeHolder={"Password"}
                                 icon={<Icon icon="mdi:password" />} />
+
                         </div>
                     </div>
                     <div className={`sign-up-fields part ${pageMode === "sign-up" ? "expanded" : ""}`}>
                         <div className="container">
 
+                       
+
                             <FormFields
                                 name={"Password Confirmation"}
                                 placeHolder={"Password-Confirmation"}
+                                type={"password"}
                                 icon={<Icon icon="mdi:password" />} />
+
+
+<FormFields
+                                name={"country"}
+                                type={"text"}
+                                placeHolder={"country"}
+                                icon={<Icon icon="fontisto:earth" />}
+                                customeClass={"select-box-field"}
+                                child={
+                                    <Select
+                                        className="select-box"
+                                        placeholder={"Country"}
+                                        options={countries}
+                                        name="country"
+                                        isSearchable={true}
+                                    />
+                                } />
+
 
                             <FormFields
                                 name={"full-Name"}
@@ -82,10 +140,8 @@ const AuthPage = () => {
                                 icon={<Icon icon="mdi:rename-box" />} />
 
 
-                            <FormFields
-                                name={"email"}
-                                placeHolder={"email"}
-                                icon={<Icon icon="entypo:email" />} />
+
+
                         </div>
                     </div>
                 </div>

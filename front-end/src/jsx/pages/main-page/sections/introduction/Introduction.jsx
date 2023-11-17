@@ -47,6 +47,8 @@ import CompanyStaticsItem from "./components/CompanyStaticsItem";
 
 
 import ourActivitiesAnimation from "../../../../../animations/main-page/our_activities.json"
+import { useFetch } from "../../../../../lib/useFetch";
+import { API, SERVER } from "../../../../../lib/envAccess";
 
 
 
@@ -89,6 +91,8 @@ export default function Introduction() {
 
     const [currentSelected, setCurrentSelected] = useState(companyStaticsItems[0])
 
+    const [platforms, errors, loading] = useFetch(API.PLATFORM.GET)
+
 
 
 
@@ -122,7 +126,7 @@ export default function Introduction() {
 
             <div className="our-services">
                 <div className="header">
-                    <h1>Our Services</h1>
+                    <h1>Our Platforms</h1>
                     <p>
                         We have solution for everything you can imagine to help you reach new heights with our expert services.
                     </p>
@@ -192,108 +196,29 @@ export default function Introduction() {
                         }}
 
                     >
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/spotify.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/telegram.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/discord.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/snapchat.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/spotify.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="item">
-                                <div className="item-header">
-                                    <img src={require("../../../../../images/main-page/social-media/spotify.png")} alt="" />
-                                </div>
-                                <div className="item-body">
-                                    <h1>Spotify</h1>
-                                    <small>
-                                        Stream music and podcasts
-                                    </small>
-                                    <button>
-                                        <span>View Offers</span>
-                                        <Icon icon="ooui:next-ltr" />
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
+                        {
+                            platforms.map((item, index) => {
+                                return <SwiperSlide key={index}>
+                                    <div className="item">
+                                        <div className="item-header">
+                                            <img
+                                                src={SERVER.BASE_URL + item.image} alt="" />
+                                        </div>
+                                        <div className="item-body">
+                                            <h1>{item.name}</h1>
+                                            <small>
+                                                {item.shortDescription}
+                                            </small>
+                                            <button>
+                                                <span>View Offers</span>
+                                                <Icon icon="ooui:next-ltr" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            })
+                        }
+
                         <div className="swiper-controlls">
                             <div className="prev-arrow arrow">
                                 <Icon icon="raphael:arrowleft" />

@@ -2,10 +2,15 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 
-export function useFetch(url, useToken) {
 
-    const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
+
+const token = JSON.parse(sessionStorage.getItem("token"))
+
+
+export function useFetch(url) {
+
+    const [data, setData] = useState([])
+    const [error, setError] = useState(undefined)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -13,7 +18,12 @@ export function useFetch(url, useToken) {
             async function () {
                 try {
                     setLoading(true)
-                    const response = await axios.get(url)
+                    const response = await axios.get(url, {
+                        method: "get",
+                        headers: {
+                            "token": token
+                        }
+                    })
                     setData(response.data)
                 } catch (err) {
                     setError(err)
@@ -24,7 +34,7 @@ export function useFetch(url, useToken) {
         )()
     }, [url])
 
-    return { data, error, loading }
+    return [data, error, loading]
 
 }
 
@@ -35,40 +45,45 @@ export function usePost(url) {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    const token = JSON.parse(sessionStorage.getItem("token"))
 
 
     const post = (postData) => {
-        setLoading(loading)
-        axios({
-            url: url,
-            method: "post",
-            data: postData,
-            headers: {
-                token: token
-            }
+        setLoading(true)
+        setError(null)
 
-        }).then(response => {
-            setLoading(false)
-            setData(response)
-        }).catch(err => {
-            setLoading(false)
-            // setError(err.response)
-            if (err?.response?.data?.errors) {
-                console.log(true)
-            }
+        setTimeout(() => {
+            axios({
+                url: url,
+                method: "post",
+                data: postData,
+                headers: {
+                    token: token
+                }
 
-            console.log(err)
-        })
+            }).then(response => {
+                setLoading(false)
+                setData(response)
+            }).catch(err => {
+                setLoading(false)
+                if (err?.response?.data?.errors) {
+                    const temp = Object.entries(err?.response?.data?.errors).map(item => {
+                        return item[1].message
+                    })
+                    setError(temp)
+                }
+
+            })
+        }, 2000)
+
     }
 
 
-    return {
+    return [
         data,
         error,
         loading,
         post
-    }
+    ]
 
 }
 

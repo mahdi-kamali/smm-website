@@ -10,6 +10,10 @@ const PlatformModel = new mongoose.Schema({
         type: String,
         required: [true, "Please Upload Image."]
     },
+    shortDescription: {
+        type: String,
+        required : [true , "Please Enter Short-Description."]
+    } ,
 },
     {
         timestamps: true

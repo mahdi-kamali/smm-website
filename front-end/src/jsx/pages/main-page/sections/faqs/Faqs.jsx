@@ -9,9 +9,7 @@ import faqsBackground from "../../../../../animations/main-page/main-page-faqs-b
 import faqsFormQuestion from "../../../../../animations/main-page/main-page-faqs-wave.json"
 import faqsQuestion from "../../../../../animations/main-page/question.json"
 import FiledSet from "../../../../cutsome-components/Fieldset/FiledSet"
-import axios from "axios"
 import { API } from "../../../../../lib/envAccess"
-import { useState } from "react"
 import { useFetch, usePost } from "../../../../../lib/useFetch"
 
 
@@ -25,7 +23,8 @@ export default function Faqs() {
     faqsBackground.fr = 5
     faqsFormQuestion.fr = 30
 
-    const { data, error, loading, post } = usePost(API.FAQS.POST)
+    const [data, error, loading, createFaq] = usePost(API.FAQS.POST)
+
 
     const handleFAQMessage = (e) => {
         e.preventDefault();
@@ -33,13 +32,9 @@ export default function Faqs() {
         formData.forEach((key, value) => {
             console.log(key, " -> ", value)
         })
-        post(formData)
+        createFaq(formData)
 
     }
-
-
-
-
 
 
     const faqsLeftList = [
@@ -168,6 +163,7 @@ export default function Faqs() {
                                 svg: <Icon icon="mdi:email" />
                             }}
                             inputName={"email"}
+                            inputType={"email"}
                             isRequired={true}
                         />
 
@@ -199,17 +195,22 @@ export default function Faqs() {
                         />
 
                         {
-                            error ? <div className="error-box">
+                            error ? <div className="error-box fade-animation">
                                 <Icon className="icon" icon="bxs:error" />
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur sit ex fugit nostrum provident possimus soluta similique repudiandae? Iste aut nesciunt reiciendis voluptatum dignissimos explicabo vel? Iure unde laborum laboriosam!
-                                </p>
+                                <div className="errors">
+
+                                    {error.map(err => {
+                                        return <span>
+                                            {err}
+                                        </span>
+                                    })}
+                                </div>
 
                             </div> : ""
                         }
 
                         <button>
-                            <span>Submit</span>
+                            <span>{loading ? "Submitting" : "Submit"}</span>
                             <Icon icon="formkit:submit" />
                         </button>
 

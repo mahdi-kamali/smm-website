@@ -913,12 +913,11 @@ $panel-color-6: #dc3545;
                             font-weight: bold;
                         }
                         .content {
-                            padding: 0.5em 0.25em;
+                            padding: 0.5em 1em;
                             width: 100%;
                             input {
                                 all: unset;
                                 width: 100%;
-                                padding: 0.5em 1em;
                                 padding-top: 0;
                                 font-size: 1rem;
                             }
@@ -955,11 +954,12 @@ $panel-color-6: #dc3545;
                     }
                     .error-box {
                         max-width: 35rem;
+                        width: max-content;
                         grid-column: -1/1;
                         background-color: red;
                         display: grid;
                         grid-template-columns: max-content 1fr;
-                        padding: 1em;
+                        padding: 1em 2em;
                         color: white;
                         align-items: center;
                         gap: 1rem;
@@ -967,8 +967,11 @@ $panel-color-6: #dc3545;
                         .icon {
                             font-size: 3rem;
                         }
-                        p {
+                        .errors {
                             line-height: 1.5;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5rem;
                         }
                       
                     }

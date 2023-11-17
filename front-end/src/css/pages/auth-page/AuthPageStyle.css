@@ -69,6 +69,19 @@
 .auth-page .right .form-body {
   display: flex;
   flex-direction: column;
+  z-index: 3 !important;
+}
+.auth-page .right .form-body .select-box {
+  z-index: 5 !important;
+}
+.auth-page .right .form-body .select-box * {
+  color: black;
+}
+.auth-page .right .form-body .select-box-field {
+  z-index: 1 !important;
+}
+.auth-page .right .form-body .select-box-field:hover {
+  scale: 1 !important;
 }
 .auth-page .right .form-body .part {
   display: grid;
@@ -81,8 +94,8 @@
 .auth-page .right .form-body .container fieldset {
   border-radius: 0.5rem;
   border: 2px currentColor solid;
-  margin-top: 1rem;
   transition: all 0.5s ease;
+  margin-top: 0.5rem;
 }
 .auth-page .right .form-body .container fieldset legend {
   display: flex;

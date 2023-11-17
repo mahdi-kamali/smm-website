@@ -106,7 +106,7 @@ export default function OrderStatusChart() {
                     <Select
                         options={dateSelectOptions}
                         placeholder={"Date"}
-                        isSearchable={false}
+                        isSearchable={true}
                     />
                     <Select
                         placeholder={"Chart Mode"}

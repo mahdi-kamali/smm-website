@@ -5,7 +5,6 @@
 // Application styles
 import "./css/global/global.css"
 import "./css/style/style.css"
-import "./css/animation/aniamtions.css"
 import "./css/dashboard/dashboard.css"
 import "./css/dashboard/admin/adminDashboard.css"
 import "./css/pop-up/pop-up.css"
@@ -13,6 +12,7 @@ import "./css/accordion/accordion.css"
 import "./css/select-box/selectBox.css"
 import "./css/field-box/field-box.css"
 import "./css/table/table.css"
+import "./css/animation/animations.css"
 
 
 // Pages Styles 

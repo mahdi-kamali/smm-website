@@ -7,7 +7,6 @@ const BlogsModel = require("../../../models/BlogsModel")
 const OrderModel = require("../../../models/OrderModel")
 const PaymentModel = require("../../../models/PaymentModel")
 const User = require("../../../models/User")
-const { eventNames } = require("../../../models/ShareModel")
 const PlatformModel = require("../../../models/PlatformModel")
 const TodoModel = require("../../../models/TodoModel")
 const MessageAllModel = require("../../../models/MessageAllModel")
@@ -26,7 +25,7 @@ const router = express.Router()
 
 
 // ------------ Platforms
-router.get("/platforms", async (req, res) => {
+router.get("/platforms", async (req, res, next) => {
     try {
         const platforms = await PlatformModel.find()
         return res.json(platforms)
@@ -37,18 +36,19 @@ router.get("/platforms", async (req, res) => {
 
 })
 
-router.post("/platforms", uploader.platformUploader.any(), async (req, res) => {
+router.post("/platforms", uploader.platformUploader.any(), async (req, res, next) => {
     try {
         const file = await req.files[0]
-        const { name } = req.body
+        const { name, shortDescription } = req.body
         const platform = new PlatformModel({
             name: name,
-            image: file.filename
+            image: "/statics/images/platforms/" + file.filename ,
+            shortDescription : shortDescription
         })
         return res.json(await platform.save())
     }
     catch (e) {
-        return res.status(500).json(e)
+        next(e)
     }
 
 })

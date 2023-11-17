@@ -34,7 +34,6 @@ router.post("/", async (req, res) => {
     }
     catch (e) {
         return res.status(500).json(e)
-
     }
 })
 

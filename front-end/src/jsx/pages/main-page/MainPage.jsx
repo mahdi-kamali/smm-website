@@ -26,17 +26,17 @@ const MainPage = () => {
     return (
         <main className="main-page">
 
-            {/* <Poster /> */}
+            <Poster />
 
-            {/* <MainBackground /> */}
+            <MainBackground />
 
-            {/* <WhyChooseUs /> */}
+            <WhyChooseUs />
 
-            {/* <Introduction /> */}
+            <Introduction />
 
-            {/* <Reviews /> */}
+            <Reviews />
 
-            {/* <Blogs /> */}
+            <Blogs />
 
             <Faqs />
 

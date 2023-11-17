@@ -13,7 +13,8 @@ import MaxLineText from '../../../../cutsome-components/Text/MaxLineText';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { SERVER } from '../../../../../lib/envAccess';
+import { API, SERVER } from '../../../../../lib/envAccess';
+import { useFetch } from '../../../../../lib/useFetch';
 
 
 
@@ -23,16 +24,14 @@ import { SERVER } from '../../../../../lib/envAccess';
 
 export default function Blogs() {
 
-    const [blogs, setBlogs] = useState([])
     // const [faqs, setFaqs] = useState([])
 
+    const [blogs, loading, errors] = useFetch(API.BLOGS.GET)
 
-    useEffect(() => {
-        axios.get("/blogs").then(response => {
-            console.log(response)
-            setBlogs(response.data)
-        })
-    }, [])
+ 
+
+
+
     return (
         <div className="blogs">
             <h1>
