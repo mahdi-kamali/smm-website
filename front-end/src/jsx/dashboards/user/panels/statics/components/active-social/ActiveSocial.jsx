@@ -7,46 +7,35 @@ import whatsapp from "../../../../../../../images/services-page/services/social-
 import twitter from "../../../../../../../images/services-page/services/social-icons/twitter.png"
 import spotify from "../../../../../../../images/services-page/services/social-icons/spotify.png"
 import { useState } from 'react'
+import { useFetch } from '../../../../../../../lib/useFetch'
+import { API, SERVER } from '../../../../../../../lib/envAccess'
 
-const ActiveSocial = () => {
+const ActiveSocial = ({ activeOrders, setSelectedPlatform, selectedPlatform }) => {
 
-    const [currentSocial, setCurrentSocial] = useState("instagram");
+
+
 
     return (
         <div className="active-social ">
             <div className="social-body">
-                <ActiveSocialItem
-                    svg={instagram}
-                    title={"instagram"}
-                    selected={currentSocial}
-                    click={() => { setCurrentSocial("instagram") }}
-                />
-
-                <ActiveSocialItem
-                    svg={whatsapp}
-                    title={"whatsapp"}
-                    selected={currentSocial}
-                    click={() => { setCurrentSocial("whatsapp") }}
-                />
 
 
-                <ActiveSocialItem
-                    svg={twitter}
-                    title={"twitter"}
-                    selected={currentSocial}
-                    click={() => { setCurrentSocial("twitter") }}
 
-                />
+                {
+                    activeOrders.map((item, index) => {
+                        return <ActiveSocialItem
+                            key={index}
+                            svg={SERVER.BASE_URL + item.platform.image}
+                            title={item.platform.name}
+                            selected={selectedPlatform}
+                            click={() => {
+                                setSelectedPlatform(item.platform.name)
+                            }}
+                        />
+                    })}
 
-                <ActiveSocialItem
-                    svg={spotify}
-                    title={"spotify"}
-                    selected={currentSocial}
-                    click={() => { setCurrentSocial("spotify") }}
-                />
+
             </div>
-
-
 
         </div>
     )

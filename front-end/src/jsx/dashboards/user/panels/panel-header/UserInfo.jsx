@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react"
+import { SERVER } from "../../../../../lib/envAccess"
 
-const UserInfo = () => {
+const UserInfo = ({user}) => {
+
     return (
         <div className="user-info">
             <div className="today-news">
@@ -15,10 +17,10 @@ const UserInfo = () => {
                 <Icon icon="iconamoon:notification-fill" />
             </div>
             <div className="avatar">
-                <img src={require("../../../../../images/panel/panel-header/avatar.jpg")} alt="" />
+                <img src={SERVER.BASE_URL + user.image}  />
                 <div className="info">
-                    <h1>Sina Saropwa</h1>
-                    <span>Premium User</span>
+                    <h1>{user.fullName}</h1>
+                    <span>{user.role}</span>
                 </div>
             </div>
         </div>

@@ -315,7 +315,9 @@ $gradient-degree: 0deg;
             .right {
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 gap: 1rem;
+                flex-wrap: wrap;
                 .service-expire {
                     display: flex;
                     flex-direction: column;
@@ -343,6 +345,16 @@ $gradient-degree: 0deg;
                         width: 8rem;
                         * {
                         }
+                    }
+                    .status {
+                        background-color: white;
+                        color: $color-1;
+                        padding: 0.5em 1em;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        width: max-content;
+                        border-radius: 100rem;
+                        margin-top: 0.5rem;
                     }
                 }
             }
@@ -396,7 +408,7 @@ $gradient-degree: 0deg;
             .body {
                 display: grid;
                 gap: 1rem;
-                grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
                 .item {
                     padding: 2em;
                     padding-bottom: 1em;
@@ -464,13 +476,14 @@ $gradient-degree: 0deg;
                 }
             }
         }
-        .recent-evernts {
+        .recent-events-container {
             display: flex;
             flex-direction: column;
             width: 100%;
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2em;
+            margin-top: 3rem;
             .recent-events {
                 display: flex;
                 flex-direction: column;
@@ -2644,7 +2657,7 @@ $gradient-degree: 0deg;
                 }
             }
 
-            .recent-evernts {
+            .recent-events-container {
                 display: flex !important;
                 overflow: hidden;
                 padding: 2em !important;

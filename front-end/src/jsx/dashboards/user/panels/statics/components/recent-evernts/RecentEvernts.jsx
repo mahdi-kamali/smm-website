@@ -10,6 +10,8 @@ import notificationAnimation from "../../../../../../../animations/user-dashboar
 // React TimeLine Library
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 import NormalEvent from './components/NormalEvernt';
+import { useFetch } from "../../../../../../../lib/useFetch";
+import { API } from "../../../../../../../lib/envAccess";
 
 
 
@@ -92,23 +94,36 @@ const eventsItems = [
 
 
 const RecentEvents = () => {
-    return (
-        <div className="recent-events">
-           
-            <div className="body">
-                <VerticalTimeline>
-                    {
-                        eventsItems.map(item => {
-                            switch (item.type) {
-                                case "normal": return <NormalEvent data={item} />
-                                // case "instagram-post": return <InstagramPostEvent data={item} />
-                            }
-                        })
-                    }
 
-                </VerticalTimeline>
+
+    const [events, error, loading] =
+        useFetch(API.DASHBOARD.USER_EVENTS.GET)
+
+
+    return (
+        <section className="recent-events-container">
+            <div className="recent-events">
+
+                <div className="body">
+
+                    <VerticalTimeline>
+                        {
+                            events.map((item, index) => {
+                                switch (item.type) {
+                                    case "order":
+                                        return <NormalEvent
+                                            key={index}
+                                            data={item} />
+                                    // case "instagram-post": return <InstagramPostEvent data={item} />
+                                }
+                            })
+                        }
+
+                    </VerticalTimeline>
+                </div>
             </div>
-        </div>
+        </section>
+
     )
 }
 

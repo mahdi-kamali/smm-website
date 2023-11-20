@@ -11,27 +11,12 @@ const TrustpilotModel = require("../../../models/TrustpilotModel")
 const ShareModel = require("../../../models/ShareModel")
 const EventModel = require("../../../models/EventModel")
 const { default: axios } = require("axios")
+const PlatformModel = require("../../../models/PlatformModel")
+const { uploader } = require("../../../lib/imageUpload")
 
 
 
-
-
-// setInterval(async () => {
-//     const orders = await OrderModel.find({
-//         status: "On Progress"
-//     })
-
-//     orders.forEach(async (order,index) => {
-//          order.updateAt = Date.now()
-//          await order.save()
-
-//          console.log(order)
-//     })
-
-
-
-
-// }, 5000)
+router.use(uploader.any())
 
 
 
@@ -64,7 +49,7 @@ router.get("/tickets", async (req, res) => {
 })
 
 
-router.post("/tickets", async (req, res) => {
+router.post("/tickets", async (req, res, next) => {
     try {
 
 
@@ -97,7 +82,7 @@ router.post("/tickets", async (req, res) => {
         return res.json(await ticket.save())
     }
     catch (e) {
-        return res.json(e)
+        return next(e)
     }
 })
 
@@ -129,12 +114,8 @@ const clientRequest = [
 ]
 
 
-
-
-
-
 // Order
-router.post("/order", async (req, res) => {
+router.post("/order", async (req, res, next) => {
     try {
 
 
@@ -159,24 +140,27 @@ router.post("/order", async (req, res) => {
 
 
         const services = require("../../../catch/services.json")
+        console.log(serviceID)
         const targetService = services.find(item => {
+
             if (item.service === serviceID) {
                 return item
+            } else {
             }
         })
 
         if (!targetService) {
-            return res.status(404).json("Service Not Available.")
+            throw new Error("Service Not Available.")
         }
 
         if (parseInt(quantity) < parseInt(targetService.min)) {
-            return res.status(400).json("Minimum Quantity is " + targetService.min)
+            throw new Error("Minimum Quantity is " + targetService.min)
         }
 
 
 
         if (parseInt(quantity) > parseInt(targetService.max)) {
-            return res.status(400).json("Maximum Quantity is " + targetService.max)
+            throw new Error("Maximum Quantity is " + targetService.max)
         }
 
 
@@ -187,7 +171,7 @@ router.post("/order", async (req, res) => {
 
 
         if (user.found < priceForAll) {
-            return res.status(400).json("Found is Not enough!")
+            throw new Error("Found is Not enough!")
         }
 
 
@@ -218,7 +202,7 @@ router.post("/order", async (req, res) => {
         return res.json(order)
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
@@ -245,8 +229,7 @@ router.get("/order", async (req, res) => {
 })
 
 
-// Statistics
-
+// -------------------Statistics
 
 // Overview
 router.get("/statistics/overview", async (req, res) => {
@@ -307,7 +290,7 @@ router.get("/statistics/user", async (req, res) => {
 
 
 // User Orders
-router.get("/statistics/user-orders", async (req, res) => {
+router.get("/statistics/user-active-orders", async (req, res, next) => {
 
     try {
         const token = req.headers.token
@@ -328,12 +311,38 @@ router.get("/statistics/user-orders", async (req, res) => {
         })
 
 
+        const result = []
+
+        const platforms = await PlatformModel.find()
+
+        platforms.forEach(platform => {
+            const platformName = platform.name.toLowerCase().trim()
+
+            const temp = activeOrders.filter(item => {
+                return item.service.name
+                    .toLowerCase()
+                    .trim()
+                    .includes(platformName)
+            })
+
+            if (temp.length !== 0) {
+                result.push({
+                    platform: platform,
+                    orders: temp
+                })
+            }
 
 
-        return res.json(activeOrders)
+
+
+
+        })
+
+
+        return res.json(result)
     }
     catch (e) {
-        return res.status(500).json("Error")
+        return next(e)
     }
 })
 
@@ -348,7 +357,7 @@ router.get("/statistics/saved-services", async (req, res) => {
         return temp
     })
 
-    const services = require("../../../services.json")
+    const services = await require("../../../catch/services.json")
 
     const userSavedServices = Array.from(user.savedServices)
 
@@ -411,7 +420,6 @@ router.post("/statistics/saved-services", async (req, res) => {
 })
 
 
-
 // Events
 router.get("/statistics/events", async (req, res) => {
     const token = req.headers.token
@@ -430,7 +438,6 @@ router.get("/statistics/events", async (req, res) => {
     })
     return res.json(events)
 })
-
 
 
 

@@ -30,9 +30,8 @@ router.get("/", async (request, response) => {
 
 })
 
-
 // Register
-router.post("/register", async (request, response) => {
+router.post("/register", async (request, response, next) => {
 
     try {
 
@@ -48,7 +47,7 @@ router.post("/register", async (request, response) => {
 
 
         if (password !== passwordConfirm) {
-            return response.json("Password Confirmation Not Match")
+            throw new Error("Password Confirmation Not Match")
         }
 
         const user = new User({
@@ -57,7 +56,8 @@ router.post("/register", async (request, response) => {
             password,
             country,
             role: "normal",
-            gender
+            gender,
+            image: "/statics/images/users/user.png"
         })
         await user.save()
 
@@ -79,14 +79,7 @@ router.post("/register", async (request, response) => {
 
     }
     catch (e) {
-
-        if (e.code === 'P2002') {
-            return response.status(422).json(
-                "Email Already Taken !"
-            )
-        }
-
-        return response.json(e)
+        return next(e)
     }
 
 
@@ -95,53 +88,46 @@ router.post("/register", async (request, response) => {
 
 
 // Login 
-router.get("/login", async (request, respsonse) => {
-    const { email, password } = await request.body
+router.post("/login", async (request, respsonse, next) => {
+    try {
+        const { email, password } = request.body
 
-
-    if (!email || !password) {
-        return respsonse.status(400).json(
-            "Fields Require !"
-        )
-    }
-
-    if (!validator.isEmail(email)) {
-        return respsonse.status(400).json("Email Not Valid !")
-    }
-
-
-    const user = await User.findOne(
-        {
-            email: email,
-            password: password
+        if (!email || !password) {
+            throw new Error("Fields Required !")
         }
-    )
 
-    if (!user) {
-        return respsonse.json(
+        if (!validator.isEmail(email)) {
+            throw new Error("Email Not Valid !")
+        }
+
+
+        const user = await User.findOne(
             {
-                message: "Email or password wrong !"
-            },
-
+                email: email,
+                password: password
+            }
         )
+
+        if (!user) {
+            throw new Error("Email or password wrong !")
+        }
+
+        const token = await jwt.sign(
+            { email: user.email },
+            accessToken,
+            { expiresIn: expireTime }
+        )
+
+
+        return respsonse.json({
+            token: token
+        })
     }
-
-
-
-    const token = await jwt.sign(
-        { email: user.email },
-        accessToken,
-        { expiresIn: expireTime }
-    )
-
-
-
-
-    return respsonse.json({
-        user: user,
-        token: token
-    })
+    catch (e) {
+        return next(e)
+    }
 })
+
 
 
 
@@ -170,13 +156,6 @@ router.get("/user", userChecker, async (req, res) => {
     }
 
 })
-
-
-
-
-
-
-
 
 
 

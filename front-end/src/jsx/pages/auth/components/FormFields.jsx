@@ -10,6 +10,7 @@ const FormFields = (
         type,
         child,
         customeClass,
+        required
     }) => {
 
     if (child) {
@@ -25,7 +26,7 @@ const FormFields = (
             {
                 child ? child : <input
                     type={type}
-                    required
+                    required={required}
                     name={name} />
             }
 
@@ -45,7 +46,7 @@ const FormFields = (
             {
                 child ? child : <input
                     type={type}
-                    required
+                    required={required}
                     name={name} />
             }
 

@@ -7,6 +7,7 @@ const {
     userChecker,
     adminChecker } = require("./routes/middleware/authChecker")
 const uploader = require("./lib/imageUpload")
+const errorHandler = require("./errorHandler")
 
 
 
@@ -120,20 +121,12 @@ app.use("/api/platforms",
 
 app.use("/api/countries", require("./routes/countries/countriesRouter"))
 
-//when we use next(err) it will go to error handling middleware and it will catch error and send response.
-app.use((err, req, res, next) => {
-    err.statusCode = err.statusCode || 500
-    err.status = err.status || 'error'
-    res.status(err.statusCode).json({
-        status: err.status,
-        message: err.message
-    })
-})
 
 
 
 app.listen(port, async () => {
     console.log("Server Started " + port)
+    app.use(errorHandler)
 
 })
 

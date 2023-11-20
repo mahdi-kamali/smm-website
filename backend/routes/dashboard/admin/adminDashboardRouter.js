@@ -42,8 +42,8 @@ router.post("/platforms", uploader.platformUploader.any(), async (req, res, next
         const { name, shortDescription } = req.body
         const platform = new PlatformModel({
             name: name,
-            image: "/statics/images/platforms/" + file.filename ,
-            shortDescription : shortDescription
+            image: "/statics/images/platforms/" + file.filename,
+            shortDescription: shortDescription
         })
         return res.json(await platform.save())
     }

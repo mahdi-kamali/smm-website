@@ -51,6 +51,8 @@ import RecentEvents from './components/recent-evernts/RecentEvernts';
 import UserQuickView from "../../Components/UserQuickView";
 import MaxLineText from "../../../../cutsome-components/Text/MaxLineText"
 import { Icon } from "@iconify/react"
+import UserSection from "./components/user/UserSection"
+import SavedServices from "./components/saved-services/SavedServices"
 
 
 ChartJS.register(
@@ -82,7 +84,6 @@ const Statics = () => {
 
 
 
-    const fakeServices = FAKE_SERVICES
 
 
     const topFiveServices = [
@@ -154,289 +155,21 @@ const Statics = () => {
 
             <UserQuickView />
 
-            <section className="user">
-                <div className="left">
-                    <UserInfo />
-                    <ActiveSocial />
-                </div>
-                <div className="right">
-                    <div className="service-expire">
-                        <CircularProgressbar
-                            className="progresser"
-                            value={75}
-                            text={`${75}%`}
-                            styles={buildStyles({
-                                rotation: 0,
-                                strokeLinecap: 'round',
-                                textSize: '20px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `white`,
-                                textColor: 'white',
-                                trailColor: 'rgba(0,0,0,0.1)'
-                            })}
-                        />
-                        <div className="info">
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <h1>{fakeServices[0].categoryName}</h1>
-                                } />
-
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <small>{fakeServices[0].services[0].Service}</small>
-                                } />
-
-                        </div>
-
-                    </div>
-                    <div className="service-expire">
-                        <CircularProgressbar
-                            className="progresser"
-                            value={20}
-                            text={`${20}%`}
-                            styles={buildStyles({
-                                rotation: 0,
-                                strokeLinecap: 'round',
-                                textSize: '20px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `white`,
-                                textColor: 'white',
-                                trailColor: 'rgba(0,0,0,0.1)'
-                            })}
-                        />
-                        <div className="info">
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <h1>{fakeServices[0].categoryName}</h1>
-                                } />
-
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <small>{fakeServices[0].services[0].Service}</small>
-                                } />
-
-                        </div>
-
-                    </div>
-                    <div className="service-expire">
-                        <CircularProgressbar
-                            className="progresser"
-                            value={44}
-                            text={`${44}%`}
-                            styles={buildStyles({
-                                rotation: 0,
-                                strokeLinecap: 'round',
-                                textSize: '20px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `white`,
-                                textColor: 'white',
-                                trailColor: 'rgba(0,0,0,0.1)'
-                            })}
-                        />
-                        <div className="info">
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <h1>{fakeServices[0].categoryName}</h1>
-                                } />
-
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <small>{fakeServices[0].services[0].Service}</small>
-                                } />
-
-                        </div>
-
-                    </div>
-                    <div className="service-expire">
-                        <CircularProgressbar
-                            className="progresser"
-                            value={90}
-                            text={`${90}%`}
-                            styles={buildStyles({
-                                rotation: 0,
-                                strokeLinecap: 'round',
-                                textSize: '20px',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `white`,
-                                textColor: 'white',
-                                trailColor: 'rgba(0,0,0,0.1)'
-                            })}
-                        />
-                        <div className="info">
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <h1>{fakeServices[0].categoryName}</h1>
-                                } />
-
-                            <MaxLineText
-                                maxLine={2}
-                                content={
-                                    <small>{fakeServices[0].services[0].Service}</small>
-                                } />
-
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            {/* 
-            <section className="statistics">
-                <div className="statistics">
-                    <div className="header">
-                        <div className="left">
-                            <img src={statisticsSvg} />
-                        </div>
-                        <div className="right">
-                            <h1>
-                                Statistics
-                            </h1>
-                            <span>
-                                Account Information  You Have Earned
-                            </span>
-                        </div>
-                    </div>
-                    <div className="body">
-                        <div className="item">
-                            <Line
-                                className="chart"
-                                id="myChart"
-                                data={
-                                    FakeChartData(
-                                        ["Jan", "Feb", "Mar", "Apr", "May", "Jan"], 2000, ["Followers", "Following", "Likes"])}
-                                options={options}
-                                height={250}
-                                width={350}
-                            />
-                        </div>
-                        <div className="item">
-                            <Bar
-                                className="chart"
-                                id="myChart2"
-                                data={
-                                    FakeChartData(
-                                        ["Jan", "Feb", "Mar", "Apr", "May", "Jan"], 2000, ["Likes", "Share", "Comments"])}
-                                options={options}
-                                height={250}
-                                width={350}
-                            />
-
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
-
-            <div className="services-offer">
-                <div className="header">
-                    Your Favorites Services
-                </div>
-                <div className="body">
-
-                    {
-                        topFiveServices.map((item, index) => {
-                            return <div className="item">
-                                <div className="item-header">
-                                    <MaxLineText
-                                        maxLine={2}
-                                        content={
-                                            <h1>
-                                                {item.Service}
-                                            </h1>
-                                        } />
-                                </div>
-                                <div className="item-body">
-                                    <ul className="properties">
-                                        <li>
-                                            <div className="label">
-                                                <Icon icon="eos-icons:service" />
-                                                <span>
-                                                    ID
-                                                </span>
-                                            </div>
-                                            <div className="value">
-                                                {item.Service_id}
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="label">
-                                                <Icon icon="tabler:math-min" />
-                                                <span>
-                                                    Min Order
-                                                </span>
-                                            </div>
-                                            <div className="value">
-                                                {item.MinOrder}
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="label">
-                                                <Icon icon="tabler:math-max" />
-                                                <span>
-                                                    Max Order
-                                                </span>
-                                            </div>
-                                            <div className="value">
-                                                {item.MaxOrder}
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="label">
-                                                <Icon icon="mdi:wiper" />
-                                                <span>
-                                                    Per 1k
-                                                </span>
-                                            </div>
-                                            <div className="value">
-                                                {item.RatePer1000}
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="label">
-                                                <Icon icon="ic:baseline-auto-fix-normal" />
-                                                <span>
-                                                    Avarage Time
-                                                </span>
-                                            </div>
-                                            <div className="value">
-                                                {item.AverageTime}
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="item-buttons">
-                                    <button className="buy">
-                                        <span>
-                                            Re Order
-                                        </span>
-                                        <Icon icon="el:ok" />
-                                    </button>
-                                </div>
-                            </div>
-                        })
-                    }
-
-
-                </div>
-            </div>
+            <UserSection />
 
 
 
-            <section className="recent-evernts">
-                <RecentEvents />
-            </section>
+            <SavedServices />
 
 
-            <div className="rocket background">
+
+            <RecentEvents />
+
+
+
+            {/* <div className="rocket background">
                 <img src={rocket} />
-            </div>
+            </div> */}
 
 
         </section>

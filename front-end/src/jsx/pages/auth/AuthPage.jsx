@@ -16,8 +16,9 @@ import { useNavigate } from "react-router-dom";
 import Select from 'react-select'
 import { useFetch } from "../../../lib/useFetch";
 import { API } from "../../../lib/envAccess";
-
-
+import axios from "axios";
+import Swal from "sweetalert2"
+import { showError } from "../../../lib/alertHandler";
 
 
 
@@ -33,32 +34,98 @@ const AuthPage = () => {
 
 
 
+    useEffect(() => {
+        if (token) {
+            navigator("/user/dashboard")
+        }
+    }, [])
 
 
-    const handleSubmitclick = (e) => {
+    const handleSubmitclick = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target)
-        const entries = formData.entries()
-        formData.forEach((value, key) => {
-            console.log(key, " => ", value)
-        })
+
+
+
+        if (pageMode === "login") {
+            await axios({
+                method: "post",
+                url: API.AUTH.LOGIN,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then(response => {
+                const data = response.data
+                const token = data.token
+
+                sessionStorage.setItem("token", JSON.stringify(token))
+
+                Swal.fire({
+                    title: "Login Success!",
+                    text: "Welcome Back,please click ok button",
+                    icon: "success"
+                }).then(() => {
+                    console.log("ended")
+                    window.location.reload();
+                })
+
+            })
+                .catch(error => {
+                    const response = error?.response
+                    if (response.status === 500) {
+                        console.log(response)
+                        Swal.fire({
+                            icon: "error",
+                        })
+                    }
+                })
+
+        }
+        if (pageMode === "sign-up") {
+            await axios({
+                method: "post",
+                url: API.AUTH.SIGNUP,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then(response => {
+                const data = response.data
+                const token = data.token
+                console.log(response)
+                Swal.fire({
+                    title: "Login Success!",
+                    text: "Welcome Back,please click ok button",
+                    icon: "success"
+                }).then(() => {
+                    console.log("ended")
+                    window.location.reload(true);
+                })
+
+            }).catch(error => {
+                const response = error?.response
+
+                if (response?.status === 500) {
+                    const errors = response.data
+                    showError(errors)
+                    return
+                }
+
+                Swal.fire({
+                    title: "Somthing Wrong!",
+                    text: "please refresh page, and if this error not gone..., contact us !",
+                    icon: "error"
+                })
+            })
+        }
 
     }
 
 
 
-    useEffect(() => {
-        if (token) {
-            navigator("/user/dashhboard")
-        }
-    }, [])
 
 
-    const chartModeOptions = [
-        { value: 'Yearly', label: 'Yearly' },
-        { value: 'Monthly', label: 'Monthly' },
-        { value: 'Daily', label: 'Daily' }
-    ]
 
 
 
@@ -77,7 +144,7 @@ const AuthPage = () => {
             </div>
             <form
                 className="right"
-                action="#"
+                encType="multipart/form-data"
                 onSubmit={handleSubmitclick}>
                 <div className="form-header">
                     <h1 className={pageMode === "login" ? "selected" : ""} onClick={() => setMode("login")}>
@@ -90,16 +157,16 @@ const AuthPage = () => {
                 <div className="form-body">
                     <div className="login-fields part">
                         <div className="container">
-
-
                             <FormFields
                                 name={"email"}
                                 type={"email"}
                                 placeHolder={"email"}
+                                required={true}
                                 icon={<Icon icon="entypo:email" />} />
                             <FormFields
                                 name={"password"}
                                 type="password"
+                                required={true}
                                 placeHolder={"Password"}
                                 icon={<Icon icon="mdi:password" />} />
 
@@ -108,21 +175,21 @@ const AuthPage = () => {
                     <div className={`sign-up-fields part ${pageMode === "sign-up" ? "expanded" : ""}`}>
                         <div className="container">
 
-                       
 
                             <FormFields
-                                name={"Password Confirmation"}
+                                name={"passwordConfirm"}
                                 placeHolder={"Password-Confirmation"}
                                 type={"password"}
-                                icon={<Icon icon="mdi:password" />} />
+                                icon={<Icon icon="mdi:password" />}
+                                required={pageMode === "sign-up"} />
 
-
-<FormFields
+                            <FormFields
                                 name={"country"}
                                 type={"text"}
                                 placeHolder={"country"}
                                 icon={<Icon icon="fontisto:earth" />}
                                 customeClass={"select-box-field"}
+                                required={pageMode === "sign-up"}
                                 child={
                                     <Select
                                         className="select-box"
@@ -134,12 +201,40 @@ const AuthPage = () => {
                                 } />
 
 
+
+
                             <FormFields
-                                name={"full-Name"}
-                                placeHolder={"Full-Name"}
+                                name={"fullName"}
+                                type={"text"}
+                                placeHolder={"full-Name"}
+                                required={pageMode === "sign-up"}
                                 icon={<Icon icon="mdi:rename-box" />} />
 
-
+                            <FormFields
+                                name={"gender"}
+                                placeHolder={"gender"}
+                                required={pageMode === "sign-up"}
+                                icon={<Icon icon="ph:gender-male-bold" />}
+                                child={
+                                    <div className="gender-box">
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                radioGroup="gender"
+                                                name="gender"
+                                                value={"male"} />
+                                            <span>male</span>
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                radioGroup="gender"
+                                                name="gender"
+                                                value={"female"} />
+                                            <span>female</span>
+                                        </label>
+                                    </div>
+                                } />
 
 
                         </div>

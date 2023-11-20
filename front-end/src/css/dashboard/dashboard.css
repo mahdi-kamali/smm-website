@@ -278,7 +278,9 @@
 .user-dashboard .statics .user .right {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .user-dashboard .statics .user .right .service-expire {
   display: flex;
@@ -306,6 +308,17 @@
 }
 .user-dashboard .statics .user .right .service-expire .progresser {
   width: 8rem;
+}
+.user-dashboard .statics .user .right .service-expire .status {
+  background-color: white;
+  color: #0d4bf4;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 100rem;
+  margin-top: 0.5rem;
 }
 .user-dashboard .statics .qucik-view {
   width: 100%;
@@ -357,7 +370,7 @@
 .user-dashboard .statics .services-offer .body {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 }
 .user-dashboard .statics .services-offer .body .item {
   padding: 2em;
@@ -419,55 +432,56 @@
   background-color: #0fac6d;
   color: white;
 }
-.user-dashboard .statics .recent-evernts {
+.user-dashboard .statics .recent-events-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 2em;
+  margin-top: 3rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events {
+.user-dashboard .statics .recent-events-container .recent-events {
   display: flex;
   flex-direction: column;
   color: white;
   gap: 2rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .header {
+.user-dashboard .statics .recent-events-container .recent-events .header {
   display: grid;
   grid-template-columns: 10rem 1fr;
   margin: 0 auto;
   width: 100%;
   padding: 1em 0;
 }
-.user-dashboard .statics .recent-evernts .recent-events .header .left img {
+.user-dashboard .statics .recent-events-container .recent-events .header .left img {
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts .recent-events .header .right {
+.user-dashboard .statics .recent-events-container .recent-events .header .right {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .header .right h1 {
+.user-dashboard .statics .recent-events-container .recent-events .header .right h1 {
   font-size: 2rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .header .right span {
+.user-dashboard .statics .recent-events-container .recent-events .header .right span {
   font-size: 1.25rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .event .date {
+.user-dashboard .statics .recent-events-container .recent-events .body .event .date {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
   gap: 0.25rem;
   font-weight: normal;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .event .date span {
+.user-dashboard .statics .recent-events-container .recent-events .body .event .date span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .event .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .event .content {
   background-color: yellow;
   border-radius: 1rem;
   padding: 2em;
@@ -477,11 +491,11 @@
   flex-direction: column;
   box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .event .content p {
+.user-dashboard .statics .recent-events-container .recent-events .body .event .content p {
   margin-top: 0;
   line-height: 1.25;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .date {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
@@ -489,7 +503,7 @@
   font-weight: normal;
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date span {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .date span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -497,14 +511,14 @@
   padding-bottom: 0;
   padding-top: 0.5em;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .date .chart {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .date .chart {
   background-color: white;
   margin: 1rem;
   border-radius: 1rem;
   opacity: 0.5;
   transition: 1s ease all;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content {
   border-radius: 1rem;
   color: white;
   display: flex;
@@ -514,16 +528,16 @@
   overflow: hidden;
   box-shadow: 0rem 0rem 10rem 0rem rgba(255, 255, 255, 0.548);
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content p {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content p {
   margin-top: 0;
   line-height: 1.25;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-header img {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-header img {
   aspect-ratio: 1/1;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-body {
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -538,17 +552,17 @@
   height: 7em;
   cursor: pointer;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body h1 {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-body h1 {
   text-transform: uppercase;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-body p {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-body p {
   border-radius: 100rem;
   width: -moz-max-content;
   width: max-content;
   font-size: 0.9rem;
   width: 100%;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -560,7 +574,7 @@
   transform: translateY(-110%);
   transition: 1s ease all;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-buttons button {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -568,62 +582,62 @@
   font-size: 1.1rem;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button span {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-buttons button span {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post .content .content-buttons button small {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post .content .content-buttons button small {
   font-size: 2.5rem;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .content-body {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post:hover .content-body {
   height: 100%;
   background-image: initial;
   background-color: white;
   color: #0d4bf4;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .content-buttons {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post:hover .content-buttons {
   transform: translateY(0);
   background-color: #0d4bf4;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .instagram-post:hover .date .chart {
+.user-dashboard .statics .recent-events-container .recent-events .body .instagram-post:hover .date .chart {
   opacity: 1;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(even) .date {
+.user-dashboard .statics .recent-events-container .recent-events .body .item:nth-child(even) .date {
   align-items: end;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(even) .date span {
+.user-dashboard .statics .recent-events-container .recent-events .body .item:nth-child(even) .date span {
   flex-direction: row-reverse;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(odd) .date {
+.user-dashboard .statics .recent-events-container .recent-events .body .item:nth-child(odd) .date {
   align-items: start;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .item:nth-child(odd) .date span {
+.user-dashboard .statics .recent-events-container .recent-events .body .item:nth-child(odd) .date span {
   flex-direction: row-reverse;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .success .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-events-container .recent-events .body .success .vertical-timeline-element-icon {
   background-color: #0fac6d;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .success .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .success .content {
   background-color: #0fac6d;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .warning .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-events-container .recent-events .body .warning .vertical-timeline-element-icon {
   background-color: #ffa938;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .warning .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .warning .content {
   background-color: #ffa938;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .process .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-events-container .recent-events .body .process .vertical-timeline-element-icon {
   background-color: #17a2b8;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .process .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .process .content {
   background-color: #17a2b8;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .danger .vertical-timeline-element-icon {
+.user-dashboard .statics .recent-events-container .recent-events .body .danger .vertical-timeline-element-icon {
   background-color: #dc3545;
 }
-.user-dashboard .statics .recent-evernts .recent-events .body .danger .content {
+.user-dashboard .statics .recent-events-container .recent-events .body .danger .content {
   background-color: #dc3545;
 }
 .user-dashboard .panel-services {
@@ -2475,12 +2489,12 @@
   .user-dashboard .statics .services-offer .body .item {
     min-width: 15rem !important;
   }
-  .user-dashboard .statics .recent-evernts {
+  .user-dashboard .statics .recent-events-container {
     display: flex !important;
     overflow: hidden;
     padding: 2em !important;
   }
-  .user-dashboard .statics .recent-evernts .date {
+  .user-dashboard .statics .recent-events-container .date {
     margin-top: 1rem;
     direction: rtl;
     align-items: end !important;

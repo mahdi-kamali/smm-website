@@ -1,7 +1,12 @@
 import { Icon } from '@iconify/react'
 import React from 'react'
+import { useFetch } from '../../../../lib/useFetch'
+import { API } from '../../../../lib/envAccess'
 
 const UserQuickView = () => {
+    const [data , error , loading ] = useFetch(API.DASHBOARD.QUICK_VIEW.GET)
+
+    
     return (
         <div className="user-quick-view">
             <div className="item">
@@ -13,7 +18,7 @@ const UserQuickView = () => {
                         Total Orders
                     </div>
                     <div className="body">
-                        2906119
+                        {data.totalOrders}
                     </div>
                 </div>
 
@@ -28,7 +33,7 @@ const UserQuickView = () => {
                         Total Spend
                     </div>
                     <div className="body">
-                        1200
+                        ${data.totalSpend}
                     </div>
                 </div>
 
@@ -43,7 +48,7 @@ const UserQuickView = () => {
                         Account Balance
                     </div>
                     <div className="body">
-                        $155.0
+                        ${data.accountBalance}
                     </div>
                 </div>
 
@@ -58,7 +63,7 @@ const UserQuickView = () => {
                        Active Orders
                     </div>
                     <div className="body">
-                        3
+                        {data.activeOrders}
                     </div>
                 </div>
 
