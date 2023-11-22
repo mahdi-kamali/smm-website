@@ -47,12 +47,12 @@ export function usePost(url) {
     const [loading, setLoading] = useState(false)
 
 
-    const post = (postData) => {
+    const post = async (postData) => {
         setLoading(true)
         setError(null)
 
-        setTimeout(() => {
-            axios({
+        await setTimeout(async () => {
+            await axios({
                 url: url,
                 method: "post",
                 data: postData,
@@ -63,6 +63,7 @@ export function usePost(url) {
             }).then(response => {
                 setLoading(false)
                 setData(response)
+                return response
             }).catch(err => {
                 setLoading(false)
                 if (err?.response?.data?.errors) {
@@ -74,7 +75,6 @@ export function usePost(url) {
 
             })
         }, 2000)
-
     }
 
 
@@ -84,6 +84,24 @@ export function usePost(url) {
         loading,
         post
     ]
+
+}
+
+export async function post(url, postData) {
+
+    return await axios({
+        method: "post",
+        url: url,
+        headers: {
+            token: token
+        },
+        data: postData
+    }).then(response => {
+        return response
+    }).catch(err => {
+       
+        throw err
+    })
 
 }
 

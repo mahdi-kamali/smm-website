@@ -13,6 +13,7 @@ const MessageAllModel = require("../../../models/MessageAllModel")
 const TicketModule = require("../../../models/TicketModule")
 const FaqsSelectedModel = require("../../../models/FaqsSelectedModel")
 const uploader = require("../../../lib/imageUpload")
+const PaymentMethodsModel = require("../../../models/PaymentMethodsModel")
 const router = express.Router()
 
 
@@ -481,6 +482,46 @@ router.put("/contact-us", async (req, res) => {
 
 
 
+router.get("/payment-methods", async (req, res, next) => {
+    try {
+        const methods = await PaymentMethodsModel.find()
+        return res.json(methods)
+    }
+    catch (e) {
+        next(e)
+    }
+})
+
+router.post(
+    "/payment-methods",
+    uploader.paymentMethodsUploader.any(),
+    async (req, res, next) => {
+        try {
+
+            const image = await req.files[0]
+            const {
+                name,
+                available,
+                description,
+                site
+            } = req.body
+
+            const method = await new PaymentMethodsModel({
+                name: name,
+                available: available,
+                image: "/statics/images/payment-methods/" + image.filename,
+                description: description,
+                site: site
+            })
+
+
+            return res.json(await method.save())
+
+        }
+        catch (e) {
+            next(e)
+        }
+    })
 
 
 

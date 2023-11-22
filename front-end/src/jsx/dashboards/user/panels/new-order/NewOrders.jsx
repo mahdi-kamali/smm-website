@@ -1,52 +1,86 @@
 import Lottie from "react-lottie-player"
 import UserQuickView from "../../Components/UserQuickView"
-
-
-
 import newOrderIntroAnimatin from "../../../../../animations/user-dashboard/new-order-intro-animation.json"
-import { FAKE_CATEGORY } from "../../../../fakeData/FAKE_DATA"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { showPopUp } from "../../../../../features/popUpReducer"
 import { SELECT_CATEGORY_POP_UP, SELECT_CURRENCY_POP_UP, SELECT_SERVICE_POP_UP } from "../../../../pop-ups/Constaints"
 import { Icon } from "@iconify/react"
+
+
+
+
 import SelectCurrencyPopUp from "../../../../pop-ups/SelectCurrencyPopUp"
 import SelectCategoryPopUp from "../../../../pop-ups/SelectCategoryPopUp"
 import SelectServicePopUp from "../../../../pop-ups/SelectServicePopUp"
 import UserDashboardFieldBox from "../../Components/UserDashboardFieldBox"
-
+import { post, useFetch } from "../../../../../lib/useFetch"
+import { API, SERVER } from "../../../../../lib/envAccess"
+import Swal from "sweetalert2"
 
 const NewOrders = () => {
+    const dispatcher = useDispatch()
     newOrderIntroAnimatin.fr = 5
 
-    const dispatcher = useDispatch()
 
+    const [platforms, platformsError, platformsLoading] =
+        useFetch(API.PLATFORM.GET)
 
-    const mainCategories = FAKE_CATEGORY
-
-
-
-    const [selectedMainCategory, setSeleectedMainCategory] =
-        useState(mainCategories[0])
+    const [services, servicesError, serviceLoading] =
+        useFetch(API.PUBLIC.SERVICES.GET)
 
 
 
 
 
-    const searchMediaItems = FAKE_CATEGORY
 
-    const [selectedMedia, setSelectedMedia] = useState(searchMediaItems[5])
+
+    const [selectedPlatform, setSelectedPlatform] =
+        useState(undefined)
+
+    const [filtredServices, setFiltredServices] =
+        useState([])
 
     const [selectedCurrency, setSelectedCurrency] = useState({
         unit: "INR",
         symbol: "₹"
     })
-    const [selectedCategory, setSelectedCategory] = useState(
-        { symbol: "", title: "All Categories", value: "ID1" },
-    );
+
+
+    const [selectedCategory, setSelectedCategory] = useState([]);
+
+
     const [selectedService, setSelectedService] = useState({
         "Service": "None!",
     },)
+
+
+    const [charge, setCharge] = useState(0)
+    const [quantity, setQuantity] = useState(0)
+
+
+
+    useEffect(() => {
+        const selectedPlatformFiltredServices = services.filter(item => {
+            const serviceCategory = item.category
+                .toLowerCase()
+                .trim()
+
+            const platformName = selectedPlatform?.name
+                .toLowerCase()
+                .trim()
+            return serviceCategory.includes(platformName)
+        })
+        setFiltredServices(selectedPlatformFiltredServices)
+    }, [selectedPlatform])
+
+    useEffect(() => {
+        const temp = (quantity * selectedCategory.rate) / 1000
+        setCharge(temp.toFixed(4))
+    }, [selectedCategory])
+
+
+
 
 
     const openCurrencyPopup = () => {
@@ -65,6 +99,7 @@ const NewOrders = () => {
             type: SELECT_CATEGORY_POP_UP,
             duration: 2000,
             component: <SelectCategoryPopUp
+                filtredServices={filtredServices}
                 resultFunction={(item) => setSelectedCategory(item)}
                 currentSelected={selectedCategory} />
         }))
@@ -82,10 +117,9 @@ const NewOrders = () => {
     }
 
 
-    const handleOrderFormSubmit = (e) => {
+    const handleOrderFormSubmit = async (e) => {
         e.preventDefault()
 
-        console.log(e);
         const formData = new FormData(e.target)
 
 
@@ -94,9 +128,45 @@ const NewOrders = () => {
             console.log(key, " => ", value);
         })
 
+        Swal.fire({
+            title: "Continue for submiting order?",
+            text: "click yes for continue!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, continue"
+        }).then(result => {
+            if (result.isConfirmed) {
+                post(API.DASHBOARD.USER_ORDER_SUBMIT.POST, formData)
+                    .then(response => {
+                        console.log(response)
+                        if (response.status === 200) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Order Successfuly Submited!",
+                                text: "thanks for your trusting, your order is on proccess, please wait for final changes."
+                            })
+                        }
+                        console.log(true)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
+        })
+
+
+
 
     }
 
+    const handleOnQuantityChange = (e) => {
+        const value = e.target.value
+        setQuantity(value)
+        const temp = (value * selectedCategory.rate) / 1000
+        setCharge(temp.toFixed(4))
+    }
 
 
 
@@ -118,22 +188,22 @@ const NewOrders = () => {
                         Service !
                     </h1>
                     <p>
-                    At UTSMM, we are excited to offer a range of services to meet your needs. Choose your desired package, provide your account details, and let our SMM panel deliver the best possible service! Whether you're aiming to boost engagement, expand your online presence or embark on a fresh project, this section is designed to make ordering social media services a breeze.                    </p>
+                        At UTSMM, we are excited to offer a range of services to meet your needs. Choose your desired package, provide your account details, and let our SMM panel deliver the best possible service! Whether you're aiming to boost engagement, expand your online presence or embark on a fresh project, this section is designed to make ordering social media services a breeze.                    </p>
                 </div>
             </div>
             <div className="main-categories row">
 
                 {
-                    mainCategories.map((item, index) => {
+                    platforms?.map((item, index) => {
                         return <div
-                            className={`item item-${selectedMainCategory.title === item.title}`}
+                            className={`item item-${selectedPlatform?.name === item?.name}`}
                             key={index}
-                            onClick={() => setSeleectedMainCategory(item)}>
+                            onClick={() => setSelectedPlatform(item)}>
                             <div className="item-header">
-                                <img src={item.svg} />
+                                <img src={SERVER.BASE_URL + item.image} />
                             </div>
                             <div className="item-body">
-                                <h2>{item.title}</h2>
+                                <h2>{item?.name}</h2>
                             </div>
                         </div>
                     })
@@ -146,21 +216,27 @@ const NewOrders = () => {
 
                     <UserDashboardFieldBox
                         header={{
-                            svg: <Icon icon="mdi:category-plus" />,
-                            title: "Category"
+                            svg: <Icon icon="ion:rocket" />,
+                            title: "Services"
                         }}
                         body={
                             <>
-                                <span className='id'>
-                                    {selectedCategory.value}
-                                </span>
+
                                 <button type="button">
+                                    <span className="id">
+                                        {selectedCategory?.service}
+                                    </span>
                                     <span >
-                                        {selectedCategory.symbol}
+                                        {selectedCategory?.symbol}
                                     </span>
                                     <span>
-                                        {selectedCategory.title}
+                                        {selectedCategory?.name
+                                            ? selectedCategory?.name : "Not Selected!"}
                                     </span>
+                                    <input
+                                        name="serviceID"
+                                        type="hidden"
+                                        value={selectedCategory?.service} />
                                 </button>
                                 <Icon icon="ic:round-arrow-drop-down-circle" />
                             </>
@@ -168,7 +244,7 @@ const NewOrders = () => {
                         oncClickFunction={openCategoriesFilterPopUp}
                     />
 
-                    <UserDashboardFieldBox
+                    {/* <UserDashboardFieldBox
                         header={{
                             svg: <Icon icon="ri:currency-fill" />,
                             title: "Currency"
@@ -188,9 +264,9 @@ const NewOrders = () => {
                             </>
                         }
                         oncClickFunction={openCurrencyPopup}
-                    />
+                    /> */}
 
-                    <UserDashboardFieldBox
+                    {/* <UserDashboardFieldBox
                         header={{
                             svg: <Icon icon="ion:rocket" />,
                             title: "Services"
@@ -210,7 +286,7 @@ const NewOrders = () => {
                             </>
                         }
                         oncClickFunction={openSelectServicePopUp}
-                    />
+                    /> */}
 
                     <UserDashboardFieldBox
                         header={{
@@ -219,7 +295,11 @@ const NewOrders = () => {
                         }}
                         body={
                             <>
-                                <input type="text" name="link" />
+                                <input
+                                    type="text"
+                                    name="link"
+                                    required
+                                />
                             </>
                         }
                     />
@@ -231,7 +311,20 @@ const NewOrders = () => {
                         }}
                         body={
                             <>
-                                <input type="text" name="quantity" />
+                                <input
+                                    type="number"
+                                    min={selectedPlatform?.min}
+                                    max={selectedCategory?.max}
+                                    name="quantity"
+                                    onChange={handleOnQuantityChange}
+                                    value={quantity}
+                                    required />
+                                <input
+                                    type="range"
+                                    min={selectedPlatform?.min}
+                                    max={selectedCategory?.max}
+                                    onChange={handleOnQuantityChange}
+                                    value={quantity} />
                             </>
                         }
                     />
@@ -243,7 +336,11 @@ const NewOrders = () => {
                         }}
                         body={
                             <>
-                                <input type="text" name="quantity" />
+                                $<input
+                                    type="text"
+                                    name="charge"
+                                    value={charge}
+                                    readOnly />
                             </>
                         }
                     />
@@ -264,37 +361,36 @@ const NewOrders = () => {
                             <div className="property-left">
                                 <Icon icon="mingcute:clock-fill" />
                                 <span>
-                                    Start Time
+                                    Min
                                 </span>
                             </div>
                             <div className="property-right">
-                                INSTANT
+                                {selectedCategory?.min}
                             </div>
                         </div>
                         <div className="property">
                             <div className="property-left">
                                 <Icon icon="ion:rocket-sharp" />
                                 <span>
-                                    Speed
+                                    Refill
                                 </span>
                             </div>
                             <div className="property-right">
                                 <span>
-                                    15 Minutes Stable
+                                    {`${selectedCategory?.refill}`}
                                 </span>
-
                             </div>
                         </div>
                         <div className="property">
                             <div className="property-left">
                                 <Icon icon="material-symbols:avg-time-sharp" />
                                 <span>
-                                    Avg. Time
+                                    Max
                                 </span>
                             </div>
                             <div className="property-right">
                                 <span>
-                                    1 minute
+                                    {selectedCategory?.max}
                                 </span>
 
                             </div>
@@ -303,14 +399,26 @@ const NewOrders = () => {
                             <div className="property-left">
                                 <Icon icon="game-icons:hand-ok" />
                                 <span>
-                                    Gurentee
+                                    Cancel
                                 </span>
                             </div>
                             <div className="property-right">
                                 <span>
-                                    Refill
+                                    {`${selectedCategory?.cancel}`}
                                 </span>
-
+                            </div>
+                        </div>
+                        <div className="property">
+                            <div className="property-left">
+                                <Icon icon="solar:dollar-bold" />
+                                <span>
+                                    price for 1k
+                                </span>
+                            </div>
+                            <div className="property-right">
+                                <span>
+                                    ${selectedCategory?.rate}
+                                </span>
                             </div>
                         </div>
                         <div className='description'>
@@ -319,7 +427,7 @@ const NewOrders = () => {
                                 <span>Decription</span>
                             </h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero ut error eligendi pariatur voluptatum ullam nihil ipsa autem? Esse accusantium modi magnam laudantium iste voluptas ipsam quibusdam accusamus, possimus odit!
+                                {selectedCategory?.name}
                             </p>
 
                         </div>

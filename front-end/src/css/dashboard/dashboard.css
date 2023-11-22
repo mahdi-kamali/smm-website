@@ -975,6 +975,9 @@
   padding: 0.25em;
   gap: 0.25em;
 }
+.user-dashboard .panel-orders .recent-orders .left .orders .item .item-left .item-icons img {
+  width: 2rem;
+}
 .user-dashboard .panel-orders .recent-orders .left .orders .item:hover {
   opacity: 1;
 }
@@ -1434,7 +1437,11 @@
   transition: all 0.5s ease;
   padding-bottom: 1em;
   border-radius: 0.5rem;
+  overflow: hidden;
   cursor: pointer;
+}
+.user-dashboard .panel-new-order .main-categories .item .item-header img {
+  aspect-ratio: 1/1;
 }
 .user-dashboard .panel-new-order .main-categories .item .item-body {
   color: white;

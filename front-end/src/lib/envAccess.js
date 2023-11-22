@@ -40,7 +40,24 @@ export const API = {
         },
         USER_EVENTS: {
             GET: SERVER.API_URL + "user/dashboard/statistics/events"
+        },
+        USER_PAYMENT_METHODS: {
+            GET: SERVER.API_URL + "user/dashboard/add-found/methods"
+        },
+        USER_PAYMENT_CHECKOUT: {
+            POST: SERVER.API_URL + "user/dashboard/add-found/create-checkout"
+        },
+        USER_ORDERS_HISTORY: {
+            GET: SERVER.API_URL + "user/dashboard/order"
+        } ,
+        USER_ORDER_SUBMIT : {
+            POST : SERVER.API_URL + "user/dashboard/order"
         }
+    } , 
+    PUBLIC : {
+        SERVICES : {
+            GET : SERVER.API_URL + "services"
+        },
     }
 }
 

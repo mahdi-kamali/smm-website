@@ -17,9 +17,11 @@ import { SELECT_PAYMENT_METHOD_POP_UP } from '../../../../pop-ups/Constaints'
 import SelectPaymentPopup from '../../../../pop-ups/SelectPaymentPopup'
 import { useEffect } from 'react'
 import SelectAmountOfMoney from '../../../../pop-ups/SelectAmountOfMoney'
+import { post, useFetch, usePost } from '../../../../../lib/useFetch'
+import { API, SERVER } from '../../../../../lib/envAccess'
+import Swal from "sweetalert2"
 
-
-
+import { showError } from '../../../../../lib/alertHandler'
 
 
 
@@ -27,15 +29,21 @@ import SelectAmountOfMoney from '../../../../pop-ups/SelectAmountOfMoney'
 
 const AddFounds = () => {
 
+    const [paymentMethods, methodError, methodLoading] = useFetch(
+        API.DASHBOARD.USER_PAYMENT_METHODS.GET
+    )
+
+    const [checkout, checkoutError, checkoutLoading, createCheckout] = usePost(API.DASHBOARD.USER_PAYMENT_CHECKOUT.POST)
+
+    const [selectedMethod, setSelectedMethod] = useState(undefined)
 
 
-
-    const [selectedMethod, setSelectedMethod] = useState("Not Selected!")
     const [amountOfMoney, setAmountOfMoney] = useState({
         amount: 0,
         fee: 0,
         total: 0
     })
+
     const [currentStep, setStep] = useState(1)
 
     const dispatcher = useDispatch()
@@ -52,6 +60,7 @@ const AddFounds = () => {
             type: SELECT_PAYMENT_METHOD_POP_UP,
             duration: 2000,
             component: <SelectPaymentPopup
+                methods={paymentMethods}
                 resultFunction={resultFunction}
                 currentSelected={selectedMethod} />
         }))
@@ -74,48 +83,9 @@ const AddFounds = () => {
     }
 
 
-    const paymentMethods = [
-        {
-            name: "Visa/Master Card",
-            description: "Card Payment auto enabled for everyone",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/easypaisa1.png"
-        },
-        {
-            name: "Perfect Money",
-            description: "Perfect Money payment is auto enabled in the above for everyone! 5% Bonus on Perfect money payment",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/perfect-money.png"
-        },
-        {
-            name: "Skrill",
-            description: "Skrill Email:>Muazzamali2286@gmail.com Minimum Payment is 10$",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/skrill.png"
-        },
-        {
-            name: "Paytm",
-            description: "Paytm is auto enabled in the above for everyone!",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/paytm.png"
-        },
-        {
-            name: "Bitcoin",
-            description: "The Btc-Ltc-Eth is auto enabled in the above for everyone!",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/bitcoin.png"
-        },
-        {
-            name: "Payoneer",
-            description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/payoneer.png"
-        },
-        {
-            name: "Wise",
-            description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/wise.png"
-        },
-        {
-            name: "USDT",
-            description: "USDT TRC20 Address available for everyone",
-            imageUrl: "https://yourpanelassets.com/projects/pak2p/img/usdt.png"
-        }
-    ];
+
+
+
 
     const stepIcon = (counter) => {
         if (counter < currentStep) {
@@ -168,6 +138,48 @@ const AddFounds = () => {
 
 
 
+    async function handlePayButtonSubmit() {
+
+
+
+
+        Swal.fire({
+            title: "Continue for paying?",
+            text: "click yes for continue!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, continue"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                post(API.DASHBOARD.USER_PAYMENT_CHECKOUT.POST,
+                    {
+                        method: selectedMethod,
+                        amount: amountOfMoney
+                    }
+                ).then(response => {
+                    if (response) {
+                        Swal.fire({
+                            title: "Open Link, and pay!",
+                            text: response.data,
+                            icon: 'info',
+                            confirmButtonText: "Open link"
+                        }).then(result => {
+                            window.open(response.data, "_blank")
+                            console.log(result)
+                        })
+                    }
+                }).catch(err => {
+                    const response = err?.response?.data
+                    if (response) {
+                        showError(response, "Somthing Wrong...")
+                    }
+                })
+
+            }
+        });
+    }
 
 
 
@@ -209,7 +221,7 @@ const AddFounds = () => {
                                     <span>Select Method</span>
                                 </legend>
                                 <div className="content">
-                                    <h1>{selectedMethod}</h1>
+                                    <h1>{selectedMethod?.name}</h1>
                                 </div>
                             </fieldset>
                         </div>
@@ -285,7 +297,11 @@ const AddFounds = () => {
                             </p>
                         </div>
                         <div className="item-input">
-                            <button className='pay-button'>
+                            <button
+                                onClick={
+                                    () =>
+                                        handlePayButtonSubmit()}
+                                className='pay-button'>
                                 <span>Click To Pay</span>
                                 <Icon icon="formkit:submit" />
                             </button>
@@ -297,7 +313,7 @@ const AddFounds = () => {
                 {paymentMethods.map((item, index) => {
                     return <div className="item" key={index}>
                         <div className="item-header">
-                            <img src={item.imageUrl} />
+                            <img src={SERVER.BASE_URL + item.image} />
                             <span>{item.name}</span>
                         </div>
                         <div className="item-body">

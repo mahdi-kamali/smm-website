@@ -47,10 +47,22 @@ const usersStorage = multer.diskStorage({
 })
 
 
+const paymentMethodsStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images/payment-methods")
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + require("path").extname(file.originalname))
+    }
+})
+
+
 const uploader = multer({ storage: storage })
 const blogUploader = multer({ storage: blogStorage })
 const platformUploader = multer({ storage: platformStorage })
 const usersUploader = multer({ storage: usersStorage })
+const paymentMethodsUploader = multer({ storage: paymentMethodsStorage })
 
 
 
@@ -59,5 +71,6 @@ module.exports = {
     uploader,
     blogUploader,
     platformUploader,
-    usersUploader
+    usersUploader , 
+    paymentMethodsUploader
 }

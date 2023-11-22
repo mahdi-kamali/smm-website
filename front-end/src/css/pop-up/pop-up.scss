@@ -179,7 +179,7 @@ $panel-color-6: #dc3545;
             padding-right: 1em;
             ul {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(1, 1fr);
                 gap: 1rem;
                 padding: 1em;
                 .main-category {
@@ -193,6 +193,7 @@ $panel-color-6: #dc3545;
                         line-height: 0;
                         gap: 0.5rem;
                         color: $panel-color-5;
+                        font-size: 1.25rem;
                         span {
                         }
                         svg {

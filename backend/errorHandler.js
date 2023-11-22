@@ -1,6 +1,6 @@
 const errorHandler = async (err, req, res, next) => {
 
-    let errorMessage = [err.message]
+    let errorMessage = [err.message ? err.message : err]
 
     if (err.code === 11000) {
         errorMessage = ["already exist in system, try new one ."]

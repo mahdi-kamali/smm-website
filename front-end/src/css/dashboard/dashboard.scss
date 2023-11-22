@@ -1055,6 +1055,9 @@ $gradient-degree: 0deg;
                                 color: $panel-color-3;
                                 padding: 0.25em;
                                 gap: 0.25em;
+                                img {
+                                    width: 2rem;
+                                }
                             }
                         }
 
@@ -1566,8 +1569,13 @@ $gradient-degree: 0deg;
                 transition: all 0.5s ease;
                 padding-bottom: 1em;
                 border-radius: 0.5rem;
+                overflow: hidden;
                 cursor: pointer;
                 .item-header {
+                    img {
+                        aspect-ratio: 1/1;
+
+                    }
                 }
                 .item-body {
                     color: white;
@@ -1606,6 +1614,7 @@ $gradient-degree: 0deg;
             align-items: start;
             z-index: 2;
             margin-top: 2rem;
+          
             .left {
                 display: flex;
                 flex-direction: column;

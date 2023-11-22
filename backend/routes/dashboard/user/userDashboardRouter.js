@@ -13,6 +13,8 @@ const EventModel = require("../../../models/EventModel")
 const { default: axios } = require("axios")
 const PlatformModel = require("../../../models/PlatformModel")
 const { uploader } = require("../../../lib/imageUpload")
+const PaymentMethodsModel = require("../../../models/PaymentMethodsModel")
+const CheckoutModel = require("../../../models/CheckoutModel")
 
 
 
@@ -114,7 +116,7 @@ const clientRequest = [
 ]
 
 
-// Order
+// ------------------- Order
 router.post("/order", async (req, res, next) => {
     try {
 
@@ -128,6 +130,7 @@ router.post("/order", async (req, res, next) => {
             charge } = req.body
 
 
+        console.log(quantity)
 
         const email = await jwt.verify(token, accessToken, (err, user) => {
             return user.email
@@ -140,7 +143,6 @@ router.post("/order", async (req, res, next) => {
 
 
         const services = require("../../../catch/services.json")
-        console.log(serviceID)
         const targetService = services.find(item => {
 
             if (item.service === serviceID) {
@@ -263,9 +265,9 @@ router.get("/statistics/overview", async (req, res) => {
 
 
         return res.json({
-            totalSpend: totalSpend,
+            totalSpend: totalSpend.toFixed(4),
             totalOrders: totalOrders.length,
-            accountBalance: accountBalance,
+            accountBalance: accountBalance.toFixed(4),
             activeOrders: activeOrders
         })
     }
@@ -367,7 +369,6 @@ router.get("/statistics/saved-services", async (req, res) => {
             return s.service === item
         })
 
-        console.log(service)
 
         if (!service) {
             console.log(`isNot Valid ${service}  index = ${index} service = ${item}`)
@@ -440,11 +441,125 @@ router.get("/statistics/events", async (req, res) => {
 })
 
 
+// ------------------ Add Found 
+
+
+// get All Methods
+router.get("/add-found/methods", async (req, res) => {
+    const methods = await PaymentMethodsModel.find({
+        available: true
+    })
+    return res.json(methods)
+})
+
+
+async function checkoutWithCrpyomous(method, amount, user) {
+    try {
+        const checkout = await CheckoutModel({
+            method: method,
+            amount: amount,
+            userID: user._id,
+
+        })
+        await checkout.save();
 
 
 
 
-// Free Credits 
+
+        const data = {
+            amount: amount.total + "",
+            currency: "usd",
+            order_id: checkout._id
+        }
+
+
+        const sign = crypto
+            .createHash("md5")
+            .update(
+                Buffer
+                    .from(JSON.stringify(data))
+                    .toString("base64") + CRYPTOMUS.API_KEY
+            )
+            .digest("hex")
+
+        const result = await axios.post(
+            CRYPTOMUS.BASE_URl,
+            data,
+            {
+                headers: {
+                    merchant: CRYPTOMUS.MERCHANT_ID,
+                    sign: sign
+                }
+            }
+        )
+
+
+        return result.data.result.url
+
+
+    }
+    catch (err) {
+        console.log(err)
+        throw err
+    }
+
+}
+
+// Check-Out
+router.post("/add-found/create-checkout", async (req, res, next) => {
+
+    try {
+        const { method, amount } = req.body
+        const token = await req.headers.token
+
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+
+        if (!method) {
+            return next("Method is Required!")
+        }
+
+        if (!amount) {
+            return next("Amount is Required!")
+        }
+
+        if (amount <= 0) {
+            return next("Amount most be bigger then 0!")
+        }
+
+
+
+        switch (method.name) {
+            case "cryptomous": {
+                checkoutWithCrpyomous(method, amount, user)
+                    .then(response => {
+                        return res.json(response)
+                    })
+                    .catch(err => { return next(err) })
+                return;
+            }
+        }
+
+
+        return res.json("okeqtkqektk")
+    }
+    catch (err) {
+        return next(err)
+    }
+
+})
+
+
+
+
+
+
+// ------------------------------------ Free Credits 
 router.get("/gift/email-verify", async (req, res) => {
     try {
         const token = req.headers.token
@@ -582,13 +697,11 @@ router.post("/gift/share", async (req, res) => {
 
 
 
-
 // Cryptomus Payment
 
 router.post("/payment/cryptomus", async (req, res) => {
     try {
         const { amount, currency } = req.body
-
 
 
         const order_id = crypto.randomBytes(12).toString("hex")

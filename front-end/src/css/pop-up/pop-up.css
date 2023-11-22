@@ -160,7 +160,7 @@
 }
 .pop-up .select-category-pop-up .pop-up-body ul {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
   padding: 1em;
 }
@@ -176,6 +176,7 @@
   line-height: 0;
   gap: 0.5rem;
   color: #17a2b8;
+  font-size: 1.25rem;
 }
 .pop-up .select-category-pop-up .pop-up-body ul .main-category .main-category-header svg {
   background-color: #17a2b8;

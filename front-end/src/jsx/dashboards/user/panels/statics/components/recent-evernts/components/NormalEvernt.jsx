@@ -40,7 +40,7 @@ const NormalEvent = (props) => {
         var minutes = date.getMinutes();
         var hours = date.getHours();
 
-        return hours + ':' + minutes; // change form if you need
+        return hours + ':' + minutes;
     }
 
 

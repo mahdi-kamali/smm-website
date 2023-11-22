@@ -1,17 +1,21 @@
 import { Icon } from '@iconify/react'
 import React from 'react'
+import { SERVER } from '../../../../../../lib/envAccess'
 
-const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction }) => {
-
-
-    const temp = {
-        "Service_id": "4255",
-        "Service": "Instagram Ultrafast Likes-(Max 300K)(Speed:10-20K/Per Hour)(Good Quality)(Non Drop)INSTANT",
-        "Rate per 1000": "$0.03 ",
-        "Min order": "20",
-        "Max order": "300000",
-        "Average time": "6 hours 22 minutes"
+const RecentOrderItem = (
+    {
+        service,
+        stateClass,
+        currentSelected,
+        selectFunction,
+        platform
     }
+
+) => {
+
+
+
+
 
     let title = ""
     let icon = ""
@@ -22,22 +26,22 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
             stateClass = "success"
             icon = <Icon icon="ep:success-filled" />
             break;
-        case "info":
+        case "on pause":
             title = "Info About Service !"
             stateClass = "info"
             icon = <Icon icon="ic:sharp-info" />
             break;
-        case "danger":
+        case "on error":
             title = "Error While Ordering !"
             stateClass = "danger"
             icon = <Icon icon="flat-color-icons:cancel" />
             break;
-        case "warning":
+        case "on warning":
             title = "Warning For Order !"
             stateClass = "warning"
-            icon = <Icon icon="fluent:warning-24-filled" />
+            icon = <Icon icon="ph:warning-fill" />
             break;
-        case "proccess":
+        case "on progress":
             title = "Processing About Order !"
             stateClass = "proccess"
             icon = <Icon icon="ant-design:setting-filled" />
@@ -53,11 +57,27 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
 
     const isAniamted = currentSelected ? "circle-ripple--animation" : ""
 
-    console.log(isAniamted);
 
 
 
-    const randomDate = parseInt((Math.random() * 30).toFixed()) + 2000
+    function getDate(string) {
+        let date = new Date(string);
+        let dd = String(date.getDate()).padStart(2, '0');
+        let mm = String(date.getMonth() + 1).padStart(2, '0'); //janvier = 0
+        let yyyy = date.getFullYear();
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+    function getTime(string) {
+        let date = new Date(string);
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        return hours + ':' + minutes;
+    }
+
+
+
+
     return (
         <div
             onClick={handleOnClikc}
@@ -67,7 +87,11 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
             <div className="item-left">
                 <div className="item-icons">
                     {icon}
-                    <Icon icon="basil:instagram-solid" />
+                    {
+                        platform ? 
+                        <img src={SERVER.BASE_URL + platform.image} alt="" />
+                        : <Icon icon="mdi:internet" />
+                    }
                 </div>
 
             </div>
@@ -75,11 +99,11 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
                 <div className="item-date">
                     <span>
                         <Icon icon="clarity:date-solid" />
-                        {randomDate}
+                        {getDate(service.createdAt)}
                     </span>
                     <span>
                         <Icon icon="ri:time-fill" />
-                        24:24
+                        {getTime(service.createdAt)}
                     </span>
                 </div>
 
@@ -91,11 +115,10 @@ const RecentOrderItem = ({ service, stateClass, currentSelected, selectFunction 
                         {title}
                     </h1>
                     <p>
-                        {service["Service"]}
+                        {service.service.name}
                     </p>
                 </div>
                 <div className="item-body">
-
                 </div>
             </div>
 

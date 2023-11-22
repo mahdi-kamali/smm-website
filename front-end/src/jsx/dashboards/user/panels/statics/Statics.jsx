@@ -167,9 +167,9 @@ const Statics = () => {
 
 
 
-            {/* <div className="rocket background">
+            <div className="rocket background">
                 <img src={rocket} />
-            </div> */}
+            </div>
 
 
         </section>
