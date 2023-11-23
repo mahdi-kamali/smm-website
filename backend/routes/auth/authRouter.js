@@ -41,7 +41,8 @@ router.post("/register", async (request, response, next) => {
             password,
             passwordConfirm,
             country,
-            gender
+            gender,
+            affliateLink
         } = await request.body
 
 
@@ -50,6 +51,51 @@ router.post("/register", async (request, response, next) => {
             throw new Error("Password Confirmation Not Match")
         }
 
+        if (affliateLink) {
+            const affliateUser = await User.findOne({
+                'affiliates.link': affliateLink
+            })
+            if (affliateUser === null)
+                throw "invalid link. " + affliateLink + " Please Check the link."
+
+
+            const user = new User({
+                fullName,
+                email,
+                password,
+                country,
+                role: "normal",
+                gender,
+                affiliateOf: affliateLink,
+                image: gender === "male" ? "/statics/images/users/male.png" : "/statics/images/users/female.png"
+            })
+
+
+            await user.save()
+
+            affliateUser.affiliates.members.push(
+                user._id
+            )
+
+            await affliateUser.save()
+
+
+
+            const token = jwt.sign(
+                {
+                    email: user.email
+                },
+                accessToken,
+                {
+                    expiresIn: expireTime
+                }
+            )
+
+
+            return response.json(token)
+        }
+
+
         const user = new User({
             fullName,
             email,
@@ -57,9 +103,11 @@ router.post("/register", async (request, response, next) => {
             country,
             role: "normal",
             gender,
+            affiliateOf: affliateLink,
             image: gender === "male" ? "/statics/images/users/male.png" : "/statics/images/users/female.png"
         })
         await user.save()
+
 
 
         const token = jwt.sign(

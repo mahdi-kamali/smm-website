@@ -1,6 +1,10 @@
 
 
 
+export const CLIENT = {
+    BASE_URL : window.location.origin
+}
+
 export const SERVER = {
     BASE_URL: process.env.REACT_APP_SERVER_BASE_URL,
     API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/",

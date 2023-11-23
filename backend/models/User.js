@@ -94,13 +94,17 @@ const userSchema = new mongoose.Schema({
         }
     },
     affiliates: {
-        orders: [],
+        members: [],
         link: {
             type: String,
             default: () => {
                 return crypto.randomBytes(12).toString("hex")
             }
         }
+    },
+    affiliateOf: {
+        type: mongoose.Schema.ObjectId,
+        default: null
     }
 },
     {

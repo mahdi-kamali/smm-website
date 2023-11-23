@@ -10,7 +10,7 @@ import Lottie from 'react-lottie-player'
 import animationOne from "../../../images/auth-page/animation.json"
 import animationTwo from "../../../images/auth-page/animation-2.json"
 import FormFields from "./components/FormFields";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 import Select from 'react-select'
@@ -24,13 +24,13 @@ import { showError } from "../../../lib/alertHandler";
 
 const AuthPage = () => {
 
-    const [countries, error, loading] = useFetch(API.COUNTRIES.GET)
-
     const navigator = useNavigate()
     const [pageMode, setMode] = useState("login")
-
-
     const token = JSON.parse(sessionStorage.getItem("token"))
+    const params = useParams()
+
+    const [countries, error, loading] = useFetch(API.COUNTRIES.GET)
+
 
 
 
@@ -82,6 +82,8 @@ const AuthPage = () => {
 
         }
         if (pageMode === "sign-up") {
+            const affliateLink = params?.link
+            if (affliateLink) formData.append("affliateLink", affliateLink)
             await axios({
                 method: "post",
                 url: API.AUTH.SIGNUP,

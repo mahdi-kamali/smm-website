@@ -18,6 +18,7 @@ const CheckoutModel = require("../../../models/CheckoutModel")
 const { sendEmail } = require("../../../lib/sendEmail")
 const EmailVerifyGiftModel = require("../../../models/gifts/EmailVerifyGiftModel")
 const RetweetGiftModel = require("../../../models/RetweetGiftModel")
+const AffiliateTransactionModel = require("../../../models/affiliates/AffiliateTransactionModel")
 
 
 
@@ -133,7 +134,6 @@ router.post("/order", async (req, res, next) => {
             charge } = req.body
 
 
-        console.log(quantity)
 
         const email = await jwt.verify(token, accessToken, (err, user) => {
             return user.email
@@ -202,6 +202,26 @@ router.post("/order", async (req, res, next) => {
         user.found = user.found - priceForAll
 
         await user.save()
+
+        const affliateOfLink = user.affiliateOf
+
+        if (affliateOfLink) {
+            const targetUser = await User.findOne({
+                "affiliates.link": affliateOfLink
+            })
+
+            const affliateTransactionModel = new AffiliateTransactionModel({
+                orderID: order._id,
+                price: priceForAll,
+                ammountForGift: (priceForAll * 5) / 100,
+                affliateOwnerID: targetUser._id,
+                orderOwnerID: user._id
+            })
+            await affliateTransactionModel.save()
+
+            targetUser.found += (priceForAll * 5) / 100
+            await targetUser.save()
+        }
 
 
         return res.json(order)
@@ -859,11 +879,26 @@ router.get("/affliates", async (req, res, next) => {
             email: email
         })
 
+        const affliatesTransactions = await AffiliateTransactionModel.find({
+            affliateOwnerID: user._id
+        })
+
+        const members = await User.find({
+            affiliateOf: user.affiliates.link
+        }, { fullName: 1, _id: 0 })
+
+
+
+        const conversionRate = 5
+        let commisions = 0
 
         return res.json({
-            recentOrders: [],
+            members: members,
             revenue: {},
             performance: [],
+            totalOrders: affliatesTransactions.length,
+            commisions: commisions,
+            conversionRate: 5,
             link: user.affiliates.link
         })
 

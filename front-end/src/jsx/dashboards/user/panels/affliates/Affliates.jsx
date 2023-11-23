@@ -26,7 +26,7 @@ import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
 import MaxLineText from "../../../../cutsome-components/Text/MaxLineText";
 import { Icon } from "@iconify/react";
 import { useFetch } from "../../../../../lib/useFetch";
-import { API, SERVER } from "../../../../../lib/envAccess";
+import { API, CLIENT, SERVER } from "../../../../../lib/envAccess";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2"
 
@@ -86,24 +86,24 @@ const options = {
 
 const Affliates = () => {
   introAnimation.fr = 10
-  const [data, error, loading] = useFetch(API.DASHBOARD.AFFILIATES.STATUS.GET)
+  const [affiliates, error, loading] = useFetch(API.DASHBOARD.AFFILIATES.STATUS.GET)
   const [link, setLink] = useState(undefined)
 
   useEffect(() => {
-    if (data?.link) {
-      setLink(`${SERVER.API_URL}affliates/${data?.link}`)
+    if (affiliates?.link) {
+      setLink(`${CLIENT.BASE_URL}/auth/${affiliates?.link}`)
     } else {
       setLink("loading....")
     }
-  }, [data])
+  }, [affiliates])
 
 
-  console.log(data)
+
 
 
   const onCopyLinkClick = () => {
 
-    navigator.clipboard.writeText(`${SERVER.API_URL}affliates/${data?.link}`)
+    navigator.clipboard.writeText(link)
       .then(end => {
         Swal.fire({
           icon: "success",
@@ -197,61 +197,27 @@ const Affliates = () => {
           </div>
           <div className="recent-orders">
             <h2>
-              Recent Orders
+              Members
             </h2>
             <div className="body">
-              <div className="item">
-                <div className="item-left">
-                  #{(Math.random() * 2000).toFixed()}
-                </div>
-                <div className="item-mid">
-                  <MaxLineText
-                    maxLine={1}
-                    content={"Instagram Followers-(High Quality)(Instant Start)"} />
-                </div>
-                <div className="item-right">
-                  $5.43
-                </div>
-              </div>
-              <div className="item">
-                <div className="item-left">
-                  #{(Math.random() * 2000).toFixed()}
-                </div>
-                <div className="item-mid">
-                  <MaxLineText
-                    maxLine={1}
-                    content={"Instagram Followers-(High Quality)(Instant Start)"} />
-                </div>
-                <div className="item-right">
-                  $5.43
-                </div>
-              </div>
-              <div className="item">
-                <div className="item-left">
-                  #{(Math.random() * 2000).toFixed()}
-                </div>
-                <div className="item-mid">
-                  <MaxLineText
-                    maxLine={1}
-                    content={"Instagram Followers-(High Quality)(Instant Start)"} />
-                </div>
-                <div className="item-right">
-                  $5.43
-                </div>
-              </div>
-              <div className="item">
-                <div className="item-left">
-                  #{(Math.random() * 2000).toFixed()}
-                </div>
-                <div className="item-mid">
-                  <MaxLineText
-                    maxLine={1}
-                    content={"Instagram Followers-(High Quality)(Instant Start)"} />
-                </div>
-                <div className="item-right">
-                  $5.43
-                </div>
-              </div>
+              {
+                affiliates?.members?.map((item, index) => {
+                  return <div className="item" key={index}>
+                    <div className="item-left">
+                      {index + 1}
+                    </div>
+                    <div className="item-mid">
+                      <MaxLineText
+                        maxLine={1}
+                        content={item?.fullName} />
+                    </div>
+                    <div className="item-right">
+                      $5.43
+                    </div>
+                  </div>
+                })
+              }
+
             </div>
 
           </div>
@@ -276,7 +242,7 @@ const Affliates = () => {
             <div className="footer">
               <div className="item">
                 <div className="item-header">
-                  246
+                  {affiliates?.totalOrders}
                 </div>
                 <div className="item-body">
                   Total Affiliate Orders
@@ -284,16 +250,15 @@ const Affliates = () => {
               </div>
               <div className="item">
                 <div className="item-header">
-                  $582
+                  ${affiliates?.commisions}
                 </div>
                 <div className="item-body">
                   Commisions
                 </div>
               </div>
-
               <div className="item">
                 <div className="item-header">
-                  4.32%
+                  {affiliates?.conversionRate}%
                 </div>
                 <div className="item-body">
                   Conversion Rate

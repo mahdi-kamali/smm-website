@@ -113,7 +113,9 @@ function App() {
         />
         <Routes>
           <Route path='/home' element={<MainPage />} />
-          <Route path='/auth' element={<AuthPage />} />
+          <Route path='/auth/:link' element={<AuthPage />} />
+          <Route path='/auth/' element={<AuthPage />} />
+
           <Route path='/services' element={<ServicesPage />} />
           <Route path="/*" element={<MainPage />} />
           <Route path="/faqs" element={<FAQsPage />} />
