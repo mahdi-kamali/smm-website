@@ -35,7 +35,7 @@ const colors = [
 
 
 
-function getChartData(labels, max, titles) {
+export function getChartData(labels, max, titles) {
 
 
     const dataSets = []
@@ -50,7 +50,7 @@ function getChartData(labels, max, titles) {
         Array.from(labels).forEach((element, index) => {
 
             if (index % 2 !== 0) {
-                intialValue += (Math.random()*max).toFixed() * 10
+                intialValue += (Math.random() * max).toFixed() * 10
             }
 
             if (index % 2 == 0 && index !== 0) {
@@ -101,5 +101,32 @@ function getChartData(labels, max, titles) {
 }
 
 
+export function createData(mainLabel, labels, values ) {
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: mainLabel,
+                borderRadius: 5,
+                data: values,
+                pointRadius: 3,
+                pointHoverRadius: 10,
+                pointBackgroundColor: colors[0].pointBackgroundColor,
+                backgroundColor: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 255);
+                    gradient.addColorStop(0, colors[0].gradient.start);
+                    gradient.addColorStop(1, colors[0].gradient.end);
+                    return gradient;
+                },
+                borderColor: colors[0].borderColor,
+                fill: true,
+                cubicInterpolationMode: 'monotone',
+            },
+        ],
+    }
 
-export default getChartData
+    return data
+}
+
+

@@ -29,6 +29,7 @@ import { useFetch } from "../../../../../lib/useFetch";
 import { API, CLIENT, SERVER } from "../../../../../lib/envAccess";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2"
+import { createData } from "../../../../../lib/chartDataSet";
 
 ChartJS.register(
   ArcElement,
@@ -89,13 +90,34 @@ const Affliates = () => {
   const [affiliates, error, loading] = useFetch(API.DASHBOARD.AFFILIATES.STATUS.GET)
   const [link, setLink] = useState(undefined)
 
+
+  const [performanceChartData, setPerformanceChartData] = useState({
+    labels: [],
+    data: []
+  })
+
   useEffect(() => {
     if (affiliates?.link) {
       setLink(`${CLIENT.BASE_URL}/auth/${affiliates?.link}`)
     } else {
       setLink("loading....")
     }
+
+    const performnace = affiliates.performance
+
+    const tempLabels = affiliates?.performance ? performnace?.map(item => {
+      return new Date(item.label).toDateString()
+    }) : []
+
+    const tempValues = affiliates?.performance ? performnace?.map(item => { return item.ammount }) : []
+
+    setPerformanceChartData({
+      labels: tempLabels,
+      data: tempValues
+    })
+
   }, [affiliates])
+
 
 
 
@@ -156,7 +178,7 @@ const Affliates = () => {
                     Daily
                   </div>
                   <div className="value">
-                    $250
+                    ${affiliates?.revenue?.daily}
                   </div>
                 </li>
                 <li>
@@ -164,7 +186,7 @@ const Affliates = () => {
                     Weekly
                   </div>
                   <div className="value">
-                    $250
+                    ${affiliates?.revenue?.weekly}
                   </div>
                 </li>
                 <li>
@@ -172,7 +194,7 @@ const Affliates = () => {
                     Yearly
                   </div>
                   <div className="value">
-                    $250
+                    ${affiliates?.revenue?.yearly}
                   </div>
                 </li>
               </ul>
@@ -218,6 +240,7 @@ const Affliates = () => {
                 })
               }
 
+
             </div>
 
           </div>
@@ -232,8 +255,12 @@ const Affliates = () => {
                 className="chart"
                 id="myChart"
                 data={
-                  FakeChartData(
-                    ["Jan", "Feb", "Mar", "Apr", "May", "Jan"], 2000, ["Affilate Orders"])}
+                  createData(
+                    "$",
+                    performanceChartData.labels,
+                    performanceChartData.data
+                  )
+                }
                 options={options}
                 height={250}
                 width={350}

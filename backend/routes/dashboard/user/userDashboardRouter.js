@@ -19,6 +19,7 @@ const { sendEmail } = require("../../../lib/sendEmail")
 const EmailVerifyGiftModel = require("../../../models/gifts/EmailVerifyGiftModel")
 const RetweetGiftModel = require("../../../models/RetweetGiftModel")
 const AffiliateTransactionModel = require("../../../models/affiliates/AffiliateTransactionModel")
+const moment = require("moment");
 
 
 
@@ -888,18 +889,57 @@ router.get("/affliates", async (req, res, next) => {
         }, { fullName: 1, _id: 0 })
 
 
-
-        const conversionRate = 5
         let commisions = 0
+        affliatesTransactions.forEach(item => {
+            commisions += parseFloat(item.ammountForGift)
+        })
+
+
+
+        const dailyRecords = await AffiliateTransactionModel.find({
+            affliateOwnerID: user._id,
+            createdAt: {
+                $gte: moment().startOf('day').toDate(),
+                $lt: moment().endOf('day').toDate()
+            }
+        });
+
+        const weeklyRecords = await AffiliateTransactionModel.find({
+            affliateOwnerID: user._id,
+            createdAt: {
+                $gte: moment().startOf('week').toDate(),
+                $lt: moment().endOf('day').toDate()
+            }
+        });
+
+        const yearlyRecords = await AffiliateTransactionModel.find({
+            affliateOwnerID: user._id,
+            createdAt: {
+                $gte: moment().startOf('year').toDate(),
+                $lt: moment().endOf('day').toDate()
+            }
+        });
+
+        const revenue = {
+            daily: dailyRecords.reduce((total, record) => total + parseFloat(record.ammountForGift), 0),
+            weekly: weeklyRecords.reduce((total, record) => total + parseFloat(record.ammountForGift), 0),
+            yearly: yearlyRecords.reduce((total, record) => total + parseFloat(record.ammountForGift), 0)
+        };
+
 
         return res.json({
             members: members,
-            revenue: {},
-            performance: [],
+            revenue: revenue,
+            performance: affliatesTransactions.map(item => {
+                return {
+                    label: item.createdAt,
+                    ammount: item.ammountForGift
+                }
+            }),
             totalOrders: affliatesTransactions.length,
-            commisions: commisions,
+            commisions: commisions.toFixed(3),
             conversionRate: 5,
-            link: user.affiliates.link
+            link: user.affiliates.link,
         })
 
     }
