@@ -2,12 +2,13 @@
 
 
 export const CLIENT = {
-    BASE_URL : window.location.origin
+    BASE_URL: window.location.origin
 }
 
 export const SERVER = {
     BASE_URL: process.env.REACT_APP_SERVER_BASE_URL,
     API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/",
+    ADMIN_PANEL_API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/admin/dashboard/"
 }
 
 
@@ -101,6 +102,12 @@ export const API = {
                 GET: SERVER.API_URL + "user/dashboard/affliates"
             }
         }
+    },
+    ADMIN_DASHBOARD: {
+        NEW_ORDERS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/orders/new"
+        },
+        
     },
     PUBLIC: {
         SERVICES: {

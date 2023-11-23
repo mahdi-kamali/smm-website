@@ -220,6 +220,20 @@ router.delete("/statistics/todo-list", async (req, res) => {
     }
 })
 
+router.get("/statistics/orders/new", async (req, res, next) => {
+    const orders = await OrderModel.find({
+        status: "on progress"
+    })
+    return res.json(orders.length)
+})
+
+router.get("/statistics/quick-view", async (req, res, next) => {
+    const orders = await OrderModel.find({
+        status: "on progress"
+    })
+    return res.json(orders.length)
+})
+
 
 // Message All 
 router.get("/statistics/message-all", async (req, res) => {
@@ -268,6 +282,8 @@ router.get("/orders", async (req, res) => {
         .skip(pageNumber * 10)
     return res.json(orders)
 })
+
+
 
 
 // --------------- Tickets 

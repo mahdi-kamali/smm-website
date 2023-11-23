@@ -119,9 +119,12 @@ app.use("/api/platforms",
 
 
 
+// Countries 
 app.use("/api/countries", require("./routes/countries/countriesRouter"))
 
 
+
+// Afiliates
 app.use("/api/affliates", require("./routes/affiliates/affiliateRouter"))
 
 
