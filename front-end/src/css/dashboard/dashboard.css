@@ -1901,13 +1901,13 @@
   color: black;
   cursor: pointer;
 }
-.user-dashboard .panel-tickets .left .ticket-history .Resolved {
+.user-dashboard .panel-tickets .left .ticket-history .Solved {
   background-color: #0fac6d;
 }
-.user-dashboard .panel-tickets .left .ticket-history .Rejected {
+.user-dashboard .panel-tickets .left .ticket-history .Error {
   background-color: #dc3545;
 }
-.user-dashboard .panel-tickets .left .ticket-history .Pending {
+.user-dashboard .panel-tickets .left .ticket-history .Submited {
   background-color: #ffa938;
 }
 .user-dashboard .panel-tickets .left .ticket-history .InProgress {

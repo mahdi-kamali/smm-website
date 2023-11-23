@@ -1,6 +1,7 @@
+const { request } = require("express")
 const mongoose = require("mongoose")
 const { isEmail } = require("validator")
-
+const crypto = require("crypto")
 
 
 
@@ -19,6 +20,14 @@ const emailVerifiedModel = new mongoose.Schema({
         },
     }
 })
+
+
+const giftModel = new mongoose.Schema({
+    email: { type: mongoose.Schema.ObjectId },
+    trustPilot: { type: mongoose.Schema.ObjectId },
+    retweet: { type: mongoose.Schema.ObjectId }
+})
+
 
 
 
@@ -75,6 +84,23 @@ const userSchema = new mongoose.Schema({
     savedServices: {
         type: [],
         default: []
+    },
+    gifts: {
+        type: giftModel,
+        default: {
+            email: null,
+            trustPilot: null,
+            retweet: null
+        }
+    },
+    affiliates: {
+        orders: [],
+        link: {
+            type: String,
+            default: () => {
+                return crypto.randomBytes(12).toString("hex")
+            }
+        }
     }
 },
     {

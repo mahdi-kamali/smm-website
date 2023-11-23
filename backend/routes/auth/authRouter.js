@@ -57,7 +57,7 @@ router.post("/register", async (request, response, next) => {
             country,
             role: "normal",
             gender,
-            image: "/statics/images/users/user.png"
+            image: gender === "male" ? "/statics/images/users/male.png" : "/statics/images/users/female.png"
         })
         await user.save()
 

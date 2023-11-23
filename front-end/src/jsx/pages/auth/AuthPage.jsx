@@ -75,9 +75,8 @@ const AuthPage = () => {
                     const response = error?.response
                     if (response.status === 500) {
                         console.log(response)
-                        Swal.fire({
-                            icon: "error",
-                        })
+                        const errors = response.data
+                        showError(errors)
                     }
                 })
 

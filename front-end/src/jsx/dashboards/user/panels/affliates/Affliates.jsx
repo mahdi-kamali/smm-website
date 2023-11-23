@@ -25,7 +25,10 @@ import {
 import { ReactChart, Line, Pie, Bar } from "react-chartjs-2";
 import MaxLineText from "../../../../cutsome-components/Text/MaxLineText";
 import { Icon } from "@iconify/react";
-
+import { useFetch } from "../../../../../lib/useFetch";
+import { API, SERVER } from "../../../../../lib/envAccess";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2"
 
 ChartJS.register(
   ArcElement,
@@ -83,9 +86,33 @@ const options = {
 
 const Affliates = () => {
   introAnimation.fr = 10
+  const [data, error, loading] = useFetch(API.DASHBOARD.AFFILIATES.STATUS.GET)
+  const [link, setLink] = useState(undefined)
+
+  useEffect(() => {
+    if (data?.link) {
+      setLink(`${SERVER.API_URL}affliates/${data?.link}`)
+    } else {
+      setLink("loading....")
+    }
+  }, [data])
 
 
+  console.log(data)
 
+
+  const onCopyLinkClick = () => {
+
+    navigator.clipboard.writeText(`${SERVER.API_URL}affliates/${data?.link}`)
+      .then(end => {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Link Copied to your clipboard."
+        })
+      })
+
+  }
 
 
   return (
@@ -112,8 +139,8 @@ const Affliates = () => {
         </div>
       </div>
       <div className="link row">
-        <p>www.example.com/link</p>
-        <button>
+        <p>{link}</p>
+        <button onClick={onCopyLinkClick}>
           <Icon icon="bxs:copy" />
           <span>Copy Link</span>
         </button>

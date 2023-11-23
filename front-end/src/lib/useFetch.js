@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { API } from "./envAccess"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -8,11 +9,13 @@ import { API } from "./envAccess"
 const token = JSON.parse(sessionStorage.getItem("token"))
 
 
+
 export function useFetch(url) {
 
     const [data, setData] = useState([])
     const [error, setError] = useState(undefined)
     const [loading, setLoading] = useState(false)
+    const navigator = useNavigate()
 
     useEffect(() => {
         (
@@ -27,6 +30,11 @@ export function useFetch(url) {
                     })
                     setData(response.data)
                 } catch (err) {
+                    if (err?.response?.status === 403) {
+                        sessionStorage.removeItem("token")
+                        navigator("/auth")
+                        window.location.reload(true)
+                    }
                     setError(err)
                 } finally {
                     setLoading(false)
@@ -99,7 +107,26 @@ export async function post(url, postData) {
     }).then(response => {
         return response
     }).catch(err => {
-       
+        console.log(err)
+        throw err
+    })
+
+}
+
+
+export async function get(url, postData) {
+
+    return await axios({
+        method: "get",
+        url: url,
+        headers: {
+            token: token
+        },
+        data: postData
+    }).then(response => {
+        return response
+    }).catch(err => {
+        console.log(err)
         throw err
     })
 

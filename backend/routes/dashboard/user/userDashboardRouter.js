@@ -12,13 +12,16 @@ const ShareModel = require("../../../models/ShareModel")
 const EventModel = require("../../../models/EventModel")
 const { default: axios } = require("axios")
 const PlatformModel = require("../../../models/PlatformModel")
-const { uploader } = require("../../../lib/imageUpload")
+const { uploader, trustPilotStorageUploader } = require("../../../lib/imageUpload")
 const PaymentMethodsModel = require("../../../models/PaymentMethodsModel")
 const CheckoutModel = require("../../../models/CheckoutModel")
+const { sendEmail } = require("../../../lib/sendEmail")
+const EmailVerifyGiftModel = require("../../../models/gifts/EmailVerifyGiftModel")
+const RetweetGiftModel = require("../../../models/RetweetGiftModel")
 
 
 
-router.use(uploader.any())
+router.use(uploader("images/users").any())
 
 
 
@@ -559,8 +562,11 @@ router.post("/add-found/create-checkout", async (req, res, next) => {
 
 
 
-// ------------------------------------ Free Credits 
-router.get("/gift/email-verify", async (req, res) => {
+
+// Email Verfication
+
+// Get Status
+router.get("/email-verify/status", async (req, res, next) => {
     try {
         const token = req.headers.token
         const email = await jwt.verify(token, accessToken, (err, user) => {
@@ -571,7 +577,32 @@ router.get("/gift/email-verify", async (req, res) => {
         })
 
         if (user.emailVerified.isActive === true) {
-            return res.json("You Already Verified Your Email !")
+            return res.json(true)
+        }
+
+        return res.json(false)
+
+
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+
+// Get Code
+router.get("/email-verify/code", async (req, res, next) => {
+    try {
+
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+
+        if (user.emailVerified.isActive === true) {
+            throw ("You Already Verified Your Email !")
         }
 
         const randomCode = crypto.randomBytes(3).toString("hex")
@@ -582,17 +613,19 @@ router.get("/gift/email-verify", async (req, res) => {
         user.emailVerified.verifyCode.sendedAt = Date.now()
         await user.save()
 
-
+        await sendEmail(user.email, randomCode)
 
         return res.json("Your Code Sended To Your Email , Please Verified it")
     }
     catch (e) {
-        return res.status(500).json("Error !")
+        return next(e)
     }
 })
 
-router.post("/gift/email-verify", async (req, res) => {
+// Submit Code
+router.post("/email-verify/submit-code", async (req, res, next) => {
     try {
+        const { code } = req.body
         const token = req.headers.token
         const email = await jwt.verify(token, accessToken, (err, user) => {
             return user.email
@@ -602,90 +635,244 @@ router.post("/gift/email-verify", async (req, res) => {
         })
 
         if (user.emailVerified.isActive === true) {
-            return res.json("You Already Verified Your Email !")
+            throw ("You Already Verified Your Email !")
         }
-
-        const { code } = req.body
 
         if (code === user.emailVerified.verifyCode.code) {
             user.emailVerified.isActive = true
             await user.save()
-            return res.json("Your Email Verified !, 5 Dollar Gift Delivered!")
-        } else {
-            return res.json("Wrong Code !")
+            return res.json("Your Email Succesfuly Verified.")
         }
 
 
-
-
+        throw "Code Is Invalid!"
     }
     catch (e) {
-        return res.status(500).json("Error !")
+        return next(e)
     }
 })
 
 
-router.post("/gift/trust-pilot", async (req, res) => {
 
+
+
+
+
+
+
+
+// ------------------------------------ Free Credits 
+
+
+// Email 
+router.get("/gift/email/status", async (req, res, next) => {
     try {
-        const { userID } = req.body
-        const file = req.files[0]
-
-        if (!file) {
-            return res.status(400).json("Please Insert your Prove First")
-        }
-
-
-        const trustPilot = await TrustpilotModel({
-            userID: userID,
-            image: file.filename
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
         })
 
 
-        return res.json(await trustPilot.save())
-    }
-    catch (e) {
+        const gift = await EmailVerifyGiftModel.findById(user.gifts.email)
 
-        if (e.code === 11000) {
-            return res.status(400).json("You Already Submitted Your Prof , please wait for accepting. ")
-        }
-        return res.status(500).json("Error")
+
+        return res.json(gift)
     }
+    catch (e) { }
 })
-
-router.post("/gift/share", async (req, res) => {
-
+router.post("/gift/email/claim", async (req, res, next) => {
     try {
-
-        const file = req.files[0]
-        const { userID } = req.body
-
-
-        if (!file) {
-            return res.status(400).json("Please Insert Your Prof First!")
-        }
-
-        const share = new ShareModel({
-            userID: userID,
-            image: file.filename
+        const { platform, link } = req.body
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
         })
 
-        await share.save()
+        if (user?.gifts?.email) throw "You Already Claimed Your Gift."
+
+        const giftModel = new EmailVerifyGiftModel({
+            userID: user._id,
+            link: link,
+            platform: platform
+        })
+
+        try {
+            await giftModel.save()
+        }
+        catch (e) {
+            throw ("You Already claimed Your Gift Before.")
+        }
 
 
-        return res.json("Your Prof Submited , please Wait")
+        user.gifts.email = giftModel._id
 
+        await user.save()
+
+        return res.json("Your Gift Successfuly Claimed!.")
     }
     catch (e) {
-        if (e.code === 11000) {
-            return res.status(400).json("You Already Submitted Your Prof , please wait for accepting. ")
+        return next(e)
+    }
+})
+
+// trust pilot
+router.get("/gift/trust-pilot/status", async (req, res, next) => {
+
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+
+
+        const giftID = user.gifts.trustPilot
+        const trustPilot = await TrustpilotModel.findById(giftID)
+
+        return res.json(trustPilot)
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+router.post("/gift/trust-pilot/submit-proof", async (req, res, next) => {
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+        const file = req.files[0]
+
+        if (!file) {
+            throw ("Please Insert your Prove First")
         }
-        return res.status(500).json("Error")
+
+
+        const trustPilotGiftModel = await new TrustpilotModel({
+            userID: user._id,
+            proof: "/statics/images/users/" + file.filename,
+            accepted: false,
+        })
+
+        await trustPilotGiftModel.save()
+
+        user.gifts.trustPilot = trustPilotGiftModel._id
+
+        await user.save()
+
+        return res.json("Your Proof Successfuly Submited Please wait for validation.")
+    }
+    catch (e) {
+        if (e?.code === 11000) {
+            return next("You Already Submitted You Proof, please Wait!")
+        }
+        return next(e)
     }
 })
 
 
 
+// trust pilot
+router.get("/gift/retweet/status", async (req, res, next) => {
+
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+
+
+        const giftID = user.gifts.retweet
+        const retweet = await RetweetGiftModel.findById(giftID)
+
+        return res.json(retweet)
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+router.post("/gift/retweet/submit-proof", async (req, res, next) => {
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            return user.email
+        })
+        const user = await User.findOne({
+            email: email
+        })
+        const file = req.files[0]
+
+        if (!file) {
+            throw ("Please Insert your Prove First")
+        }
+
+
+        const retweetGiftModel = await new RetweetGiftModel({
+            userID: user._id,
+            proof: "/statics/images/users/" + file.filename,
+            accepted: false,
+        })
+
+        await retweetGiftModel.save()
+
+        user.gifts.retweet = retweetGiftModel._id
+
+        await user.save()
+
+        return res.json("Your Proof Successfuly Submited Please wait for validation.")
+    }
+    catch (e) {
+        if (e?.code === 11000) {
+            return next("You Already Submitted You Proof, please Wait!")
+        }
+        return next(e)
+    }
+})
+
+
+
+// Affiliates 
+router.get("/affliates", async (req, res, next) => {
+
+    try {
+        const token = req.headers.token
+        const email = await jwt.verify(token, accessToken, (err, user) => {
+            if (err) throw err
+            return user.email
+        })
+
+        const user = await User.findOne({
+            email: email
+        })
+
+
+        return res.json({
+            recentOrders: [],
+            revenue: {},
+            performance: [],
+            link: user.affiliates.link
+        })
+
+    }
+    catch (e) {
+        return next(e)
+    }
+
+})
 
 
 

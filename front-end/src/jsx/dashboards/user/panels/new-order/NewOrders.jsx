@@ -17,6 +17,7 @@ import UserDashboardFieldBox from "../../Components/UserDashboardFieldBox"
 import { post, useFetch } from "../../../../../lib/useFetch"
 import { API, SERVER } from "../../../../../lib/envAccess"
 import Swal from "sweetalert2"
+import { showError } from "../../../../../lib/alertHandler"
 
 const NewOrders = () => {
     const dispatcher = useDispatch()
@@ -123,11 +124,6 @@ const NewOrders = () => {
         const formData = new FormData(e.target)
 
 
-
-        formData.forEach((value, key) => {
-            console.log(key, " => ", value);
-        })
-
         Swal.fire({
             title: "Continue for submiting order?",
             text: "click yes for continue!",
@@ -148,10 +144,12 @@ const NewOrders = () => {
                                 text: "thanks for your trusting, your order is on proccess, please wait for final changes."
                             })
                         }
-                        console.log(true)
+
                     })
                     .catch(err => {
-                        console.log(err)
+                        if (err?.response?.data) {
+                            showError(err?.response?.data)
+                        }
                     })
             }
         })

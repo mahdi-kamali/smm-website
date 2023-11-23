@@ -76,27 +76,23 @@ const UserDashboard = (
 
         {
             type: "normal",
-
             title: "Tickets",
             icon: <Icon icon="ion:ticket-sharp" />,
             component: <Tickets />
         },
         {
             type: "normal",
-
             title: "Child Panel",
             icon: <Icon icon="material-symbols:left-panel-open-sharp" />,
             component: <ChildPanel />
         },
         {
             type: "normal",
-
             title: "Updates",
             icon: <Icon icon="dashicons:update-alt" />
         },
         {
             type: "normal",
-
             title: "API",
             icon: <Icon icon="ant-design:api-filled" />
         },

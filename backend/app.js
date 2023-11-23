@@ -96,7 +96,7 @@ app.use(
 // Faqs 
 app.use(
     "/api/faqs",
-    uploader.uploader.none(),
+    uploader.uploader().none(),
     require("./routes/faqs/FaqsRouter")
 )
 
@@ -121,6 +121,8 @@ app.use("/api/platforms",
 
 app.use("/api/countries", require("./routes/countries/countriesRouter"))
 
+
+app.use("/api/affliates", require("./routes/affiliates/affiliateRouter"))
 
 
 

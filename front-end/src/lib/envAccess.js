@@ -49,14 +49,58 @@ export const API = {
         },
         USER_ORDERS_HISTORY: {
             GET: SERVER.API_URL + "user/dashboard/order"
-        } ,
-        USER_ORDER_SUBMIT : {
-            POST : SERVER.API_URL + "user/dashboard/order"
+        },
+        USER_ORDER_SUBMIT: {
+            POST: SERVER.API_URL + "user/dashboard/order"
+        },
+        USER_TICKET_SUBMIT: {
+            POST: SERVER.API_URL + "user/dashboard/tickets"
+        },
+        USER_TICKET_HISTORY: {
+            GET: SERVER.API_URL + "user/dashboard/tickets"
+        },
+        USER_EMAIL_VERIFY: {
+            CODE: { GET: SERVER.API_URL + "user/dashboard/email-verify/code" },
+            STATUS: { GET: SERVER.API_URL + "user/dashboard/email-verify/status" },
+            SUBMIT_CODE: {
+                POST: SERVER.API_URL + "user/dashboard/email-verify/submit-code"
+            }
+        },
+        GIFTS: {
+            EMAIL: {
+                STATUS: {
+                    GET: SERVER.API_URL + "user/dashboard/gift/email/status"
+                },
+                CLAIM: {
+                    POST: SERVER.API_URL + "user/dashboard/gift/email/claim"
+                }
+            },
+            TRSUT_PILOT: {
+                STATUS: {
+                    GET: SERVER.API_URL + "user/dashboard/gift/trust-pilot/status"
+                },
+                CLAIM: {
+                    POST: SERVER.API_URL + "user/dashboard/gift/trust-pilot/submit-proof"
+                }
+            },
+            RETWEET: {
+                STATUS: {
+                    GET: SERVER.API_URL + "user/dashboard/gift/retweet/status"
+                },
+                CLAIM: {
+                    POST: SERVER.API_URL + "user/dashboard/gift/retweet/submit-proof"
+                }
+            },
+        },
+        AFFILIATES: {
+            STATUS: {
+                GET: SERVER.API_URL + "user/dashboard/affliates"
+            }
         }
-    } , 
-    PUBLIC : {
-        SERVICES : {
-            GET : SERVER.API_URL + "services"
+    },
+    PUBLIC: {
+        SERVICES: {
+            GET: SERVER.API_URL + "services"
         },
     }
 }

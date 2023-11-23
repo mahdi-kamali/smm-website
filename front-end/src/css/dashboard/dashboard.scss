@@ -1574,7 +1574,6 @@ $gradient-degree: 0deg;
                 .item-header {
                     img {
                         aspect-ratio: 1/1;
-
                     }
                 }
                 .item-body {
@@ -1614,7 +1613,7 @@ $gradient-degree: 0deg;
             align-items: start;
             z-index: 2;
             margin-top: 2rem;
-          
+
             .left {
                 display: flex;
                 flex-direction: column;
@@ -2045,13 +2044,13 @@ $gradient-degree: 0deg;
                         }
                     }
                 }
-                .Resolved {
+                .Solved {
                     background-color: $panel-color-3;
                 }
-                .Rejected {
+                .Error {
                     background-color: $panel-color-6;
                 }
-                .Pending {
+                .Submited {
                     background-color: $panel-color-4;
                 }
                 .InProgress {
@@ -2898,7 +2897,6 @@ $gradient-degree: 0deg;
                     margin: 0;
                     overflow: initial;
                     max-height: max-content;
-                    
                 }
             }
         }
@@ -2995,7 +2993,6 @@ $gradient-degree: 0deg;
                             background-color: white !important;
                             color: $color-1 !important;
                         }
-
                     }
                 }
             }
