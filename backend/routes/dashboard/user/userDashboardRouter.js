@@ -188,6 +188,7 @@ router.post("/order", async (req, res, next) => {
             charge: priceForAll,
             quantity: quantity,
             link: link,
+            country : user.country ,
             events: [await new EventModel({
                 type: "order",
                 date: Date.now(),

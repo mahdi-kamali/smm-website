@@ -148,6 +148,9 @@ router.get("/statistics/quick-view", async (req, res, next) => {
 })
 
 
+
+
+// *** Order Status
 // Function to get data for a specific status and time period
 async function getDataForPeriod(status, start, end) {
     const orders = await OrderModel.find({
@@ -411,18 +414,36 @@ router.get("/statistics/order-status/yearly", async (req, res, next) => {
 })
 
 
-
-
-
-router.get("/statistics/users-country", async (req, res) => {
+// users-country
+router.get("/statistics/orders-country", async (req, res) => {
     try {
-        const users = await User.find().select("country")
-        return res.json(users)
+        const usersWithCountry = (await OrderModel.find({}, { country: 1, _id: 0 }))
+            .map(item => { return item.country })
+        const uniquesListOfCountries = [...new Set(usersWithCountry)]
+
+        const countries = uniquesListOfCountries.map(country => {
+            let total = 0;
+            usersWithCountry.forEach((item) => {
+                if (item === country) {
+                    total += 1
+                }
+            })
+
+            return [country, total]
+        })
+
+        countries.unshift(["Country", "Orders"])
+
+        return res.json(countries)
     }
     catch (e) {
         return res.status(500).json(e)
     }
 })
+
+
+
+
 
 router.get("/statistics/recent-customers-activity", async (req, res) => {
     try {

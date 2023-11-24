@@ -122,6 +122,9 @@ export const API = {
             YEARLY: {
                 GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/order-status/yearly"
             },
+        },
+        ORDERS_COUNTRY: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/orders-country"
         }
 
     },

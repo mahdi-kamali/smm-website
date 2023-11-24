@@ -54,7 +54,6 @@ export default function Dashboard() {
 
             <QuickView/>
 
-
             <div className="row-one">
                 <OrderStatusChart />
                 <ReviewByCountry />

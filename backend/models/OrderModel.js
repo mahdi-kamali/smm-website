@@ -36,6 +36,10 @@ const OrderModel = new mongoose.Schema({
         type: String,
         default: "on progress"
     },
+    country: {
+        type: String,
+        required: [true, "Country Required."]
+    },
     events: []
 },
     {

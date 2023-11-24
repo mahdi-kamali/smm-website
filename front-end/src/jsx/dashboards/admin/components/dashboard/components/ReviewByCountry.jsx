@@ -2,19 +2,28 @@ import { Icon } from '@iconify/react';
 import React from 'react'
 import { Chart } from "react-google-charts";
 import Select from 'react-select'
+import { useFetch } from '../../../../../../lib/useFetch';
+import { API } from '../../../../../../lib/envAccess';
 
 export default function ReviewByCountry() {
+
+
+    const [ordersCountryData, error, loading] =
+        useFetch(API.ADMIN_DASHBOARD.ORDERS_COUNTRY.GET)
+
+
+    console.log(ordersCountryData)
 
 
     const data = [
         ["Country", "Orders"],
         ["Germany", 200],
         ["United States", 300],
-        ["Iran", 700],
+        ["IR", 15000],
         ["Brazil", 400],
         ["Canada", 500],
         ["France", 600],
-        ["RU", 700],
+        ["Russia", 800],
     ];
 
     const options = {
@@ -38,6 +47,7 @@ export default function ReviewByCountry() {
 
 
 
+    if (loading === true) return <h1>Loading</h1>
 
     return (
         <div className="review-by-country box">
@@ -80,7 +90,7 @@ export default function ReviewByCountry() {
                     chartType="GeoChart"
                     width="100%"
                     height="400px"
-                    data={data}
+                    data={ordersCountryData}
                 />
             </div>
         </div>
