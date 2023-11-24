@@ -10,11 +10,11 @@ const token = JSON.parse(sessionStorage.getItem("token"))
 
 
 
-export function useFetch(url) {
-
-    const [data, setData] = useState([])
+export function useFetch(defaultUrl, deafultValue) {
+    const [url, setUrl] = useState(defaultUrl)
+    const [data, setData] = useState(deafultValue ? deafultValue : [])
     const [error, setError] = useState(undefined)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const navigator = useNavigate()
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export function useFetch(url) {
         )()
     }, [url])
 
-    return [data, error, loading]
+    return [data, error, loading , setUrl]
 
 }
 

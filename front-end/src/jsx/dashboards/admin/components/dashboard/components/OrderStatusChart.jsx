@@ -12,6 +12,9 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useFetch } from '../../../../../../lib/useFetch';
+import { API } from '../../../../../../lib/envAccess';
+import { useEffect, useState } from 'react';
 
 
 ChartJS.register(
@@ -24,11 +27,17 @@ ChartJS.register(
 );
 
 
+
+
+
 const dateSelectOptions = [
-    { value: 'Yearly', label: 'Yearly' },
-    { value: 'Monthly', label: 'Monthly' },
-    { value: 'Daily', label: 'Daily' }
+    { value: 'daily', label: 'daily' },
+    { value: 'monthly', label: 'monthly' },
+    { value: 'yearly', label: 'yearly' }
 ]
+
+
+
 
 
 const chartModeOptions = [
@@ -38,29 +47,9 @@ const chartModeOptions = [
 
 
 
-export const tempData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: [10, 15, 10, 25, 22, 20, 15, 12, 18, 14, 22, 28], // Add data for all 12 months
-            backgroundColor: 'green',
-            stack: 'Stack 1',
-        },
-        {
-            label: 'Dataset 2',
-            data: [10, 5, 15, 6, 20, 10, 10, 8, 12, 7, 15, 18], // Add data for all 12 months
-            backgroundColor: '#ffc36c',
-            stack: 'Stack 1',
-        },
-        {
-            label: 'Dataset 3',
-            data: [3, 7, 30, 10, 12, 5, 22, 18, 25, 20, 15, 10], // Add data for all 12 months
-            backgroundColor: '#ff6982',
-            stack: 'Stack 1',
-        }
-    ],
-};
+
+
+
 
 
 const options = {
@@ -90,7 +79,37 @@ const options = {
 
 export default function OrderStatusChart() {
 
+    const [chartData, chartDataError, chartDataLoading, setChartchartDataUrl] = useFetch(API.ADMIN_DASHBOARD.ORDER_STATUS.WEEKLY.GET)
 
+
+    const [chartModeDate, setChartModeDate] = useState(dateSelectOptions[2].value)
+
+
+    useEffect(() => {
+
+        switch (chartModeDate) {
+            case dateSelectOptions[0].value: {
+                setChartchartDataUrl(API.ADMIN_DASHBOARD.ORDER_STATUS.WEEKLY.GET)
+                break;
+            }
+            case dateSelectOptions[1].value: {
+                setChartchartDataUrl(API.ADMIN_DASHBOARD.ORDER_STATUS.MONTHLY.GET)
+                break;
+            }
+            case dateSelectOptions[2].value: {
+                setChartchartDataUrl(API.ADMIN_DASHBOARD.ORDER_STATUS.YEARLY.GET)
+                break;
+            }
+        }
+    }, [chartModeDate])
+
+
+
+    console.log(chartData)
+
+
+
+    if (chartDataLoading) return <h1> Loading</h1>
 
 
     return (
@@ -107,6 +126,8 @@ export default function OrderStatusChart() {
                         options={dateSelectOptions}
                         placeholder={"Date"}
                         isSearchable={true}
+                        onChange={(e) => { setChartModeDate(e.value) }}
+                        defaultValue={dateSelectOptions[0]}
                     />
                     <Select
                         placeholder={"Chart Mode"}
@@ -119,7 +140,7 @@ export default function OrderStatusChart() {
             <div className="summary">
                 <div className="item">
                     <div className="item-header">
-                        120,750
+                        {chartData?.summary?.onSuccessData}
                     </div>
                     <div className="item-body">
                         success
@@ -129,17 +150,17 @@ export default function OrderStatusChart() {
 
                 <div className="item">
                     <div className="item-header">
-                        56,108
+                        {chartData?.summary?.onProgressData}
                     </div>
                     <div className="item-body">
-                        Pending
+                        Progress
                         <Icon icon="bi:circle-fill" color="orange" />
                     </div>
                 </div>
 
                 <div className="item">
                     <div className="item-header">
-                        32,895
+                        {chartData?.summary?.onErrorData}
                     </div>
                     <div className="item-body">
                         Failed
@@ -150,7 +171,10 @@ export default function OrderStatusChart() {
             <div className="chart">
                 <Bar
                     options={options}
-                    data={tempData}
+                    data={{
+                        labels: chartData.labels,
+                        datasets: chartData.datasets
+                    }}
                 />
             </div>
         </div>

@@ -8,7 +8,8 @@ export const CLIENT = {
 export const SERVER = {
     BASE_URL: process.env.REACT_APP_SERVER_BASE_URL,
     API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/",
-    ADMIN_PANEL_API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/admin/dashboard/"
+    ADMIN_PANEL_API_URL: process.env.REACT_APP_SERVER_BASE_URL +
+        "/api/admin/dashboard/"
 }
 
 
@@ -104,10 +105,25 @@ export const API = {
         }
     },
     ADMIN_DASHBOARD: {
+
         NEW_ORDERS: {
             GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/orders/new"
         },
-        
+        QUICK_VIEW: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/quick-view"
+        },
+        ORDER_STATUS: {
+            WEEKLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/order-status/weekly"
+            },
+            MONTHLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/order-status/monthly"
+            },
+            YEARLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/order-status/yearly"
+            },
+        }
+
     },
     PUBLIC: {
         SERVICES: {

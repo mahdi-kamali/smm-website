@@ -15,7 +15,8 @@ const FaqsSelectedModel = require("../../../models/FaqsSelectedModel")
 const uploader = require("../../../lib/imageUpload")
 const PaymentMethodsModel = require("../../../models/PaymentMethodsModel")
 const router = express.Router()
-
+const moment = require("moment")
+const CheckoutModel = require("../../../models/CheckoutModel")
 
 
 
@@ -59,40 +60,359 @@ router.post("/platforms", uploader.platformUploader.any(), async (req, res, next
 
 
 // ------------ Statistics  
-router.get("/statistics/overview", async (req, res) => {
+
+router.get("/statistics/orders/new", async (req, res, next) => {
     try {
+        const orders = await OrderModel.find({
+            status: "on progress"
+        })
+        return res.json(orders.length)
+    }
+    catch (e) {
+        return next(e)
+    }
+
+})
+
+router.get("/statistics/quick-view", async (req, res, next) => {
+    try {
+
+        const startOfMonth = moment().startOf("month").toDate();
+        const endOfMonth = moment().endOf("month").toDate();
+
+
         const totalOrders = await OrderModel.find()
-        const totalSuccessSales = totalOrders.filter(item => {
-            return item.status === "success" || item.status === "on progress"
+        const completedOrders = totalOrders.filter((item) => { return item.status === "success" })
+
+
+
+        const totalServices = await require("../../../catch/services.json")
+        const platforms = await PlatformModel.find()
+
+
+        const totalCheckouts = await CheckoutModel.find({
+            status: "green"
         })
 
 
-        let income = 0;
-        totalSuccessSales.forEach(item => {
-            income += item.charge
+        const incomeTotal = totalCheckouts.map(record => {
+            return record.amount.amount
+        }).reduce((total, index) => { return total += index })
+
+        const incomeThisMonth = (await CheckoutModel.find({
+            status: "green",
+            createdAt: {
+                $gte: startOfMonth,
+                $lte: endOfMonth,
+            }
+        })).reduce((total, next) => {
+            return total.amount.amount += next.amount.amount
         })
 
-        const totalCustomers = await User.find()
+
+
+        const users = await User.find()
+        const totalCustomers = users.length
+        const usersThisMonth = (await User.find({
+            createdAt: {
+                $gte: startOfMonth,
+                $lte: endOfMonth,
+            }
+        })).length
+
 
 
         return res.json({
-            totalOrders: totalOrders.length,
-            totalSuccessSales: totalSuccessSales.length,
-            income: income,
-            totalCustomers: totalCustomers.length
+            ordersReceived: {
+                totalOrders: totalOrders.length,
+                completedOrders: completedOrders.length
+            },
+            totalServices: {
+                total: totalServices.length,
+                platforms: platforms.length
+            },
+            income: {
+                total: incomeTotal,
+                thisMonth: incomeThisMonth
+            },
+            customers: {
+                total: totalCustomers,
+                thisMonth: usersThisMonth
+            }
         })
-    } catch (e) {
-        return res.status(500).json(e)
     }
-
-
+    catch (e) {
+        console.log(e)
+        return next(e)
+    }
 })
 
-router.get("/statistics/order-status", async (req, res) => {
-    const orders = await OrderModel.find()
 
-    return res.json(orders)
+// Function to get data for a specific status and time period
+async function getDataForPeriod(status, start, end) {
+    const orders = await OrderModel.find({
+        status,
+        createdAt: {
+            $gte: start,
+            $lte: end,
+        },
+    });
+
+    return orders
+}
+
+router.get("/statistics/order-status/weekly", async (req, res, next) => {
+
+    try {
+        const startOfWeek = moment().startOf("week");
+        const endOfWeek = moment().endOf("week");
+        const labels = moment.weekdays()
+        const onProgressOrders = await getDataForPeriod("on progress", startOfWeek, endOfWeek);
+        const onSuccessOrders = await getDataForPeriod("success", startOfWeek, endOfWeek);
+        const onErrorOrders = await getDataForPeriod("on error", startOfWeek, endOfWeek);
+
+
+
+        const onProgressData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onProgressOrders.filter(item => {
+                const dayIndex = item.createdAt.getDay()
+                return labels[dayIndex] === dayLabel
+            })
+
+            onProgressData.push(temp.length)
+
+        })
+
+
+        const onSuccessData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onSuccessOrders.filter(item => {
+                const dayIndex = item.createdAt.getDay()
+                return labels[dayIndex] === dayLabel
+            })
+
+
+            onSuccessData.push(temp.length)
+
+        })
+
+
+        const onErrorData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onErrorOrders.filter(item => {
+                const dayIndex = item.createdAt.getDay()
+                return labels[dayIndex] === dayLabel
+            })
+
+            onErrorData.push(temp.length)
+
+        })
+
+        return res.json({
+            labels: labels,
+            datasets: [
+                {
+                    label: 'on progress',
+                    data: onProgressData, // Add data for all 12 months
+                    backgroundColor: '#ffc36c',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'success',
+                    data: onSuccessData, // Add data for all 12 months
+                    backgroundColor: 'green',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'error',
+                    data: onErrorData, // Add data for all 12 months
+                    backgroundColor: 'red',
+                    stack: 'Stack 1',
+                },
+            ],
+            summary: {
+                onSuccessData: onSuccessData.reduce((total, b) => { return total + b }),
+                onProgressData: onProgressData.reduce((total, b) => { return total + b }),
+                onErrorData: onErrorData.reduce((total, b) => { return total + b }),
+            }
+        })
+    }
+    catch (e) {
+        return next(e)
+    }
 })
+
+
+router.get("/statistics/order-status/monthly", async (req, res, next) => {
+
+    try {
+        const startOfMonth = moment().startOf("month");
+        const endOfMonth = moment().endOf("month");
+        const labels = moment.months()
+        const onProgressOrders = await getDataForPeriod("on progress", startOfMonth, endOfMonth);
+        const onSuccessOrders = await getDataForPeriod("success", startOfMonth, endOfMonth);
+        const onErrorOrders = await getDataForPeriod("on error", startOfMonth, endOfMonth);
+
+
+
+        const onProgressData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onProgressOrders.filter(item => {
+                const dayIndex = item.createdAt.getMonth()
+                return labels[dayIndex] === dayLabel
+            })
+
+            onProgressData.push(temp.length)
+
+        })
+
+
+        const onSuccessData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onSuccessOrders.filter(item => {
+                const dayIndex = item.createdAt.getMonth()
+                return labels[dayIndex] === dayLabel
+            })
+
+
+            onSuccessData.push(temp.length)
+
+        })
+
+
+        const onErrorData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onErrorOrders.filter(item => {
+                const dayIndex = item.createdAt.getMonth()
+                return labels[dayIndex] === dayLabel
+            })
+
+            onErrorData.push(temp.length)
+
+        })
+
+        return res.json({
+            labels: labels,
+            datasets: [
+                {
+                    label: 'on progress',
+                    data: onProgressData, // Add data for all 12 months
+                    backgroundColor: '#ffc36c',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'success',
+                    data: onSuccessData, // Add data for all 12 months
+                    backgroundColor: 'green',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'error',
+                    data: onErrorData, // Add data for all 12 months
+                    backgroundColor: 'red',
+                    stack: 'Stack 1',
+                },
+            ],
+            summary: {
+                onSuccessData: onSuccessData.reduce((total, b) => { return total + b }),
+                onProgressData: onProgressData.reduce((total, b) => { return total + b }),
+                onErrorData: onErrorData.reduce((total, b) => { return total + b }),
+            }
+        })
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+
+
+router.get("/statistics/order-status/yearly", async (req, res, next) => {
+
+    try {
+        const startOfYear = moment("2022-01-01");
+        const endOfYear = moment("2025-12-31").endOf("day");
+        const labels = [2022, 2023, 2024, 2025, 2026, 2027]
+        const onProgressOrders = await getDataForPeriod("on progress", startOfYear, endOfYear);
+        const onSuccessOrders = await getDataForPeriod("success", startOfYear, endOfYear);
+        const onErrorOrders = await getDataForPeriod("on error", startOfYear, endOfYear);
+
+
+
+        const onProgressData = []
+        labels.forEach((yearLabel, index) => {
+            const temp = onProgressOrders.filter(item => {
+                const yearIndex = item.createdAt.getFullYear()
+                return yearIndex === yearLabel
+            })
+
+            onProgressData.push(temp.length)
+
+        })
+
+
+        const onSuccessData = []
+        labels.forEach((yearLabel, index) => {
+            const temp = onSuccessOrders.filter(item => {
+                const yearIndex = item.createdAt.getFullYear()
+                return yearIndex === yearLabel
+            })
+
+
+            onSuccessData.push(temp.length)
+
+        })
+
+
+        const onErrorData = []
+        labels.forEach((yearLabel, index) => {
+            const temp = onErrorOrders.filter(item => {
+                const yearIndex = item.createdAt.getFullYear()
+                return yearIndex === yearLabel
+            })
+
+            onErrorData.push(temp.length)
+
+        })
+
+
+        return res.json({
+            labels: labels,
+            datasets: [
+                {
+                    label: 'on progress',
+                    data: onProgressData, // Add data for all 12 months
+                    backgroundColor: '#ffc36c',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'success',
+                    data: onSuccessData, // Add data for all 12 months
+                    backgroundColor: 'green',
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'error',
+                    data: onErrorData, // Add data for all 12 months
+                    backgroundColor: 'red',
+                    stack: 'Stack 1',
+                },
+            ],
+            summary: {
+                onSuccessData: onSuccessData.reduce((total, b) => { return total + b }),
+                onProgressData: onProgressData.reduce((total, b) => { return total + b }),
+                onErrorData: onErrorData.reduce((total, b) => { return total + b }),
+            }
+        })
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+
+
+
+
 
 router.get("/statistics/users-country", async (req, res) => {
     try {
@@ -220,19 +540,10 @@ router.delete("/statistics/todo-list", async (req, res) => {
     }
 })
 
-router.get("/statistics/orders/new", async (req, res, next) => {
-    const orders = await OrderModel.find({
-        status: "on progress"
-    })
-    return res.json(orders.length)
-})
 
-router.get("/statistics/quick-view", async (req, res, next) => {
-    const orders = await OrderModel.find({
-        status: "on progress"
-    })
-    return res.json(orders.length)
-})
+
+
+
 
 
 // Message All 
