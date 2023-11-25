@@ -640,31 +640,47 @@ router.delete(
 
 
 // Message All 
-router.get("/statistics/message-all", async (req, res) => {
+router.get("/statistics/message-all", async (req, res, next) => {
     try {
-        const allMessages = await MessageAllModel.find()
+        const allMessages = await MessageAllModel.find().sort({ createdAt: -1 })
         return res.json(allMessages)
     }
     catch (e) {
-        return res.status(500).json("error")
+        return next(e)
     }
 
 })
 
-router.post("/statistics/message-all", async (req, res) => {
+router.post("/statistics/message-all", uploader.uploader().array(), async (req, res, next) => {
     try {
-        const data = req.body
+        const { title, description, isPublished } = req.body
+
         const message = new MessageAllModel({
-            ...data
+            title: title,
+            description: description,
+            isPublished: isPublished === "on" ? true : false
         })
-        return res.json(await message.save())
+
+        await message.save()
+        return res.json("New Message Created.")
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 
 })
 
+router.delete("/statistics/message-all", async (req, res, next) => {
+    try {
+        const { id } = req.body
+        await MessageAllModel.findByIdAndDelete(id)
+        return res.json("Message Deleted.")
+    }
+    catch (e) {
+        return next(e)
+    }
+
+})
 
 
 // ------------- Services

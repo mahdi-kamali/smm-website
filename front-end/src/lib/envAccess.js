@@ -138,6 +138,12 @@ export const API = {
             PUT: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list",
             POST: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list",
             DELETE: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list"
+        },
+        MESSAGE_ALL: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/message-all",
+            POST: SERVER.ADMIN_PANEL_API_URL + "/statistics/message-all",
+            DELETE: SERVER.ADMIN_PANEL_API_URL + "/statistics/message-all",
+
         }
 
     },
