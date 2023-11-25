@@ -23,7 +23,6 @@ export default function MessageAll() {
 
         post(API.ADMIN_DASHBOARD.MESSAGE_ALL.POST, formData)
             .then(response => {
-                console.log(response)
                 if (response.status === 200) {
                     Swal.fire({
                         icon: "success",
