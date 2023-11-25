@@ -144,6 +144,17 @@ export const API = {
             POST: SERVER.ADMIN_PANEL_API_URL + "/statistics/message-all",
             DELETE: SERVER.ADMIN_PANEL_API_URL + "/statistics/message-all",
 
+        },
+        ECONOMY_SUMMARY: {
+            WEEKLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/economy-summary/weekly",
+            },
+            MONTHLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/economy-summary/weekly",
+            },
+            YEARLY: {
+                GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/economy-summary/weekly",
+            }
         }
 
     },

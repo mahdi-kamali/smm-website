@@ -171,8 +171,8 @@ router.get("/statistics/quick-view", async (req, res, next) => {
 
 // *** Order Status
 // Function to get data for a specific status and time period
-async function getDataForPeriod(status, start, end) {
-    const orders = await OrderModel.find({
+async function getDataForPeriod(status, start, end, model) {
+    const orders = await model.find({
         status,
         createdAt: {
             $gte: start,
@@ -189,9 +189,10 @@ router.get("/statistics/order-status/weekly", async (req, res, next) => {
         const startOfWeek = moment().startOf("week");
         const endOfWeek = moment().endOf("week");
         const labels = moment.weekdays()
-        const onProgressOrders = await getDataForPeriod("on progress", startOfWeek, endOfWeek);
-        const onSuccessOrders = await getDataForPeriod("success", startOfWeek, endOfWeek);
-        const onErrorOrders = await getDataForPeriod("on error", startOfWeek, endOfWeek);
+
+        const onProgressOrders = await getDataForPeriod("on progress", startOfWeek, endOfWeek, OrderModel);
+        const onSuccessOrders = await getDataForPeriod("success", startOfWeek, endOfWeek, OrderModel);
+        const onErrorOrders = await getDataForPeriod("on error", startOfWeek, endOfWeek, OrderModel);
 
 
 
@@ -272,9 +273,10 @@ router.get("/statistics/order-status/monthly", async (req, res, next) => {
         const startOfMonth = moment().startOf("month");
         const endOfMonth = moment().endOf("month");
         const labels = moment.months()
-        const onProgressOrders = await getDataForPeriod("on progress", startOfMonth, endOfMonth);
-        const onSuccessOrders = await getDataForPeriod("success", startOfMonth, endOfMonth);
-        const onErrorOrders = await getDataForPeriod("on error", startOfMonth, endOfMonth);
+        const onProgressOrders = await getDataForPeriod("on progress", startOfMonth,
+            endOfMonth, OrderModel);
+        const onSuccessOrders = await getDataForPeriod("success", startOfMonth, endOfMonth, OrderModel);
+        const onErrorOrders = await getDataForPeriod("on error", startOfMonth, endOfMonth, OrderModel);
 
 
 
@@ -355,9 +357,9 @@ router.get("/statistics/order-status/yearly", async (req, res, next) => {
         const startOfYear = moment("2022-01-01");
         const endOfYear = moment("2025-12-31").endOf("day");
         const labels = [2022, 2023, 2024, 2025, 2026, 2027]
-        const onProgressOrders = await getDataForPeriod("on progress", startOfYear, endOfYear);
-        const onSuccessOrders = await getDataForPeriod("success", startOfYear, endOfYear);
-        const onErrorOrders = await getDataForPeriod("on error", startOfYear, endOfYear);
+        const onProgressOrders = await getDataForPeriod("on progress", startOfYear, endOfYear, OrderModel);
+        const onSuccessOrders = await getDataForPeriod("success", startOfYear, endOfYear, OrderModel);
+        const onErrorOrders = await getDataForPeriod("on error", startOfYear, endOfYear, OrderModel);
 
 
 
@@ -681,6 +683,60 @@ router.delete("/statistics/message-all", async (req, res, next) => {
     }
 
 })
+
+
+
+
+
+
+
+// Economy Summary
+router.get("/statistics/economy-summary/weekly", async (req, res, next) => {
+    try {
+        const startOfWeek = moment().startOf("week");
+        const endOfWeek = moment().endOf("week");
+        const labels = moment.weekdays()
+        const onSuccessOrders = await getDataForPeriod("success", startOfWeek, endOfWeek, CheckoutModel);
+
+
+        const onSuccessData = []
+        labels.forEach((dayLabel, index) => {
+            const temp = onSuccessOrders.filter(item => {
+                const dayIndex = item.createdAt.getDay()
+                return labels[dayIndex] === dayLabel
+            })
+            let total = 0
+
+            if (temp.length !== 0) {
+                temp.forEach((item) => {
+                    total += item.amount.amount
+                })
+            }
+            onSuccessData.push(total)
+        })
+
+
+
+
+        return res.json({
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Economy Summary',
+                    data: onSuccessData, // Add data for all 12 months
+                    stack: 'Stack 1',
+                },
+            ],
+
+        })
+    }
+    catch (e) {
+        return next(e)
+    }
+
+})
+
+
 
 
 // ------------- Services

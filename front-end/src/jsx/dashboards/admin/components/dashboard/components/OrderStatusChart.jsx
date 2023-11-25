@@ -82,7 +82,7 @@ export default function OrderStatusChart() {
     const [chartData, chartDataError, chartDataLoading, setChartchartDataUrl] = useFetch(API.ADMIN_DASHBOARD.ORDER_STATUS.WEEKLY.GET)
 
 
-    const [chartModeDate, setChartModeDate] = useState(dateSelectOptions[2].value)
+    const [chartModeDate, setChartModeDate] = useState(dateSelectOptions[0].value)
 
 
     useEffect(() => {

@@ -6,14 +6,15 @@ import { showError } from "../../../../../../lib/alertHandler";
 import Swal from "sweetalert2"
 
 
-
-
-
-
 export default function MessageAll() {
+
     const [isCreatingNew, setIsCreatingNew] = useState(false)
 
     const [data, error, loading, setUrl, refresh] = useFetch(API.ADMIN_DASHBOARD.MESSAGE_ALL.GET)
+
+
+
+
 
     const handleCreate = (e) => {
         e.preventDefault()
