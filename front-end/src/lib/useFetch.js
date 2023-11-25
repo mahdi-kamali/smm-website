@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { API } from "./envAccess"
 import { useNavigate } from "react-router-dom"
 
 
@@ -15,7 +14,12 @@ export function useFetch(defaultUrl, deafultValue) {
     const [data, setData] = useState(deafultValue ? deafultValue : [])
     const [error, setError] = useState(undefined)
     const [loading, setLoading] = useState(true)
+    const [refresh,setRefresh ] = useState(false)
     const navigator = useNavigate()
+
+    function refreshData () {
+        setRefresh(!refresh)
+    }
 
     useEffect(() => {
         (
@@ -41,9 +45,9 @@ export function useFetch(defaultUrl, deafultValue) {
                 }
             }
         )()
-    }, [url])
+    }, [url,refresh])
 
-    return [data, error, loading , setUrl]
+    return [data, error, loading, setUrl, refreshData]
 
 }
 
@@ -108,6 +112,41 @@ export async function post(url, postData) {
         return response
     }).catch(err => {
         console.log(err)
+        throw err
+    })
+
+}
+
+export async function put(url, postData) {
+
+    return await axios({
+        method: "put",
+        url: url,
+        headers: {
+            token: token
+        },
+        data: postData
+    }).then(response => {
+        return response
+    }).catch(err => {
+        console.log(err)
+        throw err
+    })
+
+}
+
+export async function deletE(url, deleteData) {
+
+    return await axios({
+        method: "delete",
+        url: url,
+        headers: {
+            token: token
+        },
+        data: deleteData
+    }).then(response => {
+        return response
+    }).catch(err => {
         throw err
     })
 

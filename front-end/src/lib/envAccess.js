@@ -125,6 +125,19 @@ export const API = {
         },
         ORDERS_COUNTRY: {
             GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/orders-country"
+        },
+        RECENT_CUSTOMERS_ACTIVITY: {
+            GET: SERVER.ADMIN_PANEL_API_URL +
+                "/statistics/recent-customers-activity"
+        },
+        POPULAR_PLATFORMS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/popular-platforms"
+        },
+        TODO_LIST: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list",
+            PUT: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list",
+            POST: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list",
+            DELETE: SERVER.ADMIN_PANEL_API_URL + "/statistics/todo-list"
         }
 
     },

@@ -11,7 +11,7 @@ const CheckOutModel = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "yellow"
+        default: "on progress"
     },
     amount: {
         type: {

@@ -12,8 +12,12 @@ const PlatformModel = new mongoose.Schema({
     },
     shortDescription: {
         type: String,
-        required : [true , "Please Enter Short-Description."]
-    } ,
+        required: [true, "Please Enter Short-Description."]
+    },
+    colorPalette: {
+        type: String,
+        required: [true, "Please Enter Color Palette."]
+    }
 },
     {
         timestamps: true

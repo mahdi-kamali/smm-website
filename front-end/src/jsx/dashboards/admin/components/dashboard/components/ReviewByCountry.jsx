@@ -12,7 +12,6 @@ export default function ReviewByCountry() {
         useFetch(API.ADMIN_DASHBOARD.ORDERS_COUNTRY.GET)
 
 
-    console.log(ordersCountryData)
 
 
     const data = [
@@ -75,18 +74,6 @@ export default function ReviewByCountry() {
             <div className="chart">
                 <Chart
                     options={options}
-                    chartEvents={[
-                        {
-                            eventName: "select",
-                            callback: ({ chartWrapper }) => {
-                                const chart = chartWrapper.getChart();
-                                const selection = chart.getSelection();
-                                if (selection.length === 0) return;
-                                const region = data[selection[0].row + 1];
-                                console.log("Selected : " + region);
-                            },
-                        },
-                    ]}
                     chartType="GeoChart"
                     width="100%"
                     height="400px"

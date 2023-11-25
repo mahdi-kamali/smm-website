@@ -4,69 +4,95 @@ import { Icon } from "@iconify/react";
 import MaxLineText from "../../../../../cutsome-components/Text/MaxLineText";
 import Select from "react-select"
 import { useState } from "react";
+import { deletE, post, put, useFetch } from "../../../../../../lib/useFetch";
+import { API } from "../../../../../../lib/envAccess";
+import Swal from "sweetalert2"
+import { showError } from "../../../../../../lib/alertHandler"
 export default function TodoList() {
 
     const [isCreating, setIsCreating] = useState(false)
+    const [todos, error, loading, setUrl, refresh] = useFetch(API.ADMIN_DASHBOARD.TODO_LIST.GET)
 
 
-    const toDoList = [
-        {
-            task: "Create social media marketing strategy",
-            description: "Develop a comprehensive marketing strategy for social media campaigns.",
-            completed: true
-        },
-        {
-            task: "Schedule social media posts",
-            description: "Plan and schedule posts across social media platforms for the week.",
-            completed: false
-        },
-        {
-            task: "Analyze social media analytics",
-            description: "Review and analyze performance metrics for social media campaigns.",
-            completed: false
-        },
-        {
-            task: "Respond to customer inquiries",
-            description: "Engage with customers and respond to inquiries and comments on social media.",
-            completed: false
-        },
-        {
-            task: "Optimize social media profiles",
-            description: "Update and optimize social media profiles to improve visibility and branding.",
-            completed: false
-        },
-        {
-            task: "Manage social media advertising",
-            description: "Set up and monitor social media advertising campaigns.",
-            completed: false
-        },
-        {
-            task: "Create content calendar",
-            description: "Plan and organize content for social media posts and campaigns.",
-            completed: false
-        },
-        {
-            task: "Monitor industry trends",
-            description: "Stay updated on industry trends and incorporate them into social media strategies.",
-            completed: false
-        },
-        {
-            task: "Collaborate with influencers",
-            description: "Identify and collaborate with social media influencers for marketing campaigns.",
-            completed: false
-        },
-        {
-            task: "Generate social media reports",
-            description: "Prepare detailed reports on the effectiveness of social media marketing efforts.",
-            completed: false
-        }
-    ];
+    if (loading === true) return <h1>Loading....</h1>
+
 
     const dateSelectOptions = [
         { value: 'Yearly', label: 'Yearly' },
         { value: 'Monthly', label: 'Monthly' },
         { value: 'Daily', label: 'Daily' }
     ]
+
+    const toggleStatus = (todo) => {
+        const toggledSolved = !todo.solved
+        put(API.ADMIN_DASHBOARD.TODO_LIST.PUT, {
+            id: todo._id,
+            solved: toggledSolved
+        }).then(res => {
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Success!",
+                    text: "Todo Changed!"
+                }).then(end => { refresh() })
+            }
+        })
+    }
+
+    const deleteClick = (todo) => {
+        const id = todo._id
+        Swal.fire({
+            title: "Are you Sur for Deleting?",
+            icon: "question",
+            confirmButtonColor: "green",
+            showDenyButton: true,
+            denyButtonColor: "red",
+            denyButtonText: "No",
+            confirmButtonText: "Yes"
+        }).then(res => {
+            if (res.isConfirmed)
+                deletE(API.ADMIN_DASHBOARD.TODO_LIST.DELETE, { id: id })
+                    .then(res => {
+                        if (res.status === 200) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: res.data
+                            }).then(end => {
+                                refresh()
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        const errors = err?.response?.data
+                        showError(errors)
+                    })
+        })
+
+    }
+
+    const addNewTodo = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+
+
+        post(API.ADMIN_DASHBOARD.TODO_LIST.POST, formData)
+            .then(res => {
+                if (res.status === 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success!",
+                        text: "Your Todo succesfuly added!"
+                    }).then(end => {
+                        refresh()
+                    })
+                }
+            })
+            .catch(error => {
+                const errors = error?.response?.data
+                showError(errors)
+            })
+    }
 
     return (
         <div className="todo-list box">
@@ -89,14 +115,14 @@ export default function TodoList() {
             </div>
             <div className="list">
                 {
-                    toDoList.map((todo, index) => {
+                    todos?.map((todo, index) => {
                         return <div className={`item item-${todo.completed}`} key={index}>
                             <div className="item-info">
                                 <div className="item-header">
                                     <MaxLineText
                                         maxLine={1}
                                         content={<h2>
-                                            {todo.task}
+                                            {todo.title}
                                         </h2>} />
 
                                 </div>
@@ -109,21 +135,37 @@ export default function TodoList() {
                             <div className="item-date">
                                 <div className="date property">
                                     <Icon icon="clarity:date-line" />
-                                    <span>2024/2/12</span>
+                                    <span>
+                                        {
+                                            (new Date(todo.createdAt))
+                                                .toDateString()
+                                        }
+                                    </span>
                                 </div>
                                 <div className="date property">
                                     <Icon icon="mingcute:time-line" />
-                                    <span>23:12:24</span>
+                                    <span>
+                                        {
+                                            (new Date(todo.createdAt))
+                                                .toLocaleTimeString()
+                                        }
+                                    </span>
                                 </div>
                             </div>
                             <div className="item-buttons">
-                                <button className="status">
+                                <button
+                                    className={`${todo.solved}`}
+                                    onClick={() => toggleStatus(todo)}
+                                >
+                                    {todo.solved ? <Icon icon="ic:baseline-done-all" />
+                                        : <Icon icon="material-symbols:do-not-disturb-on" />}
                                     <span>
-                                        Done
+                                        {todo.solved ? "Sovled" : "Not"}
                                     </span>
-                                    <Icon icon="ic:baseline-done-all" />
                                 </button>
-                                <button className="delete">
+                                <button
+                                    className="delete"
+                                    onClick={() => deleteClick(todo)}>
                                     <Icon icon="fluent:delete-28-filled" />
                                     <span>Delete</span>
                                 </button>
@@ -142,10 +184,18 @@ export default function TodoList() {
                         <Icon icon="wpf:create-new" />
                         <span>Create New</span>
                     </button> :
-                        <div className="input-box">
-                            <input type="text" placeholder="title" />
-                            <textarea name="text"
+                        <form
+                            onSubmit={addNewTodo}
+                            className="input-box">
+                            <input
+                                type="text"
+                                placeholder="title"
+                                required
+                                name="title" />
+                            <textarea
+                                name="description"
                                 placeholder="description"
+                                required
                                 cols="30" rows="10">
                             </textarea>
                             <div className="buttons">
@@ -154,13 +204,14 @@ export default function TodoList() {
                                     <Icon icon="iconamoon:send-fill" />
                                 </button>
                                 <button
-                                    onClick={()=>setIsCreating(false)}
+                                    type="button"
+                                    onClick={() => setIsCreating(false)}
                                     className="cancel">
                                     Cancel
                                     <Icon icon="mdi:cancel-bold" />
                                 </button>
                             </div>
-                        </div>
+                        </form>
 
                 }
 

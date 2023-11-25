@@ -4,32 +4,27 @@ import { Icon } from "@iconify/react";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useFetch } from '../../../../../../lib/useFetch';
+import { API, SERVER } from '../../../../../../lib/envAccess';
 
-
-
-const dateSelectOptions = [
-    { value: 'Yearly', label: 'Yearly' },
-    { value: 'Monthly', label: 'Monthly' },
-    { value: 'Daily', label: 'Daily' }
-]
-
-
-const chartModeOptions = [
-    { value: false, label: 'Not Stacked' },
-    { value: true, label: 'Stacked' },
-]
 
 
 export default function RecentCustomers() {
 
+    const [data, error, loading] =
+        useFetch(API.ADMIN_DASHBOARD.RECENT_CUSTOMERS_ACTIVITY.GET)
 
-    const [users, setUsers] = useState([])
-    useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/users")
-            .then(response => {
-                setUsers(response.data)
-            })
-    }, [])
+
+
+    function getIcon(status) {
+        switch (status) {
+            case "success": return <Icon icon="icon-park-solid:success" color="green" />
+            case "on progress": return  <Icon icon="icon-park-solid:setting-web" color="orange" />
+            case "on error": return  <Icon icon="material-symbols:error" color="red" />
+        }
+    }
+
+
 
     return (
         <div className="recent-customers box">
@@ -52,30 +47,30 @@ export default function RecentCustomers() {
             </div>
             <div className="customers">
                 {
-                    users.map((user, index) => {
+                    data?.map((user, index) => {
                         return <div className="item" key={index}>
                             <div className="item-left">
                                 <div className="user-image">
-                                    <img src={user.avatar} />
+                                    <img src={SERVER.BASE_URL + user.user.image} />
                                 </div>
                                 <div className="user-info">
                                     <div className="name">
-                                        {user.fullName}
+                                        {user.user.fullName}
                                     </div>
                                     <div className="id">
                                         <span>User ID : </span>
-                                        <span>#{user.id}</span>
+                                        <span>#{user.user._id}</span>
                                     </div>
 
                                 </div>
                             </div>
                             <div className="item-mid">
-                                <div className="status paid">
-                                    Paid
+                                <div className="status">
+                                    {getIcon(user.checkOuts.status)}
                                 </div>
                             </div>
                             <div className="item-right">
-                                ${(Math.random()*1000).toFixed()}
+                                ${user.checkOuts.amount.amount}
                             </div>
                         </div>
                     })

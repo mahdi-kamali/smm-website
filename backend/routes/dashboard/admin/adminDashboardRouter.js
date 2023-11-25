@@ -41,11 +41,12 @@ router.get("/platforms", async (req, res, next) => {
 router.post("/platforms", uploader.platformUploader.any(), async (req, res, next) => {
     try {
         const file = await req.files[0]
-        const { name, shortDescription } = req.body
+        const { name, shortDescription, colorPalette } = req.body
         const platform = new PlatformModel({
             name: name,
             image: "/statics/images/platforms/" + file.filename,
-            shortDescription: shortDescription
+            shortDescription: shortDescription,
+            colorPalette: colorPalette
         })
         return res.json(await platform.save())
     }
@@ -91,23 +92,40 @@ router.get("/statistics/quick-view", async (req, res, next) => {
 
 
         const totalCheckouts = await CheckoutModel.find({
-            status: "green"
+            status: "success"
         })
 
-
-        const incomeTotal = totalCheckouts.map(record => {
-            return record.amount.amount
-        }).reduce((total, index) => { return total += index })
-
-        const incomeThisMonth = (await CheckoutModel.find({
-            status: "green",
+        const thisMonthCheckOut = await CheckoutModel.find({
+            status: "success",
             createdAt: {
                 $gte: startOfMonth,
-                $lte: endOfMonth,
+                $lte: endOfMonth
             }
-        })).reduce((total, next) => {
-            return total.amount.amount += next.amount.amount
         })
+
+
+
+        let incomeTotal = 0;
+        let incomeThisMonth = 0
+        try {
+            if (totalCheckouts.length > 0) {
+                incomeTotal = totalCheckouts.map(record => {
+                    return record.amount.amount
+                })?.reduce((total, index) => { return total += index })
+            }
+
+            if (thisMonthCheckOut.length > 0) {
+                incomeThisMonth = thisMonthCheckOut.map(record => {
+                    return record.amount.amount
+                })?.reduce((total, index) => { return total += index })
+            }
+
+        }
+        catch (e) {
+            console.log(e)
+            incomeTotal = 0;
+            incomeThisMonth = 0;
+        }
 
 
 
@@ -122,7 +140,7 @@ router.get("/statistics/quick-view", async (req, res, next) => {
 
 
 
-        return res.json({
+        const data = {
             ordersReceived: {
                 totalOrders: totalOrders.length,
                 completedOrders: completedOrders.length
@@ -139,7 +157,8 @@ router.get("/statistics/quick-view", async (req, res, next) => {
                 total: totalCustomers,
                 thisMonth: usersThisMonth
             }
-        })
+        }
+        return res.json(data)
     }
     catch (e) {
         console.log(e)
@@ -415,7 +434,7 @@ router.get("/statistics/order-status/yearly", async (req, res, next) => {
 
 
 // users-country
-router.get("/statistics/orders-country", async (req, res) => {
+router.get("/statistics/orders-country", async (req, res, next) => {
     try {
         const usersWithCountry = (await OrderModel.find({}, { country: 1, _id: 0 }))
             .map(item => { return item.country })
@@ -437,24 +456,52 @@ router.get("/statistics/orders-country", async (req, res) => {
         return res.json(countries)
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
 
 
-
-
+// Recent Customers Acitivty
 router.get("/statistics/recent-customers-activity", async (req, res) => {
+
     try {
-        const recentCustomers = await PaymentModel.find()
-        return res.json(recentCustomers)
+        const checkOuts = await CheckoutModel.find()
+            .skip(0)
+            .limit(100)
+
+
+
+        const users = await Promise.all(
+            checkOuts.map(async record => {
+                const user = await User.findById(record.userID, {
+                    fullName: 1,
+                    country: 1,
+                    image: 1,
+                    role: 1,
+                })
+                return {
+                    user: user,
+                    checkOuts: record
+                }
+            })).then((users) => {
+                return users
+            })
+
+
+        return res.json(users)
+
+
+
+
     }
     catch (e) {
         return res.status(500).json(e)
     }
 })
 
+
+// Platforms
 router.get("/statistics/popular-platforms", async (req, res) => {
     try {
         const orders = await OrderModel.find({
@@ -485,7 +532,26 @@ router.get("/statistics/popular-platforms", async (req, res) => {
             })
         })
 
-        return res.json(result)
+
+
+        const data = {
+            platforms: result,
+            chartJs: {
+                labels: result.map(record => { return record.platform.name }),
+                datasets: [
+                    {
+                        label: "Popular Platforms",
+                        data: result.map(item => { return item.totalOrders }),
+                        backgroundColor: result.map(item => {
+                            return item.platform.colorPalette
+                        }),
+                        borderWidth: 1,
+                    }
+                ]
+            }
+        }
+
+        return res.json(data)
     }
     catch (e) {
         console.log(e)
@@ -493,37 +559,41 @@ router.get("/statistics/popular-platforms", async (req, res) => {
     }
 })
 
+
+
 // Todo-List
-router.get("/statistics/todo-list", async (req, res) => {
+router.get("/statistics/todo-list", async (req, res, next) => {
     try {
-        const todoList = await TodoModel.find()
-        return res.json(todoList)
+        const todoList = await TodoModel.find().sort({ createdAt: -1 });
+        return res.json(todoList);
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
-router.post("/statistics/todo-list", async (req, res) => {
+router.post("/statistics/todo-list", uploader.uploader().array(), async (req, res, next) => {
     try {
-        const data = req.body
+        const { title, description } = req.body
 
         const todo = new TodoModel({
-            ...data
+            title: title,
+            description: description,
         })
         return res.json(await todo.save())
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
-router.put("/statistics/todo-list", async (req, res) => {
+router.put("/statistics/todo-list", async (req, res, next) => {
     try {
         const data = req.body
 
+
         if (!data.id)
-            return res.status(401).json("id required")
+            throw ("id required")
 
 
         const todo = await TodoModel.findByIdAndUpdate(data.id, {
@@ -534,33 +604,35 @@ router.put("/statistics/todo-list", async (req, res) => {
 
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
-router.delete("/statistics/todo-list", async (req, res) => {
-    try {
-        const data = req.body
+router.delete(
+    "/statistics/todo-list",
+    uploader.uploader().array(),
+    async (req, res, next) => {
+        try {
+            const { id } = req.body
+            const data = req.body
 
-        if (!data.id)
-            return res.status(401).json("id required")
-
-
-        await TodoModel.findByIdAndDelete(data.id)
-            .then(result => {
-                if (!result)
-                    return res.status(400).json("todo not founded!")
-
-                return res.json("todo Deleted !")
-            })
+            if (!id)
+                throw "Id Required!"
 
 
-    }
-    catch (e) {
-        return res.status(500).json(e)
-    }
-})
+            await TodoModel.findByIdAndDelete(id)
+                .then(result => {
+                    if (!result)
+                        throw ("todo not founded!")
+                    return res.json("Todo Deleted !")
+                })
 
+
+        }
+        catch (e) {
+            return next(e)
+        }
+    })
 
 
 
