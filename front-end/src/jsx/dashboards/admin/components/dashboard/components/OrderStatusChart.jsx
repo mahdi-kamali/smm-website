@@ -110,7 +110,6 @@ export default function OrderStatusChart() {
 
     if (chartDataLoading) return <h1> Loading</h1>
 
-
     return (
         <div className="order-status box">
             <div className="info">

@@ -6,6 +6,10 @@ import Row from "../../../../cutsome-components/table/components/Row";
 import TableBody from "../../../../cutsome-components/table/components/TableBody";
 import TableHeader from "../../../../cutsome-components/table/components/TableHeader";
 import { useEffect, useState } from "react";
+import { useFetch } from "../../../../../lib/useFetch"
+import { API } from "../../../../../lib/envAccess";
+import TablePaginations from "../../../../cutsome-components/table/components/TablePaginations";
+import ResponsivePagination from 'react-responsive-pagination';
 
 
 
@@ -14,6 +18,10 @@ import { useEffect, useState } from "react";
 
 export default function Orders() {
 
+    const [pageNumber, setPageNumber] = useState(1)
+    const [data, error, loading, setUrl] = useFetch(
+        API.ADMIN_DASHBOARD.ORDERS.GET + pageNumber,
+    )
 
 
     const headersList = [
@@ -21,42 +29,38 @@ export default function Orders() {
         "User Id",
         "Service",
         "Charge",
-        "Currency",
-        "Start-Count",
-        "Remains",
+        "Date",
+        "Quantity",
+        "Link",
         "Status",
     ]
 
     const orderListButtons = [
-        {
-            title: "All Orders",
-        },
-        {
-            title: "Completed",
-        },
-        {
-            title: "On Progress",
-        },
-        {
-            title: "Canceled",
-        },
-        {
-            title: "Pause",
-        },
+        "All Orders",
+        "success",
+        "on progress",
+        "on error",
+        "on pause"
     ]
 
     const [ordersStatus, setOrdersStatus] = useState(orderListButtons[0])
-    const [orders, setOrders] = useState([])
 
+    const [sortedList, setSortedList] = useState([])
 
     useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/fakeApi")
-            .then(response => {
-                const data = response.data
-                setOrders(data)
-            })
-    },
-        [ordersStatus])
+
+        if (ordersStatus === orderListButtons[0]) {
+            setSortedList(data.orders)
+            return
+        }
+
+        const temp = data?.orders?.filter(item => {
+            return item.status === ordersStatus
+        })
+
+        setSortedList(temp)
+    }, [ordersStatus, data])
+
 
 
 
@@ -70,17 +74,17 @@ export default function Orders() {
                         orderListButtons.map((record, index) => {
                             return <button
                                 key={index}
-                                className={`status-${record.title ===
-                                    ordersStatus.title}`}
+                                className={`status-${record ===
+                                    ordersStatus}`}
                                 onClick={() => setOrdersStatus(record)}
                             >
-                                {record.title}
+                                {record}
                             </button>
                         })
                     }
                 </div>
             </div>
-            <Table columnsStyle={"7rem 4rem 2fr 6rem 1fr 6rem 5rem 8rem"}>
+            <Table columnsStyle={"6rem 6rem 1.8fr 6rem 1fr 6rem 5rem 8rem"}>
                 <TableHeader>
                     {
                         headersList.map((record, index) => {
@@ -90,84 +94,95 @@ export default function Orders() {
                         })
                     }
                 </TableHeader>
-                <TableBody>
-                    {
-                        orders.map((record) => {
-                            return <Row key={record.orderId}>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[0]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.orderId}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[1]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.userId}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[2]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.serviceName}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[3]}
-                                    </div>
-                                    <div className="property-body">
-                                        ${record.orderCharge}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[4]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.orderCurrencySymbol + " - "}
-                                        {record.orderCurrency}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[5]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.orderStartCount}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[6]}
-                                    </div>
-                                    <div className="property-body">
-                                        {record.orderRemains}
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headersList[7]}
-                                    </div>
-                                    <div className="property-body status-property">
-                                        <span className="completed">
-                                            {ordersStatus.title}
-                                        </span>
-                                    </div>
-                                </Property>
+                {
+                    <TableBody>
+                        {
+                            !loading ? sortedList?.map((record) => {
+                                return <Row key={record.orderId}>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[0]}
+                                        </div>
+                                        <div className="property-body">
+                                            {record._id}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[1]}
+                                        </div>
+                                        <div className="property-body">
+                                            {record.userID}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[2]}
+                                        </div>
+                                        <div className="property-body ">
+                                            {record.service.name}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[3]}
+                                        </div>
+                                        <div className="property-body">
+                                            ${record.charge}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[4]}
+                                        </div>
+                                        <div className="property-body">
+                                            {new Date(record.createdAt).toUTCString()}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[5]}
+                                        </div>
+                                        <div className="property-body">
+                                            {record.quantity}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[6]}
+                                        </div>
+                                        <div className="property-body">
+                                            {record.link}
+                                        </div>
+                                    </Property>
+                                    <Property>
+                                        <div className="property-header">
+                                            {headersList[7]}
+                                        </div>
+                                        <div className="property-body status-property">
+                                            <span className={`status
+                        ${record.status.replace(" ", "")}`}>
+                                                {record.status}
+                                            </span>
+                                        </div>
+                                    </Property>
 
-                               
-                            </Row>
-                        })
-                    }
+                                </Row>
+                            }) : <h1>Loading...</h1>
+                        }
 
-                </TableBody>
+                    </TableBody>
+                }
+
+                <TablePaginations>
+                    <ResponsivePagination
+                        current={data.currentPage}
+                        total={data?.maxPageNumber}
+                        onPageChange={(pageNumber) => {
+                            setUrl(API.ADMIN_DASHBOARD.ORDERS.GET + pageNumber)
+                        }}
+                    />
+                </TablePaginations>
             </Table>
         </div>
     )

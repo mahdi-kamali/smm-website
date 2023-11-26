@@ -943,12 +943,25 @@
 .admin-dashboard .content .admin-panel-orders .intro .order-list .status-true {
   opacity: 1 !important;
 }
+.admin-dashboard .content .admin-panel-orders .status-property {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .admin-dashboard .content .admin-panel-orders .status-property span {
-  padding: 0.3em 1em;
+  padding: 0.5em 1em;
   border-radius: 100rem;
 }
-.admin-dashboard .content .admin-panel-orders .status-property .completed {
+.admin-dashboard .content .admin-panel-orders .status-property .success {
   background-color: #0fac6d;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .status-property .onerror {
+  background-color: #dc3545;
+  color: white;
+}
+.admin-dashboard .content .admin-panel-orders .status-property .onprogress {
+  background-color: #ffa938;
   color: white;
 }
 

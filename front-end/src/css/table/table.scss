@@ -19,6 +19,7 @@ $panel-color-6: #dc3545;
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
+    flex-wrap: wrap;
 
     .table-header {
         display: grid;
@@ -27,7 +28,7 @@ $panel-color-6: #dc3545;
         background-color: $color-3;
         padding: 1.5em 2em;
         color: white;
-        border-radius: 1rem ;
+        border-radius: 1rem;
         .item {
             display: flex;
             align-items: center;
@@ -39,9 +40,13 @@ $panel-color-6: #dc3545;
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        padding: 2em;
+        padding: 1.5em;
         background-color: white;
+        min-height: 35rem;
+        max-height: 30rem;
+        overflow: auto;
         grid-template-columns: inherit;
+        transition: all 1s ease;
         .row {
             display: grid;
             grid-template-columns: inherit;
@@ -55,6 +60,12 @@ $panel-color-6: #dc3545;
                 .property-body {
                     align-self: center;
                     justify-self: start;
+                    max-width: 100%;
+                    white-space: wrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .max-2-line {
                 }
                 .property-header {
                     display: none;
@@ -63,7 +74,7 @@ $panel-color-6: #dc3545;
                 &:first-child {
                     .property-body {
                         background-color: $panel-color-3;
-                        padding: 0.5em 2em;
+                        padding: 0.5em 1em;
                         border-radius: 100rem;
                         color: white;
                     }
@@ -74,6 +85,25 @@ $panel-color-6: #dc3545;
                 border-bottom: none;
                 padding-bottom: 0;
             }
+        }
+    }
+    .table-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 2rem;
+        font-size: 2rem;
+        gap: 2rem;
+        .left,
+        .right {
+            display: flex;
+        }
+        .mid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
         }
     }
 }

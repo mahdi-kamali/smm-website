@@ -740,24 +740,55 @@ router.get("/statistics/economy-summary/weekly", async (req, res, next) => {
 
 
 // ------------- Services
-router.get("/services", async (req, res) => {
-    const services = await require("../../../catch/services.json")
-    return res.json(services)
+router.get("/services", async (req, res, next) => {
+    try {
+        const services = await require("../../../catch/services.json")
+        return res.json(services)
+    }
+    catch (e) {
+        return next(e)
+    }
 })
 
 
 // --------------- Orders
-router.get("/orders", async (req, res) => {
-    const { pageNumber } = req.body
-    if (!pageNumber) {
-        return res.status(400).json("Page Number Required !")
+router.get("/orders/:pageNumber", uploader.uploader().array(), async (req, res, next) => {
+    try {
+        const pageNumber = parseInt(req.params.pageNumber, 10);
+
+
+        if (!pageNumber || pageNumber < 1) {
+            throw ("Invalid Page Number!");
+        }
+
+
+        const pageSize = 8;
+
+        const totalCount = await OrderModel.countDocuments();
+
+        const maxPageNumber = Math.ceil(totalCount / pageSize);
+
+        if (pageNumber > maxPageNumber) {
+            throw ("Invalid Page Number!");
+        }
+
+        const orders = await OrderModel
+            .find()
+            .limit(pageSize)
+            .skip((pageNumber - 1) * pageSize)
+            .sort({ createdAt: -1 });
+
+        return res.json(
+            {
+                orders: orders,
+                maxPageNumber: maxPageNumber,
+                currentPage: pageNumber
+            });
     }
-    const orders = await OrderModel
-        .find()
-        .limit(10)
-        .skip(pageNumber * 10)
-    return res.json(orders)
-})
+    catch (e) {
+        return next(e);
+    }
+});
 
 
 

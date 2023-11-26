@@ -56,6 +56,13 @@ import 'react-dropdown/style.css';
 
 
 
+
+//react-responsive-pagination
+import 'react-responsive-pagination/themes/classic.css';
+
+
+
+
 // React Routers
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 

@@ -14,10 +14,10 @@ export function useFetch(defaultUrl, deafultValue) {
     const [data, setData] = useState(deafultValue ? deafultValue : [])
     const [error, setError] = useState(undefined)
     const [loading, setLoading] = useState(true)
-    const [refresh,setRefresh ] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     const navigator = useNavigate()
 
-    function refreshData () {
+    function refreshData() {
         setRefresh(!refresh)
     }
 
@@ -30,7 +30,7 @@ export function useFetch(defaultUrl, deafultValue) {
                         method: "get",
                         headers: {
                             "token": token
-                        }
+                        },
                     })
                     setData(response.data)
                 } catch (err) {
@@ -45,7 +45,7 @@ export function useFetch(defaultUrl, deafultValue) {
                 }
             }
         )()
-    }, [url,refresh])
+    }, [url, refresh])
 
     return [data, error, loading, setUrl, refreshData]
 

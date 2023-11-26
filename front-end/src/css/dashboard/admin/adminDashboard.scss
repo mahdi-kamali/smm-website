@@ -1025,14 +1025,26 @@ $gradient-degree: 0deg;
             }
 
             .status-property {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 span {
-                    padding: 0.3em 1em;
+                    padding: 0.5em 1em;
                     border-radius: 100rem;
                 }
-                .completed {
+                .success {
                     background-color: $panel-color-3;
                     color: white;
                 }
+                .onerror {
+                    background-color: $panel-color-6;
+                    color: white;
+                }
+                .onprogress {
+                    background-color: $panel-color-4;
+                    color: white;
+                }
+
             }
         }
     }

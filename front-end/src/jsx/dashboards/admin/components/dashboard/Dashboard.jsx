@@ -4,10 +4,6 @@ import ReviewByCountry from "./components/ReviewByCountry";
 import RecentCustomers from "./components/RecentCustomers";
 import PopularCharts from "./components/PopularCharts";
 import TodoList from "./components/TodoList";
-import Table from "../../../../cutsome-components/table/Table";
-import TableHeader from "../../../../cutsome-components/table/components/TableHeader";
-import TableBody from "../../../../cutsome-components/table/components/TableBody";
-import ItemHeader from "../../../../cutsome-components/table/components/ItemHeader";
 import EconomySummary from "./components/EconomySummary";
 import MessageAll from "./components/MessageAll";
 import { useFetch } from "../../../../../lib/useFetch"
