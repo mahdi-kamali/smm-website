@@ -7,42 +7,129 @@ import Property from '../../../../cutsome-components/table/components/Property'
 import ItemHeader from '../../../../cutsome-components/table/components/ItemHeader'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import axios from 'axios'
 import Switch from "react-switch"
 import { Icon } from '@iconify/react'
 import MaxLineText from '../../../../cutsome-components/Text/MaxLineText'
+import { put, useFetch } from '../../../../../lib/useFetch'
+import TablePaginations from "../../../../cutsome-components/table/components/TablePaginations";
+import ResponsivePagination from 'react-responsive-pagination';
+import Swal from "sweetalert2"
+import { showError, showSuccess } from "../../../../../lib/alertHandler"
+import { API } from '../../../../../lib/envAccess'
+
 
 export default function Tickets() {
 
 
-    const [tickets, setTickets] = useState([])
 
-    useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/fakeApi")
-            .then(repsonse => {
-                const data = repsonse.data
-                setTickets(data)
-            })
-    }, [])
+
+    const [pageNumber, setPageNumber] = useState(1)
+
+    const [data, error, loading, setUrl, refresh] = useFetch(
+        API.ADMIN_DASHBOARD.TICKETS.GET + pageNumber,
+    )
 
 
     const headers = [
-        "Ticket ID",
-        "User ID",
-        "Full Name",
+        "ID",
+        "Subject ID",
         "Subject",
-        "ID (order , Service ).....",
         "Message",
-        "Solved",
-        "Controlls"
+        "Date",
+        "Sovled",
+        "Status",
     ]
+
+    const orderListButtons = [
+        "All Orders",
+        "success",
+        "on progress",
+        "on error",
+        "on pause"
+    ]
+
+    const [ordersStatus, setOrdersStatus] = useState(orderListButtons[0])
+
+    const [sortedList, setSortedList] = useState([])
+
+    useEffect(() => {
+
+        if (ordersStatus === orderListButtons[0]) {
+            setSortedList(data.orders)
+            return
+        }
+
+        const temp = data?.orders?.filter(item => {
+            return item.status === ordersStatus
+        })
+
+        setSortedList(temp)
+    }, [ordersStatus, data])
+
+
+
+    const handleAnswerClick = async (ticket) => {
+        Swal.fire({
+            input: "textarea",
+            inputLabel: "Message",
+            inputPlaceholder: "Type your message here...",
+            inputAttributes: {
+                "aria-label": "Type your message here"
+            },
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "red"
+        }).then(end => {
+            if (end.isConfirmed) {
+                const message = end.value
+                put(API.ADMIN_DASHBOARD.TICKETS.ANSWER.PUT,
+                    { message: message, id: ticket._id })
+                    .then(resp => {
+                        if (resp.status === 200) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: resp.data
+                            })
+                        }
+                    })
+                    .catch(err => {
+                        const errors = err?.response?.data
+                        showError(errors)
+                    })
+            }
+        })
+
+    }
+
+    const handleOnToggleClick = (ticket, state) => {
+
+
+        put(API.ADMIN_DASHBOARD.TICKETS.SOLVED.PUT, {
+            solved: state,
+            id: ticket._id
+        })
+            .then(async resp => {
+                await showSuccess(resp)
+                refresh()
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+
+    }
+
+    const handleDeleteClick = (ticket) => {
+        console.log(ticket)
+    }
 
 
 
 
     return (
         <div className='admin-panel-tickets'>
-            <Table columnsStyle={"7rem 7rem 10rem 10rem 10rem 1fr 4rem 7rem"}>
+            <Table columnsStyle={"6rem 6rem 6rem  1fr 15rem 5rem 8rem"}>
                 <TableHeader>
                     {
                         headers.map((record, index) => {
@@ -55,14 +142,14 @@ export default function Tickets() {
                 </TableHeader>
                 <TableBody>
                     {
-                        tickets.map(record => {
-                            return <Row key={record.ticketId}>
+                        loading === false ? data?.tickets?.map(ticket => {
+                            return <Row>
                                 <Property>
                                     <div className="property-header">
                                         {headers[0]}
                                     </div>
                                     <div className="property-body">
-                                        {record.ticketId}
+                                        {ticket._id}
                                     </div>
                                 </Property>
                                 <Property>
@@ -70,7 +157,7 @@ export default function Tickets() {
                                         {headers[1]}
                                     </div>
                                     <div className="property-body">
-                                        {record.userId}
+                                        {ticket.orderID}
                                     </div>
                                 </Property>
                                 <Property>
@@ -78,7 +165,7 @@ export default function Tickets() {
                                         {headers[2]}
                                     </div>
                                     <div className="property-body">
-                                        {record.userFullName}
+                                        {ticket.subject}
                                     </div>
                                 </Property>
                                 <Property>
@@ -87,8 +174,8 @@ export default function Tickets() {
                                     </div>
                                     <div className="property-body">
                                         <MaxLineText
-                                        maxLine={3}
-                                        content={record.ticketSubject}/>
+                                            maxLine={6}
+                                            content={ticket.message} />
                                     </div>
                                 </Property>
                                 <Property>
@@ -96,7 +183,7 @@ export default function Tickets() {
                                         {headers[4]}
                                     </div>
                                     <div className="property-body">
-                                        {record.ticketSubjectId}
+                                        {new Date(ticket.createdAt).toUTCString()}
                                     </div>
                                 </Property>
                                 <Property>
@@ -104,39 +191,37 @@ export default function Tickets() {
                                         {headers[5]}
                                     </div>
                                     <div className="property-body">
-                                        <MaxLineText
-                                            maxLine={3}
-                                            content={record.ticketMessage} />
+                                        <Switch
+                                            onChange={(state) => { handleOnToggleClick(ticket, state) }}
+                                            checked={ticket.solved} />
                                     </div>
                                 </Property>
                                 <Property>
                                     <div className="property-header">
                                         {headers[6]}
                                     </div>
-                                    <div className="property-body">
-                                        {record.ticketSolved}
-                                        <Switch checked={record.ticketSolved} />
-                                    </div>
-                                </Property>
-                                <Property>
-                                    <div className="property-header">
-                                        {headers[7]}
-                                    </div>
                                     <div className="property-body controlls-property">
-                                        <button>
+                                        <button
+                                            onClick={() => { handleAnswerClick(ticket) }}>
                                             <span>Answer</span>
                                             <Icon icon="iconamoon:send-fill" />
-                                        </button>
-                                        <button>
-                                            <span>Delete</span>
-                                            <Icon icon="fluent:delete-20-filled" />
                                         </button>
                                     </div>
                                 </Property>
                             </Row>
-                        })
+                        }) : <h1>Loading ....</h1>
+
                     }
                 </TableBody>
+                <TablePaginations>
+                    <ResponsivePagination
+                        current={data?.currentPage}
+                        total={data?.maxPageNumber}
+                        onPageChange={(pageNumber) => {
+                            setUrl(API.ADMIN_DASHBOARD.TICKETS.GET + pageNumber)
+                        }}
+                    />
+                </TablePaginations>
             </Table>
         </div>
     )

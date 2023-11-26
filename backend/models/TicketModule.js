@@ -1,6 +1,17 @@
 
 const mongoose = require("mongoose")
 
+const answerModel = new mongoose.Schema({
+    message: {
+        type: String,
+    },
+    adminID: {
+        type: mongoose.Schema.ObjectId,
+    }
+}, {
+    timestamps: true
+});
+
 
 const TicketModule = new mongoose.Schema({
     subject: {
@@ -27,6 +38,10 @@ const TicketModule = new mongoose.Schema({
     userID: {
         type: mongoose.Schema.ObjectId,
         required: [true, "Please Enter User Id"]
+    },
+    answer: {
+        type: answerModel,
+        default: null
     }
 },
     {

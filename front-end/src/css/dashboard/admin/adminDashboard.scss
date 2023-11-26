@@ -939,6 +939,7 @@ $gradient-degree: 0deg;
                 }
             }
         }
+
         .admin-panel-tickets {
             .controlls-property {
                 display: flex;
@@ -953,14 +954,9 @@ $gradient-degree: 0deg;
                     gap: 0.25rem;
                     padding: 0.5em 1em;
                     border-radius: 100rem;
-                    &:first-child {
-                        background-color: $panel-color-4;
-                        color: white;
-                    }
-                    &:last-child {
-                        background-color: $panel-color-6;
-                        color: white;
-                    }
+                    background-color: $panel-color-4;
+                    color: white;
+
                 }
             }
         }
@@ -972,7 +968,7 @@ $gradient-degree: 0deg;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: 5em;
+            padding-top: 2em;
             gap: 2rem;
             .intro {
                 display: flex;

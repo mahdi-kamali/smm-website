@@ -129,7 +129,6 @@ export async function put(url, postData) {
     }).then(response => {
         return response
     }).catch(err => {
-        console.log(err)
         throw err
     })
 

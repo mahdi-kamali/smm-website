@@ -155,9 +155,19 @@ export const API = {
             YEARLY: {
                 GET: SERVER.ADMIN_PANEL_API_URL + "/statistics/economy-summary/weekly",
             }
-        } , 
-        ORDERS : {
-            GET : SERVER.ADMIN_PANEL_API_URL + "orders/"
+        },
+        ORDERS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "orders/"
+        },
+        TICKETS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "tickets/",
+            ANSWER: {
+                PUT: SERVER.ADMIN_PANEL_API_URL + "tickets/answer/"
+            },
+            SOLVED: {
+                PUT: SERVER.ADMIN_PANEL_API_URL + "tickets/solved/"
+            },
+
         }
 
     },

@@ -17,6 +17,8 @@ const PaymentMethodsModel = require("../../../models/PaymentMethodsModel")
 const router = express.Router()
 const moment = require("moment")
 const CheckoutModel = require("../../../models/CheckoutModel")
+const paginate = require("../../../lib/paginateFunctions")
+const { sendEmail } = require("../../../lib/sendEmail")
 
 
 
@@ -756,57 +758,97 @@ router.get("/orders/:pageNumber", uploader.uploader().array(), async (req, res, 
     try {
         const pageNumber = parseInt(req.params.pageNumber, 10);
 
+        const { data, maxPage } = await paginate(OrderModel, pageNumber);
 
-        if (!pageNumber || pageNumber < 1) {
-            throw ("Invalid Page Number!");
-        }
-
-
-        const pageSize = 8;
-
-        const totalCount = await OrderModel.countDocuments();
-
-        const maxPageNumber = Math.ceil(totalCount / pageSize);
-
-        if (pageNumber > maxPageNumber) {
-            throw ("Invalid Page Number!");
-        }
-
-        const orders = await OrderModel
-            .find()
-            .limit(pageSize)
-            .skip((pageNumber - 1) * pageSize)
-            .sort({ createdAt: -1 });
-
-        return res.json(
-            {
-                orders: orders,
-                maxPageNumber: maxPageNumber,
-                currentPage: pageNumber
-            });
-    }
-    catch (e) {
-        return next(e);
+        return res.json({
+            orders: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
+    } catch (error) {
+        return next(error);
     }
 });
 
 
+// --------------- Tickets
+router.get("/tickets/:pageNumber", async (req, res, next) => {
+    try {
+        const pageNumber = parseInt(req.params.pageNumber, 10);
 
+        const { data, maxPage } = await paginate(TicketModule, pageNumber);
 
-// --------------- Tickets 
-router.get("/tickets", async (req, res) => {
-    const { pageNumber } = req.body
-
-    if (!pageNumber) {
-        return res.status(400).json("Page Number Required !")
+        return res.json({
+            tickets: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
+    } catch (error) {
+        return next(error);
     }
+});
 
-    const tickets = await TicketModule
-        .find()
-        .limit(10)
-        .skip(pageNumber * 10)
-    return res.json(tickets)
-})
+router.put("/tickets/answer/", async (req, res, next) => {
+    try {
+        const { id, message } = req.body;
+
+
+        const ticket = await TicketModule.findById(id)
+
+        if (!ticket || ticket === null) throw "Ticket Not Finded , Maybe Id Is Wrong !"
+
+
+
+        const user = await User.findById(ticket.userID)
+
+        if (!user || user === null) throw "Ticket Sender(User), Is Not Finded Wrong !"
+
+        const email = user.email
+
+        await sendEmail(email, message)
+
+        if (ticket.answer === null || !ticket.answer) {
+            ticket.answer = {
+                message: message,
+                adminID: user._id
+            }
+        } 
+
+        await ticket.save()
+
+
+
+        await ticket.save()
+
+
+        return res.json("Your Message Sended To User Email & User");
+    } catch (error) {
+        return next(error);
+    }
+});
+
+router.put("/tickets/solved/", async (req, res, next) => {
+    try {
+        const { id, solved } = req.body;
+
+
+        const ticket = await TicketModule.findById(id)
+
+        if (!ticket || ticket === null) throw "Ticket Not Finded , Maybe ID Is Wrong !"
+
+        ticket.solved = solved
+
+        await ticket.save()
+
+        return res.json("Ticket Solved Changed.");
+
+
+    } catch (error) {
+        return next(error);
+    }
+});
+
+
 
 
 // ---------------- Users

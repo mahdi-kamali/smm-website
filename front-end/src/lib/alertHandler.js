@@ -14,3 +14,21 @@ export async function showError(errors, title) {
 
 
 }
+
+
+
+export async function showSuccess(response, title) {
+    try {
+        if (response?.status === 200) {
+            await Swal.fire({
+                title: title ? title : "Success!",
+                text: response.data,
+                icon: "success"
+            })
+        }
+    }
+    catch (e) { }
+
+
+}
+

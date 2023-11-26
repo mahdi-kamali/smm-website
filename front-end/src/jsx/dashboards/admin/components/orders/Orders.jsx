@@ -176,7 +176,7 @@ export default function Orders() {
 
                 <TablePaginations>
                     <ResponsivePagination
-                        current={data.currentPage}
+                        current={data?.currentPage}
                         total={data?.maxPageNumber}
                         onPageChange={(pageNumber) => {
                             setUrl(API.ADMIN_DASHBOARD.ORDERS.GET + pageNumber)

@@ -31,6 +31,7 @@ const userChecker = async (req, res, next) => {
 const adminChecker = async (req, res, next) => {
     try {
         const token = req.headers.token
+
         await jwt.verify(
             token,
             accessToken,

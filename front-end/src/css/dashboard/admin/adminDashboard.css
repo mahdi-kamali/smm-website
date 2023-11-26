@@ -878,20 +878,14 @@
   gap: 0.25rem;
   padding: 0.5em 1em;
   border-radius: 100rem;
-}
-.admin-dashboard .content .admin-panel-tickets .controlls-property button:first-child {
   background-color: #ffa938;
-  color: white;
-}
-.admin-dashboard .content .admin-panel-tickets .controlls-property button:last-child {
-  background-color: #dc3545;
   color: white;
 }
 .admin-dashboard .content .admin-panel-orders {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 5em;
+  padding-top: 2em;
   gap: 2rem;
 }
 .admin-dashboard .content .admin-panel-orders .intro {
