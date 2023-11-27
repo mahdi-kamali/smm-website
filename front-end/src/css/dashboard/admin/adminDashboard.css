@@ -662,6 +662,9 @@
 .admin-dashboard .content .admin-users-panel .table .buttons .block {
   background-color: #dc3545;
 }
+.admin-dashboard .content .admin-users-panel .table .buttons .free {
+  background-color: #698df3;
+}
 .admin-dashboard .content .admin-users-panel .table .buttons .edit {
   background-color: #ffa938;
 }

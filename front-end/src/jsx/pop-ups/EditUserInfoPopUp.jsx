@@ -7,15 +7,18 @@ import AdminPanelFiledset from "../dashboards/admin/components/tools/fieldset/Ad
 import Legend from "../dashboards/admin/components/tools/fieldset/Legend"
 import FieldBody from "../dashboards/admin/components/tools/fieldset/FieldBody"
 import { useState } from "react"
+import { API, SERVER } from "../../lib/envAccess"
+import { put } from "../../lib/useFetch"
+import { showError, showSuccess } from "../../lib/alertHandler"
 
 
 
 
 
-export default function EditUserInfoPopUp({ user }) {
+export default function EditUserInfoPopUp({ user, result }) {
 
 
-    const [image, setImage] = useState(user.avatar)
+    const [image, setImage] = useState(SERVER.BASE_URL + user.image)
 
     const dispatcher = useDispatch()
 
@@ -26,21 +29,42 @@ export default function EditUserInfoPopUp({ user }) {
 
     const handleOnImageChange = (e) => {
         const file = e.target.files[0]
+        const url = URL.createObjectURL(file)
+        setImage(url)
 
-        const fileReader = new FileReader()
-        fileReader.onload = (e) => {
-            const result = e.target.result
-            setImage(result)
-        }
 
-        fileReader.readAsDataURL(file)
+    }
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        formData.append("userID", user._id)
+
+
+
+        put(API.ADMIN_DASHBOARD.USERS.USER.EDIT_INFO.PUT, formData)
+            .then(resp => {
+                showSuccess(resp).then(end => {
+                    result()
+                    handleCloseButtonClick()
+                })
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+
     }
 
 
 
 
+
     return (
-        <div className='admin-panel-edit-user-pop-up'>
+        <form
+            className='admin-panel-edit-user-pop-up'
+            onSubmit={handleOnSubmit}
+        >
             <button className="close-button"
                 onClick={handleCloseButtonClick}>
                 <Icon icon="mingcute:close-fill" />
@@ -51,13 +75,14 @@ export default function EditUserInfoPopUp({ user }) {
                     Edit User
                 </h1>
             </div>
+
             <div className="pop-up-body">
 
                 <div className="image-input">
                     <img src={image} />
                     <input
                         type="file"
-                        name="avatar"
+                        name="image"
                         accept="image/*"
                         onChange={handleOnImageChange} />
                 </div>
@@ -69,7 +94,7 @@ export default function EditUserInfoPopUp({ user }) {
                     <FieldBody>
                         <input
                             type="text"
-                            name="name"
+                            name="fullName"
                             defaultValue={user.fullName} />
                     </FieldBody>
                 </AdminPanelFiledset>
@@ -77,13 +102,15 @@ export default function EditUserInfoPopUp({ user }) {
                 <AdminPanelFiledset className={"user-edit-field"}>
                     <Legend>
                         <Icon icon="nimbus:money" />
-                        <span>Charge</span>
+                        <span>Found</span>
                     </Legend>
                     <FieldBody>
                         <input
                             type="number"
-                            name="charge"
-                            defaultValue={user.charge} />
+                            name="found"
+                            min={0}
+                            max={99999999}
+                            defaultValue={user.found} />
                     </FieldBody>
                 </AdminPanelFiledset>
                 <button className="submit">
@@ -91,6 +118,7 @@ export default function EditUserInfoPopUp({ user }) {
                     <Icon icon="iconamoon:send-fill" />
                 </button>
             </div>
-        </div>
+
+        </form>
     )
 }

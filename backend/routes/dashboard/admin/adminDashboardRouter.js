@@ -812,7 +812,7 @@ router.put("/tickets/answer/", async (req, res, next) => {
                 message: message,
                 adminID: user._id
             }
-        } 
+        }
 
         await ticket.save()
 
@@ -850,12 +850,97 @@ router.put("/tickets/solved/", async (req, res, next) => {
 
 
 
-
 // ---------------- Users
-router.get("/users", async (req, res) => {
-    const users = await User.find()
-    return res.json(users)
-})
+router.get("/users/:pageNumber", async (req, res, next) => {
+    try {
+        const pageNumber = parseInt(req.params.pageNumber, 10);
+
+        const { data, maxPage } = await paginate(User, pageNumber, 8);
+
+        return res.json({
+            users: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
+    } catch (error) {
+        return next(error);
+    }
+});
+
+router.put("/users/user/edit", uploader.usersUploader.any(), async (req, res, next) => {
+    try {
+        const { userID, fullName, found } = req.body
+        const file = req.files[0]
+
+
+        const user = await User.findById(userID)
+
+        if (!user || user === null) throw ("User Not Finded !")
+
+        user.fullName = fullName
+        user.found = found
+
+        await user.save()
+
+
+        return res.json("User Successfuly Changed.");
+    } catch (error) {
+        return next(error);
+    }
+});
+
+
+router.put("/users/user/edit/verify", async (req, res, next) => {
+    try {
+        const { userID, status } = req.body
+
+
+        const user = await User.findById(userID)
+
+        if (!user || user === null) throw ("User Not Finded !")
+
+        user.emailVerified.isActive = status
+
+        await user.save()
+
+        if (status === true) {
+            return res.json("User Successfuly Verified.");
+        } else {
+            return res.json("User Successfuly Un-Verified.");
+        }
+
+    } catch (error) {
+        return next(error);
+    }
+});
+
+
+router.put("/users/user/edit/block-free", async (req, res, next) => {
+    try {
+        const { userID, status } = req.body
+
+
+        const user = await User.findById(userID)
+
+        if (!user || user === null) throw ("User Not Finded !")
+
+        user.isBlocked.status = status
+        user.isBlocked.blockedBy = user._id
+        user.isBlocked.updatedAt = Date.now()
+
+        await user.save()
+
+        if (status === true) {
+            return res.json("User Successfuly Blocked.");
+        } else {
+            return res.json("User Successfuly Un-Blocked.");
+        }
+
+    } catch (error) {
+        return next(error);
+    }
+});
+
 
 
 // ---------------- Blogs

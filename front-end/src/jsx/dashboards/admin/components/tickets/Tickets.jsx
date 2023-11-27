@@ -120,9 +120,6 @@ export default function Tickets() {
 
     }
 
-    const handleDeleteClick = (ticket) => {
-        console.log(ticket)
-    }
 
 
 

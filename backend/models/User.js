@@ -29,6 +29,15 @@ const giftModel = new mongoose.Schema({
 })
 
 
+const isBlockedModel = new mongoose.Schema({
+    status: Boolean,
+    blockedBy: mongoose.Schema.ObjectId,
+},
+    {
+        timestamps: true
+    }
+)
+
 
 
 
@@ -105,6 +114,13 @@ const userSchema = new mongoose.Schema({
     affiliateOf: {
         type: mongoose.Schema.ObjectId,
         default: null
+    },
+    isBlocked: {
+        type: isBlockedModel,
+        default: {
+            status: false,
+            blockedBy: null,
+        }
     }
 },
     {

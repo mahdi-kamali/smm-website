@@ -168,6 +168,21 @@ export const API = {
                 PUT: SERVER.ADMIN_PANEL_API_URL + "tickets/solved/"
             },
 
+        },
+        USERS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "users/",
+            USER: {
+                EDIT_INFO: {
+                    PUT: SERVER.ADMIN_PANEL_API_URL + "/users/user/edit",
+                },
+                BLOCK_FREE: {
+                    PUT: SERVER.ADMIN_PANEL_API_URL + "/users/user/edit/block-free",
+                },
+                VERIFY: {
+                    PUT: SERVER.ADMIN_PANEL_API_URL + "/users/user/edit/verify",
+                },
+
+            }
         }
 
     },

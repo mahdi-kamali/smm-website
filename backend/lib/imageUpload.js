@@ -38,7 +38,7 @@ const platformStorage = multer.diskStorage({
 
 const usersStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images/platforms")
+        cb(null, "images/users")
     },
     filename: (req, file, cb) => {
         console.log(file)

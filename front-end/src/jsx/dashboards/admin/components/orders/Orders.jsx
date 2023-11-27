@@ -1,4 +1,3 @@
-import axios from "axios";
 import Table from "../../../../cutsome-components/table/Table";
 import ItemHeader from "../../../../cutsome-components/table/components/ItemHeader";
 import Property from "../../../../cutsome-components/table/components/Property";

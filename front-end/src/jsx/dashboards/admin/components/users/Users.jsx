@@ -13,18 +13,22 @@ import { ADMIN_PANEL_EDIT_USER } from "../../../../pop-ups/Constaints"
 import EditUserInfoPopUp from "../../../../pop-ups/EditUserInfoPopUp"
 import { useDispatch } from "react-redux"
 import { showPopUp } from "../../../../../features/popUpReducer"
-
+import { put, useFetch } from "../../../../../lib/useFetch"
+import { API, SERVER } from "../../../../../lib/envAccess"
+import TablePaginations from "../../../../cutsome-components/table/components/TablePaginations";
+import ResponsivePagination from 'react-responsive-pagination';
+import { showError, showSuccess } from "../../../../../lib/alertHandler"
 
 
 const headerList = [
     "ID",
     "Image",
     "Full-Name",
-    "User-Name",
     "Email",
-    "Charge",
-    "Verified",
+    "Found",
     "Created-At",
+    "Role",
+    "Verified",
     "Controlls"
 ]
 
@@ -33,16 +37,11 @@ const headerList = [
 
 export default function Users() {
 
-    const [users, setUsers] = useState([])
 
-    useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/users")
-            .then(response => {
-                const temp = response.data
-                setUsers(temp)
-            })
+    const [pageNumber, setPageNumber] = useState(1)
+    const [data, error, loading, setUrl, refresh] = useFetch(
+        API.ADMIN_DASHBOARD.USERS.GET + pageNumber)
 
-    }, [])
 
     const dispatcher = useDispatch()
 
@@ -52,8 +51,53 @@ export default function Users() {
         dispatcher(showPopUp({
             type: ADMIN_PANEL_EDIT_USER,
             duration: 2000,
-            component: <EditUserInfoPopUp user={user} />
+            component: <EditUserInfoPopUp user={user} result={refresh} />
         }))
+    }
+
+    const changeVerify = (user, status) => {
+        put(API.ADMIN_DASHBOARD.USERS.USER.VERIFY.PUT, {
+            userID: user._id,
+            status: status
+        })
+            .then(resp => {
+                showSuccess(resp)
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+            .finally(end => {
+                refresh()
+            })
+    }
+
+    const freeUser = (user) => {
+        put(API.ADMIN_DASHBOARD.USERS.USER.BLOCK_FREE.PUT, {
+            userID: user._id,
+            status: false
+        }).then(response => {
+            showSuccess(response)
+        }).catch(err => {
+            const errors = err?.response?.data
+            showError(errors)
+        }).finally(end => {
+            refresh()
+        })
+    }
+
+    const blockUser = (user) => {
+        put(API.ADMIN_DASHBOARD.USERS.USER.BLOCK_FREE.PUT, {
+            userID: user._id,
+            status: true
+        }).then(response => {
+            showSuccess(response)
+        }).catch(err => {
+            const errors = err?.response?.data
+            showError(errors)
+        }).finally(end => {
+            refresh()
+        })
     }
 
 
@@ -61,7 +105,7 @@ export default function Users() {
     return (
         <div className="admin-users-panel">
             <Table
-                columnsStyle={"4.5rem 4rem 8rem 7rem 12rem 4rem  5rem 1fr 1fr"}
+                columnsStyle={"7rem 3rem 8rem  1fr 1fr  15rem  10ch 4rem 7rem"}
             >
                 <TableHeader>
                     {headerList.map((item, index) => {
@@ -74,10 +118,7 @@ export default function Users() {
 
                 >
                     {
-                        users.map((item, index) => {
-                            const dateTime = new Date(item.createdAt)
-                            const date = `${dateTime.getFullYear()}/${dateTime.getMonth()}/${dateTime.getDay()}`
-                            const time = `${dateTime.getHours()}:${dateTime.getMinutes()}:${dateTime.getSeconds()}`
+                        data?.users?.map((user, index) => {
                             return <Row
                                 headerList={headerList}
                                 key={index} >
@@ -86,7 +127,7 @@ export default function Users() {
                                         {headerList[0]}
                                     </div>
                                     <div className="property-body">
-                                        {item.id}
+                                        {user._id}
                                     </div>
                                 </Property>
                                 <Property >
@@ -94,7 +135,7 @@ export default function Users() {
                                         {headerList[1]}
                                     </div>
                                     <div className="property-body">
-                                        <img src={item.avatar} />
+                                        <img src={SERVER.BASE_URL + user.image} />
                                     </div>
                                 </Property>
                                 <Property >
@@ -102,7 +143,7 @@ export default function Users() {
                                         {headerList[2]}
                                     </div>
                                     <div className="property-body">
-                                        {item.fullName}
+                                        {user.fullName}
                                     </div>
                                 </Property>
                                 <Property >
@@ -110,7 +151,7 @@ export default function Users() {
                                         {headerList[3]}
                                     </div>
                                     <div className="property-body">
-                                        {item.userName}
+                                        {user.email}
                                     </div>
                                 </Property>
                                 <Property >
@@ -118,44 +159,41 @@ export default function Users() {
                                         {headerList[4]}
                                     </div>
                                     <div className="property-body">
-                                        {item.email}
+                                        ${parseFloat(user.found).toFixed(4)}
                                     </div>
                                 </Property>
                                 <Property >
                                     <div className="property-header">
                                         {headerList[5]}
                                     </div>
-                                    <div className="property-body">
-                                        ${item.charge}
+                                    <div className={`property-body date-time`}>
+                                        <span>
+                                            <Icon icon="clarity:date-line" />
+                                            {(new Date(user.createdAt)).toUTCString()}
+                                        </span>
                                     </div>
                                 </Property>
                                 <Property >
                                     <div className="property-header">
                                         {headerList[6]}
                                     </div>
-                                    <div className={`property-body state-${item.verified}`}>
-                                        <label>
-                                            <Switch
-                                                onChange={(e) => { alert(e) }}
-                                                checked={item.verified}
-                                            />
-                                        </label>
+                                    <div className="property-body">
+                                        {user.role}
                                     </div>
                                 </Property>
                                 <Property >
                                     <div className="property-header">
                                         {headerList[7]}
                                     </div>
-                                    <div className={`property-body date-time`}>
-                                        <span>
-                                            <Icon icon="clarity:date-line" />
-                                            {date}
-                                        </span>
-                                        <br />
-                                        <span>
-                                            <Icon icon="ion:time-outline" />
-                                            {time}
-                                        </span>
+                                    <div className={`property-body state-${user.verified}`}>
+                                        <label>
+                                            <Switch
+                                                onChange={(e) => {
+                                                    changeVerify(user, e)
+                                                }}
+                                                checked={user.emailVerified.isActive}
+                                            />
+                                        </label>
                                     </div>
                                 </Property>
                                 <Property >
@@ -163,15 +201,27 @@ export default function Users() {
                                         {headerList[8]}
                                     </div>
                                     <div className={`property-body buttons`}>
-                                        <button className="block">
-                                            <Icon icon="gridicons:block" />
-                                            <span>
-                                                Block
-                                            </span>
-                                        </button>
+                                        {
+                                            user?.isBlocked?.status ? <button
+                                                className="block"
+                                                onClick={() => freeUser(user)}>
+                                                <Icon icon="gridicons:block" />
+                                                <span>
+                                                    Blocked
+                                                </span>
+                                            </button> : <button
+                                                onClick={() => blockUser(user)}
+                                                className="free">
+                                                <Icon icon="flat-color-icons:ok" />
+                                                <span>
+                                                    Free
+                                                </span>
+                                            </button>
+                                        }
+
                                         <button
                                             className="edit"
-                                            onClick={() => openEditUserPopUp(item)}>
+                                            onClick={() => openEditUserPopUp(user)}>
                                             <Icon icon="fluent:delete-32-filled" />
                                             <span>
                                                 Edit
@@ -190,6 +240,17 @@ export default function Users() {
 
                     }
                 </TableBody>
+                <TablePaginations>
+                    <ResponsivePagination
+                        current={data?.currentPage}
+                        total={data?.maxPageNumber}
+                        onPageChange={(pageNumber) => {
+                            setUrl(API.ADMIN_DASHBOARD.USERS.GET + pageNumber)
+                        }}
+                    />
+                </TablePaginations>
+
+
             </Table>
         </div>
     )
