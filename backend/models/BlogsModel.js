@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const blogModel = new mongoose.Schema({
     image: {
         type: String,
-        required: [true, "Image Require"]
+        required: [true, "Image Required"]
     },
     title: {
         type: String,
-        required: [true, "Title"],
+        required: [true, "Title Required"],
     },
     description: {
         type: String,
@@ -16,14 +16,15 @@ const blogModel = new mongoose.Schema({
     },
     likes: {
         type: Number,
+        default: 0
     },
-    published: Boolean
+    published: {
+        type: Boolean,
+        default: false
+    }
 },
     {
-        timestamps: {
-            createdAt: "createAt",
-            updatedAt: "updateAt"
-        }
+        timestamps: true
     })
 
 module.exports = mongoose.model("blog", blogModel)

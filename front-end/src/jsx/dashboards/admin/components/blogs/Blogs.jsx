@@ -15,21 +15,27 @@ import { showPopUp } from '../../../../../features/popUpReducer'
 import { ADMIN_PANEL_CREATE_BLOG } from '../../../../pop-ups/Constaints'
 import CreateNewBlogPopUp from '../../../../pop-ups/CreateNewBlogPopUp'
 import EditBlogPopUp from '../../../../pop-ups/EditBlogPopUp'
+import { deletE, put, useFetch } from "../../../../../lib/useFetch"
+import { API, SERVER } from '../../../../../lib/envAccess'
+import TablePaginations from "../../../../cutsome-components/table/components/TablePaginations";
+import ResponsivePagination from 'react-responsive-pagination';
+import { showError, showSuccess } from '../../../../../lib/alertHandler'
+
 
 export default function Blogs() {
+
+
+    const [currentPage, setCurrentPage] = useState(1)
+
+
+    const [data, error, loading, setUrl, refresh] = useFetch(
+        API.ADMIN_DASHBOARD.BLOGS.GET + currentPage
+    )
 
     const dispatcher = useDispatch()
 
 
-    const [blogs, setBlogs] = useState([])
 
-    useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/fakeApi")
-            .then(response => {
-                const data = response.data
-                setBlogs(data)
-            })
-    }, [])
 
     const headerList = [
         "ID",
@@ -37,17 +43,19 @@ export default function Blogs() {
         "Title",
         "Description",
         "Likes",
-        "Comments",
         "Published",
         "Controlls"
     ]
+
+
+
 
 
     const handleCreateNewBlogClick = () => {
         dispatcher(showPopUp({
             type: ADMIN_PANEL_CREATE_BLOG,
             duration: 2000,
-            component: <CreateNewBlogPopUp />
+            component: <CreateNewBlogPopUp refresh={refresh} />
         }))
     }
 
@@ -55,9 +63,41 @@ export default function Blogs() {
         dispatcher(showPopUp({
             type: ADMIN_PANEL_CREATE_BLOG,
             duration: 2000,
-            component: <EditBlogPopUp blog={blog} />
+            component: <EditBlogPopUp blog={blog} refresh={refresh} />
         }))
     }
+
+    const onPublishedClick = (blog, published) => {
+        put(API.ADMIN_DASHBOARD.BLOGS.BLOG.PUBLISHED.PUT, {
+            blogID: blog._id,
+            published: published
+        })
+            .then(res => {
+                showSuccess(res).finally(end => { refresh() })
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+    }
+
+
+
+    const handleOnDelete = (blog) => {
+        deletE(API.ADMIN_DASHBOARD.BLOGS.BLOG.DELETE.DELETE, {
+            blogID: blog._id
+        })
+            .then(resp => {
+                showSuccess(resp).finally(end => {
+                    refresh()
+                })
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+    }
+
 
     return (
         <div className='admin-panel-blogs panel-section'>
@@ -73,7 +113,7 @@ export default function Blogs() {
                 </div>
             </h2>
             <div className="blogs-body">
-                <Table columnsStyle={"7rem 10rem 10rem 1fr 4rem 7rem 7rem 5rem"}>
+                <Table columnsStyle={"7rem 10rem 10rem 1fr  7rem 7rem 7rem"}>
                     <TableHeader>
                         {
                             headerList.map((reconrd, index) => {
@@ -86,14 +126,14 @@ export default function Blogs() {
                     </TableHeader>
                     <TableBody>
                         {
-                            blogs.map(record => {
-                                return <Row key={record.id}>
+                            !loading ? data?.blogs?.map(blog => {
+                                return <Row key={blog.id}>
                                     <Property>
                                         <div className="property-header">
                                             {headerList[0]}
                                         </div>
                                         <div className="property-body">
-                                            {record.blogId}
+                                            {blog._id}
                                         </div>
                                     </Property>
                                     <Property>
@@ -101,7 +141,7 @@ export default function Blogs() {
                                             {headerList[1]}
                                         </div>
                                         <div className="property-body">
-                                            <img src={record.blogImage} />
+                                            <img src={SERVER.BASE_URL + blog.image} />
                                         </div>
                                     </Property>
                                     <Property>
@@ -111,7 +151,7 @@ export default function Blogs() {
                                         <div className="property-body">
                                             <MaxLineText
                                                 maxLine={3}
-                                                content={record.blogTitle} />
+                                                content={blog.title} />
                                         </div>
                                     </Property>
                                     <Property>
@@ -121,62 +161,63 @@ export default function Blogs() {
                                         <div className="property-body">
                                             <MaxLineText
                                                 maxLine={4}
-                                                content={record.blogDescription} />
+                                                content={blog.description} />
                                         </div>
                                     </Property>
                                     <Property>
                                         <div className="property-header">
-                                            {headerList[3]}
+                                            {headerList[4]}
                                         </div>
                                         <div className="property-body">
                                             <MaxLineText
                                                 maxLine={4}
-                                                content={record.blogLikes} />
+                                                content={blog.likes} />
                                         </div>
                                     </Property>
                                     <Property>
                                         <div className="property-header">
-                                            {headerList[4]}
-                                        </div>
-                                        <div className="property-body comment-property">
-                                            <MaxLineText
-                                                maxLine={1}
-                                                content={record.blogComments} />
-                                            <button>
-                                                <Icon icon="carbon:view-filled" />
-                                                <span>View</span>
-                                            </button>
-                                        </div>
-                                    </Property>
-                                    <Property>
-                                        <div className="property-header">
-                                            {headerList[4]}
+                                            {headerList[5]}
                                         </div>
                                         <div className="property-body">
-                                            <Switch checked={record.blogPublished} />
+                                            <Switch
+                                                checked={blog.published}
+                                                onChange={(e) => {
+                                                    onPublishedClick(blog, e)
+                                                }} />
                                         </div>
                                     </Property>
                                     <Property>
                                         <div className="property-header">
-                                            {headerList[4]}
+                                            {headerList[6]}
                                         </div>
                                         <div className="property-body controlls-property">
                                             <button
-                                                onClick={() => { handleOnEditBlogClick(record) }}>
+                                                onClick={() => { handleOnEditBlogClick(blog) }}>
                                                 <Icon icon="bxs:edit" />
                                                 <span>Edit</span>
                                             </button>
-                                            <button>
+                                            <button
+                                                onClick={() => handleOnDelete(blog)}
+                                            >
                                                 <Icon icon="fluent:delete-48-filled" />
                                                 <span>Delete</span>
                                             </button>
                                         </div>
                                     </Property>
                                 </Row>
-                            })
+                            }) : <h1>Loading....</h1>
                         }
 
                     </TableBody>
+                    <TablePaginations>
+                        <ResponsivePagination
+                            current={data?.currentPage}
+                            total={data?.maxPageNumber}
+                            onPageChange={(pageNumber) => {
+                                setUrl(API.ADMIN_DASHBOARD.BLOGS.GET + pageNumber)
+                            }}
+                        />
+                    </TablePaginations>
                 </Table>
             </div>
         </div>

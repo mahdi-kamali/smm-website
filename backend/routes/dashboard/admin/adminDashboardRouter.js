@@ -889,7 +889,6 @@ router.put("/users/user/edit", uploader.usersUploader.any(), async (req, res, ne
     }
 });
 
-
 router.put("/users/user/edit/verify", async (req, res, next) => {
     try {
         const { userID, status } = req.body
@@ -942,38 +941,95 @@ router.put("/users/user/edit/block-free", async (req, res, next) => {
 });
 
 
-
 // ---------------- Blogs
-router.get("/blogs", async (req, res) => {
+router.get("/blogs/:pageNumber", async (req, res, next) => {
     try {
-        const blogs = await BlogsModel.find()
-        return res.json(blogs)
-    }
-    catch (e) {
+        const pageNumber = parseInt(req.params.pageNumber, 10);
 
+
+        const { data, maxPage } = await paginate(BlogsModel, pageNumber, 8);
+
+        return res.json({
+            blogs: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
+    } catch (error) {
+        return next(error);
     }
-    return res.json("ok add blog")
+});
+
+router.post("/blogs", uploader.blogUploader.any(), async (req, res, next) => {
+    try {
+        const image = await req.files[0]
+        const { title, description } = await req.body
+
+        const blog = new BlogsModel({
+            image: "/statics/images/blogs/" + image.filename,
+            title: title,
+            description: description,
+        })
+
+        await blog.save()
+
+        return res.json(" Blogs Succesfuly Created.")
+    } catch (e) {
+        return next(e)
+    }
 })
 
-router.post("/blogs", uploader.blogUploader.any(), async (req, res) => {
+router.put("/blogs/blog/edit", uploader.blogUploader.any(), async (req, res, next) => {
     try {
         const image = await req.files[0]
         const data = await req.body
 
+        if (image) data.image = "/statics/images/blogs/" + image.filename
 
-        const blog = new BlogsModel({
-            image: "/statics/images/blogs/" + image.filename,
-            title: data.title,
-            description: data.description,
-            likes: data.likes,
-            published: false
-        })
+        const blog = await BlogsModel.findByIdAndUpdate(data.blogID,
+            {
+                ...data,
+            })
 
-        return res.json(await blog.save())
+        if (!blog || blog === null) throw "Blog Not Finded!"
+
+        await blog.save()
+
+        return res.json(" Blog Changing Succesfull.")
     } catch (e) {
-        console.log(e)
-        return res.status(500).json(e)
+        return next(e)
+    }
+})
 
+router.put("/blogs/blog/edit/published", async (req, res, next) => {
+    try {
+        const { blogID, published } = await req.body
+
+
+        const blog = await BlogsModel.findOne({
+            _id: blogID
+        })
+        if (!blog || blog === null) throw "Blog Not Finded!"
+
+        blog.published = published
+        await blog.save()
+
+        return res.json(" Blog Published Changing Succesfull.")
+    } catch (e) {
+        return next(e)
+    }
+})
+
+router.delete("/blogs/blog/delete", async (req, res, next) => {
+    try {
+        const { blogID } = await req.body
+
+        const blog = await BlogsModel.findByIdAndDelete(blogID)
+
+        if (!blog || blog === null) throw "Blog Not Finded!"
+
+        return res.json(" Blog Deleting Succesfull.")
+    } catch (e) {
+        return next(e)
     }
 })
 

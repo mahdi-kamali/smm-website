@@ -183,6 +183,15 @@ export const API = {
                 },
 
             }
+        },
+        BLOGS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "blogs/",
+            POST: SERVER.ADMIN_PANEL_API_URL + "blogs/",
+            BLOG: {
+                EDIT: { PUT: SERVER.ADMIN_PANEL_API_URL + "blogs/blog/edit" },
+                DELETE: { DELETE: SERVER.ADMIN_PANEL_API_URL + "blogs/blog/delete" },
+                PUBLISHED: { PUT: SERVER.ADMIN_PANEL_API_URL + "blogs/blog/edit/published" },
+            }
         }
 
     },

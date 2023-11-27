@@ -792,9 +792,6 @@
 .admin-dashboard .content .admin-panel-faqs .table .buttons .reply-email {
   background-color: #ffa938;
 }
-.admin-dashboard .content .admin-panel-blogs {
-  padding-top: 4em;
-}
 .admin-dashboard .content .admin-panel-blogs .blogs-header {
   display: flex;
   align-content: center;

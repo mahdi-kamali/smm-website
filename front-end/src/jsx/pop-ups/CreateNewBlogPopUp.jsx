@@ -5,8 +5,10 @@ import AdminPanelFiledset from "../dashboards/admin/components/tools/fieldset/Ad
 import Legend from "../dashboards/admin/components/tools/fieldset/Legend"
 import FieldBody from "../dashboards/admin/components/tools/fieldset/FieldBody"
 import { useState } from "react"
-
-export default function CreateNewBlogPopUp() {
+import { post, put } from "../../lib/useFetch"
+import { API } from "../../lib/envAccess"
+import { showError, showSuccess } from "../../lib/alertHandler"
+export default function CreateNewBlogPopUp({ refresh }) {
 
 
     const [image, setImage] = useState(require("../../images/place-holder/1.png"))
@@ -32,13 +34,31 @@ export default function CreateNewBlogPopUp() {
     }
 
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
 
+        post(API.ADMIN_DASHBOARD.BLOGS.POST,
+            formData)
+            .then(resp => {
+                showSuccess(resp).finally(end=>{
+                    handleCloseButtonClick()
+                })
+            })
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+            .finally(end => {
+                refresh()
+            })
 
-
+    }
 
 
     return (
-        <div className="admin-panel-create-blog-pop-up">
+        <form className="admin-panel-create-blog-pop-up"
+            onSubmit={handleSubmit}>
             <button className="close-button"
                 onClick={handleCloseButtonClick}>
                 <Icon icon="mingcute:close-fill" />
@@ -56,7 +76,7 @@ export default function CreateNewBlogPopUp() {
                     <img src={image} />
                     <input
                         type="file"
-                        name="avatar"
+                        name="image"
                         accept="image/*"
                         onChange={handleOnImageChange} />
                 </div>
@@ -84,13 +104,13 @@ export default function CreateNewBlogPopUp() {
                             cols={10}
                             rows={10}
                             type="description"
-                            name="answer"
+                            name="description"
                             defaultValue={""} />
                     </FieldBody>
                 </AdminPanelFiledset>
 
 
-      
+
 
                 <button className="submit">
                     <span>Submit </span>
@@ -98,6 +118,6 @@ export default function CreateNewBlogPopUp() {
                 </button>
             </div>
 
-        </div>
+        </form>
     )
 }
