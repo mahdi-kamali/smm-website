@@ -1041,108 +1041,194 @@ router.delete("/blogs/blog/delete", async (req, res, next) => {
 
 
 // selected Faqs
-router.get("/selected-faqs", async (req, res) => {
+router.get("/selected-faqs/:pageNumber", async (req, res, next) => {
     try {
-        const selectedFaqs = await FaqsSelectedModel.find()
-        return res.json(selectedFaqs)
+        const pageNumber = parseInt(req.params.pageNumber, 10);
+
+        const { data, maxPage } = await paginate(FaqsSelectedModel, pageNumber, 8);
+
+        return res.json({
+            selectedFaqs: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
+    } catch (error) {
+        return next(error);
     }
-    catch (e) {
-        return res.json("error", 500)
-    }
-})
-router.post("/selected-faqs", async (req, res) => {
+});
+
+router.post("/selected-faqs", uploader.uploader().array(), async (req, res, next) => {
     try {
         const data = req.body
 
         const selectedFaq = new FaqsSelectedModel({
             ...data
         })
-        return res.json(await selectedFaq.save())
+
+        await selectedFaq.save()
+
+        return res.json("New Faqs Created.")
     }
     catch (e) {
-        return res.json(e, 500)
+        return next(e)
     }
 })
 
-router.delete("/selected-faqs", async (req, res) => {
+router.delete("/selected-faqs/faq/delete", async (req, res, next) => {
     try {
         const { id } = req.body
-        if (!id)
-            return res.status(400).json("id required")
 
-        await FaqsSelectedModel
-            .findByIdAndDelete(id).then(res => {
-                return res.json("selected Faq Deleted !")
-            })
-            .catch(err => {
-                console.log(err)
-                return res.status(500).json("record not found !")
-            })
+        console.log(id)
+        if (!id)
+            throw ("ID Required")
+        await FaqsSelectedModel.findByIdAndDelete(id)
+        return res.json("selected Faq Deleted !")
+
     }
     catch (e) {
-        return res.json(e, 500)
+        return next(e)
     }
 })
 
-router.put("/selected-faqs", async (req, res) => {
+router.put("/selected-faqs/faq/edit/", uploader.uploader().array(), async (req, res, next) => {
     try {
-        const data = req.body
+        const { faqID, question, answer } = req.body
 
-        if (!data.id)
-            return res.status(500).json("id required")
-
-        await FaqsSelectedModel.findByIdAndUpdate(data.id, {
-            ...data
+        console.log(faqID)
+        if (!faqID)
+            throw ("ID Required")
+        await FaqsSelectedModel.findByIdAndUpdate(faqID, {
+            question: question,
+            answer: answer
         })
-            .then(result => {
-                if (!result)
-                    return res.status(400).json("record not founded")
-                return res.json("record updated.")
-            })
-            .catch(err => {
-                return res.status(400).json("record not founded")
-            })
+        return res.json("selected Faq Updated !")
 
     }
     catch (e) {
-        return res.json(e, 500)
+        return next(e)
     }
 })
 
 
 
 // Normal Faqs 
-router.get("/faqs", async (req, res) => {
+router.get("/faqs/:pageNumber", async (req, res, next) => {
     try {
-        const normalFaqs = await FaqsModel.find()
-        return res.json(normalFaqs)
+        const pageNumber = parseInt(req.params.pageNumber, 10);
+
+        const { data, maxPage } = await paginate(FaqsModel, pageNumber, 8);
+
+        return res.json({
+            faqs: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
-router.put("/faqs", async (req, res) => {
+
+router.put("/faqs/faq/", async (req, res, next) => {
     try {
-        const { id, answerd } = req.body
-        if (!id)
-            return res.status(400).json("id required")
+        const { faqID, answerd } = req.body
+        if (!faqID)
+            throw ("id Required")
 
 
 
-        const faqs = await FaqsModel.findByIdAndUpdate(id, {
-            answerd
-        }).then(result => {
-            return res.json("faqs changing success!")
-        })
-            .catch(err => {
-                return res.status(500).json(err)
-            })
+        const faq = await FaqsModel.findById(faqID)
+        if (!faq || faq === null) throw ("id Required")
+
+        faq.answerd = answerd
+
+        await faq.save()
 
 
+        return res.json("Faq Successfuly Changed.")
     }
     catch (e) {
-        return res.status(500).json(e)
+        return nextx(e)
+    }
+})
+
+
+router.post("/faqs/faq/answer/email", async (req, res, next) => {
+    try {
+        const { faqID, message } = req.body
+        if (!faqID)
+            throw ("id Required")
+
+        const faq = await FaqsModel.findById(faqID)
+        if (!faq || faq === null) throw ("id Required")
+
+
+
+
+
+        await sendEmail(faq.email, message)
+
+        if (faq.adminResponse === null) {
+            faq.adminResponse = {
+                email: {
+                    message: message
+                }
+            }
+        } else {
+            faq.adminResponse.email = {
+                message: message
+            }
+        }
+
+        await faq.save()
+
+
+
+        return res.json("Your Message Succesfuly Delivered.")
+    }
+    catch (e) {
+        return nextx(e)
+    }
+})
+
+router.post("/faqs/faq/answer/phone", async (req, res, next) => {
+    try {
+        const { faqID, message } = req.body
+        if (!faqID)
+            throw ("id Required")
+
+        const faq = await FaqsModel.findById(faqID)
+        if (!faq || faq === null) throw ("id Required")
+
+
+
+
+
+        // await sendEmail(faq.email, message)
+
+
+
+        if (faq.adminResponse === null) {
+            faq.adminResponse = {
+                phone: {
+                    message: message
+                }
+            }
+        } else {
+            faq.adminResponse.phone = {
+                message: message
+            }
+        }
+
+        await faq.save()
+
+
+
+        return res.json("Your Message Succesfuly Delivered.")
+    }
+    catch (e) {
+        return nextx(e)
     }
 })
 

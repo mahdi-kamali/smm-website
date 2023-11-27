@@ -2,6 +2,17 @@ const mongoose = require("mongoose")
 const { isEmail, isNumeric } = require("../lib/validator")
 
 
+
+const adminResponseModel = new mongoose.Schema({
+    email: new mongoose.Schema({
+        message: String
+    }, { timestamps: true }),
+    phone: new mongoose.Schema({
+        message: String
+    }, { timestamps: true }),
+})
+
+
 const FaqsSchema = new mongoose.Schema({
     fullName: {
         type: String,
@@ -22,7 +33,11 @@ const FaqsSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please Enter Message"]
     },
-    answerd: Boolean
+    answerd: Boolean,
+    adminResponse: {
+        type: adminResponseModel,
+        default: null
+    }
 },
     {
         timestamps: true

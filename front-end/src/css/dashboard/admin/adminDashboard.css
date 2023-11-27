@@ -770,6 +770,10 @@
 .admin-dashboard .content .admin-panel-faqs .selected-faqs .body .item-buttons button:last-child {
   background-color: #ffa938;
 }
+.admin-dashboard .content .admin-panel-faqs .table .message {
+  white-space: wrap !important;
+  line-break: anywhere;
+}
 .admin-dashboard .content .admin-panel-faqs .table .buttons {
   display: flex;
   align-items: center;

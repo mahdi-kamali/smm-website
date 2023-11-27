@@ -841,6 +841,10 @@ $gradient-degree: 0deg;
                 }
             }
             .table {
+                .message {
+                    white-space: wrap !important;
+                    line-break: anywhere;
+                }
                 .buttons {
                     display: flex;
                     align-items: center;

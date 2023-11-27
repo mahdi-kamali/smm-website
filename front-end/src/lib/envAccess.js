@@ -192,7 +192,28 @@ export const API = {
                 DELETE: { DELETE: SERVER.ADMIN_PANEL_API_URL + "blogs/blog/delete" },
                 PUBLISHED: { PUT: SERVER.ADMIN_PANEL_API_URL + "blogs/blog/edit/published" },
             }
+        },
+        SELECTED_FAQS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "selected-faqs/",
+            POST: SERVER.ADMIN_PANEL_API_URL + "selected-faqs/",
+            FAQ: {
+                DELETE: SERVER.ADMIN_PANEL_API_URL + "selected-faqs/faq/delete",
+                EDIT: {
+                    PUT: SERVER.ADMIN_PANEL_API_URL + "selected-faqs/faq/edit"
+                },
+            }
+        },
+        FAQS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "faqs/",
+            FAQ: {
+                ANSWERD: {
+                    CHANGE_ANSWERED: { PUT: SERVER.ADMIN_PANEL_API_URL + "faqs/faq/" },
+                    EMAIL: { POST: SERVER.ADMIN_PANEL_API_URL + "faqs/faq/answer/email" },
+                    PHONE: { POST: SERVER.ADMIN_PANEL_API_URL + "faqs/faq/answer/phone" }
+                }
+            }
         }
+
 
     },
     PUBLIC: {

@@ -11,6 +11,12 @@ const paginate = async (model, pageNumber, pageSize = 8) => {
         // Calculate max page number
         const maxPageNumber = Math.ceil(totalCount / pageSize);
 
+
+
+        if (maxPageNumber === 0) {
+            return []
+        }
+
         // Validate page number
         if (pageNumber > maxPageNumber) {
             throw new Error("Invalid Page Number!");
@@ -25,6 +31,7 @@ const paginate = async (model, pageNumber, pageSize = 8) => {
 
         return { data, maxPage: maxPageNumber };
     } catch (error) {
+        console.log(error)
         throw error;
     }
 };
