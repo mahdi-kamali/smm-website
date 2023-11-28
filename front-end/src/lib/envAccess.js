@@ -228,6 +228,12 @@ export const API = {
         SERVICES: {
             GET: SERVER.API_URL + "services"
         },
+        CONTACT_US: {
+            POST: SERVER.API_URL + "contact-us/"
+        },
+        FAQS: {
+            GET: SERVER.API_URL + "faqs"
+        },
     }
 }
 

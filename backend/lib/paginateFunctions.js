@@ -25,6 +25,9 @@ const paginate = async (model, pageNumber, pageSize = 8) => {
         // Retrieve paginated data
         const data = await model
             .find()
+            .sort({
+                createdAt: -1
+            })
             .limit(pageSize)
             .skip((pageNumber - 1) * pageSize);
 

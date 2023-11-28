@@ -5,17 +5,22 @@ import Property from "../../../../cutsome-components/table/components/Property";
 import Row from "../../../../cutsome-components/table/components/Row";
 import TableBody from "../../../../cutsome-components/table/components/TableBody";
 import TableHeader from "../../../../cutsome-components/table/components/TableHeader";
-import axios from "axios";
 import { useState } from "react";
 import MaxLineText from "../../../../cutsome-components/Text/MaxLineText";
 import { Icon } from "@iconify/react";
 import Switch from "react-switch"
-
 import { put, useFetch } from "../../../../../lib/useFetch"
 import { API } from "../../../../../lib/envAccess";
 import Swal from "sweetalert2"
 import { post } from "../../../../../lib/useFetch";
 import { showSuccess, showError } from "../../../../../lib/alertHandler";
+import TablePaginations from "../../../../cutsome-components/table/components/TablePaginations"
+import ResponsivePagination from "react-responsive-pagination"
+
+
+
+
+
 export default function ContactsUs() {
 
 
@@ -231,6 +236,18 @@ export default function ContactsUs() {
                     }
 
                 </TableBody>
+                <TablePaginations>
+                    <ResponsivePagination
+                        current={data?.currentPage}
+                        total={data?.maxPageNumber}
+                        onPageChange={(pageNumber) => {
+                            setUrl(
+                                API.ADMIN_DASHBOARD.CONTACT_US.GET
+                                + pageNumber
+                            )
+                        }}
+                    />
+                </TablePaginations>
             </Table>
         </div>
     )

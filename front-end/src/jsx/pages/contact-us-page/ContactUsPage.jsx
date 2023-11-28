@@ -6,9 +6,9 @@ import React from 'react'
 import leftAnimation from "../../../animations/contact-us/left-animation.json"
 import Lottie from 'react-lottie-player'
 import { Icon } from '@iconify/react'
-
-
-
+import { post } from "../../../lib/useFetch"
+import { API } from '../../../lib/envAccess'
+import { showSuccess, showError } from "../../../lib/alertHandler"
 
 const Input = ({ name, type, svg, placeHolder }) => {
 
@@ -20,6 +20,7 @@ const Input = ({ name, type, svg, placeHolder }) => {
             <input
                 type={type}
                 placeholder={placeHolder}
+                required
                 name={name} />
         </div>
     </div>
@@ -39,6 +40,19 @@ const Media = ({ svg, title }) => {
 }
 
 
+
+const handleOnformSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    post(API.PUBLIC.CONTACT_US.POST, formData)
+        .then(resp => {
+            showSuccess(resp)
+        })
+        .catch(err => {
+            const errors = err?.response?.data
+            showError(errors)
+        })
+}
 
 
 const ContactUsPage = () => {
@@ -82,23 +96,21 @@ const ContactUsPage = () => {
                     </div>
                 </div>
                 <div className="right">
-                    <form action="#" className='right'>
+                    <form
+                        action="#"
+                        className='right'
+                        onSubmit={handleOnformSubmit}>
                         <div className="form-header"></div>
                         <div className="form-body">
                             <Input
-                                name={"firstName"}
+                                name={"fullName"}
                                 type={"text"}
                                 svg={<Icon icon="ph:user-light" />}
-                                placeHolder={"First Name"}
+                                placeHolder={"Full-Name"}
+
                             />
                             <Input
-                                name={"lastName"}
-                                type={"text"}
-                                svg={<Icon icon="ph:user-light" />}
-                                placeHolder={"Last Name"}
-                            />
-                            <Input
-                                name={"phone"}
+                                name={"phoneNumber"}
                                 type={"number"}
                                 svg={<Icon icon="ph:phone" />}
                                 placeHolder={"Phone"}

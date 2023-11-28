@@ -9,8 +9,15 @@ import Lottie from "react-lottie-player"
 import clouds from "../../../animations/main-page/cloudes.json"
 import faqsPosterAnimation from "../../../animations/main-page/faqs-poster.json"
 
+import { useFetch } from "../../../lib/useFetch"
+import { API } from "../../../lib/envAccess"
 
 const FAQsPage = () => {
+
+  const [faqs, error, loading, setUrl, refresh] = useFetch(
+    API.PUBLIC.FAQS.GET
+  )
+
 
   waveBackground.fr = 5
   clouds.fr = 12.5
@@ -19,7 +26,11 @@ const FAQsPage = () => {
 
 
 
- 
+
+
+
+
+
 
   const faqsLeftList = [
     {
@@ -114,7 +125,7 @@ const FAQsPage = () => {
         </div>
         <div className="right">
           <h1>
-            Frequently 
+            Frequently
             <span>Asked
               Questions</span>
           </h1>
@@ -127,26 +138,24 @@ const FAQsPage = () => {
       <div className="faqs-items">
         <div className="col">
           {
-            faqsLeftList.map((item, index) => {
+            !loading ? faqs.slice(0, Math.ceil(faqs.length / 2)).map((item, index) => {
               return <FAQsAccordion
                 key={index}
                 headerTitle={item.question}
                 bodyTitle={item.answer}
-
                 isExpanded={item.isExpanded} />
-            })
+            }) : <h1>Loading ...</h1>
           }
         </div>
         <div className="col">
           {
-            faqsRightList.map((item, index) => {
+            !loading ? faqs.slice(Math.ceil(faqs.length / 2)).map((item, index) => {
               return <FAQsAccordion
                 key={index}
                 headerTitle={item.question}
                 bodyTitle={item.answer}
-
                 isExpanded={item.isExpanded} />
-            })
+            }) : null
           }
         </div>
 

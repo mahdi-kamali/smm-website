@@ -4,7 +4,7 @@ const ContactUsModel = require("../../models/ContactUsModel")
 const router = express.Router()
 
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
 
     try {
         const {
@@ -24,10 +24,12 @@ router.post("/", async (req, res) => {
         })
 
 
-        return res.json(await contactUs.save())
+
+        await contactUs.save()
+        return res.json("Your Message delivered.")
     }
     catch (e) {
-        return res.json(e)
+        return next(e)
 
     }
 })
