@@ -1,7 +1,19 @@
 const mongoose = require("mongoose")
-const { isEmail , isNumeric } = require("validator")
+const { isEmail, isNumeric } = require("validator")
 
-const contactUsSchema = mongoose.Schema({
+
+
+const adminResponseModel = new mongoose.Schema({
+    email: new mongoose.Schema({
+        message: String
+    }, { timestamps: true }),
+    phone: new mongoose.Schema({
+        message: String
+    }, { timestamps: true }),
+})
+
+
+const contactUsSchema = new mongoose.Schema({
     fullName: {
         type: String,
         required: [true, "Please Enter full Name"]
@@ -9,8 +21,8 @@ const contactUsSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please Enter Email"],
-        validate: [isEmail, 'Please Enter a Valid Email'] , 
-        lowercase : true
+        validate: [isEmail, 'Please Enter a Valid Email'],
+        lowercase: true
     },
     phoneNumber: {
         type: String,
@@ -21,7 +33,13 @@ const contactUsSchema = mongoose.Schema({
         type: String,
         required: [true, "Please Enter Message"]
     },
-    answerd: Boolean
+    answerd: Boolean,
+    adminResponse: {
+        type: adminResponseModel,
+        default: null
+    }
+}, {
+    timestamps: true
 })
 
-module.exports = mongoose.model("ContactUs", contactUsSchema)
+module.exports = mongoose.model("Contact_Us", contactUsSchema)

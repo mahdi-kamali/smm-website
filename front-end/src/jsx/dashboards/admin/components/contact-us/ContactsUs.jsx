@@ -11,10 +11,20 @@ import MaxLineText from "../../../../cutsome-components/Text/MaxLineText";
 import { Icon } from "@iconify/react";
 import Switch from "react-switch"
 
+import { put, useFetch } from "../../../../../lib/useFetch"
+import { API } from "../../../../../lib/envAccess";
+import Swal from "sweetalert2"
+import { post } from "../../../../../lib/useFetch";
+import { showSuccess, showError } from "../../../../../lib/alertHandler";
 export default function ContactsUs() {
 
 
     const [chats, setChats] = useState([])
+
+    const [pageNumber, setPageNumber] = useState(1)
+    const [data, error, loading, setUrl, refresh] = useFetch(
+        API.ADMIN_DASHBOARD.CONTACT_US.GET + pageNumber
+    )
 
     const headerList = [
         "Chat ID",
@@ -26,12 +36,83 @@ export default function ContactsUs() {
         "Controlls"
     ]
 
-    useEffect(() => {
-        axios.get("https://65056334ef808d3c66effa9b.mockapi.io/users")
-            .then(response => {
-                setChats(response.data)
+
+
+
+    const replyEmail = (record) => {
+
+
+        Swal.fire({
+            input: "textarea",
+            inputLabel: "Message",
+            inputPlaceholder: "Type your message here...",
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonColor: "green",
+            denyButtonColor: "red"
+        }).then(what => {
+            if (what.isConfirmed) {
+                const message = what.value
+                post(API.ADMIN_DASHBOARD.CONTACT_US.ANSWERD.EMAIL.POST, {
+                    message: message,
+                    recordID: record._id
+                })
+                    .then(resp => {
+                        showSuccess(resp)
+                    })
+                    .catch(err => {
+                        const errors = err?.response?.data
+                        showError(errors)
+                    })
+            }
+        })
+    }
+
+
+    const replyPhone = (record) => {
+        Swal.fire({
+            input: "textarea",
+            inputLabel: "Message",
+            inputPlaceholder: "Type your message here...",
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonColor: "green",
+            denyButtonColor: "red"
+        }).then(what => {
+            if (what.isConfirmed) {
+                const message = what.value
+                post(API.ADMIN_DASHBOARD.CONTACT_US.ANSWERD.PHONE.POST, {
+                    message: message,
+                    recordID: record._id
+                })
+                    .then(resp => {
+                        showSuccess(resp)
+                    })
+                    .catch(err => {
+                        const errors = err?.response?.data
+                        showError(errors)
+                    })
+            }
+        })
+    }
+
+
+    const toggleAnswered = (record, answerd) => {
+        put(API.ADMIN_DASHBOARD.CONTACT_US.ANSWERD.CHANGE_ANSWERED.PUT, {
+            recordID: record._id,
+            answerd: answerd
+        })
+            .then(res => {
+                showSuccess(res)
+                    .finally(end => {
+                        refresh()
+                    })
             })
-    }, [])
+            .catch(err => {
+                const errors = err?.response?.data
+                showError(errors)
+            })
+    }
 
 
 
@@ -51,8 +132,8 @@ export default function ContactsUs() {
                 <TableBody>
 
                     {
-                        chats.map(record => {
-                            return <Row key={record.chatId}>
+                        !loading ? data?.contactUs?.map(record => {
+                            return <Row key={record._id}>
                                 <Property>
                                     <div className="property-header">
                                         {headerList[0]}
@@ -60,7 +141,7 @@ export default function ContactsUs() {
                                     <div className="property-body">
                                         <MaxLineText
                                             maxLine={1}
-                                            content={record.chatId} />
+                                            content={record._id} />
                                     </div>
                                 </Property>
                                 <Property>
@@ -100,10 +181,8 @@ export default function ContactsUs() {
                                     <div className="property-header">
                                         {headerList[4]}
                                     </div>
-                                    <div className="property-body">
-                                        <MaxLineText
-                                            maxLine={3}
-                                            content={record.message} />
+                                    <div className="property-body message">
+                                        {record.message}
                                     </div>
                                 </Property>
 
@@ -112,9 +191,11 @@ export default function ContactsUs() {
                                         {headerList[5]}
                                     </div>
                                     <div className="property-body buttons">
-                                        <Switch 
-                                        onChange={(e)=>{alert(e)}}
-                                        checked={record.answered}/>
+                                        <Switch
+                                            onChange={(e) => {
+                                                toggleAnswered(record, e)
+                                            }}
+                                            checked={record.answerd} />
                                     </div>
                                 </Property>
 
@@ -123,13 +204,20 @@ export default function ContactsUs() {
                                         {headerList[6]}
                                     </div>
                                     <div className="property-body buttons">
-                                        <button className="reply-email">
+                                        <button
+                                            className="reply-email"
+                                            onClick={() => replyEmail(record)}>
                                             <span>
                                                 Reply Email
                                             </span>
                                             <Icon icon="iconamoon:send-fill" />
                                         </button>
-                                        <button className="reply-phone">
+                                        <button
+                                            className="reply-phone"
+                                            onClick={() => {
+                                                replyPhone(record)
+                                            }}
+                                        >
                                             <span>
                                                 Reply Phone
                                             </span>
@@ -139,7 +227,8 @@ export default function ContactsUs() {
                                 </Property>
 
                             </Row>
-                        })}
+                        }) : <h1>Loading...</h1>
+                    }
 
                 </TableBody>
             </Table>

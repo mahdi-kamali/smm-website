@@ -681,6 +681,10 @@
   justify-content: start;
   gap: 0.25rem;
 }
+.admin-dashboard .content .admin-contact-us-panel .table .message {
+  white-space: wrap !important;
+  line-break: anywhere;
+}
 .admin-dashboard .content .admin-contact-us-panel .table .buttons {
   display: flex;
   align-items: center;

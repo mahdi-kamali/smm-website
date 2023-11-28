@@ -1188,7 +1188,7 @@ router.post("/faqs/faq/answer/email", async (req, res, next) => {
         return res.json("Your Message Succesfuly Delivered.")
     }
     catch (e) {
-        return nextx(e)
+        return next(e)
     }
 })
 
@@ -1200,9 +1200,6 @@ router.post("/faqs/faq/answer/phone", async (req, res, next) => {
 
         const faq = await FaqsModel.findById(faqID)
         if (!faq || faq === null) throw ("id Required")
-
-
-
 
 
         // await sendEmail(faq.email, message)
@@ -1228,48 +1225,130 @@ router.post("/faqs/faq/answer/phone", async (req, res, next) => {
         return res.json("Your Message Succesfuly Delivered.")
     }
     catch (e) {
-        return nextx(e)
+        return next(e)
     }
 })
 
 
 
 // -------------- Contact Us
-router.get("/contact-us", async (req, res) => {
+router.get("/contact-us/:pageNumber", async (req, res, next) => {
 
     try {
-        const items = await ContactUsModel.find()
-        return res.json(items)
+        const pageNumber = parseInt(req.params.pageNumber, 10);
+
+        const { data, maxPage } = await paginate(ContactUsModel, pageNumber, 8);
+
+        return res.json({
+            contactUs: data,
+            maxPageNumber: maxPage,
+            currentPage: pageNumber
+        });
     }
     catch (e) {
-        return res.json(e)
+        return next(e)
+    }
+
+})
+
+router.put("/contact-us/record/answerd", async (req, res, next) => {
+    try {
+        const { recordID, answerd } = req.body
+
+        if (!recordID)
+            throw ("id required")
+
+        const record = await ContactUsModel.findById(recordID)
+
+
+        if (!record || record === null) throw "REcord Not Finded."
+
+        record.answerd = answerd
+        await record.save()
+
+        return res.json("Record Succesfully Changed.")
+
+
+    }
+    catch (e) {
+        return next(e)
     }
 })
 
-router.put("/contact-us", async (req, res) => {
+router.post("/contact-us/record/answer/email", async (req, res, next) => {
     try {
-        const { id, answerd } = req.body
-        if (!id)
-            return res.status(400).json("id required")
+        const {  recordID, message } = req.body
+        if (!recordID)
+            throw ("id Required")
+
+        const record = await ContactUsModel.findById(recordID)
+        if (!record || record === null) throw ("id Required")
 
 
 
-        const faqs = await ContactUsModel.findByIdAndUpdate(id, {
-            answerd
-        }).then(result => {
-            return res.json("contact-us changing success!")
-        })
-            .catch(err => {
-                return res.status(500).json(err)
-            })
 
 
+        await sendEmail(record.email, message)
+
+        if (record.adminResponse === null) {
+            record.adminResponse = {
+                email: {
+                    message: message
+                }
+            }
+        } else {
+            record.adminResponse.email = {
+                message: message
+            }
+        }
+
+        await record.save()
+
+
+
+        return res.json("Your Message Succesfuly Delivered.")
     }
     catch (e) {
-        return res.status(500).json(e)
+        return next(e)
     }
 })
 
+router.post("/contact-us/record/answer/phone", async (req, res, next) => {
+    try {
+        const { recordID, message } = req.body
+        if (!recordID)
+            throw ("id Required")
+
+        const record = await ContactUsModel.findById(recordID)
+        if (!record || record === null) throw ("id Required")
+
+
+        // await sendEmail(faq.email, message)
+
+
+
+        if (record.adminResponse === null) {
+            record.adminResponse = {
+                phone: {
+                    message: message
+                }
+            }
+        } else {
+            record.adminResponse.phone = {
+                message: message
+            }
+        }
+
+        await record.save()
+
+
+
+        return res.json("Your Message Succesfuly Delivered.")
+    }
+    catch (e) {
+        return next(e)
+    }
+})
 
 
 

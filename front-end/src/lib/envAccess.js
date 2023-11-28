@@ -212,6 +212,14 @@ export const API = {
                     PHONE: { POST: SERVER.ADMIN_PANEL_API_URL + "faqs/faq/answer/phone" }
                 }
             }
+        },
+        CONTACT_US: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "contact-us/",
+            ANSWERD: {
+                CHANGE_ANSWERED: { PUT: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answerd" },
+                EMAIL: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/email" },
+                PHONE: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/phone" }
+            }
         }
 
 

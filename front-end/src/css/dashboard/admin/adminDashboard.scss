@@ -748,6 +748,10 @@ $gradient-degree: 0deg;
         }
         .admin-contact-us-panel {
             .table {
+                .message {
+                    white-space: wrap !important;
+                    line-break: anywhere;
+                }
                 .buttons {
                     display: flex;
                     align-items: center;

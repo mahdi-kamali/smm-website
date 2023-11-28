@@ -89,6 +89,7 @@ app.use(
 // Contact Us 
 app.use(
     "/api/contact-us",
+    uploader.uploader().array(),
     require("./routes/contact-us/contactUsRouter")
 )
 
