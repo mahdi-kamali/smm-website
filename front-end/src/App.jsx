@@ -85,6 +85,8 @@ import { useState } from "react"
 import AboutUsPage from "./jsx/pages/about-us-page/AboutUsPage"
 import ContactUsPage from "./jsx/pages/contact-us-page/ContactUsPage"
 import AdminDashboard from "./jsx/dashboards/admin/AdminDashboard"
+import BlogDetailPage from "./jsx/pages/blog-page/BlogDetailPage"
+import ErrorPage from "./jsx/pages/404/ErrorPage"
 
 
 
@@ -119,14 +121,15 @@ function App() {
           setMainMenuState={setMainMenuState}
         />
         <Routes>
+          <Route path='/' element={<MainPage />} />
           <Route path='/home' element={<MainPage />} />
+          <Route path="/*" element={<ErrorPage />} />
           <Route path='/auth/:link' element={<AuthPage />} />
           <Route path='/auth/' element={<AuthPage />} />
-
           <Route path='/services' element={<ServicesPage />} />
-          <Route path="/*" element={<MainPage />} />
           <Route path="/faqs" element={<FAQsPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:blogID" element={<BlogDetailPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />

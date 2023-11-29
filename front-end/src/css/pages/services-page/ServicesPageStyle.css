@@ -79,7 +79,6 @@
 }
 .services-page .search {
   display: flex;
-  margin-top: 5rem;
   justify-content: center;
 }
 .services-page .search .right {
@@ -113,19 +112,8 @@
 .services-page .search .right .form-search input::placeholder {
   color: #0d4bf4;
 }
-.services-page .search .right .select-box {
-  gap: 0.5rem;
-  margin-top: 1rem;
-  display: flex;
-}
-.services-page .search .right .select-box input {
-  font-weight: bold;
-}
-.services-page .search .right .select-box input::-moz-placeholder {
-  color: white !important;
-}
-.services-page .search .right .select-box input::placeholder {
-  color: white !important;
+.services-page .search .right .form-select-box {
+  margin-top: 2rem;
 }
 .services-page .search .left img {
   width: 10rem;
@@ -134,18 +122,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .services-page .social-icons .item {
   cursor: pointer;
   opacity: 0.5;
   transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75em;
+  border-radius: 0.5rem;
 }
 .services-page .social-icons .item .item-header {
   display: flex;
 }
 .services-page .social-icons .item .item-header img {
-  width: 5rem;
+  width: 3rem;
   transition: all 1s ease;
 }
 .services-page .social-icons .item .item-body {
@@ -155,17 +149,18 @@
   font-size: 1.5rem;
   text-transform: capitalize;
   font-size: 1rem;
+  transition: all 0.5s ease;
 }
 .services-page .social-icons .item:hover {
-  font-weight: bold;
   scale: 1.25;
   opacity: 1;
   filter: drop-shadow(15px 36px 81px #000);
 }
-.services-page .social-icons .selected {
-  font-weight: bold;
+.services-page .social-icons .true {
   opacity: 1;
   scale: 1.25;
+  background-color: #4976f3;
+  color: white;
 }
 .services-page .suggested-services {
   width: 100%;
@@ -319,6 +314,7 @@
 .services-page .avilable-services {
   padding: 0 10%;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 1100px) {

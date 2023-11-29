@@ -167,6 +167,68 @@
   opacity: 0.25;
 }
 
+.blog-detail-page {
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 6em;
+  padding-bottom: 6em;
+  background-color: #698df3;
+  background-image: url("../../../images/auth-page/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 8em;
+  padding-bottom: 6em;
+}
+.blog-detail-page .poster img {
+  border-radius: 3rem;
+}
+.blog-detail-page .info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12%;
+  margin-top: 3rem;
+}
+.blog-detail-page .info .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-weight: bold;
+}
+.blog-detail-page .info .header .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blog-detail-page .info .header .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blog-detail-page .info .header .right .date {
+  all: inherit;
+  font-size: 1.25rem;
+  gap: 0.5rem;
+}
+.blog-detail-page .info .header .right .date svg {
+  font-size: 1.5rem;
+}
+.blog-detail-page .info .body {
+  color: white;
+  margin-top: 1rem;
+}
+.blog-detail-page .info .body p {
+  line-height: 1.5;
+}
+
 @media only screen and (max-width: 1100px) {
   .blog-page .intro {
     display: flex;

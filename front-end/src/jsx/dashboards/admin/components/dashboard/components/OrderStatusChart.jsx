@@ -27,9 +27,6 @@ ChartJS.register(
 );
 
 
-
-
-
 const dateSelectOptions = [
     { value: 'daily', label: 'daily' },
     { value: 'monthly', label: 'monthly' },
@@ -38,17 +35,10 @@ const dateSelectOptions = [
 
 
 
-
-
 const chartModeOptions = [
     { value: false, label: 'Not Stacked' },
     { value: true, label: 'Stacked' },
 ]
-
-
-
-
-
 
 
 

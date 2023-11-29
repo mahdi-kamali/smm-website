@@ -48,6 +48,7 @@ $panel-color-6: #dc3545;
         grid-template-columns: inherit;
         transition: all 1s ease;
         .row {
+            grid-column: -1/1;
             display: grid;
             grid-template-columns: inherit;
             gap: 1rem;
@@ -84,6 +85,23 @@ $panel-color-6: #dc3545;
             &:last-child {
                 border-bottom: none;
                 padding-bottom: 0;
+            }
+        }
+    }
+    .table-category {
+        display: grid;
+        grid-template-columns: inherit;
+        h1 {
+            grid-column: -1/1;
+            text-align: center;
+            padding: 0.5em;
+        }
+        .row {
+            margin-top: 0.75rem !important;
+            padding: 0.5em 1em;
+            padding-top: 0;
+            .long {
+               
             }
         }
     }

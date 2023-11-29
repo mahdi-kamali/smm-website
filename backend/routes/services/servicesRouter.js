@@ -3,6 +3,7 @@ const router = express.Router()
 const fs = require("fs")
 const axios = require("axios");
 const { SMM_STORE } = require("../../lib/envAccess");
+const PlatformModel = require("../../models/PlatformModel");
 
 
 
@@ -30,13 +31,25 @@ setInterval(() => {
 
 
 
-router.get("/", async (req, res) => {
-    return res.json(require("../../catch/services.json"))
+router.get("/", async (req, res, next) => {
+    try {
+        return res.json(require("../../catch/services.json"))
+    }
+    catch (e) {
+        return next(e)
+    }
 })
 
 
-
-
+router.get("/platforms", async (req, res, next) => {
+    try {
+        const platforms = await PlatformModel.find()
+        return res.json(platforms)
+    }
+    catch (e) {
+        return next(e)
+    }
+})
 
 router.get("/popular-services", (req, res) => {
 })

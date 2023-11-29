@@ -234,8 +234,24 @@ export const API = {
         FAQS: {
             GET: SERVER.API_URL + "faqs"
         },
+        BLOGS: {
+            GET: SERVER.API_URL + "blogs",
+            BLOG: {
+                GET: SERVER.API_URL + "blogs/blog/",
+                LIKE: {
+                    PUT: SERVER.API_URL + "blogs/blog/like/"
+                }
+            }
+        },
+        SERVICES: {
+            GET: SERVER.API_URL + "services"
+        } ,
+        PLATFORMS : {
+            GET : SERVER.API_URL + "platforms"
+        }
     }
 }
+
 
 
 
