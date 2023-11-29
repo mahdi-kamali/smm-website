@@ -169,6 +169,18 @@ router.get("/statistics/quick-view", async (req, res, next) => {
 })
 
 
+// ------------------ Services --------------------
+router.get("/services", async (req, res, next) => {
+    try {
+        const services = require("../../../catch/services.json")
+        return res.json(services)
+    }
+    catch (e) {
+        return next(e)
+    }
+})
+
+
 
 
 // *** Order Status
@@ -1277,7 +1289,7 @@ router.put("/contact-us/record/answerd", async (req, res, next) => {
 
 router.post("/contact-us/record/answer/email", async (req, res, next) => {
     try {
-        const {  recordID, message } = req.body
+        const { recordID, message } = req.body
         if (!recordID)
             throw ("id Required")
 

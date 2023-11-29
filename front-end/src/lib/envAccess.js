@@ -220,6 +220,9 @@ export const API = {
                 EMAIL: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/email" },
                 PHONE: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/phone" }
             }
+        } ,
+        SERVICES : {
+            GET : SERVER.ADMIN_PANEL_API_URL + "services"
         }
 
 
@@ -252,7 +255,7 @@ export const API = {
         PLATFORMS: {
             GET: SERVER.API_URL + "platforms",
 
-        }
+        } ,
     }
 }
 

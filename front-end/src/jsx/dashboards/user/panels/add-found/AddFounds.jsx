@@ -32,11 +32,9 @@ const AddFounds = () => {
     const [paymentMethods, methodError, methodLoading] = useFetch(
         API.DASHBOARD.USER_PAYMENT_METHODS.GET
     )
-
     const [checkout, checkoutError, checkoutLoading, createCheckout] = usePost(API.DASHBOARD.USER_PAYMENT_CHECKOUT.POST)
 
-    const [selectedMethod, setSelectedMethod] = useState(undefined)
-
+    const [selectedMethod, setSelectedMethod] = useState()
 
     const [amountOfMoney, setAmountOfMoney] = useState({
         amount: 0,
@@ -83,10 +81,6 @@ const AddFounds = () => {
     }
 
 
-
-
-
-
     const stepIcon = (counter) => {
         if (counter < currentStep) {
             return <Icon icon="flat-color-icons:ok" />
@@ -118,20 +112,9 @@ const AddFounds = () => {
 
 
     useEffect(() => {
-        let step = 1;
-        if (selectedMethod !== "Not Selected!") {
-            step = 2
-        }
 
-        if (amountOfMoney.total !== 0) {
-            step = 3
-        }
-        else {
-            setStep(step)
-            return;
-        }
-        setStep(step)
-
+        if (selectedMethod) setStep(2)
+        if (amountOfMoney.total > 0) setStep(3)
 
     }, [selectedMethod, amountOfMoney])
 
@@ -221,7 +204,9 @@ const AddFounds = () => {
                                     <span>Select Method</span>
                                 </legend>
                                 <div className="content">
-                                    <h1>{selectedMethod?.name}</h1>
+                                    <h1>
+                                        {selectedMethod?.name || "Click Here"}
+                                    </h1>
                                 </div>
                             </fieldset>
                         </div>

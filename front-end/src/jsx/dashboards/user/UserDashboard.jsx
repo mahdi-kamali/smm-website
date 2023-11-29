@@ -14,7 +14,7 @@ import Accordion from "../../cutsome-components/accordion/Accordion"
 import MassOrders from "./panels/mass-orders/MassOrders"
 import NewOrders from "./panels/new-order/NewOrders"
 import ChildPanel from "./panels/child-panel/ChildPanel"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import FreeCredits from "./panels/free-credits/FreeCredits"
 
 const UserDashboard = (
@@ -26,10 +26,14 @@ const UserDashboard = (
 
 
     const navigator = useNavigate()
+    const params = useParams()
 
 
 
-    
+
+
+
+
     const panelMenuOptions = [
         {
             type: "normal",
@@ -40,7 +44,7 @@ const UserDashboard = (
         {
             type: "normal",
 
-            title: "Add Founds",
+            title: "Add-Founds",
             icon: <Icon icon="solar:dollar-bold" />,
             component: <AddFounds />
         },
@@ -51,29 +55,22 @@ const UserDashboard = (
             items: [
                 {
                     type: "normal",
-
-                    title: "New Order",
+                    title: "New-Order",
                     icon: <Icon icon="fluent:tab-new-24-filled" />,
                     component: <NewOrders />,
                 },
                 {
-                    title: "Mass Order",
+                    title: "Mass-Order",
                     icon: <Icon icon="material-symbols:order-play" />,
                     component: <MassOrders />,
                 },
                 {
-                    title: "Orders History",
+                    title: "Orders-History",
                     icon: <Icon icon="ph:bag-fill" />,
                     component: <Orders />,
                 },
             ],
         },
-        // {
-        //     title: "Sevices",
-        //     icon: <Icon icon="file-icons:service-fabric" />,
-        //     component: <Services />
-        // },
-
         {
             type: "normal",
             title: "Tickets",
@@ -82,7 +79,7 @@ const UserDashboard = (
         },
         {
             type: "normal",
-            title: "Child Panel",
+            title: "Child-Panel",
             icon: <Icon icon="material-symbols:left-panel-open-sharp" />,
             component: <ChildPanel />
         },
@@ -98,9 +95,9 @@ const UserDashboard = (
         },
         {
             type: "normal",
-            title: "Free Credit",
-            icon: <Icon icon="mdi:credit-card" /> , 
-            component : <FreeCredits/>
+            title: "Free-Credit",
+            icon: <Icon icon="mdi:credit-card" />,
+            component: <FreeCredits />
         },
         {
             type: "normal",
@@ -138,10 +135,33 @@ const UserDashboard = (
             behavior: "smooth"
         });
         setUserDashboardMenuState(false)
+
+        window.history.replaceState(null, selectedPanel.title, `/user/dashboard/${selectedPanel.title}`)
+
+
     }, [selectedPanel])
 
 
 
+    useEffect(() => {
+        const page = params?.page?.toLocaleLowerCase()?.trim()
+
+        panelMenuOptions.forEach(menu => {
+            menu?.items?.forEach(nestedMenu => {
+                const targetMenuTitle = nestedMenu.title.toLowerCase().trim()
+                if (targetMenuTitle === page) {
+                    selectPanel(nestedMenu)
+                    return
+                }
+            })
+            const targetMenuTitle = menu.title.toLowerCase().trim()
+            if (targetMenuTitle === page) {
+                selectPanel(menu)
+                return
+            }
+        })
+
+    }, [params])
 
 
 

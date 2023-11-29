@@ -292,12 +292,12 @@ $gradient-degree: 0deg;
                             border-bottom: 0.3rem transparent solid;
                             transition: all 1s ease;
                             cursor: pointer;
-                            padding: 0 1em;
-
+                            padding: 0.25em 1.25em;
+                            gap: 0.5rem;
                             span {
                             }
                             img {
-                                width: 2.5rem;
+                                width: 2rem;
                                 margin-left: -0.5rem;
                             }
                         }
@@ -1565,14 +1565,19 @@ $gradient-degree: 0deg;
             justify-content: center;
             gap: 1rem;
             .item {
-                width: 5rem;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
                 transition: all 0.5s ease;
-                padding-bottom: 1em;
                 border-radius: 0.5rem;
                 overflow: hidden;
+                padding: 0.5em  ;
+                gap: 0.5rem;
                 cursor: pointer;
                 .item-header {
                     img {
+                        width: 3rem;
                         aspect-ratio: 1/1;
                     }
                 }
@@ -1585,6 +1590,7 @@ $gradient-degree: 0deg;
                         font-size: 1.1rem;
                         text-transform: capitalize;
                         transition: all 1s ease;
+                        font-weight: normal;
                     }
                 }
                 &:hover {
@@ -1600,6 +1606,7 @@ $gradient-degree: 0deg;
                 scale: 1.1;
                 h2 {
                     color: $color-1;
+                    font-weight: bold !important;
                 }
             }
         }

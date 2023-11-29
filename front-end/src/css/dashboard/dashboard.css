@@ -262,10 +262,11 @@
   border-bottom: 0.3rem transparent solid;
   transition: all 1s ease;
   cursor: pointer;
-  padding: 0 1em;
+  padding: 0.25em 1.25em;
+  gap: 0.5rem;
 }
 .user-dashboard .statics .user .left .active-social .social-body .item img {
-  width: 2.5rem;
+  width: 2rem;
   margin-left: -0.5rem;
 }
 .user-dashboard .statics .user .left .active-social .social-body .selected {
@@ -1433,14 +1434,19 @@
   gap: 1rem;
 }
 .user-dashboard .panel-new-order .main-categories .item {
-  width: 5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   transition: all 0.5s ease;
-  padding-bottom: 1em;
   border-radius: 0.5rem;
   overflow: hidden;
+  padding: 0.5em;
+  gap: 0.5rem;
   cursor: pointer;
 }
 .user-dashboard .panel-new-order .main-categories .item .item-header img {
+  width: 3rem;
   aspect-ratio: 1/1;
 }
 .user-dashboard .panel-new-order .main-categories .item .item-body {
@@ -1453,6 +1459,7 @@
   font-size: 1.1rem;
   text-transform: capitalize;
   transition: all 1s ease;
+  font-weight: normal;
 }
 .user-dashboard .panel-new-order .main-categories .item:hover {
   background-color: white;
@@ -1467,6 +1474,7 @@
 }
 .user-dashboard .panel-new-order .main-categories .item-true h2 {
   color: #0d4bf4;
+  font-weight: bold !important;
 }
 .user-dashboard .panel-new-order .order-box {
   display: grid;

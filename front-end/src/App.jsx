@@ -134,7 +134,13 @@ function App() {
           <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route
-            path="/user/dashboard"
+            path="/user/dashboard/:page"
+            element={
+              <UserDashboard
+                userDashboardMenuState={userPanelMenuState}
+                setUserDashboardMenuState={setUserPanelMenuState} />} />
+          <Route
+            path="/user/dashboard/"
             element={
               <UserDashboard
                 userDashboardMenuState={userPanelMenuState}
