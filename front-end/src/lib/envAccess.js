@@ -244,10 +244,14 @@ export const API = {
             }
         },
         SERVICES: {
-            GET: SERVER.API_URL + "services"
-        } ,
-        PLATFORMS : {
-            GET : SERVER.API_URL + "platforms"
+            GET: SERVER.API_URL + "services",
+            POPULAR: {
+                GET: SERVER.API_URL + "services/popular-services"
+            }
+        },
+        PLATFORMS: {
+            GET: SERVER.API_URL + "platforms",
+
         }
     }
 }
