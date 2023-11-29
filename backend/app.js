@@ -9,6 +9,7 @@ const {
 const uploader = require("./lib/imageUpload")
 const errorHandler = require("./errorHandler")
 
+const ip = require('ip');
 
 
 
@@ -130,8 +131,12 @@ app.use("/api/affliates", require("./routes/affiliates/affiliateRouter"))
 
 
 
+
+const ipAddress = ip.address();
+
 app.listen(port, async () => {
     console.log("Server Started " + port)
+    console.log(`Network access via: http://${ipAddress}:${port}`);
     app.use(errorHandler)
 
 })
