@@ -223,6 +223,13 @@ export const API = {
         } ,
         SERVICES : {
             GET : SERVER.ADMIN_PANEL_API_URL + "services"
+        } , 
+        PLATFORMS : {
+            GET : SERVER.ADMIN_PANEL_API_URL + "platforms",
+            POST : SERVER.ADMIN_PANEL_API_URL + "platforms",
+            DELETE : SERVER.ADMIN_PANEL_API_URL + "platforms",
+            PUT : SERVER.ADMIN_PANEL_API_URL + "platforms",
+            
         }
 
 

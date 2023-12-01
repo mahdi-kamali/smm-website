@@ -181,6 +181,7 @@ $panel-color-6: #dc3545;
 
     .field-body {
         padding: 0.5em 1em;
+        display: flex;
         input  {
             all: unset;
             width: 100%;

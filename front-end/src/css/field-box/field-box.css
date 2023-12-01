@@ -158,6 +158,7 @@
 }
 .admin-dashboard-field-box .field-body {
   padding: 0.5em 1em;
+  display: flex;
 }
 .admin-dashboard-field-box .field-body input {
   all: unset;

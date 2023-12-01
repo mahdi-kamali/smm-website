@@ -60,6 +60,7 @@ $gradient-degree: 0deg;
         .panel-section {
             animation: adminPanelFadeAnimation 2s ease forwards;
         }
+
         .admin-dashboard-panel {
             .intro {
                 display: flex;
@@ -745,6 +746,8 @@ $gradient-degree: 0deg;
                 }
             }
         }
+
+
         .admin-contact-us-panel {
             .table {
                 .message {
@@ -780,7 +783,6 @@ $gradient-degree: 0deg;
             .selected-faqs {
                 display: flex;
                 flex-direction: column;
-                padding: 3em;
                 .header {
                     display: flex;
                     align-content: center;
@@ -973,6 +975,80 @@ $gradient-degree: 0deg;
 
         .admin-panel-economy {
         }
+
+        
+        .admin-panel-tutorials {
+        }
+
+        .admin-panel-platforms {
+            .platforms-header {
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                padding: 1em;
+                gap: 1rem;
+                .left {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.75rem;
+                }
+                .right {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        background-color: $panel-color-3;
+                        color: white;
+                        padding: 0.5em 1em;
+                        gap: 0.25rem;
+                        letter-spacing: 1px;
+                        border-radius: 100rem;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .table {
+                img {
+                }
+                .image {
+                    width: 100%;
+                }
+                .buttons {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: end;
+                    gap: 0.5rem;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0.4em 1em;
+                        border-radius: 100rem;
+                        color: white;
+                        gap: 0.25rem;
+                    }
+                    .block , .delete {
+                        background-color: $panel-color-6;
+                    }
+
+                    .free {
+                        background-color: $color-5;
+                    }
+
+                    .edit {
+                        background-color: $panel-color-4;
+                    }
+                    .orders {
+                        background-color: $panel-color-3;
+                    }
+                }
+            }
+        }
+
 
         .admin-panel-orders {
             display: flex;

@@ -6,15 +6,19 @@ import Legend from "../dashboards/admin/components/tools/fieldset/Legend"
 import FieldBody from "../dashboards/admin/components/tools/fieldset/FieldBody"
 import { useState } from "react"
 import { post, put } from "../../lib/useFetch"
-import { API } from "../../lib/envAccess"
+import { API, SERVER } from "../../lib/envAccess"
 import { showError, showSuccess } from "../../lib/alertHandler"
+import { logFormData } from "../../lib/helperTools"
 
 
 
-export default function CreateNewBlogPopUp({ refresh }) {
+export default function EditPlatformPopUp({ platform, refresh }) {
 
 
-    const [image, setImage] = useState(require("../../images/place-holder/1.png"))
+
+    const [image, setImage] = useState(
+        SERVER.BASE_URL + platform.image
+    )
 
 
     const dispatcher = useDispatch()
@@ -41,10 +45,13 @@ export default function CreateNewBlogPopUp({ refresh }) {
         e.preventDefault()
         const formData = new FormData(e.target)
 
-        post(API.ADMIN_DASHBOARD.BLOGS.POST,
+        formData.append("id" , platform._id)
+
+
+        put(API.ADMIN_DASHBOARD.PLATFORMS.PUT,
             formData)
             .then(resp => {
-                showSuccess(resp).finally(end=>{
+                showSuccess(resp).finally(end => {
                     handleCloseButtonClick()
                 })
             })
@@ -59,8 +66,9 @@ export default function CreateNewBlogPopUp({ refresh }) {
     }
 
 
+
     return (
-        <form className="admin-panel-create-blog-pop-up"
+        <form className="admin-panel-create-platform-pop-up"
             onSubmit={handleSubmit}>
             <button className="close-button"
                 onClick={handleCloseButtonClick}>
@@ -69,7 +77,7 @@ export default function CreateNewBlogPopUp({ refresh }) {
 
             <div className="pop-up-header">
                 <h1>
-                    Create Blog
+                    Edit Platform
                 </h1>
             </div>
             <div className="pop-up-body">
@@ -87,13 +95,13 @@ export default function CreateNewBlogPopUp({ refresh }) {
                 <AdminPanelFiledset className={"create-faq-field-box"}>
                     <Legend>
                         <Icon icon="pajamas:title" />
-                        <span>Title</span>
+                        <span>name</span>
                     </Legend>
                     <FieldBody>
                         <input
                             type="text"
-                            name="title"
-                            defaultValue={""} />
+                            name="name"
+                            defaultValue={platform.name} />
                     </FieldBody>
                 </AdminPanelFiledset>
 
@@ -107,13 +115,23 @@ export default function CreateNewBlogPopUp({ refresh }) {
                             cols={10}
                             rows={10}
                             type="description"
-                            name="description"
-                            defaultValue={""} />
+                            name="shortDescription"
+                            defaultValue={platform.shortDescription} />
                     </FieldBody>
                 </AdminPanelFiledset>
 
-
-
+                <AdminPanelFiledset className={"create-faq-field-box"}>
+                    <Legend>
+                        <Icon icon="fluent-mdl2:color-solid" />
+                        <span>Color</span>
+                    </Legend>
+                    <FieldBody>
+                        <input
+                            type="color"
+                            name="colorPalette"
+                            defaultValue={platform.colorPalette} />
+                    </FieldBody>
+                </AdminPanelFiledset>
 
                 <button className="submit">
                     <span>Submit </span>

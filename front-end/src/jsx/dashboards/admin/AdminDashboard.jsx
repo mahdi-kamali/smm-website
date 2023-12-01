@@ -9,6 +9,7 @@ import Blogs from "./components/blogs/Blogs";
 import Tickets from "./components/tickets/Tickets";
 import Economy from "./components/economy/Economy";
 import Orders from "./components/orders/Orders";
+import Platforms from "./components/platforms/Platforms";
 
 const AdminDashboard = () => {
 
@@ -61,6 +62,11 @@ const AdminDashboard = () => {
             title: "Economy",
             svg: <Icon icon="tdesign:money" />,
             component: <Economy />
+        },
+        {
+            title: "Platforms",
+            svg:<Icon icon="clarity:internet-of-things-solid" />,
+            component: <Platforms/>
         },
         {
             title: "Setting",

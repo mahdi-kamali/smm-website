@@ -18,12 +18,11 @@ const app = express()
 
 
 
-const dataBaseUrl = "mongodb://127.0.0.1:27017/smm-db"
 
 
 
 
-mongoose.connect(dataBaseUrl,
+mongoose.connect(process.env.MONGO_DATA_BASE_URL,
     {
         // useNewUrlParser: true,
         useUnifiedTopology: true,

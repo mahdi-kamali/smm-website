@@ -16,6 +16,7 @@ import NewOrders from "./panels/new-order/NewOrders"
 import ChildPanel from "./panels/child-panel/ChildPanel"
 import { useNavigate, useParams } from "react-router-dom"
 import FreeCredits from "./panels/free-credits/FreeCredits"
+import Tutorials from "./panels/tutorials/Tutorials"
 
 const UserDashboard = (
     {
@@ -86,7 +87,7 @@ const UserDashboard = (
         {
             type: "normal",
             title: "Updates",
-            icon: <Icon icon="dashicons:update-alt" />
+            icon: <Icon icon="dashicons:update-alt" /> ,
         },
         {
             type: "normal",
@@ -102,6 +103,7 @@ const UserDashboard = (
         {
             type: "normal",
             title: "Tutorials",
+            component : <Tutorials/>,
             icon: <Icon icon="fluent:learning-app-24-filled" />
         },
         {

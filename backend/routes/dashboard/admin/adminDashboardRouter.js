@@ -28,35 +28,6 @@ const { sendEmail } = require("../../../lib/sendEmail")
 
 
 
-// ------------ Platforms
-router.get("/platforms", async (req, res, next) => {
-    try {
-        const platforms = await PlatformModel.find()
-        return res.json(platforms)
-    }
-    catch (e) {
-        return res.status(500).json(e)
-    }
-
-})
-
-router.post("/platforms", uploader.platformUploader.any(), async (req, res, next) => {
-    try {
-        const file = await req.files[0]
-        const { name, shortDescription, colorPalette } = req.body
-        const platform = new PlatformModel({
-            name: name,
-            image: "/statics/images/platforms/" + file.filename,
-            shortDescription: shortDescription,
-            colorPalette: colorPalette
-        })
-        return res.json(await platform.save())
-    }
-    catch (e) {
-        next(e)
-    }
-
-})
 
 
 
@@ -1360,6 +1331,88 @@ router.post("/contact-us/record/answer/phone", async (req, res, next) => {
     catch (e) {
         return next(e)
     }
+})
+
+
+
+// --------------------------- platforms 
+// ------------ Platforms
+router.get("/platforms", async (req, res, next) => {
+    try {
+        const platforms = await PlatformModel.find()
+        return res.json(platforms)
+    }
+    catch (e) {
+        return res.status(500).json(e)
+    }
+
+})
+
+router.delete("/platforms", async (req, res, next) => {
+    try {
+        const { id } = req.body
+
+        await PlatformModel.findByIdAndDelete(id)
+
+        return res.json("Platform Deleted.")
+    }
+    catch (e) {
+        return res.status(500).json(e)
+    }
+
+})
+
+router.post("/platforms", uploader.platformUploader.any(), async (req, res, next) => {
+    try {
+        const file = await req.files[0]
+        const { name, shortDescription, colorPalette } = req.body
+        const platform = new PlatformModel({
+            name: name,
+            image: "/statics/images/platforms/" + file.filename,
+            shortDescription: shortDescription,
+            colorPalette: colorPalette
+        })
+
+        await platform.save()
+        return res.json("New Platform Added.")
+    }
+    catch (e) {
+        next(e)
+    }
+
+})
+
+router.put("/platforms", uploader.platformUploader.any(), async (req, res, next) => {
+    try {
+        const file = await req.files[0]
+        const { id, name, shortDescription, colorPalette } = req.body
+
+        let platform
+        if (!file || file === null) {
+
+            platform = await PlatformModel.findByIdAndUpdate(id,
+                {
+                    name: name,
+                    shortDescription: shortDescription,
+                    colorPalette: colorPalette
+                })
+        } else {
+            platform = await PlatformModel.findByIdAndUpdate(id,
+                {
+                    name: name,
+                    image: "/statics/images/platforms/" + file.filename,
+                    shortDescription: shortDescription,
+                    colorPalette: colorPalette
+                })
+        }
+
+
+        return res.json("Platform Updated.")
+    }
+    catch (e) {
+        next(e)
+    }
+
 })
 
 
