@@ -68,6 +68,7 @@ const AdminDashboard = () => {
             svg:<Icon icon="clarity:internet-of-things-solid" />,
             component: <Platforms/>
         },
+      
         {
             title: "Setting",
             svg: <Icon icon="ant-design:setting-filled" />,
