@@ -1336,7 +1336,6 @@ router.post("/contact-us/record/answer/phone", async (req, res, next) => {
 
 
 // --------------------------- platforms 
-// ------------ Platforms
 router.get("/platforms", async (req, res, next) => {
     try {
         const platforms = await PlatformModel.find()

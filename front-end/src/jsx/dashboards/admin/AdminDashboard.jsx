@@ -31,13 +31,11 @@ const AdminDashboard = () => {
             svg: <Icon icon="ri:dashboard-fill" />,
             component: <Orders />
         },
-        ,
         {
             title: "Tickets",
             svg: <Icon icon="majesticons:tickets" />,
             component: <Tickets />
         },
-        ,
         {
             title: "Users",
             svg: <Icon icon="mdi:users" />,
@@ -68,13 +66,11 @@ const AdminDashboard = () => {
             svg:<Icon icon="clarity:internet-of-things-solid" />,
             component: <Platforms/>
         },
-      
         {
             title: "Setting",
             svg: <Icon icon="ant-design:setting-filled" />,
             component: <Dashboard />
-        },
-
+        }
     ]
 
     const [selectedMenu, setSelectedMenu] = useState(menu[0])
