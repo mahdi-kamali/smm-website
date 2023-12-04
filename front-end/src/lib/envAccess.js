@@ -1,14 +1,16 @@
 
 
+const SERVER_URL = "http://utsmm.com"
+
 
 export const CLIENT = {
     BASE_URL: window.location.origin
 }
 
 export const SERVER = {
-    BASE_URL: process.env.REACT_APP_SERVER_BASE_URL,
-    API_URL: process.env.REACT_APP_SERVER_BASE_URL + "/api/",
-    ADMIN_PANEL_API_URL: process.env.REACT_APP_SERVER_BASE_URL +
+    BASE_URL: SERVER_URL,
+    API_URL: SERVER_URL + "/api/",
+    ADMIN_PANEL_API_URL: SERVER_URL +
         "/api/admin/dashboard/"
 }
 
@@ -231,8 +233,8 @@ export const API = {
             PUT: SERVER.ADMIN_PANEL_API_URL + "platforms",
         },
         METHODS: {
-            GET: SERVER.ADMIN_PANEL_API_URL + "payment-methods" ,
-            POST: SERVER.ADMIN_PANEL_API_URL + "payment-methods" ,
+            GET: SERVER.ADMIN_PANEL_API_URL + "payment-methods",
+            POST: SERVER.ADMIN_PANEL_API_URL + "payment-methods",
         }
 
 
