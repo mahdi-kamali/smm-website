@@ -61,12 +61,7 @@ const Footer = () => {
           <li>Refund Policy</li>
         </ul>
       </div>
-      <Lottie
-        className="animation"
-        animationData={footerAnimation}
-        play
-        loop
-      />
+      <img className="avatar" src={window.location.origin + '/6.svg'} alt="" />
 
     </footer>
   )

@@ -146,6 +146,8 @@ function App() {
                 userDashboardMenuState={userPanelMenuState}
                 setUserDashboardMenuState={setUserPanelMenuState} />} />
         </Routes>
+
+        
         <Footer />
 
         <PopUopContainer />

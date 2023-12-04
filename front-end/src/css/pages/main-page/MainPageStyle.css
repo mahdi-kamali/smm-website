@@ -250,10 +250,14 @@
   left: 0;
   right: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 30rem 30rem;
   padding: 1em 2em;
   padding-bottom: 0;
   align-items: center;
+  justify-content: center;
+}
+.main-page .introduction .world-map img {
+  aspect-ratio: 1/1;
 }
 .main-page .introduction .world-map .company-statics-description h1 {
   font-size: 2.5rem;

@@ -180,7 +180,8 @@ footer .right h1 {
   font-size: 2rem;
 }
 footer .avatar {
-  width: 100%;
+  width: 30rem;
+  max-width: 100%;
 }
 
 @keyframes ripple {

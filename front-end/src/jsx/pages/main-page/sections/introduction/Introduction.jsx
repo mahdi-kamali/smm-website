@@ -59,14 +59,14 @@ export default function Introduction() {
             title: "Users",
             value: "129478",
             description: "With an incredible count of 129,478 users, our platform has become a thriving community where individuals connect, engage, and explore a world of possibilities.",
-            animation: worldMap
+            animation: window.location.origin + '/2.svg'
         },
         {
             svg: itemTwo,
             title: "Orders",
             value: "56000",
             description: "A staggering 56,000 orders have been placed, showcasing the trust our customers have in us. Each order signifies a unique story of satisfaction and reliability.",
-            animation: totalOrders
+            animation: window.location.origin + '/3.svg'
 
         },
         {
@@ -74,7 +74,7 @@ export default function Introduction() {
             title: "Tickets",
             value: "32400",
             description: "As we prioritize customer support, our resolved ticket count stands at an impressive 32,400. This signifies not just a number, but the countless meaningful interactions we've had with our valued clients.",
-            animation: support
+            animation: window.location.origin + '/4.svg'
 
         },
         {
@@ -82,7 +82,7 @@ export default function Introduction() {
             title: "Services",
             value: "240",
             description: "Our dedication to excellence shines through the provision of 240 top-notch services. Each service represents our unwavering commitment to delivering quality solutions.",
-            animation: totalService
+            animation: window.location.origin + '/.svg'
         }
     ];
 
@@ -410,12 +410,14 @@ export default function Introduction() {
             </div>
 
             <div className="world-map fade-in" key={Math.random()}>
-                <Lottie
+                {/* <Lottie
                     className='animation '
                     animationData={currentSelected.animation}
                     play
                     loop
-                />
+                /> */}
+
+                <img src={currentSelected.animation} />
 
                 <div className='company-statics-description '>
                     <h1>
@@ -463,7 +465,7 @@ export default function Introduction() {
                 <div className="right">
 
                     <div className="animation">
-                   
+
 
                         <img src={window.location.origin + '/1.svg'} />
                     </div>

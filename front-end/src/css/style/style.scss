@@ -212,6 +212,7 @@ footer {
         display: flex;
         gap: 2rem;
         font-weight: bold;
+        
         ul {
             display: flex;
             flex-direction: column;
@@ -221,8 +222,11 @@ footer {
             font-size: 2rem;
         }
     }
+    
     .avatar {
-        width: 100%;
+        width: 30rem;
+        max-width: 100%;
+        
     }
 
     background-color: $color-4;

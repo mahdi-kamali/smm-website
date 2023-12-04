@@ -280,10 +280,14 @@ $panel-color-6: #dc3545;
             left: 0;
             right: 0;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 30rem 30rem;
             padding: 1em 2em;
             padding-bottom: 0;
             align-items: center;
+            justify-content: center;
+            img {
+                aspect-ratio: 1/1;
+            }
             .company-statics-description {
                 h1 {
                     font-size: 2.5rem;
