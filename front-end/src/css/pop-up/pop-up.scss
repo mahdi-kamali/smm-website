@@ -561,7 +561,9 @@ $panel-color-6: #dc3545;
         min-width: 25rem;
         max-width: 40rem;
         padding: 2em;
+        max-height: 90dvh;
         .pop-up-body {
+            overflow: auto;
             img {
                 margin: 2rem auto;
                 object-fit: cover;
@@ -604,8 +606,10 @@ $panel-color-6: #dc3545;
         flex-direction: column;
         min-width: 25rem;
         max-width: 40rem;
+        max-height: 90dvh;
         padding: 2em;
         .pop-up-body {
+            overflow: auto;
             img {
                 margin: 2rem auto;
                 width: 20rem;

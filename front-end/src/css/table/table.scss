@@ -65,6 +65,9 @@ $panel-color-6: #dc3545;
                     white-space: wrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    img {
+                        max-width: 4rem;
+                    }
                 }
                 .max-2-line {
                 }
@@ -124,6 +127,7 @@ $panel-color-6: #dc3545;
             gap: 1rem;
         }
     }
+
 }
 
 @media only screen and (max-width: 1100px) {

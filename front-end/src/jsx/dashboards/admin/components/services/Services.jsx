@@ -31,7 +31,7 @@ export default function Services() {
 
   return (
     <div className="admin-services-panel">
-      <Table columnsStyle={"5rem 20rem 20rem 4rem 4rem 5rem 5rem 5rem"}>
+      <Table columnsStyle={"5rem 1fr 0.5fr 4rem 4rem 5rem 5rem 5rem"}>
         <TableHeader>
           {
             headersList.map((record, index) => {

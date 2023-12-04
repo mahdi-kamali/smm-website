@@ -48,19 +48,19 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            <QuickView/>
+            <QuickView />
 
-            <div className="row-one">
+            <div className="row-one row">
                 <OrderStatusChart />
                 <ReviewByCountry />
             </div>
 
-            <div className="row-two">
+            <div className="row-two row">
                 <RecentCustomers />
                 <PopularCharts />
                 <TodoList />
             </div>
-            <div className="row-three">
+            <div className="row-three row">
                 <MessageAll />
                 <EconomySummary />
             </div>

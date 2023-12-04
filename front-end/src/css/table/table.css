@@ -52,6 +52,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.table .table-body .row .property .property-body img {
+  max-width: 4rem;
+}
 .table .table-body .row .property .property-header {
   display: none;
 }
