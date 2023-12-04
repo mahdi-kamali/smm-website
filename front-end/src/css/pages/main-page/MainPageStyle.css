@@ -324,6 +324,10 @@
 .main-page .introduction .our-activities .right {
   position: relative;
 }
+.main-page .introduction .our-activities .right img {
+  mix-blend-mode: multiply;
+  border-radius: 2rem;
+}
 .main-page .introduction .our-activities .left {
   display: flex;
   flex-direction: column;

@@ -12,8 +12,6 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
-import introBackgroundWave from "../../../../../animations/main-page/intro-background-wave.json"
-import introTwoAnimationBackground from "../../../../../animations/main-page/intro-2-background.json"
 import { useState } from "react";
 
 
@@ -46,7 +44,6 @@ import stepArrowAnimation from "../../../../../animations/main-page/main-page-st
 import CompanyStaticsItem from "./components/CompanyStaticsItem";
 
 
-import ourActivitiesAnimation from "../../../../../animations/main-page/our_activities.json"
 import { useFetch } from "../../../../../lib/useFetch";
 import { API, SERVER } from "../../../../../lib/envAccess";
 
@@ -101,27 +98,6 @@ export default function Introduction() {
 
 
 
-            <div className="intro-background">
-
-                <Lottie
-                    className='blubs'
-                    animationData={introTwoAnimationBackground}
-                    play
-                    loop />
-
-
-            </div>
-
-            <div className="intro-background-2">
-
-                <Lottie
-                    className='wave'
-                    animationData={introBackgroundWave}
-                    play
-                    loop />
-
-
-            </div>
 
 
             <div className="our-services">
@@ -433,7 +409,6 @@ export default function Introduction() {
 
             </div>
 
-
             <div className="world-map fade-in" key={Math.random()}>
                 <Lottie
                     className='animation '
@@ -488,11 +463,9 @@ export default function Introduction() {
                 <div className="right">
 
                     <div className="animation">
-                        <Lottie
-                            className='animation'
-                            animationData={ourActivitiesAnimation}
-                            play
-                            loop />
+                   
+
+                        <img src={window.location.origin + '/1.svg'} />
                     </div>
 
                 </div>

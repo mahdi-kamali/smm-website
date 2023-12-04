@@ -359,6 +359,11 @@ $panel-color-6: #dc3545;
             padding: 0 10%;
             .right {
                 position: relative;
+                img {
+                    mix-blend-mode : multiply;
+                    border-radius: 2rem;
+                    
+                }
             }
             .left {
                 display: flex;
