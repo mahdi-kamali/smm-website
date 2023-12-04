@@ -52,6 +52,21 @@
   line-height: 1.2;
   text-transform: uppercase;
 }
+.main-page .poster .left .account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #0d4bf4;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 100rem;
+  margin-top: 1rem;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
 .main-page .poster .left .fields {
   display: flex;
   flex-direction: column;

@@ -35,6 +35,7 @@ const AuthPage = () => {
 
 
     useEffect(() => {
+
         if (token) {
             navigator("/user/dashboard")
         }

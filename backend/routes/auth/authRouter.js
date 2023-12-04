@@ -168,7 +168,8 @@ router.post("/login", async (request, respsonse, next) => {
 
 
         return respsonse.json({
-            token: token
+            token: token , 
+            message : "You are Successfully logged in."
         })
     }
     catch (e) {
