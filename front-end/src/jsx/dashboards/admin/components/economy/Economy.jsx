@@ -1,8 +1,12 @@
 
 export default function Economy() {
+
+
+
+
   return (
     <div className="admin-panel-economy">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolore magnam id laboriosam fugiat illo commodi velit atque provident corrupti. Provident at repudiandae adipisci, perferendis iusto minima ipsum dolor architecto.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat nesciunt cumque aliquam accusantium facere. Sed aliquam optio quis tenetur architecto tempore ad, ratione totam hic neque rerum. Accusantium, velit minus!
     </div>
   )
 }

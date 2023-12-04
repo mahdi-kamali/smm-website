@@ -10,11 +10,11 @@ import Tickets from "./components/tickets/Tickets";
 import Economy from "./components/economy/Economy";
 import Orders from "./components/orders/Orders";
 import Platforms from "./components/platforms/Platforms";
+import PaymentMethods from "./components/payment-methods/PaymentMethods";
 
 const AdminDashboard = () => {
 
-
-
+ 
     const menu = [
         {
             title: "Dashboard",
@@ -60,6 +60,11 @@ const AdminDashboard = () => {
             title: "Economy",
             svg: <Icon icon="tdesign:money" />,
             component: <Economy />
+        },
+        {
+            title: "Payment Methods",
+            svg:<Icon icon="fluent:payment-48-filled" />,
+            component: <PaymentMethods/>
         },
         {
             title: "Platforms",

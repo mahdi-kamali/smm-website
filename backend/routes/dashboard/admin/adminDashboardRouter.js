@@ -1417,6 +1417,7 @@ router.put("/platforms", uploader.platformUploader.any(), async (req, res, next)
 
 
 
+// -------------------------- Payment Methods
 router.get("/payment-methods", async (req, res, next) => {
     try {
         const methods = await PaymentMethodsModel.find()
@@ -1450,7 +1451,10 @@ router.post(
             })
 
 
-            return res.json(await method.save())
+            await method.save()
+            return res.json(
+                "New Method Addedd."
+            )
 
         }
         catch (e) {

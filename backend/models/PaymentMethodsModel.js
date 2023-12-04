@@ -9,7 +9,7 @@ const PaymentMethodsModel = new mongoose.Schema({
     },
     available: {
         type: Boolean,
-        default: false
+        default: true
     },
     description: {
         type: String,

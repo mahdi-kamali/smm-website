@@ -560,9 +560,10 @@ router.post("/add-found/create-checkout", async (req, res, next) => {
         }
 
 
+        const methodName = method.name.toLowerCase().trim()
 
-        switch (method.name) {
-            case "cryptomous": {
+        switch (methodName) {
+            case "cryptomus": {
                 checkoutWithCrpyomous(method, amount, user)
                     .then(response => {
                         return res.json(response)
@@ -573,7 +574,7 @@ router.post("/add-found/create-checkout", async (req, res, next) => {
         }
 
 
-        return res.json("okeqtkqektk")
+        return next("Invalid Method!")
     }
     catch (err) {
         return next(err)

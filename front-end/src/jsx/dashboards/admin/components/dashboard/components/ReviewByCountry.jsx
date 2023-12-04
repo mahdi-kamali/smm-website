@@ -11,20 +11,6 @@ export default function ReviewByCountry() {
     const [ordersCountryData, error, loading] =
         useFetch(API.ADMIN_DASHBOARD.ORDERS_COUNTRY.GET)
 
-
-
-
-    const data = [
-        ["Country", "Orders"],
-        ["Germany", 200],
-        ["United States", 300],
-        ["IR", 15000],
-        ["Brazil", 400],
-        ["Canada", 500],
-        ["France", 600],
-        ["Russia", 800],
-    ];
-
     const options = {
         colorAxis: { colors: ["#65acfe", "#005fbd", "blue"] },
         backgroundColor: "transparent",
@@ -78,6 +64,7 @@ export default function ReviewByCountry() {
                     width="100%"
                     height="400px"
                     data={ordersCountryData}
+                    
                 />
             </div>
         </div>

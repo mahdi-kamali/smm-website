@@ -220,16 +220,19 @@ export const API = {
                 EMAIL: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/email" },
                 PHONE: { POST: SERVER.ADMIN_PANEL_API_URL + "contact-us/record/answer/phone" }
             }
-        } ,
-        SERVICES : {
-            GET : SERVER.ADMIN_PANEL_API_URL + "services"
-        } , 
-        PLATFORMS : {
-            GET : SERVER.ADMIN_PANEL_API_URL + "platforms",
-            POST : SERVER.ADMIN_PANEL_API_URL + "platforms",
-            DELETE : SERVER.ADMIN_PANEL_API_URL + "platforms",
-            PUT : SERVER.ADMIN_PANEL_API_URL + "platforms",
-            
+        },
+        SERVICES: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "services"
+        },
+        PLATFORMS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "platforms",
+            POST: SERVER.ADMIN_PANEL_API_URL + "platforms",
+            DELETE: SERVER.ADMIN_PANEL_API_URL + "platforms",
+            PUT: SERVER.ADMIN_PANEL_API_URL + "platforms",
+        },
+        METHODS: {
+            GET: SERVER.ADMIN_PANEL_API_URL + "payment-methods" ,
+            POST: SERVER.ADMIN_PANEL_API_URL + "payment-methods" ,
         }
 
 
@@ -262,7 +265,7 @@ export const API = {
         PLATFORMS: {
             GET: SERVER.API_URL + "platforms",
 
-        } ,
+        },
     }
 }
 

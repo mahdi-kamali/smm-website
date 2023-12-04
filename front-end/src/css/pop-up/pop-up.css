@@ -30,6 +30,7 @@
   width: 30rem;
   min-height: 40vh;
   max-height: 65vh;
+  max-width: 90dvw;
 }
 .pop-up .select-currency-pop-up .pop-up-header {
   font-weight: bold;
@@ -106,8 +107,9 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  height: 80dvh;
+  max-height: 90dvh;
   width: 50rem;
+  max-width: 90dvw;
 }
 .pop-up .select-category-pop-up .pop-up-header {
   font-weight: bold;
@@ -156,18 +158,18 @@
 .pop-up .select-category-pop-up .pop-up-body {
   margin-top: 1rem;
   overflow: auto;
-  padding-right: 1em;
 }
 .pop-up .select-category-pop-up .pop-up-body ul {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
-  padding: 1em;
 }
 .pop-up .select-category-pop-up .pop-up-body ul .main-category {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 .pop-up .select-category-pop-up .pop-up-body ul .main-category .main-category-header {
   text-transform: capitalize;
@@ -175,6 +177,7 @@
   align-items: center;
   line-height: 0;
   gap: 0.5rem;
+  line-height: 1.5;
   color: #17a2b8;
   font-size: 1.25rem;
 }
@@ -317,8 +320,9 @@
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  height: 80dvh;
-  max-width: 40rem;
+  max-height: 90dvh;
+  width: 50rem;
+  max-width: 90dvw;
   padding: 2em;
 }
 .pop-up .select-payment-method-pop-up .pop-up-header {

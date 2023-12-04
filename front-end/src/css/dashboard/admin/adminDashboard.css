@@ -4,21 +4,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1300px;
   margin: 0 auto;
   padding-bottom: 2em;
 }
 .admin-dashboard nav {
-  background-color: white;
   display: flex;
   justify-content: center;
   padding: 0 3em;
   border-radius: 0 0 100rem 100rem;
   position: sticky;
   gap: 2rem;
-  top: 6em;
   width: 90%;
+  max-width: 1300px;
   z-index: 3;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
 }
 .admin-dashboard nav .item {
   display: flex;
@@ -38,7 +38,7 @@
   position: relative;
 }
 .admin-dashboard .content {
-  width: 100%;
+  width: 90%;
   border-radius: 1rem;
 }
 .admin-dashboard .content .panel-section {
@@ -886,6 +886,32 @@
   border-radius: 100rem;
   background-color: #ffa938;
   color: white;
+}
+.admin-dashboard .content .admin-panel-payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.admin-dashboard .content .admin-panel-payment-methods .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  gap: 1rem;
+}
+.admin-dashboard .content .admin-panel-payment-methods .header button {
+  display: flex;
+  align-items: center;
+  background-color: #0fac6d;
+  color: white;
+  padding: 0.5em 1em;
+  gap: 0.25rem;
+  letter-spacing: 1px;
+  border-radius: 100rem;
+  font-size: 1rem;
+}
+.admin-dashboard .content .admin-panel-payment-methods .body .image {
+  width: 100%;
 }
 .admin-dashboard .content .admin-panel-platforms .platforms-header {
   display: flex;
