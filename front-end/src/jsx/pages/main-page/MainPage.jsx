@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { API, SERVER } from '../../../lib/envAccess';
+import {  SERVER } from '../../../lib/envAccess';
 
 
 
@@ -11,7 +11,7 @@ import Introduction from './sections/introduction/Introduction';
 import Reviews from './sections/reviews/Reviews';
 import Faqs from './sections/faqs/Faqs';
 import WhyChooseUs from './sections/why-choose-us/WhyChooseUs';
-import MainBackground from './sections/main-background/MainBackground';
+
 
 
 axios.defaults.baseURL = SERVER.API_URL
@@ -28,7 +28,7 @@ const MainPage = () => {
 
             <Poster />
 
-            <MainBackground />
+            {/* <MainBackground /> */}
 
             <WhyChooseUs />
 
